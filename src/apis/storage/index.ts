@@ -1,4 +1,4 @@
-type LocalStorageKey = "access_token" | "refresh_token" | "autoComplete";
+type LocalStorageKey = "access_token" | "refresh_token";
 
 export default class Storage {
   static getItem(key: LocalStorageKey) {

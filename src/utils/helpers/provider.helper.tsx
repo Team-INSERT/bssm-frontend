@@ -32,7 +32,7 @@ const Provider = ({ children }: PropsWithChildren) => {
           autoClose={1000}
           position={toast.POSITION.TOP_RIGHT}
         />
-        <Header />
+        {/* <Header /> */}
         {children}
         {/* <Footer /> */}
       </RecoilRoot>
