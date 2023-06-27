@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next lint && next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "yarn && yarn build && yarn lint && yarn install --immutable --immutable-cache --check-cache && npx playwright install --with-deps && npx playwright test"
   },
   "dependencies": {
     "@playwright/test": "^1.29.1",
