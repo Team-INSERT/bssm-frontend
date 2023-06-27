@@ -1,7 +1,7 @@
 "use client";
 
 import Header from "@/components/Header";
-// import Footer from "@/components/Footer";
+import Footer from "@/components/Footer";
 import React, { PropsWithChildren } from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ToastContainer, toast } from "react-toastify";
@@ -34,7 +34,7 @@ const Provider = ({ children }: PropsWithChildren) => {
         />
         <Header />
         {children}
-        {/* <Footer /> */}
+        <Footer />
       </RecoilRoot>
     </QueryClientProvider>
   );
