@@ -1,0 +1,4 @@
+root = true
+
+[*.tsx]
+indent_style = space
