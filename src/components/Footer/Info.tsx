@@ -20,10 +20,12 @@ const Info = () => {
 
   return (
     <>
-      <Service>{name}</Service>
-      <ServiceInfo>{service}</ServiceInfo>
-      <Policy>{headline}</Policy>
-      <Line />
+      <TopInfo>
+        <Service>{name}</Service>
+        <ServiceInfo>{service}</ServiceInfo>
+        <Policy>{headline}</Policy>
+      </TopInfo>
+      <BottomInfo>
       <Row>
         <Column gap="2px">
           <Policy>{service}</Policy>
@@ -34,6 +36,7 @@ const Info = () => {
         </Column>
         <QRCode src={QR} alt="QRCODE" />
       </Row>
+      </BottomInfo>
     </>
   );
 };
@@ -43,10 +46,19 @@ const Service = styled.div`
   font-weight: 900;
 `;
 
+const TopInfo = styled.div`
+  border-bottom: 1px solid ${color.content};
+  padding: 0 0 2% 0;
+`
+
+const BottomInfo = styled.div`
+  padding: 2% 0 0 0;
+`
+
 const ServiceInfo = styled.div`
   font-size: 15px;
   font-weight: 500;
-  margin-bottom: 3%;
+  margin: 0 0 3% 0;
 `;
 
 const Policy = styled.div`
@@ -57,7 +69,7 @@ const Policy = styled.div`
 const Copyright = styled.div`
   font-size: 10px;
   font-weight: 200;
-  margin-top: 4%;
+  margin: 4% 0 0 0;
 `;
 
 const Line = styled.div`
