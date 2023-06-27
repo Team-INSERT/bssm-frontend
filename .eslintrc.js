@@ -16,6 +16,16 @@ module.exports = {
     "plugin:prettier/recommended",
   ],
   rules: {
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        js: "never",
+        jsx: "never",
+        ts: "never",
+        tsx: "never",
+      },
+    ],
     // 'React' must be in scope when using JSX 에러 지우기(Next.js)
     "react/react-in-jsx-scope": "off",
     // ts파일에서 tsx구문 허용(Next.js)
@@ -23,6 +33,10 @@ module.exports = {
     "react/jsx-filename-extension": [1, { extensions: [".ts", ".tsx"] }], // should add ".ts" if typescript project
     "no-unused-vars": "off",
     "no-param-reassign": "off",
+    "react/function-component-definition": [
+      2,
+      { namedComponents: ["arrow-function", "function-declaration"] },
+    ],
     "@typescript-eslint/no-unused-vars": "warn",
     "jsx-a11y/click-events-have-key-events": 0,
     "jsx-a11y/no-static-element-interactions": 0,
