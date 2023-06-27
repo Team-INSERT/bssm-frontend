@@ -14,9 +14,8 @@ const Footer = () => {
 };
 
 const Layout = styled.div`
-  width: 100vw;
+  width: 100%;
   height: 400px;
-  bottom: 0;
   color: ${color.content};
   display: flex;
   justify-content: center;
@@ -25,7 +24,7 @@ const Layout = styled.div`
 `;
 
 const Container = styled.div`
-  width: 76vw;
+  width: 76%;
   height: 60%;
 `;
 
