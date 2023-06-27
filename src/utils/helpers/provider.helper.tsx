@@ -1,6 +1,6 @@
 "use client";
 
-// import Header from "@/components/Header";
+import Header from "@/components/Header";
 // import Footer from "@/components/Footer";
 import React, { PropsWithChildren } from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
@@ -32,7 +32,7 @@ const Provider = ({ children }: PropsWithChildren) => {
           autoClose={1000}
           position={toast.POSITION.TOP_RIGHT}
         />
-        {/* <Header /> */}
+        <Header />
         {children}
         {/* <Footer /> */}
       </RecoilRoot>
