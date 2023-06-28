@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import color from "@/styles/color";
 import Image from "next/image";
+import { font } from "@/styles/font";
 import Column from "../Flex/Column";
 import Row from "../Flex/Row";
 
@@ -15,56 +16,65 @@ const Info = () => {
     serviceInfo: `부산소마고학생정보관리시스템 | 대표 : 이현준 | 부산광역시 강서구 가락대로 1393`,
     policy: "개인정보책임관리자 : 김호현 | 소개 사이트 : insert.com",
     inquery: "비즈니스 문의 : insert@gmail.com",
-    copyRight: " @2023. team insert. All rights reserved.",
+    copyRight: "© 2023. team insert. All rights reserved.",
   };
 
   return (
-    <>
-      <Service>{name}</Service>
-      <ServiceInfo>{service}</ServiceInfo>
-      <Policy>{headline}</Policy>
-      <Line />
-      <Row>
-        <Column gap="2px">
-          <Policy>{service}</Policy>
-          <Policy>{serviceInfo}</Policy>
-          <Policy>{policy}</Policy>
-          <Policy>{inquery}</Policy>
-          <Copyright>{copyRight}</Copyright>
+    <Container>
+      <HGroup>
+        <Column>
+          <Title>{name}</Title>
+          <SubTitle>{service}</SubTitle>
+          <PolicyText>{headline}</PolicyText>
         </Column>
-        <QRCode src={QR} alt="QRCODE" />
-      </Row>
-    </>
+      </HGroup>
+      <Section>
+        <Row>
+          <Column gap="2px">
+            <PolicyText>{service}</PolicyText>
+            <PolicyText>{serviceInfo}</PolicyText>
+            <PolicyText>{policy}</PolicyText>
+            <PolicyText>{inquery}</PolicyText>
+            <Copyright>{copyRight}</Copyright>
+          </Column>
+          <QRCode src={QR} alt="QRCODE" />
+        </Row>
+      </Section>
+    </Container>
   );
 };
 
-const Service = styled.div`
-  font-size: 30px;
-  font-weight: 900;
+const Container = styled.footer`
+  display: flex;
+  flex-direction: column;
 `;
 
-const ServiceInfo = styled.div`
-  font-size: 15px;
-  font-weight: 500;
+const Title = styled.span`
+  ${font.H2};
+`;
+
+const HGroup = styled.hgroup`
+  border-bottom: 1px solid ${color.content};
+  padding-bottom: 2%;
+  margin-bottom: 2%;
+`;
+
+const Section = styled.section``;
+
+const SubTitle = styled.span`
+  ${font.H5};
   margin-bottom: 3%;
 `;
 
-const Policy = styled.div`
-  font-size: 10px;
-  font-weight: 200;
+const PolicyText = styled.span`
+  ${font.p4};
+  color: ${color.content};
 `;
 
-const Copyright = styled.div`
-  font-size: 10px;
-  font-weight: 200;
+const Copyright = styled.span`
   margin-top: 4%;
-`;
-
-const Line = styled.div`
-  width: 100%;
-  height: 0.5px;
-  margin: 2% 0;
-  background-color: ${color.content};
+  ${font.p4};
+  color: ${color.content};
 `;
 
 const QRCode = styled(Image)`
