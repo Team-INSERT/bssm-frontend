@@ -25,6 +25,7 @@ export const font = {
   p1: fontGenerator(400, 1.125, 140, 0.15),
   p2: fontGenerator(400, 1, 160, -0.15),
   p3: fontGenerator(400, 0.875, 160, -0.1),
+  p4: fontGenerator(400, 0.625, 160, -0.1),
 
   btn1: fontGenerator(500, 1.125, 130, 0),
   btn2: fontGenerator(500, 1, 130, 0),
