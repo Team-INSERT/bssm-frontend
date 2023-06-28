@@ -10,6 +10,7 @@ const color = {
   primary_mint: "#27C3BC",
 
   tertiary: "#303441",
+  on_tertiary: "#E6E6E6",
   container: "#F9FAFF",
   content: "#D9D9D9",
 };
