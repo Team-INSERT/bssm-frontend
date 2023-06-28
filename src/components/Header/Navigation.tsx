@@ -1,3 +1,5 @@
+import color from "@/styles/color";
+import { font } from "@/styles/font";
 import React from "react";
 import styled from "styled-components";
 
@@ -11,23 +13,23 @@ const navigation = [
 
 const Navigation = () => {
   return (
-    <NavigationWrap>
+    <List>
       {navigation.map((title) => (
-        <NavigationItem key={title}>{title}</NavigationItem>
+        <ListItem key={title}>{title}</ListItem>
       ))}
-    </NavigationWrap>
+    </List>
   );
 };
 
-const NavigationWrap = styled.ul`
+const List = styled.ul`
   width: 100%;
   display: flex;
   gap: 5%;
 `;
 
-const NavigationItem = styled.li`
-  font-size: 18px;
-  color: black;
+const ListItem = styled.li`
+  font-size: ${font.H5};
+  color: ${color.black};
   cursor: pointer;
 `;
 
