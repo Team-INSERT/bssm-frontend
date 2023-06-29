@@ -13,21 +13,21 @@ const navigation = [
 
 const Navigation = () => {
   return (
-    <List>
+    <NavigationList>
       {navigation.map((title) => (
-        <ListItem key={title}>{title}</ListItem>
+        <NavigationListItem key={title}>{title}</NavigationListItem>
       ))}
-    </List>
+    </NavigationList>
   );
 };
 
-const List = styled.ul`
+const NavigationList = styled.ul`
   width: 100%;
   display: flex;
   gap: 5%;
 `;
 
-const ListItem = styled.li`
+const NavigationListItem = styled.li`
   font-size: ${font.H5};
   color: ${color.black};
   cursor: pointer;
