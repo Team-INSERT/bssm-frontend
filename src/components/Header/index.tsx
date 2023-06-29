@@ -2,6 +2,7 @@ import Image from "next/image";
 import React from "react";
 import styled from "styled-components";
 import LogoImage from "@/assets/logo.svg";
+import color from "@/styles/color";
 import Navigation from "./Navigation";
 
 const Header = () => {
@@ -21,11 +22,11 @@ const Layout = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: white;
-  border-bottom: 1px solid #e6e6e6;
+  background-color: ${color.white};
+  border-bottom: 1px solid ${color.on_tertiary};
 `;
 
-const Container = styled.div`
+const Container = styled.header`
   width: 76%;
   height: 100%;
   display: flex;
