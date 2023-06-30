@@ -66,6 +66,7 @@ const InfomationButton = styled.button`
 const ProfileImage = styled(Image)`
   border-radius: 50%;
   background-color: black;
+  flex-shrink: 0;
 `;
 
 export default InfomationBox;
