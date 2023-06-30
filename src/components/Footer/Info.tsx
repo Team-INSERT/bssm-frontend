@@ -6,7 +6,7 @@ import { font } from "@/styles/font";
 import Column from "../Flex/Column";
 import Row from "../Flex/Row";
 
-import QR from "./images/QR.png";
+import QR from "./assets/QR.png";
 
 const Info = () => {
   const { name, service, headline, serviceInfo, policy, inquery, copyRight } = {
