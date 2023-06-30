@@ -7,6 +7,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { ToastContainer, toast } from "react-toastify";
 import { RecoilRoot } from "recoil";
 import styled from "styled-components";
+import Column from "@/components/Flex/Column";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -32,9 +33,11 @@ const Provider = ({ children }: PropsWithChildren) => {
           autoClose={1000}
           position={toast.POSITION.TOP_RIGHT}
         />
-        <Header />
-        {children}
-        <Footer />
+        <Column gap="6vh">
+          <Header />
+          {children}
+          <Footer />
+        </Column>
       </RecoilRoot>
     </QueryClientProvider>
   );
