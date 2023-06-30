@@ -9,7 +9,7 @@ import Row from "../Flex/Row";
 const InfomationBox = () => {
   return (
     <Container>
-      <ProfileImage src="/" alt="profile" width={500} height={500} />
+      <ProfileImage src="/" alt="profile" width={50} height={50} />
       <Column>
         <UserGrade>2학년 2반 10번</UserGrade>
         <Row gap="4px">
@@ -65,8 +65,6 @@ const InfomationButton = styled.button`
 `;
 
 const ProfileImage = styled(Image)`
-  width: 50px;
-  height: 50px;
   border-radius: 50%;
   background-color: black;
 `;

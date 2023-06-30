@@ -7,7 +7,7 @@ import Check from "./assets/check.svg";
 const JoinCheckBox = () => {
   return (
     <Container>
-      <Checker src={Check} alt="check" />
+      <Image src={Check} alt="check" width={90} height={90} />
     </Container>
   );
 };
@@ -20,11 +20,6 @@ const Container = styled.section`
   display: flex;
   justify-content: center;
   align-items: center;
-`;
-
-const Checker = styled(Image)`
-  width: 80px;
-  height: 80px;
 `;
 
 export default JoinCheckBox;
