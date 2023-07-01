@@ -50,7 +50,7 @@
     "autoprefixer": "^10.4.13",
     "babel-plugin-styled-components": "^2.1.4",
     "commitizen": "^4.2.5",
-    "conventional-changelog-conventionalcommits": "^5.0.0",
+    "conventional-changelog-conventionalcommits": "^6.0.0",
     "cz-conventional-changelog": "^3.3.0",
     "cz-customizable": "^7.0.0",
     "eslint-config-airbnb": "^19.0.4",
