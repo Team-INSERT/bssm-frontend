@@ -124,6 +124,6 @@ export class HttpClient {
 }
 
 export const axiosConfig: HttpClientConfig = {
-  baseURL: "http://localhost:3000/api",
+  baseURL: "https://bssm.kro.kr/api",
   timeout: 10000,
 };
