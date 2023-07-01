@@ -1,23 +1,23 @@
 import Row from "@/components/Flex/Row";
 import color from "@/styles/color";
 import { font } from "@/styles/font";
-import filter from "@/utils/constants/filter";
+import forum from "@/utils/constants/forum.constant";
 import React from "react";
 import styled, { css } from "styled-components";
 
 const filters = [
   {
-    type: filter.student.type,
-    name: filter.student.name,
+    type: forum.student.type,
+    name: forum.student.name,
   },
   {
-    type: filter.free.type,
-    name: filter.free.name,
+    type: forum.free.type,
+    name: forum.free.name,
   },
 ];
 
 const ForumFilter = () => {
-  const [checked, setChecked] = React.useState(filter.student.type);
+  const [checked, setChecked] = React.useState(forum.student.type);
 
   const onCheckFilter = (e: React.ChangeEvent<HTMLInputElement>) => {
     setChecked(e.target.id);
@@ -26,17 +26,17 @@ const ForumFilter = () => {
   return (
     <Row gap="14px" alignItems="center">
       {filters.map((item) => (
-        <>
+        <Row key={item.type}>
           <ForumLabel checked={item.type === checked} htmlFor={item.type}>
             {item.name}
           </ForumLabel>
           <ForumRadio
             onChange={onCheckFilter}
-            type={filter.type}
+            type={forum.type}
             id={item.type}
-            name={filter.name}
+            name={forum.name}
           />
-        </>
+        </Row>
       ))}
     </Row>
   );
