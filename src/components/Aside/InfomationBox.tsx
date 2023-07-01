@@ -49,15 +49,15 @@ const UserType = styled.span`
 `;
 
 const InfomationButton = styled.button`
-  width: 58px;
-  height: 20px;
+  width: 76px;
+  height: 26px;
   background-color: ${color.primary_blue};
   border-radius: 5px;
   display: block;
   margin-left: auto;
 
   &:after {
-    ${font.p4};
+    ${font.btn3};
     color: ${color.white};
     content: "내 정보";
   }

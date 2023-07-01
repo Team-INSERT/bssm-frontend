@@ -25,9 +25,6 @@ const MeisterBox = () => {
           <Row gap="4px">
             <Score>214.2</Score>
             <Rank>48</Rank>
-            {score.type === service.reward_points.type && (
-              <ScoreGap>43-11</ScoreGap>
-            )}
           </Row>
         </ScoreHGroup>
       ))}
@@ -72,15 +69,6 @@ const Rank = styled.small`
 
   &:after {
     content: "위";
-  }
-`;
-
-const ScoreGap = styled(Rank)`
-  &:before {
-    content: "(";
-  }
-  &:after {
-    content: ")";
   }
 `;
 
