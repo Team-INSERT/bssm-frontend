@@ -59,7 +59,7 @@ const CheckButton = styled.button`
   height: 32px;
   background-color: ${color.primary_blue};
   border-radius: 3px;
-  color: white;
+  color: ${color.white};
   ${font.btn3};
 
   &:after {

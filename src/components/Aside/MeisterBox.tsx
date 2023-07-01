@@ -72,13 +72,4 @@ const Rank = styled.small`
   }
 `;
 
-const ScoreGap = styled(Rank)`
-  &:before {
-    content: "(";
-  }
-  &:after {
-    content: ")";
-  }
-`;
-
 export default MeisterBox;
