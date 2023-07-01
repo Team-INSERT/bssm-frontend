@@ -18,7 +18,7 @@ const Aside = () => {
 };
 
 const Container = styled.aside`
-  width: 28vw;
+  width: 24vw;
   display: flex;
   gap: 6px;
   margin-left: auto;
