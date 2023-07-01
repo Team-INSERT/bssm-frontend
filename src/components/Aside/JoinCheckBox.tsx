@@ -9,7 +9,7 @@ const JoinCheckBox = () => {
     <Container>
       <HGroup>
         <Date>7월 1주차</Date>
-        <Row gap="2px">
+        <Row gap="4px">
           <RoomNumber>334</RoomNumber>
           <UserName>박우빈</UserName>
         </Row>
