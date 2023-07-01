@@ -25,15 +25,15 @@ const ForumFilter = () => {
 
   return (
     <Row gap="14px" alignItems="center">
-      {filters.map((item) => (
-        <Row key={item.type}>
-          <ForumLabel checked={item.type === checked} htmlFor={item.type}>
-            {item.name}
+      {filters.map((filter) => (
+        <Row key={filter.type}>
+          <ForumLabel checked={filter.type === checked} htmlFor={filter.type}>
+            {filter.name}
           </ForumLabel>
           <ForumRadio
             onChange={onCheckFilter}
             type={forum.type}
-            id={item.type}
+            id={filter.type}
             name={forum.name}
           />
         </Row>
