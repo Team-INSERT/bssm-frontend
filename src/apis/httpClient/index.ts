@@ -124,6 +124,6 @@ export class HttpClient {
 }
 
 export const axiosConfig: HttpClientConfig = {
-  baseURL: "https://bssm.kro.kr/api",
+  baseURL: process.env.NEXT_PUBLIC_BASE_URL,
   timeout: 10000,
 };
