@@ -8,8 +8,8 @@ const JoinCheckBox = () => {
   return (
     <Container>
       <HGroup>
-        <Date>2023년 7월 1주차</Date>
-        <Row gap="2px">
+        <Date>7월 1주차</Date>
+        <Row gap="4px">
           <RoomNumber>334</RoomNumber>
           <UserName>박우빈</UserName>
         </Row>
@@ -35,6 +35,8 @@ const HGroup = styled.hgroup`
   display: flex;
   flex-direction: column;
   gap: 4px;
+  margin-right: auto;
+  padding-left: 18px;
 `;
 
 const Date = styled.span`

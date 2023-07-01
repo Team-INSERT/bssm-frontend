@@ -1,6 +1,6 @@
 "use client";
 
-import HomePage from "@/pages/home";
+import HomePage from "@/page/home";
 import React from "react";
 
 const Home = () => {
