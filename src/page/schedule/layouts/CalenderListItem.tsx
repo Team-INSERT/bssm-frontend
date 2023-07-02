@@ -31,7 +31,7 @@ const CalenderBody = styled.section`
   ${font.caption};
   width: 80%;
   word-break: break-all;
-  height: 180px;
+  height: 36vh;
 `;
 
 const Plan = styled.div`
