@@ -1,8 +1,10 @@
 import Row from "@/components/Flex/Row";
+import { categoriesStore } from "@/store/categories.store";
 import color from "@/styles/color";
 import { font } from "@/styles/font";
 import forum from "@/utils/constants/forum.constant";
 import React from "react";
+import { useRecoilState } from "recoil";
 import styled, { css } from "styled-components";
 
 const categories = [
@@ -25,7 +27,7 @@ const categories = [
 ];
 
 const Categories = () => {
-  const [checked, setChecked] = React.useState(forum.category.all.type);
+  const [checked, setChecked] = useRecoilState(categoriesStore);
 
   const onCheckCategory = (e: React.ChangeEvent<HTMLInputElement>) => {
     setChecked(e.target.id);
