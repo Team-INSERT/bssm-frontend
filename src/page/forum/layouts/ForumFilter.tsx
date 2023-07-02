@@ -1,9 +1,11 @@
 import Row from "@/components/Flex/Row";
+import { forumFilterStore } from "@/store/forumType.store";
 import color from "@/styles/color";
 import { font } from "@/styles/font";
 import forum from "@/utils/constants/forum.constant";
 import React from "react";
-import styled, { css } from "styled-components";
+import { useRecoilState } from "recoil";
+import styled, { css, keyframes } from "styled-components";
 
 const filters = [
   {
@@ -17,7 +19,7 @@ const filters = [
 ];
 
 const ForumFilter = () => {
-  const [checked, setChecked] = React.useState(forum.student.type);
+  const [checked, setChecked] = useRecoilState(forumFilterStore);
 
   const onCheckFilter = (e: React.ChangeEvent<HTMLInputElement>) => {
     setChecked(e.target.id);
@@ -46,6 +48,12 @@ const ForumRadio = styled.input`
   display: none;
 `;
 
+const selected = keyframes`
+  to {
+    ${font.H2};
+  }
+`;
+
 const ForumLabel = styled.label<{ checked: boolean }>`
   ${({ checked }) =>
     checked
@@ -59,6 +67,12 @@ const ForumLabel = styled.label<{ checked: boolean }>`
 
   &:after {
     content: "게시판";
+  }
+
+  &:hover {
+    animation-fill-mode: forwards;
+    animation-duration: 0.1s;
+    animation-name: ${selected};
   }
 `;
 
