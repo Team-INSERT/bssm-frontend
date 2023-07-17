@@ -5,7 +5,7 @@ import { font } from "@/styles/font";
 import React from "react";
 import styled from "styled-components";
 import Image from "next/image";
-import Like from "@/page/forum/assets/Like.svg";
+import Like from "@/page/forum/assets/LikeLogo.svg";
 
 const PostListItem = () => {
   return (
