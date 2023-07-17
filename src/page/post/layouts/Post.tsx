@@ -1,26 +1,27 @@
 import color from "@/styles/color";
 import React from "react";
 import styled from "styled-components";
-import Category from "./Category";
+import Category from "./PostHead/Category";
+import PostBody from "./PostBody";
 import PostHead from "./PostHead";
 
 const Post = () => {
   return (
     <Container>
-      <Category />
       <PostHead />
+      <PostBody />
     </Container>
   );
 };
 
 const Container = styled.div`
   width: 76%;
-  height: 300px;
   border-radius: 4px;
   background-color: ${color.white};
   display: flex;
   flex-direction: column;
-  padding: 22px;
+  padding: 22px 32px;
+  gap: 4px;
 `;
 
 export default Post;
