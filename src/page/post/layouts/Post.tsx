@@ -1,7 +1,6 @@
 import color from "@/styles/color";
 import React from "react";
 import styled from "styled-components";
-import Category from "./PostHead/Category";
 import PostBody from "./PostBody";
 import PostHead from "./PostHead";
 

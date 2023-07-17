@@ -6,7 +6,7 @@ import React from "react";
 import styled from "styled-components";
 import View from "@/page/post/assets/View.svg";
 import Like from "@/page/post/assets/Like.svg";
-import Comment from "@/page/post/assets/comment.svg";
+import Comment from "@/page/post/assets/CommentIcon.svg";
 
 const ReactBox = () => {
   return (
