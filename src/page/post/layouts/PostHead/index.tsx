@@ -1,10 +1,15 @@
 import React from "react";
 import styled from "styled-components";
+import Category from "./Category";
+import PostTitle from "./PostTitle";
+import ReactBox from "./ReactBox";
 
 const PostHead = () => {
   return (
     <Container>
-      <Title />
+      <Category />
+      <PostTitle />
+      <ReactBox />
     </Container>
   );
 };
@@ -12,8 +17,8 @@ const PostHead = () => {
 const Container = styled.div`
   width: 100%;
   display: flex;
+  flex-direction: column;
+  gap: 12px;
 `;
-
-const Title = styled.h1``;
 
 export default PostHead;

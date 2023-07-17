@@ -7,7 +7,7 @@ import Image from "next/image";
 const Category = () => {
   return (
     <Container>
-      <PostType>학생 게시판</PostType>
+      <PostType>학생</PostType>
       <Image src={Arrow} alt="arrow" width={12} height={12} />
       <CategoryType />
       <CategoryType>자유</CategoryType>
@@ -18,15 +18,22 @@ const Category = () => {
 const Container = styled.div`
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 4px;
 `;
 
 const PostType = styled.h1`
-  ${font.H6};
+  ${font.p3};
+  font-weight: 600;
+
+  &:after {
+    content: " 게시판";
+  }
 `;
 
-const CategoryType = styled(PostType)`
-  margin-left: -4px;
+const CategoryType = styled.h1`
+  ${font.p3};
+  font-weight: 600;
+  margin-left: -2px;
 `;
 
 export default Category;
