@@ -2,17 +2,13 @@ import color from "@/styles/color";
 import React from "react";
 import styled from "styled-components";
 import { font } from "@/styles/font";
-import Row from "../Flex/Row";
 
 const JoinCheckBox = () => {
   return (
     <Container>
       <HGroup>
         <Date>7월 1주차</Date>
-        <Row gap="4px">
-          <RoomNumber>334</RoomNumber>
-          <UserName>박우빈</UserName>
-        </Row>
+        <RoomNumber>334</RoomNumber>
       </HGroup>
       <CheckButton disabled />
     </Container>
@@ -34,7 +30,6 @@ const Container = styled.section`
 const HGroup = styled.hgroup`
   display: flex;
   flex-direction: column;
-  gap: 4px;
   margin-right: auto;
   padding-left: 18px;
 `;
@@ -45,15 +40,11 @@ const Date = styled.span`
 `;
 
 const RoomNumber = styled.span`
-  ${font.H6};
+  ${font.H4};
 
   &:after {
     content: "호";
   }
-`;
-
-const UserName = styled.span`
-  ${font.H6};
 `;
 
 const CheckButton = styled.button`
