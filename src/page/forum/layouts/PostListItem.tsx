@@ -4,8 +4,8 @@ import color from "@/styles/color";
 import { font } from "@/styles/font";
 import React from "react";
 import styled from "styled-components";
-import Like from "@/page/forum/assets/Like.svg";
 import Image from "next/image";
+import Like from "@/page/forum/assets/Like.svg";
 
 const PostListItem = () => {
   return (
