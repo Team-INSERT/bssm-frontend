@@ -41,6 +41,7 @@ const ProfileBox = styled(Link)`
   gap: 12px;
   align-items: center;
   cursor: pointer;
+  width: fit-content;
   text-decoration: none;
 `;
 
