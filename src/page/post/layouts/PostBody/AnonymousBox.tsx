@@ -1,8 +1,7 @@
 import color from "@/styles/color";
 import { font } from "@/styles/font";
-import Image from "next/image";
 import React from "react";
-import Check from "@/page/post/assets/Check.svg";
+import Check from "@/page/post/assets/Check";
 import styled, { css } from "styled-components";
 
 const AnonymousBox = () => {
@@ -12,7 +11,7 @@ const AnonymousBox = () => {
     <Container onClick={() => setClicked(!clicked)}>
       <AnonymousLabel>익명</AnonymousLabel>
       <AnonymousButton clicked={clicked}>
-        <Image src={Check} alt="check" width={10} height={10} />
+        <Check width={10} height={10} />
       </AnonymousButton>
     </Container>
   );

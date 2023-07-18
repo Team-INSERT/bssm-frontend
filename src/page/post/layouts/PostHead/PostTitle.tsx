@@ -5,7 +5,7 @@ import { font } from "@/styles/font";
 import Image from "next/image";
 import React from "react";
 import styled from "styled-components";
-import Time from "@/page/post/assets/Time.svg";
+import Time from "@/page/post/assets/Time";
 import Link from "next/link";
 
 const PostTitle = () => {
@@ -22,7 +22,7 @@ const PostTitle = () => {
         <Column justifyContent="center">
           <Author>우빈우빈</Author>
           <Row gap="4px" alignItems="center">
-            <Image src={Time} alt="time" width={12} height={12} />
+            <Time width={12} height={12} />
             <Date>2023.07.22.</Date>
           </Row>
         </Column>
@@ -41,6 +41,7 @@ const ProfileBox = styled(Link)`
   gap: 12px;
   align-items: center;
   cursor: pointer;
+  width: fit-content;
   text-decoration: none;
 `;
 
