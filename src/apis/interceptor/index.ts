@@ -1,7 +1,7 @@
 import Storage from "@/apis/storage";
 import { AxiosRequestConfig, AxiosResponse } from "axios";
 import refreshToken from "@/apis/token/refreshToken";
-import exception from "@/utils/constants/exception.constant";
+import exception from "@/global/constants/exception.constant";
 
 export const requestInterceptors = (requestConfig: AxiosRequestConfig) => {
   if (!Storage.getItem("access_token") && Storage.getItem("refresh_token"))
