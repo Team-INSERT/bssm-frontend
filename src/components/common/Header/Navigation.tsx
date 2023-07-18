@@ -23,7 +23,7 @@ const navigations = [
   },
   {
     name: "게시판",
-    href: "/forum",
+    href: "/post",
   },
   {
     name: "분실물 찾기",
