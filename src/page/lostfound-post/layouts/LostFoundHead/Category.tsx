@@ -1,7 +1,7 @@
 import { font } from "@/styles/font";
 import React from "react";
 import styled from "styled-components";
-import Arrow from "@/page/post/assets/CategoryArrow";
+import Arrow from "@/page/forum-post/assets/CategoryArrow";
 
 const Category = () => {
   return (

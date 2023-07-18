@@ -5,7 +5,7 @@ import { font } from "@/styles/font";
 import Image from "next/image";
 import React from "react";
 import styled from "styled-components";
-import Time from "@/page/post/assets/Time";
+import Time from "@/page/forum-post/assets/Time";
 import Link from "next/link";
 
 const LostFoundTitle = () => {

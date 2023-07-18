@@ -1,7 +1,7 @@
 import color from "@/styles/color";
 import React from "react";
 import styled from "styled-components";
-import Emoji from "@/page/post/assets/Emoji";
+import Emoji from "@/page/forum-post/assets/Emoji";
 import { font } from "@/styles/font";
 import AnonymousBox from "@/components/atoms/AnonymousBox";
 

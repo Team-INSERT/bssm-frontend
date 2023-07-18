@@ -1,7 +1,7 @@
 import Row from "@/components/Flex/Row";
 import React from "react";
-import Like from "@/page/post/assets/Like";
-import Comment from "@/page/post/assets/CommentIcon";
+import Like from "@/page/forum-post/assets/Like";
+import Comment from "@/page/forum-post/assets/CommentIcon";
 import styled from "styled-components";
 import { font } from "@/styles/font";
 

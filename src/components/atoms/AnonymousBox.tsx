@@ -1,4 +1,4 @@
-import Check from "@/page/post/assets/Check";
+import Check from "@/page/forum-post/assets/Check";
 import color from "@/styles/color";
 import { font } from "@/styles/font";
 import React from "react";
