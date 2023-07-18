@@ -13,8 +13,7 @@ const LostFoundListItem = () => {
         src="/"
         fallbackSrc={NotFoundImage}
         alt="image"
-        width={90}
-        height={90}
+        size="90px"
       />
       <Column width="100%">
         <LostFoundName>남성용 카드지갑</LostFoundName>
@@ -43,7 +42,6 @@ const Container = styled.article`
   align-items: center;
   padding: 0px 14px;
   box-shadow: 0 0 10px 0 rgba(144, 144, 144, 0.1);
-  border-radius: 4px;
   gap: 24px;
   border-bottom: 1.5px solid ${color.on_tertiary};
 `;
