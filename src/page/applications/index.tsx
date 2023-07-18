@@ -1,4 +1,4 @@
-import Aside from "@/components/Aside";
+import Aside from "@/components/common/Aside";
 import Column from "@/components/Flex/Column";
 import React from "react";
 import styled from "styled-components";

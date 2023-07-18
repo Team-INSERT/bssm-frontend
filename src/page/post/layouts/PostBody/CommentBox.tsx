@@ -3,9 +3,11 @@ import React from "react";
 import styled from "styled-components";
 import Emoji from "@/page/post/assets/Emoji";
 import { font } from "@/styles/font";
-import AnonymousBox from "./AnonymousBox";
+import AnonymousBox from "@/components/atoms/AnonymousBox";
 
 const CommentBox = () => {
+  const [isAnonymous, setIsAnonymous] = React.useState(false);
+
   return (
     <Container>
       <CommentCount>124</CommentCount>
@@ -13,7 +15,7 @@ const CommentBox = () => {
         <CommentTextArea />
         <CommentToolBox>
           <Emoji width={20} height={20} />
-          <AnonymousBox />
+          <AnonymousBox clicked={isAnonymous} setClicked={setIsAnonymous} />
           <CommentUploadButton />
         </CommentToolBox>
       </CommentWriteBox>
