@@ -1,7 +1,7 @@
 import Row from "@/components/Flex/Row";
 import color from "@/styles/color";
 import { font } from "@/styles/font";
-import applications from "@/utils/constants/applications.constant";
+import applications from "@/page/applications/constants/applications.constant";
 import React from "react";
 import styled, { css, keyframes } from "styled-components";
 

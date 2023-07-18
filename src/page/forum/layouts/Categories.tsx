@@ -2,7 +2,7 @@ import Row from "@/components/Flex/Row";
 import { categoriesStore } from "@/store/categories.store";
 import color from "@/styles/color";
 import { font } from "@/styles/font";
-import forum from "@/utils/constants/forum.constant";
+import forum from "@/page/forum/constants/forum.constant";
 import React from "react";
 import { useRecoilState } from "recoil";
 import styled, { css } from "styled-components";

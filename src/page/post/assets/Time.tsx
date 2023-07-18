@@ -1,4 +1,4 @@
-import SVGAttribute from "@/types/SVGAttribute";
+import SVGAttribute from "@/global/types/SVGAttribute";
 import React from "react";
 
 const Time = ({ width, height, pointable }: SVGAttribute) => {

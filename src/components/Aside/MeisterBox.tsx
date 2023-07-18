@@ -2,7 +2,7 @@ import color from "@/styles/color";
 import { font } from "@/styles/font";
 import React from "react";
 import styled from "styled-components";
-import service from "@/utils/constants/service.constant";
+import service from "@/global/constants/service.constant";
 import Row from "../Flex/Row";
 
 const scores = [
