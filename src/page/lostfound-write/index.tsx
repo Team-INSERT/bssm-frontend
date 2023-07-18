@@ -1,12 +1,13 @@
 import Aside from "@/components/common/Aside";
 import React from "react";
 import styled from "styled-components";
+import LostFoundWriteBox from "./layouts/WriteBox";
 
 const LostFoundWritePage = () => {
   return (
     <Layout>
       <Container>
-        <WriteBox />
+        <LostFoundWriteBox />
         <Aside />
       </Container>
     </Layout>

@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import LostFoundWritePage from "@/page/lostfound-write";
 
 const LostFoundWrite = () => {
   return <LostFoundWritePage />;
