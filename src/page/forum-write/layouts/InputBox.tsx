@@ -1,5 +1,6 @@
 import AnonymousBox from "@/components/atoms/AnonymousBox";
 import Category from "@/components/atoms/Category";
+import CustomEditor from "@/components/atoms/CustomEditor";
 import Input from "@/components/atoms/Input";
 import Column from "@/components/Flex/Column";
 import Row from "@/components/Flex/Row";
@@ -8,7 +9,6 @@ import color from "@/styles/color";
 import { font } from "@/styles/font";
 import React from "react";
 import styled from "styled-components";
-import CustomEditor from "./CustomEditor";
 
 const InputBox = () => {
   const [checked, setChecked] = React.useState("all");
