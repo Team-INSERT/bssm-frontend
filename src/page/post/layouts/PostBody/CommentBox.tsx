@@ -1,8 +1,7 @@
-import Icon from "@/components/Icon";
 import color from "@/styles/color";
 import React from "react";
 import styled from "styled-components";
-import Emoji from "@/page/post/assets/Emoji.svg";
+import Emoji from "@/page/post/assets/Emoji";
 import { font } from "@/styles/font";
 import AnonymousBox from "./AnonymousBox";
 
@@ -13,7 +12,7 @@ const CommentBox = () => {
       <CommentWriteBox>
         <CommentTextArea />
         <CommentToolBox>
-          <Icon src={Emoji} alt="emoticon" width={20} height={20} />
+          <Emoji width={20} height={20} />
           <AnonymousBox />
           <CommentUploadButton />
         </CommentToolBox>

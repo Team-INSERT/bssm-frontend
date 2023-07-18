@@ -1,14 +1,13 @@
 import { font } from "@/styles/font";
 import React from "react";
 import styled from "styled-components";
-import Arrow from "@/page/post/assets/CategoryArrow.svg";
-import Image from "next/image";
+import Arrow from "@/page/post/assets/CategoryArrow";
 
 const Category = () => {
   return (
     <Container>
       <PostType>학생</PostType>
-      <Image src={Arrow} alt="arrow" width={12} height={12} />
+      <Arrow width={12} height={12} />
       <CategoryType />
       <CategoryType>자유</CategoryType>
     </Container>
