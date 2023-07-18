@@ -4,8 +4,7 @@ import color from "@/styles/color";
 import { font } from "@/styles/font";
 import React from "react";
 import styled from "styled-components";
-import Like from "@/page/forum/assets/like.svg";
-import Image from "next/image";
+import LikeLogo from "@/page/forum/assets/LikeLogo";
 
 const PostListItem = () => {
   return (
@@ -16,7 +15,7 @@ const PostListItem = () => {
         <Row gap="8px">
           <PostView>83</PostView>
           <Row alignItems="center" gap="3px">
-            <Image src={Like} alt="like" />
+            <LikeLogo />
             <PostLike>30</PostLike>
           </Row>
         </Row>

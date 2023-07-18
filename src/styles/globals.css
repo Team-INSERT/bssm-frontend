@@ -37,6 +37,7 @@ textarea {
   user-select: auto;
   border: none;
   outline: none;
+  resize: none;
 }
 
 input:focus {
