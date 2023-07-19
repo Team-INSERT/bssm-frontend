@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Row from "../Flex/Row";
+import Row from "@/components/Flex/Row";
 import InfomationBox from "./InfomationBox";
 import MeisterBox from "./MeisterBox";
 import JoinCheckBox from "./JoinCheckBox";

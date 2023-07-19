@@ -3,8 +3,8 @@ import styled from "styled-components";
 import color from "@/styles/color";
 import Image from "next/image";
 import { font } from "@/styles/font";
-import Column from "../Flex/Column";
-import Row from "../Flex/Row";
+import Column from "../../Flex/Column";
+import Row from "../../Flex/Row";
 
 import QR from "./assets/QR.png";
 

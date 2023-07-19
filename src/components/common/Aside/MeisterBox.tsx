@@ -3,7 +3,7 @@ import { font } from "@/styles/font";
 import React from "react";
 import styled from "styled-components";
 import service from "@/global/constants/service.constant";
-import Row from "../Flex/Row";
+import Row from "../../Flex/Row";
 
 const scores = [
   {

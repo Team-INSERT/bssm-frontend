@@ -1,13 +1,13 @@
 import Aside from "@/components/common/Aside";
 import React from "react";
 import styled from "styled-components";
-import ScheduleBox from "./layouts/ScheduleBox";
+import WriteBox from "./layouts/WriteBox";
 
-const SchedulePage = () => {
+const WritePage = () => {
   return (
     <Layout>
       <Container>
-        <ScheduleBox />
+        <WriteBox />
         <Aside />
       </Container>
     </Layout>
@@ -27,4 +27,4 @@ const Container = styled.div`
   gap: 8px;
 `;
 
-export default SchedulePage;
+export default WritePage;

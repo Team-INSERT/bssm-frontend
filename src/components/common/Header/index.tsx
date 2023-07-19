@@ -1,15 +1,17 @@
-import Image from "next/image";
 import React from "react";
 import styled from "styled-components";
-import LogoImage from "@/assets/logo.svg";
+import Logo from "@/global/assets/Logo";
 import color from "@/styles/color";
+import Link from "next/link";
 import Navigation from "./Navigation";
 
 const Header = () => {
   return (
     <Layout>
       <Container>
-        <Logo src={LogoImage} alt="logo" />
+        <Link href="/">
+          <Logo width={42} pointable />
+        </Link>
         <Navigation />
       </Container>
     </Layout>
@@ -32,11 +34,6 @@ const Container = styled.header`
   display: flex;
   align-items: center;
   gap: 6%;
-`;
-
-const Logo = styled(Image)`
-  width: 42px;
-  height: auto;
 `;
 
 export default Header;

@@ -1,12 +1,15 @@
+import Check from "@/page/post/assets/Check";
 import color from "@/styles/color";
 import { font } from "@/styles/font";
 import React from "react";
-import Check from "@/page/post/assets/Check";
 import styled, { css } from "styled-components";
 
-const AnonymousBox = () => {
-  const [clicked, setClicked] = React.useState(false);
+interface IAnonymousBoxProps {
+  clicked: boolean;
+  setClicked: (value: React.SetStateAction<boolean>) => void;
+}
 
+const AnonymousBox = ({ clicked, setClicked }: IAnonymousBoxProps) => {
   return (
     <Container onClick={() => setClicked(!clicked)}>
       <AnonymousLabel>익명</AnonymousLabel>

@@ -2,8 +2,8 @@
 
 import ForumPage from "@/page/forum";
 
-const Forum = () => {
+const Post = () => {
   return <ForumPage />;
 };
 
-export default Forum;
+export default Post;

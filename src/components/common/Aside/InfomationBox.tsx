@@ -3,8 +3,8 @@ import { font } from "@/styles/font";
 import React from "react";
 import styled from "styled-components";
 import Image from "next/image";
-import Column from "../Flex/Column";
-import Row from "../Flex/Row";
+import Column from "../../Flex/Column";
+import Row from "../../Flex/Row";
 
 const InfomationBox = () => {
   return (
