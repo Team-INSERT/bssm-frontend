@@ -13,7 +13,6 @@ interface IInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 const Input = ({
   type,
   width = "100%",
-  height = "52px",
   children,
   label,
   id,
@@ -24,13 +23,7 @@ const Input = ({
       <StyledLabel type={type} htmlFor={id}>
         {label}
       </StyledLabel>
-      <StyledInput
-        type={type}
-        id={id}
-        width={width}
-        height={height}
-        {...props}
-      />
+      <StyledInput type={type} id={id} width={width} {...props} />
     </StyledContainer>
   );
 };
@@ -73,12 +66,9 @@ const StyledLabel = styled.label<{ type?: string }>`
     `}
 `;
 
-const StyledInput = styled.input<{ width: string; height: string }>`
-  ${(props) => css`
-    width: ${props.width};
-    height: ${props.height};
-  `}
-  padding-left: 16px;
+const StyledInput = styled.input<{ width: string }>`
+  width: ${({ width }) => width};
+  padding: 12px 0 12px 16px;
   border-radius: 4px;
   ${font.p2};
 
