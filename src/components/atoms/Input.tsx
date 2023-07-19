@@ -5,7 +5,6 @@ import styled, { css } from "styled-components";
 
 interface IInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   width?: string;
-  height?: string;
   label?: string;
   type?: string;
 }
