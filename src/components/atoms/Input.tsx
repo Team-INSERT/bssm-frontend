@@ -1,16 +1,14 @@
 import { font } from "@/styles/font";
 import React from "react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 interface IInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   width?: string;
-  height?: string;
   label?: string;
 }
 
 const Input = ({
   width = "100%",
-  height = "52px",
   children,
   label,
   id,
@@ -19,7 +17,7 @@ const Input = ({
   return (
     <StyledContainer>
       <StyledLabel htmlFor={id}>{label}</StyledLabel>
-      <StyledInput id={id} width={width} height={height} {...props} />
+      <StyledInput id={id} width={width} {...props} />
     </StyledContainer>
   );
 };
@@ -34,12 +32,9 @@ const StyledLabel = styled.label`
   ${font.context};
 `;
 
-const StyledInput = styled.input<{ width: string; height: string }>`
-  ${(props) => css`
-    width: ${props.width};
-    height: ${props.height};
-  `}
-  padding-left: 16px;
+const StyledInput = styled.input<{ width: string }>`
+  width: ${({ width }) => width};
+  padding: 12px 0 12px 16px;
   border-radius: 4px;
   ${font.p2};
 `;
