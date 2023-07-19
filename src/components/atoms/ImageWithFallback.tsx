@@ -23,17 +23,16 @@ const ImageWithFallback = ({
     <StyledImage
       src={imgSrc}
       alt={alt}
-      size={size}
       onErrorDelete={onErrorDelete}
       onError={() => setImgSrc(fallbackSrc)}
-      width={999}
-      height={999}
+      width={0}
+      height={0}
+      sizes={size}
     />
   );
 };
 
-const StyledImage = styled(Image)<{ size?: string; onErrorDelete?: boolean }>`
-  width: ${({ size }) => size};
+const StyledImage = styled(Image)<{ onErrorDelete?: boolean }>`
   height: auto;
   ${({ onErrorDelete }) =>
     onErrorDelete &&
