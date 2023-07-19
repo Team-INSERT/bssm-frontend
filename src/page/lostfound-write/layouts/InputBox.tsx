@@ -1,41 +1,36 @@
 import AnonymousBox from "@/components/atoms/AnonymousBox";
-import Category from "@/components/atoms/Category";
+import CustomEditor from "@/components/atoms/CustomEditor";
 import Input from "@/components/atoms/Input";
-import Column from "@/components/Flex/Column";
-import Row from "@/components/Flex/Row";
-import categories from "@/global/assets/data/categories";
+import lostfound from "@/page/lostfound/constants/lostfound.constant";
 import color from "@/styles/color";
 import { font } from "@/styles/font";
 import React from "react";
 import styled from "styled-components";
-import CustomEditor from "./CustomEditor";
+import StateBox from "./StateBox";
 
 const InputBox = () => {
-  const [checked, setChecked] = React.useState("all");
   const [isAnonymous, setIsAnonymous] = React.useState(false);
+  const [checked, setChecked] = React.useState("lost");
 
-  const onCheckCategory = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onCheckLostFoundType = (e: React.ChangeEvent<HTMLInputElement>) => {
     setChecked(e.target.id);
   };
 
   return (
     <Container>
-      <Column gap="6px">
-        <CategoryLabel />
-        <Row gap="6px">
-          {categories.map((category) => (
-            <Category
-              key={category.type}
-              id={category.type}
-              name="category"
-              onChange={onCheckCategory}
-              label={category.name}
-              checked={category.type === checked}
-            />
-          ))}
-        </Row>
-      </Column>
+      <StateBox checked={checked} handler={onCheckLostFoundType} />
       <Input label="글 제목" placeholder="글 제목을 입력해주세요" />
+      <Input label="연락처" placeholder="연락 가능한 연락처를 입력해주세요" />
+      {checked === lostfound.lost.type && (
+        <Input label="분실 장소" placeholder="분실 장소를 입력해주세요" />
+      )}
+      {checked === lostfound.found.type && (
+        <>
+          <Input label="습득 장소" placeholder="습득 장소를 입력해주세요" />
+          <Input label="보관 장소" placeholder="보관 장소를 입력해주세요" />
+          <Input type="file" id="file" label="사진 선택" />
+        </>
+      )}
       <CustomEditor />
       <ControlBox>
         <AnonymousBox clicked={isAnonymous} setClicked={setIsAnonymous} />
@@ -44,14 +39,6 @@ const InputBox = () => {
     </Container>
   );
 };
-
-const CategoryLabel = styled.span`
-  ${font.context};
-
-  &:after {
-    content: "카테고리";
-  }
-`;
 
 const Container = styled.div`
   width: 100%;

@@ -27,8 +27,7 @@ const StyledCategory = styled.input`
 
 const StyledLabel = styled.label<{ checked: boolean }>`
   border: none;
-  width: 64px;
-  height: 26px;
+  padding: 6px 16px;
   border-radius: 999px;
   display: flex;
   justify-content: center;
@@ -44,6 +43,10 @@ const StyledLabel = styled.label<{ checked: boolean }>`
       : css`
           background-color: ${color.white};
           color: ${color.gray};
+
+          &:hover {
+            background-color: ${color.on_tertiary};
+          }
         `}
 `;
 

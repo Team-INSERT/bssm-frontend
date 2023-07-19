@@ -5,13 +5,13 @@ import { font } from "@/styles/font";
 import Image from "next/image";
 import React from "react";
 import styled from "styled-components";
-import Time from "@/page/post/assets/Time";
+import Time from "@/page/forum-post/assets/Time";
 import Link from "next/link";
 
-const PostTitle = () => {
+const LostFoundTitle = () => {
   return (
     <Column>
-      <Title>제 13회 윈도우 자격증 취득자는 벗어날 수 있는 문제</Title>
+      <Title>빈폴 남성용 카드지갑</Title>
       <ProfileBox href="/" target="_blank">
         <Profile
           src="https://bssm.kro.kr/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fprofile_default.99e93808.png&w=256&q=75"
@@ -60,4 +60,4 @@ const Date = styled.span`
   color: ${color.gray};
 `;
 
-export default PostTitle;
+export default LostFoundTitle;

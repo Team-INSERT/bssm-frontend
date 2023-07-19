@@ -3,9 +3,9 @@ import color from "@/styles/color";
 import { font } from "@/styles/font";
 import React from "react";
 import styled from "styled-components";
-import View from "@/page/post/assets/View";
-import Like from "@/page/post/assets/Like";
-import Comment from "@/page/post/assets/CommentIcon";
+import View from "@/page/forum-post/assets/View";
+import Like from "@/page/forum-post/assets/Like";
+import Comment from "@/page/forum-post/assets/CommentIcon";
 
 const ReactBox = () => {
   return (
