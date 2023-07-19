@@ -3,7 +3,7 @@ import React from "react";
 import styled from "styled-components";
 import ScheduleBox from "./layouts/ScheduleBox";
 
-const SchedulePage = () => {
+const CalenderPage = () => {
   return (
     <Layout>
       <Container>
@@ -27,4 +27,4 @@ const Container = styled.div`
   gap: 8px;
 `;
 
-export default SchedulePage;
+export default CalenderPage;
