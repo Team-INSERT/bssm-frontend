@@ -20,13 +20,14 @@ const InputBox = () => {
     <Container>
       <StateBox checked={checked} handler={onCheckLostFoundType} />
       <Input label="글 제목" placeholder="글 제목을 입력해주세요" />
+      <Input label="연락처" placeholder="연락 가능한 연락처를 입력해주세요" />
       {checked === lostfound.lost.type && (
-        <Input label="분실 장소" placeholder="분실 장소를 알려주세요" />
+        <Input label="분실 장소" placeholder="분실 장소를 입력해주세요" />
       )}
       {checked === lostfound.found.type && (
         <>
-          <Input label="습득 장소" placeholder="습득 장소를 알려주세요" />
-          <Input label="보관 장소" placeholder="보관 장소를 알려주세요" />
+          <Input label="습득 장소" placeholder="습득 장소를 입력해주세요" />
+          <Input label="보관 장소" placeholder="보관 장소를 입력해주세요" />
           <Input type="file" id="file" label="사진 선택" />
         </>
       )}

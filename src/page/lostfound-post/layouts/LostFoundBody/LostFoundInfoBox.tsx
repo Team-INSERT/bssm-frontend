@@ -6,6 +6,7 @@ import Column from "@/components/Flex/Column";
 const LostFoundInfoBox = () => {
   return (
     <Column gap="4px">
+      <LostFoundContactText>010-1111-1111</LostFoundContactText>
       {"만약 습득물이라면" && (
         <>
           <LostFoundLocationText>
@@ -29,6 +30,12 @@ const LostFoundText = styled.span`
 
   span {
     font-weight: 600;
+  }
+`;
+
+const LostFoundContactText = styled(LostFoundText)`
+  &:before {
+    content: "연락처 | ";
   }
 `;
 
