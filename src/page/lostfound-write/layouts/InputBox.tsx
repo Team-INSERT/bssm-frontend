@@ -1,6 +1,7 @@
 import AnonymousBox from "@/components/atoms/AnonymousBox";
 import CustomEditor from "@/components/atoms/CustomEditor";
 import Input from "@/components/atoms/Input";
+import lostfound from "@/page/lostfound/constants/lostfound.constant";
 import color from "@/styles/color";
 import { font } from "@/styles/font";
 import React from "react";
@@ -19,10 +20,10 @@ const InputBox = () => {
     <Container>
       <StateBox checked={checked} handler={onCheckLostFoundType} />
       <Input label="글 제목" placeholder="글 제목을 입력해주세요" />
-      {checked === "lost" && (
+      {checked === lostfound.lost.type && (
         <Input label="분실 장소" placeholder="분실 장소를 알려주세요" />
       )}
-      {checked === "found" && (
+      {checked === lostfound.found.type && (
         <>
           <Input label="습득 장소" placeholder="습득 장소를 알려주세요" />
           <Input label="보관 장소" placeholder="보관 장소를 알려주세요" />
