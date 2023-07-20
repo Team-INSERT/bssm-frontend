@@ -60,6 +60,17 @@ export class HttpClient {
     });
   }
 
+  postInQuery(
+    param: string,
+    data: unknown,
+    requestConfig?: AxiosRequestConfig,
+  ) {
+    return this.api.post(`?${param}=${data}`, {
+      ...HttpClient.clientConfig,
+      ...requestConfig,
+    });
+  }
+
   put(data: unknown, requestConfig?: AxiosRequestConfig) {
     return this.api.put("", data, {
       ...HttpClient.clientConfig,
