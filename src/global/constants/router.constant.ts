@@ -12,6 +12,7 @@ const ROUTER = {
     WRITE: "/post/write",
   },
   TIMETABLE: "/timetable",
+  MYPAGE: "/mypage",
 } as const;
 
 export default ROUTER;
