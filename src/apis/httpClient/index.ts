@@ -2,7 +2,6 @@ import axios, { AxiosInstance, AxiosRequestConfig } from "axios";
 import { requestInterceptors, responseInterceptors } from "@/apis/interceptor";
 import Storage from "@/apis/storage";
 import refreshToken from "@/apis/token/refreshToken";
-import { QueryClient } from "react-query";
 
 export interface HttpClientConfig {
   baseURL?: string;
@@ -101,15 +100,12 @@ export class HttpClient {
 
   private setting() {
     HttpClient.setCommonInterceptors(this.api);
-    const queryClient = new QueryClient();
+    // const queryClient = new QueryClient();
 
     this.api.interceptors.response.use(
       (response) => response,
       (error) => {
-        // const { status, code } = error.response.data
-        // if (status === 403 && code === exception.code.TOKEN_403_3) Storage.delItem('refresh_token')
-        Storage.delItem("access_token");
-        queryClient.invalidateQueries("getUser");
+        // queryClient.invalidateQueries("getUser");
         refreshToken();
         return Promise.reject(error);
       },
@@ -129,7 +125,7 @@ export class HttpClient {
   }
 
   private static setCommonInterceptors(instance: AxiosInstance) {
-    instance.interceptors.request.use(requestInterceptors as any);
+    instance.interceptors.request.use(requestInterceptors as never);
     instance.interceptors.response.use(responseInterceptors);
   }
 }
