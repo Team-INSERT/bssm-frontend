@@ -1,4 +1,4 @@
-import SVGAttribute from "@/global/types/SVGAttribute";
+import SVGAttribute from "@/global/types/SVGAttribute.type";
 import React from "react";
 
 const Emoji = ({ width, height, pointable }: SVGAttribute) => {

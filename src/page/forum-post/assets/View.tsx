@@ -1,4 +1,4 @@
-import SVGAttribute from "@/global/types/SVGAttribute";
+import SVGAttribute from "@/global/types/SVGAttribute.type";
 import React from "react";
 
 const View = ({ width, height, pointable }: SVGAttribute) => {
