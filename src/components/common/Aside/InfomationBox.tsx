@@ -3,21 +3,54 @@ import { font } from "@/styles/font";
 import React from "react";
 import styled from "styled-components";
 import Image from "next/image";
+import DefaultProfile from "@/global/assets/icons/profile_default.png";
+import { Student } from "@/global/types/user.type";
+import Link from "next/link";
+import ROUTER from "@/global/constants/router.constant";
+import USER from "@/global/constants/user.constant";
 import Column from "../../Flex/Column";
 import Row from "../../Flex/Row";
 
-const InfomationBox = () => {
+interface IInfomationBoxProps {
+  user: Student;
+  isLogined: boolean;
+}
+
+const InfomationBox = ({ user, isLogined }: IInfomationBoxProps) => {
   return (
     <Container>
-      <ProfileImage src="/" alt="profile" width={50} height={50} />
-      <Column>
-        <UserGrade>2학년 2반 10번</UserGrade>
-        <Row gap="4px">
-          <UserName>박우빈</UserName>
-          <UserType>학생</UserType>
-        </Row>
-      </Column>
-      <InfomationButton />
+      <ProfileImage
+        src={user.profile ?? DefaultProfile}
+        alt="profile"
+        width={50}
+        height={50}
+      />
+      {isLogined && user.role === USER.STUDENT && (
+        <>
+          <Column>
+            <Row>
+              <UserInfoText>{user.student.grade}학년</UserInfoText>
+              <UserInfoText>{user.student.classNo}반</UserInfoText>
+              <UserInfoText>{user.student.studentNo}번</UserInfoText>
+            </Row>
+            <Row gap="4px">
+              <UserName>{user.student.name}</UserName>
+              <UserType>{user.role}</UserType>
+            </Row>
+          </Column>
+          <InfomationButton href={ROUTER.MYPAGE}>내 정보</InfomationButton>
+        </>
+      )}
+      {!isLogined && (
+        <>
+          <LoginText>로그인이 필요합니다.</LoginText>
+          <InfomationButton
+            href={process.env.NEXT_PUBLIC_OAUTH_URL || ROUTER.HOME}
+          >
+            로그인
+          </InfomationButton>
+        </>
+      )}
     </Container>
   );
 };
@@ -33,7 +66,7 @@ const Container = styled.main`
   border-radius: 5px;
 `;
 
-const UserGrade = styled.span`
+const UserInfoText = styled.span`
   ${font.p3};
   color: ${color.gray};
 `;
@@ -48,25 +81,27 @@ const UserType = styled.span`
   color: ${color.gray};
 `;
 
-const InfomationButton = styled.button`
+const InfomationButton = styled(Link)`
   width: 76px;
   height: 26px;
   background-color: ${color.primary_blue};
   border-radius: 5px;
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-left: auto;
-
-  &:after {
-    ${font.btn3};
-    color: ${color.white};
-    content: "내 정보";
-  }
+  ${font.btn3};
+  color: ${color.white};
 `;
 
 const ProfileImage = styled(Image)`
   border-radius: 50%;
   background-color: black;
   flex-shrink: 0;
+`;
+
+const LoginText = styled.span`
+  ${font.context};
 `;
 
 export default InfomationBox;
