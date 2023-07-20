@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import AppListFilter from "./AppListFilter";
 import AppListItem from "./AppListItem";
 
 const AppList = () => {

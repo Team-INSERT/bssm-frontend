@@ -3,7 +3,7 @@ import Storage from "@/apis/storage";
 import React from "react";
 import KEY from "@/global/constants/key.constant";
 import TOKEN from "@/global/constants/token.constant";
-import { Student, Teacher } from "@/global/types/user.type";
+import { Student } from "@/global/types/user.type";
 import { emptyUser, userStore } from "@/store/user.store";
 import { useRouter } from "next/navigation";
 import { useQuery } from "react-query";
@@ -26,7 +26,7 @@ const useUser = (options?: UseUserOptions) => {
     data: userInfo,
     remove,
     isLoading,
-  } = useQuery<Student | Teacher>(
+  } = useQuery<Student>(
     [KEY.USER],
     async () => {
       HttpClient.setAccessToken();
