@@ -2,6 +2,7 @@ import axios, { AxiosInstance, AxiosRequestConfig } from "axios";
 import { requestInterceptors, responseInterceptors } from "@/apis/interceptor";
 import Storage from "@/apis/storage";
 import refreshToken from "@/apis/token/refreshToken";
+import TOKEN from "@/global/constants/token.constant";
 
 export interface HttpClientConfig {
   baseURL?: string;
@@ -113,7 +114,7 @@ export class HttpClient {
   }
 
   static setAccessToken() {
-    const accessToken = Storage.getItem("access_token");
+    const accessToken = Storage.getItem(TOKEN.ACCESS);
     HttpClient.clientConfig.headers = {
       ...HttpClient.clientConfig.headers,
       Authorization: accessToken || undefined,
@@ -121,7 +122,7 @@ export class HttpClient {
   }
 
   static removeAccessToken() {
-    Storage.setItem("access_token", "");
+    Storage.setItem(TOKEN.ACCESS, "");
   }
 
   private static setCommonInterceptors(instance: AxiosInstance) {
