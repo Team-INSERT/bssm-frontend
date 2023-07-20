@@ -2,17 +2,17 @@ import color from "@/styles/color";
 import { font } from "@/styles/font";
 import React from "react";
 import styled from "styled-components";
-import service from "@/global/constants/service.constant";
+import SERVICE from "@/global/constants/service.constant";
 import Row from "../../Flex/Row";
 
 const scores = [
   {
-    name: service.meister.name,
-    type: service.meister.type,
+    name: SERVICE.MEISTER.NAME,
+    type: SERVICE.MEISTER.TYPE,
   },
   {
-    name: service.reward_points.name,
-    type: service.reward_points.type,
+    name: SERVICE.MEISTER.NAME,
+    type: SERVICE.MEISTER.TYPE,
   },
 ];
 

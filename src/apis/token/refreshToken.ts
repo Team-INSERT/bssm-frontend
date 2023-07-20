@@ -1,16 +1,18 @@
 import axios from "axios";
 import Storage from "@/apis/storage";
+import TOKEN from "@/global/constants/token.constant";
 
 const refreshToken = async () => {
+  // fix 필요
   try {
     const res = (
       await axios.put("/auth/refresh/access", {
-        refresh_token: Storage.getItem("refresh_token"),
+        refresh_token: Storage.getItem(TOKEN.REFRESH),
       })
     ).data;
-    Storage.setItem("access_token", res.accessToken);
+    Storage.setItem(TOKEN.ACCESS, res.accessToken);
   } catch (err) {
-    Storage.delItem("refresh_token");
+    Storage.delItem(TOKEN.REFRESH);
   }
 };
 
