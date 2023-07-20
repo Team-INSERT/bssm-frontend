@@ -1,4 +1,4 @@
-import httpClient from "../adaptors";
+import httpClient from "@/apis/httpClient";
 
 export interface ILoginParams {
   authCode: string | null;
