@@ -4,18 +4,18 @@ import { atom } from "recoil";
 
 export const emptyUser: Student = {
   isLogin: true,
-  code: -1,
+  code: 0,
   nickname: "",
   email: "",
-  level: -1,
+  level: 0,
   profile: "",
   role: USER.STUDENT,
   student: {
     name: "",
-    enrolledAt: -1,
-    grade: -1,
-    classNo: -1,
-    studentNo: -1,
+    enrolledAt: 0,
+    grade: 0,
+    classNo: 0,
+    studentNo: 0,
   },
 };
 
