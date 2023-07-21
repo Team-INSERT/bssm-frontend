@@ -1,13 +1,13 @@
 import SVGAttribute from "@/global/types/SVGAttribute.type";
 import React from "react";
 
-const CategoryArrow = ({ width, height, pointable }: SVGAttribute) => {
+const CategoryArrow = ({ width, height, isPointable }: SVGAttribute) => {
   return (
     <svg
-      width={width ?? 12}
-      height={height ?? 20}
+      width={width || 12}
+      height={height || 20}
       style={{
-        cursor: pointable ? "pointer" : "",
+        cursor: isPointable ? "pointer" : "",
       }}
       viewBox="0 0 12 20"
       fill="none"
