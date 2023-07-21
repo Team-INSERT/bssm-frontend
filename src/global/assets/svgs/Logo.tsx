@@ -1,13 +1,13 @@
 import React from "react";
 import SVGAttribute from "../../types/SVGAttribute.type";
 
-const Logo = ({ width, height, pointable }: SVGAttribute) => {
+const Logo = ({ width, height, isPointable }: SVGAttribute) => {
   return (
     <svg
-      width={width ?? 41}
-      height={height ?? 40}
+      width={width || 41}
+      height={height || 40}
       style={{
-        cursor: pointable ? "pointer" : "",
+        cursor: isPointable ? "pointer" : "",
       }}
       viewBox="0 0 41 40"
       fill="none"

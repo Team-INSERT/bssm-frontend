@@ -13,13 +13,13 @@ const path = {
 const Arrow = ({ width, height, color, direction }: SVGAttribute) => {
   return (
     <svg
-      width={width ?? 41}
-      height={height ?? 25}
+      width={width || 41}
+      height={height || 25}
       viewBox="0 0 41 25"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <path d={path[direction ?? "bottom"]} fill={color ?? "#727272"} />
+      <path d={path[direction || "bottom"]} fill={color || "#727272"} />
     </svg>
   );
 };
