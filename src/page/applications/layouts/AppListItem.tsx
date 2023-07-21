@@ -5,8 +5,7 @@ import { font } from "@/styles/font";
 import Link from "next/link";
 import React from "react";
 import styled from "styled-components";
-import Arrow from "@/page/applications/assets/LinkArrow.svg";
-import Image from "next/image";
+import LinkArrow from "@/page/applications/assets/LinkArrow";
 
 const AppListItem = () => {
   return (
@@ -16,7 +15,7 @@ const AppListItem = () => {
           <AppName>BSM Deploy</AppName>
           <LinkBox>
             <LinkText href="/" />
-            <Image src={Arrow} alt="arrow" width={12} height={12} />
+            <LinkArrow />
           </LinkBox>
         </Row>
         <AppDescription>
