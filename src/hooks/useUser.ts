@@ -7,7 +7,7 @@ import { Student } from "@/global/types/user.type";
 import { emptyUser, userStore } from "@/store/user.store";
 import { useRouter } from "next/navigation";
 import { useQuery } from "react-query";
-import profileMaker from "@/global/helpers/profileMaker.helper";
+import getProfileUrl from "@/global/helpers/getProfileUrl.helper";
 import { useRecoilState } from "recoil";
 import useWindow from "./useWindow";
 import useModal from "./useModal";
@@ -31,7 +31,7 @@ const useUser = (options?: UseUserOptions) => {
     async () => {
       HttpClient.setAccessToken();
       const { data } = await httpClient.user.get();
-      const profile = profileMaker(data.code);
+      const profile = getProfileUrl(data.code);
       return {
         ...data,
         profile,
