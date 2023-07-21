@@ -7,7 +7,7 @@ interface ImageWithFallbackProps extends ImageProps {
   fallbackSrc: StaticImageData | string;
   alt: string;
   size?: string;
-  onErrorDelete?: boolean;
+  isShouldHide?: boolean;
 }
 
 const ImageWithFallback = ({
@@ -15,7 +15,7 @@ const ImageWithFallback = ({
   fallbackSrc,
   alt,
   size,
-  onErrorDelete,
+  isShouldHide,
   ...props
 }: ImageWithFallbackProps) => {
   const [imgSrc, setImgSrc] = useState<StaticImageData | string>(src);
@@ -25,7 +25,7 @@ const ImageWithFallback = ({
       {...props}
       src={imgSrc}
       alt={alt}
-      onErrorDelete={onErrorDelete}
+      isShouldHide={isShouldHide}
       onError={() => setImgSrc(fallbackSrc)}
       width={0}
       height={0}
@@ -34,10 +34,10 @@ const ImageWithFallback = ({
   );
 };
 
-const StyledImage = styled(Image)<{ onErrorDelete?: boolean }>`
+const StyledImage = styled(Image)<{ isShouldHide?: boolean }>`
   height: auto;
-  ${({ onErrorDelete }) =>
-    onErrorDelete &&
+  ${({ isShouldHide }) =>
+    isShouldHide &&
     css`
       display: none;
     `}
