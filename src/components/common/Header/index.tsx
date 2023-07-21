@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Logo from "@/global/assets/Logo";
+import Logo from "@/global/assets/svgs/Logo";
 import color from "@/styles/color";
 import Link from "next/link";
 import Navigation from "./Navigation";

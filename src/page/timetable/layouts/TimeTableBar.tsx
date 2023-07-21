@@ -2,7 +2,6 @@ import useDate from "@/hooks/useDate";
 import color from "@/styles/color";
 import { font } from "@/styles/font";
 import axios from "axios";
-import moment from "moment";
 import React from "react";
 import styled from "styled-components";
 
@@ -33,14 +32,6 @@ const TimeTableBar = () => {
     if (scrollRef.current) {
       scrollRef.current.scrollLeft = 500;
     }
-    const { endTime } = test[0];
-    const endMoment = moment(endTime, "HH:mm:ss");
-    const nowMoment = moment(new Date(), "HH:mm:ss");
-
-    const duration = moment.duration(endMoment.diff(nowMoment));
-    const formattedDuration = moment
-      .utc(duration.as("milliseconds"))
-      .format("HH:mm:ss");
   }, [test]);
 
   return (

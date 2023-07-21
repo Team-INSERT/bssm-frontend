@@ -1,5 +1,5 @@
 import React from "react";
-import SVGAttribute from "../types/SVGAttribute.type";
+import SVGAttribute from "../../types/SVGAttribute.type";
 
 const Logo = ({ width, height, pointable }: SVGAttribute) => {
   return (

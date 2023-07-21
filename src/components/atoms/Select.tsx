@@ -1,4 +1,4 @@
-import DownArrow from "@/page/timetable/assets/DownArrow";
+import Arrow from "@/global/assets/svgs/Arrow";
 import color from "@/styles/color";
 import { font } from "@/styles/font";
 import React from "react";
@@ -34,7 +34,7 @@ const Select = ({
         <StyledDefaultListText label={label}>
           {defaultOption}
         </StyledDefaultListText>
-        <DownArrow width={12} height={8} />
+        <Arrow width={12} height={8} />
       </StyledDefaultList>
       <StyledList hover={hover}>
         {options.map((option) => (
