@@ -1,10 +1,9 @@
-import moment from "moment";
-import "moment/locale/ko";
+import dayjs from "dayjs";
 
 const useDate = () => {
   const getHMSDate = () => {
-    const date = moment(new Date());
-    const HMSDate = moment(date).locale("ko").format("A h:mm:ss");
+    const date = dayjs(new Date());
+    const HMSDate = dayjs(date).locale("ko").format("A h:mm:ss");
     return HMSDate;
   };
 
