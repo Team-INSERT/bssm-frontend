@@ -8,7 +8,7 @@ interface ISelectProps {
   options: string[];
   defaultOption: string;
   label: string;
-  size?: string;
+  width?: string;
   handler: React.Dispatch<React.SetStateAction<string>>;
 }
 
@@ -16,31 +16,31 @@ const Select = ({
   options,
   defaultOption,
   label,
-  size = "80px",
+  width = "80px",
   handler,
 }: ISelectProps) => {
-  const [hover, setHover] = React.useState(true);
+  const [isHover, setIsHover] = React.useState(true);
 
   const toggleHandler = (option: string) => {
     handler(option);
-    setHover(true);
+    setIsHover(true);
   };
   return (
     <StyledSelect
-      onMouseEnter={() => setHover(false)}
-      onMouseLeave={() => setHover(true)}
+      onMouseEnter={() => setIsHover(false)}
+      onMouseLeave={() => setIsHover(true)}
     >
-      <StyledDefaultList size={size}>
+      <StyledDefaultList width={width}>
         <StyledDefaultListText label={label}>
           {defaultOption}
         </StyledDefaultListText>
         <Arrow width={12} height={8} />
       </StyledDefaultList>
-      <StyledList hover={hover}>
+      <StyledList isHover={isHover}>
         {options.map((option) => (
           <StyledListItem
             key={option}
-            size={size}
+            width={width}
             label={label}
             onClick={() => toggleHandler(option)}
           >
@@ -57,12 +57,12 @@ const StyledSelect = styled.div`
   cursor: pointer;
 `;
 
-const StyledDefaultList = styled.div<{ size: string }>`
+const StyledDefaultList = styled.div<{ width: string }>`
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  width: ${({ size }) => size};
+  width: ${({ width }) => width};
   padding: 6px 0;
   border-radius: 4px;
   background-color: ${color.white};
@@ -82,21 +82,21 @@ const StyledDefaultListText = styled.div<{ label: string }>`
   }
 `;
 
-const StyledList = styled.ul<{ hover: boolean }>`
+const StyledList = styled.ul<{ isHover: boolean }>`
   position: absolute;
   border-radius: 4px;
   background-color: ${color.white};
   padding: 6px 4px;
 
-  ${({ hover }) =>
-    hover &&
+  ${({ isHover }) =>
+    isHover &&
     css`
       display: none;
     `}
 `;
 
-const StyledListItem = styled.li<{ size: string; label: string }>`
-  width: calc(${({ size }) => size} - 8px);
+const StyledListItem = styled.li<{ width: string; label: string }>`
+  width: calc(${({ width }) => width} - 8px);
   padding: 6px 0 6px 8px;
   border-radius: 4px;
   ${font.context};

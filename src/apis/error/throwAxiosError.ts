@@ -11,7 +11,7 @@ const throwAxiosError = (err: unknown) => {
   const data = err?.response?.data;
   const { code, status, message } = data;
 
-  return { code, message, status };
+  return { code, status, message };
 };
 
 export default throwAxiosError;

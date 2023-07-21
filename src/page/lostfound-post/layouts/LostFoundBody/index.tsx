@@ -21,7 +21,7 @@ const LostFoundBody = () => {
         fallbackSrc=""
         alt="image"
         size="40%"
-        onErrorDelete
+        isShouldHide
       />
       <LostFoundInfoBox />
       <CommentBox />

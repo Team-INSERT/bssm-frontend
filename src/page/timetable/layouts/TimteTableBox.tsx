@@ -46,7 +46,7 @@ const TimteTableBox = () => {
               options={["1", "2", "3", "4"]}
               defaultOption={userClass}
               label="반"
-              size="62px"
+              width="62px"
               handler={setUserClass}
             />
           </Row>

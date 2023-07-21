@@ -1,14 +1,16 @@
 import SVGAttribute from "@/global/types/SVGAttribute.type";
 import React from "react";
 
-const CommentIcon = ({ width, height, pointable }: SVGAttribute) => {
+const CommentIcon = ({
+  width = 22,
+  height = 21,
+  isPointable,
+}: SVGAttribute) => {
   return (
     <svg
-      width={width ?? 22}
-      height={height ?? 21}
-      style={{
-        cursor: pointable ? "pointer" : "",
-      }}
+      width={width}
+      height={height}
+      cursor={isPointable ? "pointer" : ""}
       viewBox="0 0 22 21"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

@@ -10,7 +10,7 @@ const Header = () => {
     <Layout>
       <Container>
         <Link href="/">
-          <Logo width={42} pointable />
+          <Logo width={42} isPointable />
         </Link>
         <Navigation />
       </Container>
