@@ -1,8 +1,8 @@
-import Image, { StaticImageData } from "next/image";
+import Image, { ImageProps, StaticImageData } from "next/image";
 import { useState } from "react";
 import styled, { css } from "styled-components";
 
-interface ImageWithFallbackProps {
+interface ImageWithFallbackProps extends ImageProps {
   src: string;
   fallbackSrc: StaticImageData | string;
   alt: string;
@@ -16,11 +16,13 @@ const ImageWithFallback = ({
   alt,
   size,
   onErrorDelete,
+  ...props
 }: ImageWithFallbackProps) => {
   const [imgSrc, setImgSrc] = useState<StaticImageData | string>(src);
 
   return (
     <StyledImage
+      {...props}
       src={imgSrc}
       alt={alt}
       onErrorDelete={onErrorDelete}

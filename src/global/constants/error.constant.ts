@@ -1,5 +1,5 @@
-const exception = {
-  code: {
+const ERROR = {
+  CODE: {
     IMG_400_1: "IMG-400-1",
     DOCS_404_1: "DOCS-404-1",
     DOCS_404_2: "DOCS-404-2",
@@ -12,13 +12,13 @@ const exception = {
     TOKEN_403_3: "TOKEN-403-3",
     USER_404_1: "USER-404-1",
   },
-  status: {
+  STATUS: {
     SUCCESS: 200,
     NOT_FOUND: 404,
     FORBIDDEN: 403,
     BAD_REQUEST: 400,
     SERVER_ERROR: 500,
   },
-};
+} as const;
 
-export default exception;
+export default ERROR;

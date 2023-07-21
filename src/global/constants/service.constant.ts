@@ -1,12 +1,12 @@
-const service = {
-  meister: {
-    name: "마이스터역량인증제",
-    type: "meister",
+const SERVICE = {
+  MEISTER: {
+    NAME: "마이스터역량인증제",
+    TYPE: "meister",
   },
-  reward_points: {
-    name: "상벌점",
-    type: "reward_points",
+  REWARD_POINTS: {
+    NAME: "상벌점",
+    TYPE: "reward_points",
   },
-};
+} as const;
 
-export default service;
+export default SERVICE;
