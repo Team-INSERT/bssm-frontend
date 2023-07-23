@@ -3,14 +3,17 @@ import styled, { css } from "styled-components";
 import slideState from "@/page/meal/constants/meal.constant";
 import color from "@/styles/color";
 
-const MealListItem = (props: {
+const MealListItem = ({
+  key,
+  date,
+  menu,
+  currentSlideIndex,
+}: {
   key: number;
   date: number;
   menu: Array<string>;
   currentSlideIndex: number;
 }) => {
-  const { key, date, menu, currentSlideIndex } = props;
-
   const mealSlideTypeGenerator = (date: number) => {
     if (date === currentSlideIndex - 1) return slideState.prev.type;
     if (date === currentSlideIndex + 2) return slideState.third.type;
@@ -95,9 +98,16 @@ const MealListHeader = styled.div`
   align-items: center;
 `;
 
+const Circles = styled.div`
+  display: flex;
+  align-items: center;
+  margin-left: 15px;
+  gap: 6px;
+`;
+
 const Circle = styled.div`
-  width: 0.8vw;
-  height: 0.8vw;
+  width: 10px;
+  height: 10px;
   border-radius: 25px;
 `;
 
@@ -111,13 +121,6 @@ const Yellow = styled(Circle)`
 
 const Green = styled(Circle)`
   background-color: ${color.primary_mint};
-`;
-
-const Circles = styled.div`
-  display: flex;
-  align-items: center;
-  margin-left: 15px;
-  gap: 5px;
 `;
 
 export default MealListItem;
