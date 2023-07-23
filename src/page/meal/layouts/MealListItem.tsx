@@ -1,5 +1,5 @@
 import React from "react";
-import styled, { keyframes, css } from "styled-components";
+import styled, { css } from "styled-components";
 import slideState from "@/page/meal/constants/meal.constant";
 import color from "@/styles/color";
 
@@ -47,10 +47,10 @@ const Container = styled.div`
 const MealList = styled.div<{ current: boolean; state: string }>`
   width: 100%;
   height: 60vh;
-  background-color: white;
+  background-color: ${color.white};
   border-radius: 10px;
   position: absolute;
-  box-shadow: 0px -2px 10px 0.5px #ededed;
+  box-shadow: 0px -2px 10px 0.5px ${color.meal_shadow};
   visibility: ${(props) => (props.current ? "visible" : "hidden")};
 
   ${(props) =>
@@ -90,7 +90,7 @@ const MealListHeader = styled.div`
   width: 100%;
   height: 11%;
   border-radius: 10px 10px 0 0;
-  background-color: #fcfcfc;
+  background-color: ${color.meal_header};
   display: flex;
   align-items: center;
 `;
