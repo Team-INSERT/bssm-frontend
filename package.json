@@ -11,13 +11,16 @@
   },
   "dependencies": {
     "@playwright/test": "^1.29.1",
+    "@tinymce/tinymce-react": "^4.3.0",
     "@types/node": "18.16.19",
     "@types/react": "18.2.14",
     "@types/react-dom": "18.2.6",
     "@types/styled-components": "^5.1.26",
+    "@types/tinymce": "^4.6.5",
     "@typescript-eslint/eslint-plugin": "^5.43.0",
     "axios": "^1.4.0",
     "babel-plugin-styled-components": "^2.1.4",
+    "dayjs": "^1.11.9",
     "dotenv": "^16.3.1",
     "eslint": "^8.26.0",
     "eslint-config-next": "13.0.0",
@@ -34,6 +37,7 @@
     "slick-carousel": "^1.8.1",
     "styled-components": "^5.3.11",
     "sweetalert2": "^11.7.8",
+    "tinymce": "^6.6.0",
     "typescript": "5.0.4"
   },
   "devDependencies": {

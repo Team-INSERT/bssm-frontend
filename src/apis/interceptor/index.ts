@@ -1,14 +1,15 @@
 import Storage from "@/apis/storage";
 import { AxiosRequestConfig, AxiosResponse } from "axios";
 import refreshToken from "@/apis/token/refreshToken";
-import exception from "@/utils/constants/exception.constant";
+import ERROR from "@/global/constants/error.constant";
+import TOKEN from "@/global/constants/token.constant";
 
 export const requestInterceptors = (requestConfig: AxiosRequestConfig) => {
-  if (!Storage.getItem("access_token") && Storage.getItem("refresh_token"))
+  if (!Storage.getItem(TOKEN.ACCESS) && Storage.getItem(TOKEN.REFRESH))
     refreshToken();
 
   if (requestConfig.headers) {
-    requestConfig.headers.Authorization = Storage.getItem("access_token");
+    requestConfig.headers.Authorization = Storage.getItem(TOKEN.ACCESS);
   }
 
   const urlParams = requestConfig.url?.split("/:") || [];
@@ -31,7 +32,7 @@ export const requestInterceptors = (requestConfig: AxiosRequestConfig) => {
 };
 
 export const responseInterceptors = (originalResponse: AxiosResponse) => {
-  if (originalResponse.status !== exception.status.SUCCESS) refreshToken();
+  if (originalResponse.status !== ERROR.STATUS.SUCCESS) refreshToken();
 
   return {
     ...originalResponse,
