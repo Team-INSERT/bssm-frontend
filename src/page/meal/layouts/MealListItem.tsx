@@ -1,6 +1,7 @@
 import React from "react";
 import styled, { keyframes, css } from "styled-components";
 import slideState from "@/page/meal/constants/meal.constant";
+import color from "@/styles/color";
 
 const MealListItem = (props: {
   key: number;
@@ -101,15 +102,15 @@ const Circle = styled.div`
 `;
 
 const Red = styled(Circle)`
-  background-color: #e54f5a;
+  background-color: ${color.primary_red};
 `;
 
 const Yellow = styled(Circle)`
-  background-color: #febc56;
+  background-color: ${color.primary_yellow};
 `;
 
 const Green = styled(Circle)`
-  background-color: #27c3bc;
+  background-color: ${color.primary_mint};
 `;
 
 const Circles = styled.div`
