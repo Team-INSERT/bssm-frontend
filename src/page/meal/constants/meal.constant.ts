@@ -8,7 +8,7 @@ const meal = {
     type: "first",
   },
   second: {
-    name: "두번쨰",
+    name: "두번째",
     type: "second",
   },
   third: {
