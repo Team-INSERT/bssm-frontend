@@ -16,6 +16,9 @@ const color = {
   container: "#F9FAFF",
   content: "#D9D9D9",
   shadow: "#505050",
+
+  meal_shadow: "#ededed",
+  meal_header: "#fcfcfc",
 };
 
 export default color;
