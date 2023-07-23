@@ -18,7 +18,7 @@ const ListSlider = ({ list }: { list: Array<object> }) => {
   const nextSlide = () => {
     if (currentSlideIndex === list.length - 3) {
       setSlideSpeed(0);
-      // goToSlide(0);
+      // handleCurrentSlide(0);
     } else {
       setSlideSpeed(300);
       sliderRef.current?.slickNext();
@@ -26,16 +26,16 @@ const ListSlider = ({ list }: { list: Array<object> }) => {
   };
 
   const prevSlide = () => {
-    if (currentSlideIndex === 0) {
+    if (!currentSlideIndex) {
       setSlideSpeed(0);
-      // goToSlide(list.length - 3);
+      // handleCurrentSlide(list.length - 3);
     } else {
       setSlideSpeed(300);
       sliderRef.current?.slickPrev();
     }
   };
 
-  const goToSlide = (index: number) => {
+  const handleCurrentSlide = (index: number) => {
     sliderRef.current?.slickGoTo(index);
   };
 
