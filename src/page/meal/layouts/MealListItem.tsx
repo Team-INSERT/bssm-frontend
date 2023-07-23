@@ -4,12 +4,10 @@ import slideState from "@/page/meal/constants/meal.constant";
 import color from "@/styles/color";
 
 const MealListItem = ({
-  key,
   date,
   menu,
   currentSlideIndex,
 }: {
-  key: number;
   date: number;
   menu: Array<string>;
   currentSlideIndex: number;
@@ -23,7 +21,7 @@ const MealListItem = ({
   };
 
   return (
-    <Container key={key}>
+    <Container>
       <MealList
         current={date >= currentSlideIndex && date <= currentSlideIndex + 2}
         state={mealSlideTypeGenerator(date)}
