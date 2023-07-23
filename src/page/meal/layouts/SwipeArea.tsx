@@ -13,9 +13,7 @@ const SwipeArea = ({ next, prev }: { next: () => void; prev: () => void }) => {
 const Container = styled.div`
   width: 50%;
   height: 70%;
-
   position: absolute;
-
   z-index: 1;
 `;
 
