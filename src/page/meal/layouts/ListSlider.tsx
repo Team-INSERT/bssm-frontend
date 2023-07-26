@@ -4,8 +4,9 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import MealListItem from "./MealListItem";
 import SwipeArea from "./SwipeArea";
+import MealListType from "../type/mealList.type";
 
-const ListSlider = ({ list }: { list: Array<object> }) => {
+const ListSlider = ({ mealList }: MealListType) => {
   const [currentSlideIndex, setCurrentSlideIndex] = React.useState(0);
   const [slideSpeed, setSlideSpeed] = React.useState(300);
 
@@ -16,23 +17,17 @@ const ListSlider = ({ list }: { list: Array<object> }) => {
   const sliderRef = React.useRef(null);
 
   const nextSlide = () => {
-    if (currentSlideIndex === list.length - 3) {
-      setSlideSpeed(0);
-      // handleCurrentSlide(0);
-    } else {
-      setSlideSpeed(300);
-      sliderRef.current?.slickNext();
-    }
+    if (currentSlideIndex === mealList.length - 3) return setSlideSpeed(0);
+    // handleCurrentSlide(0);
+    setSlideSpeed(300);
+    sliderRef.current?.slickNext();
   };
 
   const prevSlide = () => {
-    if (!currentSlideIndex) {
-      setSlideSpeed(0);
-      // handleCurrentSlide(list.length - 3);
-    } else {
-      setSlideSpeed(300);
-      sliderRef.current?.slickPrev();
-    }
+    if (!currentSlideIndex) return setSlideSpeed(0);
+    // handleCurrentSlide(list.length - 3);
+    setSlideSpeed(300);
+    sliderRef.current?.slickPrev();
   };
 
   const handleCurrentSlide = (index: number) => {
@@ -57,7 +52,7 @@ const ListSlider = ({ list }: { list: Array<object> }) => {
     <Container>
       <SwipeArea next={nextSlide} prev={prevSlide} />
       <CustomSlider {...settings} ref={sliderRef}>
-        {list.map((item: any) => (
+        {mealList.map((item: any) => (
           <MealListItem
             key={item.date}
             date={item.date}
