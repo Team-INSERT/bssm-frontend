@@ -2,30 +2,27 @@ import React from "react";
 import styled, { css } from "styled-components";
 import slideState from "@/page/meal/constants/meal.constant";
 import color from "@/styles/color";
+import MealListItemsType from "../type/mealListItem.type";
 
-const MealListItem = ({
-  date,
-  menu,
-  currentSlideIndex,
-}: {
-  date: number;
-  menu: Array<string>;
-  currentSlideIndex: number;
-}) => {
+const MealListItem = ({ date, menu, currentSlideIndex }: MealListItemsType) => {
   const mealSlideTypeGenerator = (date: number) => {
-    if (date === currentSlideIndex - 1) return slideState.prev.type;
-    if (date === currentSlideIndex + 2) return slideState.third.type;
-    if (date === currentSlideIndex) return slideState.first.type;
-    if (date === currentSlideIndex + 3) return slideState.next.type;
+    const isPrevSlide = date === currentSlideIndex - 1;
+    const isFirstSlide = date === currentSlideIndex;
+    const isThirdSlide = date === currentSlideIndex + 2;
+    const isNextSlide = date === currentSlideIndex + 3;
+    if (isPrevSlide) return slideState.prev.type;
+    if (isThirdSlide) return slideState.third.type;
+    if (isFirstSlide) return slideState.first.type;
+    if (isNextSlide) return slideState.next.type;
     return slideState.second.type;
   };
 
+  const isCurrentSlide =
+    date >= currentSlideIndex && date <= currentSlideIndex + 2;
+
   return (
     <Container>
-      <MealList
-        current={date >= currentSlideIndex && date <= currentSlideIndex + 2}
-        state={mealSlideTypeGenerator(date)}
-      >
+      <MealList current={isCurrentSlide} state={mealSlideTypeGenerator(date)}>
         <MealListHeader>
           <Circles>
             <Red />
