@@ -51,37 +51,46 @@ const MealList = styled.div<{ current: boolean; state: string }>`
   box-shadow: 0px -2px 10px 0.5px ${color.meal_shadow};
   visibility: ${(props) => (props.current ? "visible" : "hidden")};
 
-  ${(props) =>
-    props.state === slideState.third.type
-      ? css`
-          transition: all 0.5s linear;
-          top: 6vh;
-        `
-      : props.state === slideState.first.type
-      ? css`
-          transition: all 0.5s linear;
-          transform: scaleX(0.9);
-          top: 2vh;
-        `
-      : props.state === slideState.second.type
-      ? css`
-          transform: scaleX(0.95);
-          transition: all 0.5s linear;
-          top: 4vh;
-        `
-      : props.state === slideState.prev.type
-      ? css`
-          transform: scaleX(0.85);
-          transition: all 0.5s linear;
-          top: 0px;
-          opacity: 0;
-        `
-      : css`
-          transform: scaleX(1.05);
-          top: 8vh;
-          transition: all 0.5s linear;
-          opacity: 0;
-        `}
+  ${(props) => {
+    if (props.state === slideState.third.type) {
+      return css`
+        transition: all 0.5s linear;
+        top: 6vh;
+      `;
+    }
+
+    if (props.state === slideState.first.type) {
+      return css`
+        transition: all 0.5s linear;
+        transform: scaleX(0.9);
+        top: 2vh;
+      `;
+    }
+
+    if (props.state === slideState.second.type) {
+      return css`
+        transform: scaleX(0.95);
+        transition: all 0.5s linear;
+        top: 4vh;
+      `;
+    }
+
+    if (props.state === slideState.prev.type) {
+      return css`
+        transform: scaleX(0.85);
+        transition: all 0.5s linear;
+        top: 0px;
+        opacity: 0;
+      `;
+    }
+
+    return css`
+      transform: scaleX(1.05);
+      top: 8vh;
+      transition: all 0.5s linear;
+      opacity: 0;
+    `;
+  }}
 `;
 
 const MealListHeader = styled.div`
