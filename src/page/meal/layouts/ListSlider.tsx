@@ -20,18 +20,18 @@ const ListSlider = ({ mealList }: MealListType) => {
     if (currentSlideIndex === mealList.length - 3) return setSlideSpeed(0);
     // handleCurrentSlide(0);
     setSlideSpeed(300);
-    sliderRef.current?.slickNext();
+    if (sliderRef.current) return sliderRef.current.slickNext();
   };
 
   const prevSlide = () => {
     if (!currentSlideIndex) return setSlideSpeed(0);
     // handleCurrentSlide(list.length - 3);
     setSlideSpeed(300);
-    sliderRef.current?.slickPrev();
+    if (sliderRef.current) return sliderRef.current.slickPrev();
   };
 
   const handleCurrentSlide = (index: number) => {
-    sliderRef.current?.slickGoTo(index);
+    if (sliderRef.current) return sliderRef.current.slickGoTo(index);
   };
 
   const settings = {
