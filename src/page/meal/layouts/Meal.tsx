@@ -20,7 +20,7 @@ const MealList = () => {
   ];
   return (
     <Container>
-      <ListSlider list={list} />
+      <ListSlider mealList={list} />
     </Container>
   );
 };
