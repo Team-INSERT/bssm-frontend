@@ -5,11 +5,11 @@ import color from "@/styles/color";
 import MealListItemsType from "../type/mealListItem.type";
 
 const MealListItem = ({ date, menu, currentSlideIndex }: MealListItemsType) => {
-  const mealSlideTypeGenerator = (date: number) => {
-    const isPrevSlide = date === currentSlideIndex - 1;
-    const isFirstSlide = date === currentSlideIndex;
-    const isThirdSlide = date === currentSlideIndex + 2;
-    const isNextSlide = date === currentSlideIndex + 3;
+  const mealSlideTypeGenerator = (dateProps: number) => {
+    const isPrevSlide = dateProps === currentSlideIndex - 1;
+    const isFirstSlide = dateProps === currentSlideIndex;
+    const isThirdSlide = dateProps === currentSlideIndex + 2;
+    const isNextSlide = dateProps === currentSlideIndex + 3;
     if (isPrevSlide) return slideState.prev.type;
     if (isThirdSlide) return slideState.third.type;
     if (isFirstSlide) return slideState.first.type;
