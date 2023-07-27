@@ -1,15 +1,6 @@
-import IClass from "@/global/types/class.type";
 import ITimetable from "@/global/types/timetable.type";
 
-export const emptyClass: IClass = {
-  className: "",
-  endTime: "23:59:59",
-  startTime: "00:00:00",
-  type: "normal",
-  isNow: false,
-};
-
-export const emptyTimetable: ITimetable = {
+const emptyTimetable: ITimetable = {
   SUN: [
     {
       className: "",
@@ -74,3 +65,5 @@ export const emptyTimetable: ITimetable = {
     },
   ],
 };
+
+export default emptyTimetable;
