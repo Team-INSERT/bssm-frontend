@@ -3,6 +3,7 @@ import { requestInterceptors, responseInterceptors } from "@/apis/interceptor";
 import Storage from "@/apis/storage";
 import refreshToken from "@/apis/token/refreshToken";
 import TOKEN from "@/global/constants/token.constant";
+import IGrade from "@/global/types/grade.type";
 
 export interface HttpClientConfig {
   baseURL?: string;
@@ -30,6 +31,16 @@ export class HttpClient {
 
   getById(requestConfig?: AxiosRequestConfig) {
     return this.api.get("/:id", {
+      ...HttpClient.clientConfig,
+      ...requestConfig,
+    });
+  }
+
+  getTimetable(
+    { userGrade, userClass }: IGrade,
+    requestConfig?: AxiosRequestConfig,
+  ) {
+    return this.api.get(`/${userGrade}/${userClass}`, {
       ...HttpClient.clientConfig,
       ...requestConfig,
     });
@@ -139,4 +150,5 @@ export const axiosConfig: HttpClientConfig = {
 export default {
   oauth: new HttpClient("api/auth/oauth/bsm", axiosConfig),
   user: new HttpClient("api/user", axiosConfig),
+  timetable: new HttpClient("api/timetable", axiosConfig),
 };
