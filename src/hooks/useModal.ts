@@ -1,4 +1,4 @@
-import { ModalStore } from "@/global/types/modal.type";
+import { IModalState } from "@/global/types/modal.type";
 import modalStore from "@/store/modal.store";
 import { useCallback } from "react";
 import { useRecoilState } from "recoil";
@@ -7,7 +7,7 @@ const useModal = () => {
   const [modal, setModal] = useRecoilState(modalStore);
 
   const openModal = useCallback(
-    (modalData: ModalStore) => {
+    (modalData: IModalState) => {
       setModal({
         ...modalData,
         visible: true,
@@ -18,8 +18,7 @@ const useModal = () => {
 
   const closeModal = useCallback(() => {
     setModal({
-      title: "",
-      content: null,
+      component: null,
       visible: false,
     });
   }, [setModal]);
