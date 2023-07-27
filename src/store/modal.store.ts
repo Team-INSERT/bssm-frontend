@@ -1,11 +1,10 @@
-import { ModalStore } from "@/global/types/modal.type";
+import { IModalState } from "@/global/types/modal.type";
 import { atom } from "recoil";
 
-const modalStore = atom<ModalStore>({
+const modalStore = atom<IModalState>({
   key: "modalStore",
   default: {
-    title: "",
-    content: null,
+    component: null,
     visible: false,
   },
 });
