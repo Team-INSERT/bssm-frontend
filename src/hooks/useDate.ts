@@ -11,6 +11,11 @@ interface TranslateType {
   to: "KOR" | "ENG";
 }
 
+interface TimeDiffType {
+  endTime: string;
+  startTime: string;
+}
+
 const useDate = () => {
   const weekdaysENG = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
   const weekdaysKOR = ["일", "월", "화", "수", "목", "금", "토"];
@@ -53,6 +58,14 @@ const useDate = () => {
     return nowDayTime.diff(currentDayTime);
   };
 
+  const getDiffTimeProgress = ({ endTime, startTime }: TimeDiffType) => {
+    const diffClassDayTime = getDiffDayTime(endTime, startTime);
+    const diffNowDayTime = getDiffNowDayTime(startTime);
+
+    const classProgress = (diffNowDayTime / diffClassDayTime) * 240;
+    return classProgress;
+  };
+
   return {
     weekdaysENG,
     weekdaysKOR,
@@ -61,6 +74,7 @@ const useDate = () => {
     translateDay,
     getDiffDayTime,
     getDiffNowDayTime,
+    getDiffTimeProgress,
   };
 };
 
