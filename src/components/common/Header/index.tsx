@@ -1,11 +1,16 @@
 import React from "react";
 import styled from "styled-components";
 import Logo from "@/global/assets/svgs/Logo";
+import Setting from "@/global/assets/svgs/Setting";
 import color from "@/styles/color";
 import Link from "next/link";
+import useModal from "@/hooks/useModal";
 import Navigation from "./Navigation";
+import SettingModal from "../Modal/SettingModal";
 
 const Header = () => {
+  const { openModal } = useModal();
+
   return (
     <Layout>
       <Container>
@@ -13,6 +18,7 @@ const Header = () => {
           <Logo width={42} isPointable />
         </Link>
         <Navigation />
+        <Setting onClick={() => openModal({ component: <SettingModal /> })} />
       </Container>
     </Layout>
   );
