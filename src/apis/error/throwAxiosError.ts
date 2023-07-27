@@ -8,6 +8,8 @@ const throwAxiosError = (err: unknown) => {
       message: "",
     };
 
+  // development test
+  console.log(err);
   const data = err?.response?.data;
   const { code, status, message } = data;
 
