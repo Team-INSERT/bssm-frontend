@@ -14,7 +14,7 @@ const ListSlider = ({ mealList }: MealListType) => {
     setCurrentSlideIndex(next);
   };
 
-  const sliderRef = React.useRef(null);
+  const sliderRef = React.useRef<Slider>(null);
 
   const nextSlide = () => {
     if (currentSlideIndex === mealList.length - 3) return setSlideSpeed(0);
