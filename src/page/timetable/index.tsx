@@ -1,7 +1,7 @@
 import Aside from "@/components/common/Aside";
 import React from "react";
 import styled from "styled-components";
-import TimteTableBox from "./layouts/TimteTableBox";
+import TimteTableBox from "./layouts/TimeTableBox";
 
 const TimeTablePage = () => {
   return (

@@ -1,10 +1,8 @@
-import { font } from "@/styles/font";
 import React from "react";
 import styled from "styled-components";
 import useDate from "@/hooks/useDate";
 import { useQueryClient } from "react-query";
 import KEY from "@/global/constants/key.constant";
-import color from "@/styles/color";
 import TimeTableBar from "./TimeTableBar";
 import { useTimetableListQuery } from "../services/queries.service";
 import { emptyTimetable } from "../data/emptyTimetable";
