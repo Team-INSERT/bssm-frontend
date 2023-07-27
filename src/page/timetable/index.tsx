@@ -1,13 +1,13 @@
 import Aside from "@/components/common/Aside";
 import React from "react";
 import styled from "styled-components";
-import TimteTableBox from "./layouts/TimteTableBox";
+import TimeTableBox from "./layouts/TimeTableBox";
 
 const TimeTablePage = () => {
   return (
     <Layout>
       <Container>
-        <TimteTableBox />
+        <TimeTableBox />
         <Aside />
       </Container>
     </Layout>

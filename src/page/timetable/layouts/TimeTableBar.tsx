@@ -1,55 +1,63 @@
-import useDate from "@/hooks/useDate";
 import color from "@/styles/color";
 import { font } from "@/styles/font";
-import axios from "axios";
 import React from "react";
 import styled from "styled-components";
+import ITimetable from "@/global/types/timetable.type";
+import useTimetableBar from "@/hooks/useTimetableBar";
 
-const TimeTableBar = () => {
-  const [nowDate, setNowDate] = React.useState("");
-  const scrollRef = React.useRef<HTMLDivElement>(null);
-  const date = useDate();
-  const [test, setTest] = React.useState([
-    { className: "", startTime: "", endTime: "" },
-  ]);
+interface ITimeTableBarProps {
+  weekday: string;
+  dayTimeTable: ITimetable;
+}
 
-  React.useEffect(() => {
-    (async () => {
-      const res = await axios.get("https://bssm.kro.kr/api/timetable/2/2");
-      setTest(res.data.timetableList.WED);
-    })();
-  }, []);
-
-  React.useEffect(() => {
-    setInterval(() => {
-      const HMSDate = date.getHMSDate();
-      setNowDate(HMSDate);
-    }, 1000);
-  }, [date]);
-
-  // test
-  React.useEffect(() => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollLeft = 500;
-    }
-  }, [test]);
+const TimeTableBar = ({ weekday, dayTimeTable }: ITimeTableBarProps) => {
+  const {
+    scrollRef,
+    isScrollBox,
+    nowDate,
+    handleTimetableBarScroll,
+    handleTimetableButtonClick,
+  } = useTimetableBar();
 
   return (
-    <Box>
-      <BarBox>
-        <BarDate>{nowDate}</BarDate>
-        <Bar />
-      </BarBox>
-      <BarList ref={scrollRef}>
-        {test.map((item, index) => (
-          <BarItem key={index}>
-            <BarItemText>test</BarItemText>
-          </BarItem>
-        ))}
-      </BarList>
-    </Box>
+    <Container>
+      {isScrollBox && <TimetableButton onClick={handleTimetableButtonClick} />}
+      <Box>
+        <BarBox>
+          <BarDate>{nowDate}</BarDate>
+          <Bar />
+        </BarBox>
+        <BarList onScroll={handleTimetableBarScroll} ref={scrollRef}>
+          {dayTimeTable[weekday].map((timetable, index) => (
+            <BarItem key={index}>
+              <BarItemText>{timetable.className}</BarItemText>
+            </BarItem>
+          ))}
+        </BarList>
+      </Box>
+    </Container>
   );
 };
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 400px;
+  gap: 20px;
+`;
+
+const TimetableButton = styled.button`
+  width: fit-content;
+  padding: 6px 12px;
+  background-color: ${color.primary_blue};
+  color: ${color.white};
+  ${font.btn3};
+  border-radius: 4px;
+
+  &:after {
+    content: "현재 시간과 동기화";
+  }
+`;
 
 const Box = styled.div`
   display: flex;
@@ -57,6 +65,7 @@ const Box = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-top: auto;
 `;
 
 const BarList = styled.div`
@@ -64,8 +73,7 @@ const BarList = styled.div`
   width: 100%;
   height: 300px;
   overflow-x: scroll;
-  padding: 10px;
-  padding: 0 28vw;
+  padding: 10px 28vw;
   border-radius: 6px;
   position: relative;
   gap: 8px;
@@ -97,7 +105,6 @@ const BarBox = styled.div`
   display: flex;
   flex-direction: column;
   position: absolute;
-
   justify-content: center;
   align-items: center;
   margin-top: -30vh;

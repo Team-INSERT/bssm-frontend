@@ -9,7 +9,9 @@ interface ISelectProps {
   defaultOption: string;
   label: string;
   width?: string;
-  handler: React.Dispatch<React.SetStateAction<string>>;
+  handler:
+    | React.Dispatch<React.SetStateAction<string>>
+    | ((props: string) => void);
 }
 
 const Select = ({
@@ -55,6 +57,7 @@ const Select = ({
 const StyledSelect = styled.div`
   width: fit-content;
   cursor: pointer;
+  z-index: 2;
 `;
 
 const StyledDefaultList = styled.div<{ width: string }>`
