@@ -1,4 +1,4 @@
-export default interface IClass {
+export default interface IClassInfo {
   className: string;
   endTime: string;
   startTime: string;
