@@ -1,38 +1,54 @@
 import useDate from "@/hooks/useDate";
 import color from "@/styles/color";
 import { font } from "@/styles/font";
-import axios from "axios";
 import React from "react";
 import styled from "styled-components";
+import ITimetable from "@/global/types/timetable.type";
+import { emptyClass, emptyTimetable } from "../data/emptyTimetable";
 
-const TimeTableBar = () => {
-  const [nowDate, setNowDate] = React.useState("");
+interface ITimeTableBarProps {
+  weekday: string;
+  dayTimeTable: ITimetable;
+}
+
+const TimeTableBar = ({ weekday, dayTimeTable }: ITimeTableBarProps) => {
+  const { getHMSDate, getDiffDayTime, getDiffNowDayTime } = useDate();
   const scrollRef = React.useRef<HTMLDivElement>(null);
-  const date = useDate();
-  const [test, setTest] = React.useState([
-    { className: "", startTime: "", endTime: "" },
-  ]);
 
-  React.useEffect(() => {
-    (async () => {
-      const res = await axios.get("https://bssm.kro.kr/api/timetable/2/2");
-      setTest(res.data.timetableList.WED);
-    })();
-  }, []);
+  const [nowDate, setNowDate] = React.useState("");
+  const [nowClass, setNowClass] = React.useState(emptyClass);
 
-  React.useEffect(() => {
-    setInterval(() => {
-      const HMSDate = date.getHMSDate();
-      setNowDate(HMSDate);
-    }, 1000);
-  }, [date]);
+  const 현재시간과동기화 = () => {
+    const HMSDate = getHMSDate();
+    setNowDate(HMSDate);
 
-  // test
-  React.useEffect(() => {
+    const { startTime, endTime } = nowClass;
+
+    const diffClassDayTime = getDiffDayTime(endTime, startTime);
+    const diffNowDayTime = getDiffNowDayTime(startTime);
+
+    const classProgress = (diffNowDayTime / diffClassDayTime) * 240;
+
     if (scrollRef.current) {
-      scrollRef.current.scrollLeft = 500;
+      scrollRef.current.scrollLeft = classProgress;
     }
-  }, [test]);
+  };
+
+  /*
+  isNow 속성을 통해 어떤 수업이 현재인지 받아오는 코드
+
+  React.useEffect(() => {
+    const timetable = dayTimeTable[weekday];
+    const [nowDateClass] = timetable.filter((item) => item.isNow);
+    setNowClass(nowDateClass);
+  }, [weekday, dayTimeTable]);
+
+  */
+
+  /* 타이머 */
+  React.useEffect(() => {
+    setInterval(현재시간과동기화, 1000);
+  }, []);
 
   return (
     <Box>
@@ -41,9 +57,9 @@ const TimeTableBar = () => {
         <Bar />
       </BarBox>
       <BarList ref={scrollRef}>
-        {test.map((item, index) => (
+        {dayTimeTable[weekday].map((timetable, index) => (
           <BarItem key={index}>
-            <BarItemText>test</BarItemText>
+            <BarItemText>{timetable.className}</BarItemText>
           </BarItem>
         ))}
       </BarList>
