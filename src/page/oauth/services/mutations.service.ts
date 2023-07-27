@@ -18,7 +18,6 @@ export const useLoginMutation = ({ authCode }: ILoginParams) => {
       router.push(ROUTER.HOME);
     },
     onError: (err) => {
-      console.log(err);
       throwAxiosError(err);
     },
   });
