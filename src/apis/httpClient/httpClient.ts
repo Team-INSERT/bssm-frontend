@@ -3,7 +3,7 @@ import { requestInterceptors, responseInterceptors } from "@/apis/interceptor";
 import Storage from "@/apis/storage";
 import refreshToken from "@/apis/token/refreshToken";
 import TOKEN from "@/global/constants/token.constant";
-import IGrade from "@/global/types/grade.type";
+import IClassLevel from "@/global/types/classLevel.type";
 
 export interface HttpClientConfig {
   baseURL?: string;
@@ -36,11 +36,8 @@ export class HttpClient {
     });
   }
 
-  getTimetable(
-    { userGrade, userClass }: IGrade,
-    requestConfig?: AxiosRequestConfig,
-  ) {
-    return this.api.get(`/${userGrade}/${userClass}`, {
+  getTimetable(classLevel: IClassLevel, requestConfig?: AxiosRequestConfig) {
+    return this.api.get(`/${classLevel.grade}/${classLevel.class}`, {
       ...HttpClient.clientConfig,
       ...requestConfig,
     });

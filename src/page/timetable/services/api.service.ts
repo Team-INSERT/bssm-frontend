@@ -1,11 +1,8 @@
 import httpClient from "@/apis/httpClient";
-import IGrade from "@/global/types/grade.type";
+import IClassLevel from "@/global/types/classLevel.type";
 
-export const getTimetable = async ({ userGrade, userClass }: IGrade) => {
-  const { data } = await httpClient.timetable.getTimetable({
-    userGrade,
-    userClass,
-  });
+export const getTimetable = async (classLevel: IClassLevel) => {
+  const { data } = await httpClient.timetable.getTimetable(classLevel);
 
   return data.timetableList;
 };
