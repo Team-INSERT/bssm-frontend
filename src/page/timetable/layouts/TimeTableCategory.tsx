@@ -2,6 +2,7 @@ import Column from "@/components/Flex/Column";
 import Row from "@/components/Flex/Row";
 import Category from "@/components/atoms/Category";
 import Select from "@/components/atoms/Select";
+import IClassLevel from "@/global/types/classLevel.type";
 import { font } from "@/styles/font";
 import React from "react";
 import styled from "styled-components";
@@ -9,21 +10,17 @@ import styled from "styled-components";
 interface ITimeTableCategoryProps {
   weekdays: Array<string>;
   checked: string;
+  classLevel: IClassLevel;
   setChecked: React.Dispatch<React.SetStateAction<string>>;
-  userGrade: string;
-  setUserGrade: React.Dispatch<React.SetStateAction<string>>;
-  userClass: string;
-  setUserClass: React.Dispatch<React.SetStateAction<string>>;
+  setClassLevel: React.Dispatch<React.SetStateAction<IClassLevel>>;
 }
 
 const TimeTableCategory = ({
   weekdays,
   checked,
   setChecked,
-  userGrade,
-  setUserGrade,
-  userClass,
-  setUserClass,
+  classLevel,
+  setClassLevel,
 }: ITimeTableCategoryProps) => {
   return (
     <Column gap="16px">
@@ -48,16 +45,18 @@ const TimeTableCategory = ({
         <Row gap="6px">
           <Select
             options={["1", "2", "3"]}
-            defaultOption={userGrade}
+            defaultOption={classLevel.grade}
             label="학년"
-            handler={setUserGrade}
+            handler={(grade: string) => setClassLevel({ ...classLevel, grade })}
           />
           <Select
             options={["1", "2", "3", "4"]}
-            defaultOption={userClass}
+            defaultOption={classLevel.class}
             label="반"
             width="62px"
-            handler={setUserClass}
+            handler={(cls: string) =>
+              setClassLevel({ ...classLevel, class: cls })
+            }
           />
         </Row>
       </Column>
