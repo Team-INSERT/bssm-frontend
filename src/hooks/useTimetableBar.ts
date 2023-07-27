@@ -1,5 +1,5 @@
 import React from "react";
-import { emptyClass } from "@/page/timetable/data/emptyTimetable";
+import emptyClass from "@/page/timetable/data/emptyClassInfo";
 import useDate from "./useDate";
 
 const useTimetableBar = () => {
@@ -15,17 +15,13 @@ const useTimetableBar = () => {
     const HMSDate = date.getHMSDate();
     setNowDate(HMSDate);
 
-    const { startTime, endTime } = currentClass;
-    const classProgress = date.getDiffTimeProgress({ endTime, startTime });
+    const classProgress = date.getDiffTimeProgress(currentClass);
 
-    if (scrollRef.current) {
-      scrollRef.current.scrollLeft = classProgress;
-    }
+    if (scrollRef.current) scrollRef.current.scrollLeft = classProgress;
   };
 
   const handleTimetableBarScroll = () => {
-    const { startTime, endTime } = currentClass;
-    const classProgress = date.getDiffTimeProgress({ endTime, startTime });
+    const classProgress = date.getDiffTimeProgress(currentClass);
 
     if (scrollRef.current) {
       const 사용자가스크롤했다면 =
@@ -39,13 +35,17 @@ const useTimetableBar = () => {
     }
   };
 
-  const handleTimetableButtonClick = () => {
+  const synchronizeCurrentTime = () => {
     intervalRef.current = window.setInterval(현재시간과동기화, 1000);
+  };
+
+  const handleTimetableButtonClick = () => {
+    synchronizeCurrentTime();
     setIsScrollBox(false);
   };
 
   React.useEffect(() => {
-    intervalRef.current = window.setInterval(현재시간과동기화, 1000);
+    synchronizeCurrentTime();
   }, []);
 
   // React.useEffect(() => {
