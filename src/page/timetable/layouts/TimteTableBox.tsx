@@ -5,14 +5,29 @@ import Row from "@/components/Flex/Row";
 import { font } from "@/styles/font";
 import React from "react";
 import styled from "styled-components";
+import useDate from "@/hooks/useDate";
+import { useQueryClient } from "react-query";
+import KEY from "@/global/constants/key.constant";
 import TimeTableBar from "./TimeTableBar";
-
-const weeks = ["월", "화", "수", "목", "금", "토", "일"];
+import { useTimetableListQuery } from "../services/queries.service";
+import { emptyTimetable } from "../data/emptyTimetable";
 
 const TimteTableBox = () => {
-  const [checked, setChecked] = React.useState("수");
-  const [grade, setGrade] = React.useState("2");
-  const [userClass, setUserClass] = React.useState("2");
+  const { weekdaysKOR: weekdays, getNowWeekDay, translateDay } = useDate();
+  const [selectedDay, setSelectedDay] = React.useState<string>(
+    getNowWeekDay({ type: "KOR" }),
+  );
+  const [userGrade, setUserGrade] = React.useState("1");
+  const [userClass, setUserClass] = React.useState("1");
+  const [dayTimeTable, setDayTimeTable] = React.useState(emptyTimetable);
+  const queryClient = useQueryClient();
+
+  const { data, refetch } = useTimetableListQuery({ userGrade, userClass });
+
+  React.useEffect(() => {
+    queryClient.invalidateQueries(KEY.TIMETABLE);
+    if (data) setDayTimeTable(data);
+  }, [data, refetch, userGrade, userClass, queryClient]);
 
   return (
     <Container>
@@ -21,13 +36,13 @@ const TimteTableBox = () => {
         <Column gap="8px">
           <Label>날짜</Label>
           <Row gap="8px">
-            {Array.from({ length: 7 }).map((_, index) => (
+            {weekdays.map((weekday) => (
               <Category
-                key={index}
-                id={weeks[index]}
-                label={`${weeks[index]}요일`}
-                checked={weeks[index] === checked}
-                onChange={(e) => setChecked(e.target.id)}
+                key={weekday}
+                id={weekday}
+                label={`${weekday}요일`}
+                checked={weekday === selectedDay}
+                onChange={(e) => setSelectedDay(e.target.id)}
                 name="date"
               />
             ))}
@@ -38,9 +53,9 @@ const TimteTableBox = () => {
           <Row gap="6px">
             <Select
               options={["1", "2", "3"]}
-              defaultOption={grade}
+              defaultOption={userGrade}
               label="학년"
-              handler={setGrade}
+              handler={setUserGrade}
             />
             <Select
               options={["1", "2", "3", "4"]}
@@ -52,7 +67,10 @@ const TimteTableBox = () => {
           </Row>
         </Column>
       </Column>
-      <TimeTableBar />
+      <TimeTableBar
+        weekday={translateDay(selectedDay, { to: "ENG" })}
+        dayTimeTable={dayTimeTable}
+      />
     </Container>
   );
 };
