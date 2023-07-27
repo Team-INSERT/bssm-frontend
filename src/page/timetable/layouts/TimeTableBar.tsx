@@ -1,10 +1,9 @@
-import useDate from "@/hooks/useDate";
 import color from "@/styles/color";
 import { font } from "@/styles/font";
 import React from "react";
 import styled from "styled-components";
 import ITimetable from "@/global/types/timetable.type";
-import { emptyClass, emptyTimetable } from "../data/emptyTimetable";
+import useTimetableBar from "@/hooks/useTimetableBar";
 
 interface ITimeTableBarProps {
   weekday: string;
@@ -12,60 +11,53 @@ interface ITimeTableBarProps {
 }
 
 const TimeTableBar = ({ weekday, dayTimeTable }: ITimeTableBarProps) => {
-  const { getHMSDate, getDiffDayTime, getDiffNowDayTime } = useDate();
-  const scrollRef = React.useRef<HTMLDivElement>(null);
-
-  const [nowDate, setNowDate] = React.useState("");
-  const [nowClass, setNowClass] = React.useState(emptyClass);
-
-  const 현재시간과동기화 = () => {
-    const HMSDate = getHMSDate();
-    setNowDate(HMSDate);
-
-    const { startTime, endTime } = nowClass;
-
-    const diffClassDayTime = getDiffDayTime(endTime, startTime);
-    const diffNowDayTime = getDiffNowDayTime(startTime);
-
-    const classProgress = (diffNowDayTime / diffClassDayTime) * 240;
-
-    if (scrollRef.current) {
-      scrollRef.current.scrollLeft = classProgress;
-    }
-  };
-
-  /*
-  isNow 속성을 통해 어떤 수업이 현재인지 받아오는 코드
-
-  React.useEffect(() => {
-    const timetable = dayTimeTable[weekday];
-    const [nowDateClass] = timetable.filter((item) => item.isNow);
-    setNowClass(nowDateClass);
-  }, [weekday, dayTimeTable]);
-
-  */
-
-  /* 타이머 */
-  React.useEffect(() => {
-    setInterval(현재시간과동기화, 1000);
-  }, []);
+  const {
+    scrollRef,
+    isScrollBox,
+    nowDate,
+    handleTimetableBarScroll,
+    handleTimetableButtonClick,
+  } = useTimetableBar({ weekday, dayTimeTable });
 
   return (
-    <Box>
-      <BarBox>
-        <BarDate>{nowDate}</BarDate>
-        <Bar />
-      </BarBox>
-      <BarList ref={scrollRef}>
-        {dayTimeTable[weekday].map((timetable, index) => (
-          <BarItem key={index}>
-            <BarItemText>{timetable.className}</BarItemText>
-          </BarItem>
-        ))}
-      </BarList>
-    </Box>
+    <Container>
+      {isScrollBox && <TimetableButton onClick={handleTimetableButtonClick} />}
+      <Box>
+        <BarBox>
+          <BarDate>{nowDate}</BarDate>
+          <Bar />
+        </BarBox>
+        <BarList onScroll={handleTimetableBarScroll} ref={scrollRef}>
+          {dayTimeTable[weekday].map((timetable, index) => (
+            <BarItem key={index}>
+              <BarItemText>{timetable.className}</BarItemText>
+            </BarItem>
+          ))}
+        </BarList>
+      </Box>
+    </Container>
   );
 };
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 400px;
+  gap: 20px;
+`;
+
+const TimetableButton = styled.button`
+  width: fit-content;
+  padding: 6px 12px;
+  background-color: ${color.primary_blue};
+  color: ${color.white};
+  ${font.btn3};
+  border-radius: 4px;
+
+  &:after {
+    content: "현재 시간과 동기화";
+  }
+`;
 
 const Box = styled.div`
   display: flex;
@@ -73,6 +65,7 @@ const Box = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-top: auto;
 `;
 
 const BarList = styled.div`
@@ -80,8 +73,7 @@ const BarList = styled.div`
   width: 100%;
   height: 300px;
   overflow-x: scroll;
-  padding: 10px;
-  padding: 0 28vw;
+  padding: 10px 28vw;
   border-radius: 6px;
   position: relative;
   gap: 8px;
@@ -113,7 +105,6 @@ const BarBox = styled.div`
   display: flex;
   flex-direction: column;
   position: absolute;
-
   justify-content: center;
   align-items: center;
   margin-top: -30vh;
