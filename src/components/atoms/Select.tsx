@@ -9,7 +9,9 @@ interface ISelectProps {
   defaultOption: string;
   label: string;
   width?: string;
-  handler: React.Dispatch<React.SetStateAction<string>>;
+  handler:
+    | React.Dispatch<React.SetStateAction<string>>
+    | ((grade: string) => any);
 }
 
 const Select = ({
