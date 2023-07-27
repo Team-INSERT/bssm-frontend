@@ -16,10 +16,10 @@ interface TimeDiffType {
   startTime: string;
 }
 
-const useDate = () => {
-  const weekdaysENG = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
-  const weekdaysKOR = ["일", "월", "화", "수", "목", "금", "토"];
+const weekdaysENG = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+const weekdaysKOR = ["일", "월", "화", "수", "목", "금", "토"];
 
+const useDate = () => {
   const getHMSDate = () => {
     const date = dayjs();
     const HMSDate = dayjs(date).locale("ko").format("A h:mm:ss");
