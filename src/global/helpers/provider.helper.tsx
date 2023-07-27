@@ -2,6 +2,7 @@
 
 import Header from "@/components/common/Header";
 import Footer from "@/components/common/Footer";
+import Modal from "@/components/common/Modal";
 import React, { PropsWithChildren } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import { RecoilRoot } from "recoil";
@@ -16,6 +17,7 @@ const Provider = ({ children }: PropsWithChildren) => {
         <Column gap="6vh">
           <Header />
           {children}
+          <Modal />
           <Footer />
         </Column>
       </RecoilRoot>
