@@ -17,7 +17,7 @@ const TimeTableBar = ({ weekday, dayTimeTable }: ITimeTableBarProps) => {
     nowDate,
     handleTimetableBarScroll,
     handleTimetableButtonClick,
-  } = useTimetableBar({ weekday, dayTimeTable });
+  } = useTimetableBar();
 
   return (
     <Container>
