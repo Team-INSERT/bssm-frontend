@@ -55,6 +55,7 @@ const Select = ({
 const StyledSelect = styled.div`
   width: fit-content;
   cursor: pointer;
+  z-index: 2;
 `;
 
 const StyledDefaultList = styled.div<{ width: string }>`
