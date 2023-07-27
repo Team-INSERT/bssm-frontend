@@ -11,7 +11,7 @@ interface ISelectProps {
   width?: string;
   handler:
     | React.Dispatch<React.SetStateAction<string>>
-    | ((grade: string) => any);
+    | ((props: string) => void);
 }
 
 const Select = ({
