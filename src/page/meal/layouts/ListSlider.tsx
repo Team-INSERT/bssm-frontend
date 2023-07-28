@@ -4,7 +4,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import MealListItem from "./MealListItem";
 import SwipeArea from "./SwipeArea";
-import MealListType from "../type/mealList.type";
+import MealListType from "../types/mealList.type";
 
 const ListSlider = ({ mealList }: MealListType) => {
   const [currentSlideIndex, setCurrentSlideIndex] = React.useState(0);

@@ -18,7 +18,7 @@ const LostFoundWriteBox = () => {
 };
 
 const Layout = styled.div`
-  width: 76%;
+  width: 67%;
   display: flex;
   flex-direction: column;
   gap: 16px;

@@ -26,6 +26,7 @@ const Layout = styled.div`
   align-items: center;
   background-color: ${color.white};
   border-bottom: 1px solid ${color.on_tertiary};
+  z-index: 4;
 `;
 
 const Container = styled.header`

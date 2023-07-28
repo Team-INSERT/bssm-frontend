@@ -14,7 +14,7 @@ const LostFoundPostBox = () => {
 };
 
 const Container = styled.div`
-  width: 76%;
+  width: 67%;
   border-radius: 4px;
   background-color: ${color.white};
   display: flex;
