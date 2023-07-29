@@ -2,6 +2,7 @@ import React from "react";
 import { Editor as TinymcEditor } from "@tinymce/tinymce-react";
 import { font } from "@/styles/font";
 import styled from "styled-components";
+import useEmoji from "@/hooks/useEmoji";
 import EmojiModal from "../common/Modal/EmojiModal";
 
 interface IBlobInfo {
@@ -16,11 +17,7 @@ interface IBlobInfo {
 
 const CustomEditor = () => {
   const [content, setContent] = React.useState("");
-  const [isOpenEmojiModal, setIsOpenEmojiModal] = React.useState(false);
-
-  const handleEmojiButtonClick = () => {
-    setIsOpenEmojiModal(true);
-  };
+  const { openEmoji, closeEmoji, visible } = useEmoji();
 
   const imagesUploadHandler = async (blobInfo: IBlobInfo): Promise<string> => {
     return new Promise(() => {
@@ -31,14 +28,7 @@ const CustomEditor = () => {
 
   return (
     <Container>
-      {isOpenEmojiModal && (
-        <>
-          <EmojiBox>
-            <EmojiModal />
-          </EmojiBox>
-          <ModalBackground onClick={() => setIsOpenEmojiModal(false)} />
-        </>
-      )}
+      {visible && <EmojiModal top="14%" left="54%" onClose={closeEmoji} />}
       <TinymcEditor
         init={{
           language: "ko_KR",
@@ -67,7 +57,7 @@ const CustomEditor = () => {
           setup: (tinymceEditor) => {
             tinymceEditor.ui.registry.addButton("emoticon", {
               icon: "emoji",
-              onAction: handleEmojiButtonClick,
+              onAction: openEmoji,
             });
           },
           relative_urls: false,
@@ -112,21 +102,6 @@ const StyledCSS = `
 
 const Container = styled.div`
   position: relative;
-`;
-
-const EmojiBox = styled.div`
-  position: absolute;
-  left: 54%;
-  top: 14%;
-  z-index: 10;
-`;
-
-const ModalBackground = styled.div`
-  width: 100vw;
-  height: 100vh;
-  position: fixed;
-  top: 0;
-  left: 0;
 `;
 
 export default CustomEditor;

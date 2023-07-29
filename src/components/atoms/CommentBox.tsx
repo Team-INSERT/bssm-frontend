@@ -3,16 +3,13 @@ import React from "react";
 import styled from "styled-components";
 import { font } from "@/styles/font";
 import Emoji from "@/global/assets/svgs/Emoji";
+import useEmoji from "@/hooks/useEmoji";
 import AnonymousBox from "@/components/atoms/AnonymousBox";
-import EmojiModal from "../common/Modal/EmojiModal";
+import EmojiModal from "@/components/common/Modal/EmojiModal";
 
 const CommentBox = () => {
   const [isAnonymous, setIsAnonymous] = React.useState(false);
-  const [isOpenEmojiModal, setIsOpenEmojiModal] = React.useState(false);
-
-  const handleEmojiButtonClick = () => {
-    setIsOpenEmojiModal(true);
-  };
+  const { openEmoji, closeEmoji, visible } = useEmoji();
 
   return (
     <Container>
@@ -20,15 +17,10 @@ const CommentBox = () => {
       <CommentWriteBox>
         <CommentTextArea />
         <CommentToolBox>
-          {isOpenEmojiModal && (
-            <>
-              <EmojiBox>
-                <EmojiModal />
-              </EmojiBox>
-              <ModalBackground onClick={() => setIsOpenEmojiModal(false)} />
-            </>
+          {visible && (
+            <EmojiModal onClose={closeEmoji} top="-24%" right="84%" />
           )}
-          <Emoji onClick={handleEmojiButtonClick} />
+          <Emoji onClick={openEmoji} />
           <AnonymousBox clicked={isAnonymous} setClicked={setIsAnonymous} />
           <CommentUploadButton />
         </CommentToolBox>
@@ -92,21 +84,6 @@ const CommentUploadButton = styled.button`
   &:after {
     content: "작성";
   }
-`;
-
-const EmojiBox = styled.div`
-  position: absolute;
-  top: -24%;
-  right: 84%;
-  z-index: 10;
-`;
-
-const ModalBackground = styled.div`
-  width: 100vw;
-  height: 100vh;
-  position: fixed;
-  top: 0;
-  left: 0;
 `;
 
 export default CommentBox;

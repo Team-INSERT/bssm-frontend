@@ -1,20 +1,29 @@
+import XIcon from "@/global/assets/svgs/XIcon";
 import HoldingBackTears from "@/global/assets/svgs/emojis/HoldingBackTears";
+import color from "@/styles/color";
 import { font } from "@/styles/font";
 import React from "react";
 import styled from "styled-components";
 
-const ModalHeader = () => {
+interface IModalHeaderProps {
+  handleClickCloseButton: () => void;
+}
+
+const ModalHeader = ({ handleClickCloseButton }: IModalHeaderProps) => {
   return (
     <Container>
-      <HoldingBackTears width={18} height={18} isHover />
+      <HoldingBackTears width={14} height={14} isHover />
       <Title />
+      <CloseButton onClick={handleClickCloseButton}>
+        <XIcon width={10} height={10} />
+      </CloseButton>
     </Container>
   );
 };
 
 const Container = styled.header`
   width: 100%;
-  padding: 8px 0 8px 12px;
+  padding: 10px 0 10px 14px;
   display: flex;
   gap: 6px;
   align-items: center;
@@ -22,11 +31,17 @@ const Container = styled.header`
 `;
 
 const Title = styled.span`
-  ${font.H6};
+  ${font.p3};
+  font-weight: 600;
+  color: ${color.black};
 
   &:after {
-    content: "이모지";
+    content: "이모티콘";
   }
+`;
+
+const CloseButton = styled.button`
+  margin: 0 20px 0 auto;
 `;
 
 export default ModalHeader;
