@@ -19,7 +19,7 @@ const navigations = [
   },
   {
     name: "일정표",
-    href: "/schedule",
+    href: "/calender",
   },
   {
     name: "게시판",
