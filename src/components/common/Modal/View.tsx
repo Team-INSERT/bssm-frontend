@@ -39,7 +39,6 @@ const ModalContainer = styled.div`
   left: 50%;
   width: fit-content;
   height: fit-content;
-  background-color: pink;
   z-index: 20;
   transform: translate(-50%, -50%);
 
