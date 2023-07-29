@@ -4,9 +4,19 @@ import styled from "styled-components";
 import Emoji from "@/page/forum-post/assets/Emoji";
 import { font } from "@/styles/font";
 import AnonymousBox from "@/components/atoms/AnonymousBox";
+import useModal from "@/hooks/useModal";
+import axios from "axios";
 
 const CommentBox = () => {
   const [isAnonymous, setIsAnonymous] = React.useState(false);
+  const { openModal } = useModal();
+
+  React.useEffect(() => {
+    (async () => {
+      const { data } = await axios.get("https://bssm.kro.kr/api/emoticon");
+      console.log(data);
+    })();
+  }, []);
 
   return (
     <Container>
@@ -14,7 +24,7 @@ const CommentBox = () => {
       <CommentWriteBox>
         <CommentTextArea />
         <CommentToolBox>
-          <Emoji width={20} height={20} />
+          <Emoji width={24} height={24} isPointable />
           <AnonymousBox clicked={isAnonymous} setClicked={setIsAnonymous} />
           <CommentUploadButton />
         </CommentToolBox>
