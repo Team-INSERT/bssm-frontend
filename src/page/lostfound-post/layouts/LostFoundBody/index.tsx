@@ -1,8 +1,8 @@
 import ImageWithFallback from "@/components/atoms/ImageWithFallback";
+import CommentBox from "@/components/atoms/CommentBox";
 import { font } from "@/styles/font";
 import React from "react";
 import styled from "styled-components";
-import CommentBox from "./CommentBox";
 import LostFoundInfoBox from "./LostFoundInfoBox";
 
 const LostFoundBody = () => {
