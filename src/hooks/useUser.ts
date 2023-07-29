@@ -52,13 +52,9 @@ const useUser = (options?: UseUserOptions) => {
 
   React.useEffect(() => {
     if (options?.authorizedPage && !isLoading && !userInfo && !visible) {
-      openModal({
-        title: "로그인",
-        content: "로그인이 필요한 페이지입니다. 메인 페이지로 돌아갑니다.",
-        onClose: () => {
-          if (isWindow) router.push("/");
-        },
-      });
+      // openModal({
+      //   component: <LoginModal/>,
+      // });
     }
   }, [options, userInfo, isLoading, router, visible, openModal, isWindow]);
 
