@@ -4,6 +4,16 @@ import { font } from "@/styles/font";
 import styled from "styled-components";
 import EmojiModal from "../common/Modal/EmojiModal";
 
+interface IBlobInfo {
+  id: () => string;
+  name: () => string;
+  filename: () => string;
+  blob: () => Blob;
+  base64: () => string;
+  blobUri: () => string;
+  uri: () => string | undefined;
+}
+
 const CustomEditor = () => {
   const [content, setContent] = React.useState("");
   const [isOpenEmojiModal, setIsOpenEmojiModal] = React.useState(false);
@@ -12,7 +22,7 @@ const CustomEditor = () => {
     setIsOpenEmojiModal(true);
   };
 
-  const imagesUploadHandler = async (blobInfo: any): Promise<string> => {
+  const imagesUploadHandler = async (blobInfo: IBlobInfo): Promise<string> => {
     return new Promise(() => {
       const file = new FormData();
       file.append("file", blobInfo.blob());
