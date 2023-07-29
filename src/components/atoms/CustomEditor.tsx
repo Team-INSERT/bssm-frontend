@@ -1,7 +1,6 @@
 import React from "react";
 import { Editor as TinymcEditor } from "@tinymce/tinymce-react";
 import { font } from "@/styles/font";
-import Kissing from "@/global/assets/svgs/emojis/Kissing";
 import styled from "styled-components";
 import EmojiModal from "../common/Modal/EmojiModal";
 
@@ -108,7 +107,7 @@ const Container = styled.div`
 const EmojiBox = styled.div`
   position: absolute;
   left: 54%;
-  bottom: 100%;
+  top: 14%;
   z-index: 10;
 `;
 
