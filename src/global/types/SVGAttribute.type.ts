@@ -1,4 +1,5 @@
-export default interface SVGAttribute {
+export default interface SVGAttribute
+  extends React.SVGAttributes<HTMLOrSVGElement> {
   width?: number;
   height?: number;
   isPointable?: boolean;
