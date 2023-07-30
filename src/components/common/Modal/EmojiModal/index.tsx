@@ -1,7 +1,6 @@
 import color from "@/styles/color";
 import React from "react";
 import styled, { css } from "styled-components";
-import useModal from "@/hooks/useModal";
 import ModalList from "./ModalList";
 import ModalHeader from "./ModalHeader";
 
@@ -36,6 +35,7 @@ const Container = styled.div<{
   position: absolute;
   z-index: 10;
   width: 30vw;
+  border-radius: 12px;
   height: fit-content;
   display: flex;
   flex-direction: column;
