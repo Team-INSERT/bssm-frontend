@@ -1,5 +1,5 @@
-import IClass from "./classInfo.type";
+import IClassInfo from "./classInfo.type";
 
 export default interface ITimetable {
-  [day: string]: IClass[];
+  [day: string]: IClassInfo[];
 }
