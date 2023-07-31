@@ -4,12 +4,13 @@ import React from "react";
 import { useRecoilState } from "recoil";
 import Category from "@/components/atoms/Category";
 import categories from "@/global/assets/data/categories";
+import PostCategoryType from "@/global/types/postCategory.type";
 
 const Categories = () => {
   const [checked, setChecked] = useRecoilState(categoriesStore);
 
   const onCheckCategory = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setChecked(e.target.id);
+    setChecked(e.target.id as PostCategoryType);
   };
 
   return (
