@@ -1,7 +1,7 @@
 import Column from "@/components/Flex/Column";
 import Row from "@/components/Flex/Row";
 import React from "react";
-import lostfoundKey from "@/page/lostfound/constants/lostfound.constant";
+import lostfoundKey from "@/global/constants/lostfound.constant";
 import Category from "@/components/atoms/Category";
 import styled from "styled-components";
 import { font } from "@/styles/font";

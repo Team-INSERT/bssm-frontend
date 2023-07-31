@@ -1,7 +1,7 @@
 import AnonymousBox from "@/components/atoms/AnonymousBox";
 import CustomEditor from "@/components/atoms/CustomEditor";
 import Input from "@/components/atoms/Input";
-import lostfound from "@/page/lostfound/constants/lostfound.constant";
+import lostfound from "@/global/constants/lostfound.constant";
 import color from "@/styles/color";
 import { font } from "@/styles/font";
 import React from "react";

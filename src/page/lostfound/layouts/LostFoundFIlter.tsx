@@ -1,10 +1,10 @@
 import Row from "@/components/Flex/Row";
 import color from "@/styles/color";
 import { font } from "@/styles/font";
-import forum from "@/page/forum/constants/forum.constant";
+import forum from "@/global/constants/forum.constant";
 import React from "react";
 import styled, { css, keyframes } from "styled-components";
-import lostfound from "../constants/lostfound.constant";
+import lostfound from "../../../global/constants/lostfound.constant";
 
 const filters = [
   {
