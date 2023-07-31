@@ -4,6 +4,9 @@ import Storage from "@/apis/storage";
 import refreshToken from "@/apis/token/refreshToken";
 import TOKEN from "@/global/constants/token.constant";
 import IClassLevel from "@/global/types/classLevel.type";
+import KEY from "@/global/constants/key.constant";
+import { QueryClient } from "react-query";
+import IPostQuery from "@/global/types/postQuery.type";
 
 export interface HttpClientConfig {
   baseURL?: string;
@@ -61,6 +64,20 @@ export class HttpClient {
     });
   }
 
+  getPost(postConfig: IPostQuery, requestConfig?: AxiosRequestConfig) {
+    const { postType, category } = postConfig;
+    const postRenderLimit = Storage.getItem(TOKEN.POST_RENDER_LIMIT);
+
+    const query = `https://bssm.kro.kr/api/post/${
+      postType === "free" ? "board" : postType
+    }/recent?startPostId=-1&limit=${postRenderLimit}&category=${category}`;
+
+    return this.api.get(query, {
+      ...HttpClient.clientConfig,
+      ...requestConfig,
+    });
+  }
+
   post(data: unknown, requestConfig?: AxiosRequestConfig) {
     return this.api.post("", data, {
       ...HttpClient.clientConfig,
@@ -109,12 +126,12 @@ export class HttpClient {
 
   private setting() {
     HttpClient.setCommonInterceptors(this.api);
-    // const queryClient = new QueryClient();
+    const queryClient = new QueryClient();
 
     this.api.interceptors.response.use(
       (response) => response,
       (error) => {
-        // queryClient.invalidateQueries("getUser");
+        queryClient.invalidateQueries(KEY.USER);
         refreshToken();
         return Promise.reject(error);
       },
@@ -148,4 +165,5 @@ export default {
   oauth: new HttpClient("api/auth/oauth/bsm", axiosConfig),
   user: new HttpClient("api/user", axiosConfig),
   timetable: new HttpClient("api/timetable", axiosConfig),
+  post: new HttpClient("api/post/", axiosConfig),
 };
