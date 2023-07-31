@@ -3,10 +3,8 @@ import { requestInterceptors, responseInterceptors } from "@/apis/interceptor";
 import Storage from "@/apis/storage";
 import refreshToken from "@/apis/token/refreshToken";
 import TOKEN from "@/global/constants/token.constant";
-import IClassLevel from "@/global/types/classLevel.type";
 import KEY from "@/global/constants/key.constant";
 import { QueryClient } from "react-query";
-import IPostQuery from "@/global/types/postQuery.type";
 
 export interface HttpClientConfig {
   baseURL?: string;
@@ -39,40 +37,22 @@ export class HttpClient {
     });
   }
 
-  getTimetable(classLevel: IClassLevel, requestConfig?: AxiosRequestConfig) {
-    return this.api.get(`/${classLevel.grade}/${classLevel.class}`, {
+  getByTitle(requestConfig?: AxiosRequestConfig) {
+    return this.api.get("/:title", {
       ...HttpClient.clientConfig,
       ...requestConfig,
     });
   }
 
-  getByTitle(url: string, requestConfig?: AxiosRequestConfig) {
-    return this.api.get(`/${url}`, {
+  getTimetable(requestConfig?: AxiosRequestConfig) {
+    return this.api.get("/:grade/:class", {
       ...HttpClient.clientConfig,
       ...requestConfig,
     });
   }
 
-  getInQuery(
-    param: string,
-    data: string | number,
-    requestConfig?: AxiosRequestConfig,
-  ) {
-    return this.api.get(`?${param}=${data}`, {
-      ...HttpClient.clientConfig,
-      ...requestConfig,
-    });
-  }
-
-  getPost(postConfig: IPostQuery, requestConfig?: AxiosRequestConfig) {
-    const { postType, category } = postConfig;
-    const postRenderLimit = Storage.getItem(TOKEN.POST_RENDER_LIMIT);
-
-    const query = `https://bssm.kro.kr/api/post/${
-      postType === "free" ? "board" : postType
-    }/recent?startPostId=-1&limit=${postRenderLimit}&category=${category}`;
-
-    return this.api.get(query, {
+  getPost(requestConfig?: AxiosRequestConfig) {
+    return this.api.get("", {
       ...HttpClient.clientConfig,
       ...requestConfig,
     });
@@ -85,12 +65,8 @@ export class HttpClient {
     });
   }
 
-  postInQuery(
-    param: string,
-    data: unknown,
-    requestConfig?: AxiosRequestConfig,
-  ) {
-    return this.api.post(`?${param}=${data}`, {
+  postOAuth(data: unknown, requestConfig?: AxiosRequestConfig) {
+    return this.api.post(`?code=${data}`, {
       ...HttpClient.clientConfig,
       ...requestConfig,
     });
@@ -103,8 +79,8 @@ export class HttpClient {
     });
   }
 
-  putByTitle(title: string, data: unknown, requestConfig?: AxiosRequestConfig) {
-    return this.api.put(`/${title}`, data, {
+  putByTitle(data: unknown, requestConfig?: AxiosRequestConfig) {
+    return this.api.put("/:title", data, {
       ...HttpClient.clientConfig,
       ...requestConfig,
     });
@@ -117,8 +93,8 @@ export class HttpClient {
     });
   }
 
-  deleteById(id: number, requestConfig?: AxiosRequestConfig) {
-    return this.api.delete(`/${id}`, {
+  deleteById(requestConfig?: AxiosRequestConfig) {
+    return this.api.delete("/:id", {
       ...HttpClient.clientConfig,
       ...requestConfig,
     });

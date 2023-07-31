@@ -8,7 +8,6 @@ import KEY from "@/global/constants/key.constant";
 import ForumFilter from "./ForumFilter";
 import Categories from "./Categories";
 import PostList from "./PostList";
-import { usePostListQuery } from "../services/query.service";
 
 const Forum = () => {
   const queryClient = useQueryClient();
