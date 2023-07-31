@@ -1,4 +1,4 @@
-import forum from "@/page/forum/constants/forum.constant";
+import forum from "@/global/constants/forum.constant";
 
 const categories = [
   {
