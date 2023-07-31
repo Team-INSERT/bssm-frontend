@@ -1,4 +1,4 @@
-type LocalStorageKey = "access_token" | "refresh_token";
+type LocalStorageKey = "access_token" | "refresh_token" | "post_render_limit";
 
 export default class Storage {
   static getItem(key: LocalStorageKey) {
