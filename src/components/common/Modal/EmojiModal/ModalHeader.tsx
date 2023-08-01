@@ -28,6 +28,8 @@ const Container = styled.header`
   gap: 6px;
   align-items: center;
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.1);
+  border-top-right-radius: 12px;
+  border-top-left-radius: 12px;
 `;
 
 const Title = styled.span`
