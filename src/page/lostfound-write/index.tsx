@@ -1,7 +1,7 @@
 import Aside from "@/components/common/Aside";
 import React from "react";
 import styled from "styled-components";
-import LostFoundWriteBox from "./layouts/WriteBox";
+import LostFoundWriteBox from "./layouts/LostFoundWriteBox";
 
 const LostFoundWritePage = () => {
   return (

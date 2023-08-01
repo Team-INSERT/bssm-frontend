@@ -16,7 +16,7 @@ const ScheduleBox = () => {
 };
 
 const Container = styled.main`
-  width: 76%;
+  width: 67%;
   background-color: ${color.white};
   border-radius: 5px;
   display: flex;

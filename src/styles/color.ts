@@ -19,6 +19,11 @@ const color = {
 
   meal_shadow: "#EDEDED",
   meal_header: "#FCFCFC",
+
+  emoji_hover: "#FFCC4D",
+  emoji_unhover: "#CFCFCF",
+  emoji_unhover_tertiary: "#AEAEAE",
+  emoji_cheek: "#FF7892",
 };
 
 export default color;

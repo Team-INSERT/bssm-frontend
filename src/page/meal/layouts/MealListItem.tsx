@@ -2,7 +2,7 @@ import React from "react";
 import styled, { css } from "styled-components";
 import slideState from "@/page/meal/constants/meal.constant";
 import color from "@/styles/color";
-import MealListItemsType from "../type/mealListItem.type";
+import MealListItemsType from "../types/mealListItem.type";
 
 const MealListItem = ({ date, menu, currentSlideIndex }: MealListItemsType) => {
   const mealSlideTypeGenerator = (dateProps: number) => {

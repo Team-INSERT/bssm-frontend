@@ -1,12 +1,15 @@
 import color from "@/styles/color";
 import React from "react";
 import styled from "styled-components";
-import Emoji from "@/page/forum-post/assets/Emoji";
 import { font } from "@/styles/font";
+import Emoji from "@/global/assets/svgs/Emoji";
+import useEmoji from "@/hooks/useEmoji";
 import AnonymousBox from "@/components/atoms/AnonymousBox";
+import EmojiModal from "@/components/common/Modal/EmojiModal";
 
 const CommentBox = () => {
   const [isAnonymous, setIsAnonymous] = React.useState(false);
+  const { openEmoji, closeEmoji, visible } = useEmoji();
 
   return (
     <Container>
@@ -14,7 +17,10 @@ const CommentBox = () => {
       <CommentWriteBox>
         <CommentTextArea />
         <CommentToolBox>
-          <Emoji width={20} height={20} />
+          {visible && (
+            <EmojiModal onClose={closeEmoji} top="-24%" right="84%" />
+          )}
+          <Emoji onClick={openEmoji} />
           <AnonymousBox clicked={isAnonymous} setClicked={setIsAnonymous} />
           <CommentUploadButton />
         </CommentToolBox>
@@ -48,7 +54,7 @@ const CommentWriteBox = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 12px;
 `;
 
 const CommentTextArea = styled.textarea`
@@ -64,11 +70,12 @@ const CommentToolBox = styled.div`
   gap: 16px;
   align-items: center;
   margin-left: auto;
+  position: relative;
 `;
 
 const CommentUploadButton = styled.button`
-  width: 70px;
-  height: 32px;
+  width: 60px;
+  height: 26px;
   background-color: ${color.primary_blue};
   color: white;
   border-radius: 3px;
