@@ -1,7 +1,5 @@
-import color from "@/styles/color";
-import { font } from "@/styles/font";
-import React from "react";
 import styled from "styled-components";
+import { color, font } from "@/styles";
 
 const weeks = ["월", "화", "수", "목", "금"];
 

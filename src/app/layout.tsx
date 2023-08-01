@@ -1,5 +1,5 @@
-import "@/styles/globals.css";
-import Provider from "@/global/helpers/provider.helper";
+import Provider from "@/helpers/provider.helper";
+import GlobalStyle from "@/styles/GlobalStyle";
 
 export const metadata = {
   title: "BSM",
@@ -14,6 +14,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <GlobalStyle />
         <Provider>{children}</Provider>
       </body>
     </html>

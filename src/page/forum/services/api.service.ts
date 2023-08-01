@@ -1,5 +1,5 @@
 import httpClient from "@/apis/httpClient";
-import IPostQuery from "@/global/types/postQuery.type";
+import { IPostQuery } from "@/interfaces";
 
 export const getPostList = async (postConfig: IPostQuery) => {
   try {

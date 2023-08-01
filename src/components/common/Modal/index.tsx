@@ -1,5 +1,5 @@
-import useModal from "@/hooks/useModal";
 import { useRecoilState } from "recoil";
+import useModal from "@/hooks/useModal";
 import modalStore from "@/store/modal.store";
 import ModalView from "./View";
 

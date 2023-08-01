@@ -1,14 +1,14 @@
-import AnonymousBox from "@/components/atoms/AnonymousBox";
-import Category from "@/components/atoms/Category";
-import CustomEditor from "@/components/atoms/CustomEditor";
-import Input from "@/components/atoms/Input";
-import Column from "@/components/Flex/Column";
-import Row from "@/components/Flex/Row";
-import categories from "@/global/assets/data/categories";
-import color from "@/styles/color";
-import { font } from "@/styles/font";
 import React from "react";
 import styled from "styled-components";
+import {
+  Category,
+  AnonymousBox,
+  CustomEditor,
+  Input,
+} from "@/components/atoms";
+import { Column, Row } from "@/components/Flex";
+import { emptyCategories } from "@/assets/data";
+import { color, font } from "@/styles";
 
 const InputBox = () => {
   const [checked, setChecked] = React.useState("all");
@@ -23,7 +23,7 @@ const InputBox = () => {
       <Column gap="6px">
         <CategoryLabel />
         <Row gap="6px">
-          {categories.map((category) => (
+          {emptyCategories.map((category) => (
             <Category
               key={category.type}
               id={category.type}

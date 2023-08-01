@@ -4,7 +4,7 @@ import { useRecoilValue } from "recoil";
 import { categoriesStore } from "@/store/categories.store";
 import { forumFilterStore } from "@/store/forumType.store";
 import { useQueryClient } from "react-query";
-import KEY from "@/global/constants/key.constant";
+import { KEY } from "@/constants";
 import ForumFilter from "./ForumFilter";
 import Categories from "./Categories";
 import PostList from "./PostList";

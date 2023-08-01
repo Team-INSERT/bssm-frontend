@@ -1,9 +1,6 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from "axios";
 import { requestInterceptors, responseInterceptors } from "@/apis/interceptor";
-import Storage from "@/apis/storage";
-import refreshToken from "@/apis/token/refreshToken";
-import TOKEN from "@/global/constants/token.constant";
-import KEY from "@/global/constants/key.constant";
+import { KEY } from "@/constants/";
 import { QueryClient } from "react-query";
 
 export interface HttpClientConfig {
@@ -108,22 +105,9 @@ export class HttpClient {
       (response) => response,
       (error) => {
         queryClient.invalidateQueries(KEY.USER);
-        refreshToken();
         return Promise.reject(error);
       },
     );
-  }
-
-  static setAccessToken() {
-    const accessToken = Storage.getItem(TOKEN.ACCESS);
-    HttpClient.clientConfig.headers = {
-      ...HttpClient.clientConfig.headers,
-      Authorization: accessToken || undefined,
-    };
-  }
-
-  static removeAccessToken() {
-    Storage.setItem(TOKEN.ACCESS, "");
   }
 
   private static setCommonInterceptors(instance: AxiosInstance) {

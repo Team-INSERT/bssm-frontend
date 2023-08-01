@@ -2,12 +2,11 @@ import React from "react";
 import styled from "styled-components";
 import useDate from "@/hooks/useDate";
 import { useQueryClient } from "react-query";
-import KEY from "@/global/constants/key.constant";
+import { KEY } from "@/constants";
+import { emptyTimetable, emptyClassLevel } from "@/assets/data";
 import TimeTableBar from "./TimeTableBar";
 import { useTimetableListQuery } from "../services/queries.service";
 import TimeTableCategory from "./TimeTableCategory";
-import emptyTimetable from "../data/emptyTimetable";
-import emptyClassLevel from "../data/emptyClassLevel";
 
 const TimeTableBox = () => {
   const queryClient = useQueryClient();

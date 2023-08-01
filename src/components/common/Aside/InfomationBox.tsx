@@ -1,18 +1,14 @@
-import color from "@/styles/color";
-import { font } from "@/styles/font";
-import React from "react";
 import styled from "styled-components";
 import Image from "next/image";
-import DefaultProfile from "@/global/assets/icons/profile_default.png";
-import { Student } from "@/global/types/user.type";
 import Link from "next/link";
-import ROUTER from "@/global/constants/router.constant";
-import USER from "@/global/constants/user.constant";
-import Column from "../../Flex/Column";
-import Row from "../../Flex/Row";
+import { color, font } from "@/styles";
+import { defaultProfile } from "@/assets/images";
+import { USER, ROUTER } from "@/constants";
+import { IUser } from "@/interfaces";
+import { Row, Column } from "@/components/Flex";
 
 interface IInfomationBoxProps {
-  user: Student;
+  user: IUser;
   isLogined: boolean;
 }
 
@@ -20,7 +16,7 @@ const InfomationBox = ({ user, isLogined }: IInfomationBoxProps) => {
   return (
     <Container>
       <ProfileImage
-        src={user.profile ?? DefaultProfile}
+        src={user.profile ?? defaultProfile}
         alt="profile"
         width={50}
         height={50}

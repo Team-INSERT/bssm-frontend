@@ -1,17 +1,15 @@
-import Column from "@/components/Flex/Column";
-import color from "@/styles/color";
-import { font } from "@/styles/font";
-import React from "react";
 import styled from "styled-components";
-import ImageWithFallback from "@/components/atoms/ImageWithFallback";
-import NotFoundImage from "@/page/lostfound/assets/imageNotFound.png";
+import { Column } from "@/components/Flex";
+import { color, font } from "@/styles";
+import { ImageWithFallback } from "@/components/atoms";
+import { emptyImage } from "@/assets/images";
 
 const LostFoundListItem = () => {
   return (
     <Container>
       <ImageWithFallback
         src="/"
-        fallbackSrc={NotFoundImage}
+        fallbackSrc={emptyImage}
         alt="image"
         size="90px"
       />

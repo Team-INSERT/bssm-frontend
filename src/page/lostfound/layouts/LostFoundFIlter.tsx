@@ -1,19 +1,17 @@
-import Row from "@/components/Flex/Row";
-import color from "@/styles/color";
-import { font } from "@/styles/font";
-import forum from "@/global/constants/forum.constant";
 import React from "react";
 import styled, { css, keyframes } from "styled-components";
-import lostfound from "../../../global/constants/lostfound.constant";
+import { Row } from "@/components/Flex";
+import { color, font } from "@/styles";
+import { LOSTFOUND, FORUM } from "@/constants";
 
 const filters = [
   {
-    type: lostfound.lost.type,
-    name: lostfound.lost.name,
+    type: LOSTFOUND.LOST.TYPE,
+    name: LOSTFOUND.LOST.NAME,
   },
   {
-    type: lostfound.found.type,
-    name: lostfound.found.name,
+    type: LOSTFOUND.FOUND.TYPE,
+    name: LOSTFOUND.FOUND.NAME,
   },
 ];
 
@@ -33,9 +31,9 @@ const LostFoundFilter = () => {
           </ForumLabel>
           <ForumRadio
             onChange={onCheckFilter}
-            type={forum.type}
+            type={FORUM.TYPE}
             id={filter.type}
-            name={forum.name}
+            name={FORUM.NAME}
           />
         </Row>
       ))}

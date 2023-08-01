@@ -1,11 +1,11 @@
 import React from "react";
-import emptyClass from "@/page/timetable/data/emptyClassInfo";
-import useDate from "./useDate";
+import { emptyClassInfo } from "@/assets/data";
+import useDate from "@/hooks/useDate";
 
 const useTimetableBar = () => {
   const date = useDate();
   const [nowDate, setNowDate] = React.useState("");
-  const [currentClass, setCurrentClass] = React.useState(emptyClass);
+  const [currentClass, setCurrentClass] = React.useState(emptyClassInfo);
   const [isScrollBox, setIsScrollBox] = React.useState(false);
 
   const scrollRef = React.useRef<HTMLDivElement>(null);

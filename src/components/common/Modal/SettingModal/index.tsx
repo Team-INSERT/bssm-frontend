@@ -1,6 +1,5 @@
-import color from "@/styles/color";
-import React from "react";
 import styled from "styled-components";
+import { color } from "@/styles";
 import SettingHeader from "./SettingHeader";
 import SettingBody from "./SettingBody";
 

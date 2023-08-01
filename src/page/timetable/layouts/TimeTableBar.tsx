@@ -1,8 +1,6 @@
-import color from "@/styles/color";
-import { font } from "@/styles/font";
-import React from "react";
+import { color, font } from "@/styles";
 import styled from "styled-components";
-import ITimetable from "@/global/types/timetable.type";
+import { ITimetable } from "@/interfaces";
 import useTimetableBar from "@/hooks/useTimetableBar";
 
 interface ITimeTableBarProps {

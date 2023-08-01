@@ -1,10 +1,7 @@
-import Column from "@/components/Flex/Column";
-import Row from "@/components/Flex/Row";
-import color from "@/styles/color";
-import { font } from "@/styles/font";
-import React from "react";
 import styled from "styled-components";
-import LikeLogo from "@/page/forum/assets/LikeLogo";
+import { Column, Row } from "@/components/Flex";
+import { color, font } from "@/styles";
+import { LikeIcon } from "@/assets/icons";
 
 const PostListItem = () => {
   return (
@@ -15,7 +12,7 @@ const PostListItem = () => {
         <Row gap="8px">
           <PostView>83</PostView>
           <Row alignItems="center" gap="3px">
-            <LikeLogo />
+            <LikeIcon />
             <PostLike>30</PostLike>
           </Row>
         </Row>

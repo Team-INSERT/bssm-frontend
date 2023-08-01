@@ -1,13 +1,12 @@
-import { font } from "@/styles/font";
-import React from "react";
 import styled from "styled-components";
-import Arrow from "@/page/forum-post/assets/CategoryArrow";
+import { font } from "@/styles";
+import { CategoryArrow } from "@/assets/icons";
 
 const Category = () => {
   return (
     <Container>
       <PostType>학생</PostType>
-      <Arrow width={12} height={12} />
+      <CategoryArrow width={12} height={12} />
       <CategoryType />
       <CategoryType>자유</CategoryType>
     </Container>

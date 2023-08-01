@@ -1,8 +1,6 @@
-import Setting from "@/global/assets/svgs/Setting";
-import XIcon from "@/global/assets/svgs/XIcon";
-import { font } from "@/styles/font";
-import React from "react";
 import styled from "styled-components";
+import { font } from "@/styles";
+import { XIcon, Setting } from "@/assets/icons";
 
 const SettingHeader = () => {
   return (

@@ -1,18 +1,17 @@
-import Row from "@/components/Flex/Row";
-import color from "@/styles/color";
-import { font } from "@/styles/font";
-import applications from "@/page/applications/constants/applications.constant";
+import { Row } from "@/components/Flex";
+import { color, font } from "@/styles";
+import { APPLICATIONS } from "@/constants";
 import React from "react";
 import styled, { css, keyframes } from "styled-components";
 
 const filters = [
   {
-    type: applications.bsm.type,
-    name: applications.bsm.name,
+    type: APPLICATIONS.BSM.TYPE,
+    name: APPLICATIONS.BSM.NAME,
   },
   {
-    type: applications.other.type,
-    name: applications.other.name,
+    type: APPLICATIONS.OTHER.TYPE,
+    name: APPLICATIONS.OTHER.NAME,
   },
 ];
 
@@ -32,9 +31,9 @@ const AppListFilter = () => {
           </AppListLabel>
           <AppListRadio
             onChange={onCheckFilter}
-            type={applications.type}
+            type={APPLICATIONS.TYPE}
             id={filter.type}
-            name={applications.name}
+            name={APPLICATIONS.NAME}
           />
         </Row>
       ))}

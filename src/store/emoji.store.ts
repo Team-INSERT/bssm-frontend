@@ -1,4 +1,4 @@
-import IEmojiState from "@/global/types/emoji.type";
+import { IEmojiState } from "@/interfaces";
 import { atom } from "recoil";
 
 const emojiStore = atom<IEmojiState>({

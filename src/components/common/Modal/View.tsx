@@ -1,5 +1,5 @@
-import { IModalState } from "@/global/types/modal.type";
 import styled, { css } from "styled-components";
+import { IModalState } from "@/interfaces";
 
 interface ModalViewProps extends IModalState {
   onClose?: () => void;

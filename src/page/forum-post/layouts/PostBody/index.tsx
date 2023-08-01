@@ -1,7 +1,6 @@
-import { font } from "@/styles/font";
-import React from "react";
 import styled from "styled-components";
-import CommentBox from "@/components/atoms/CommentBox";
+import { font } from "@/styles";
+import { CommentBox } from "@/components/atoms";
 import CountBox from "./CountBox";
 
 const PostBody = () => {

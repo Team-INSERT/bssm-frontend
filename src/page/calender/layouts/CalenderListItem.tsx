@@ -1,6 +1,4 @@
-import color from "@/styles/color";
-import { font } from "@/styles/font";
-import React from "react";
+import { color, font } from "@/styles";
 import styled from "styled-components";
 
 const CalenderListItem = () => {

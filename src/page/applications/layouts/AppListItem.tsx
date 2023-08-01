@@ -1,11 +1,8 @@
-import Column from "@/components/Flex/Column";
-import Row from "@/components/Flex/Row";
-import color from "@/styles/color";
-import { font } from "@/styles/font";
 import Link from "next/link";
-import React from "react";
 import styled from "styled-components";
-import LinkArrow from "@/page/applications/assets/LinkArrow";
+import { Row, Column } from "@/components/Flex";
+import { color, font } from "@/styles";
+import { LinkArrow } from "@/assets/icons";
 
 const AppListItem = () => {
   return (

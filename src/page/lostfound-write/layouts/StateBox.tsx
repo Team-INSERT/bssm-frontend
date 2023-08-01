@@ -1,19 +1,17 @@
-import Column from "@/components/Flex/Column";
-import Row from "@/components/Flex/Row";
-import React from "react";
-import lostfoundKey from "@/global/constants/lostfound.constant";
-import Category from "@/components/atoms/Category";
+import { Row, Column } from "@/components/Flex";
+import { LOSTFOUND } from "@/constants";
+import { Category } from "@/components/atoms";
 import styled from "styled-components";
-import { font } from "@/styles/font";
+import { font } from "@/styles";
 
 const lostfounds = [
   {
-    type: lostfoundKey.lost.type,
-    name: lostfoundKey.lost.name,
+    type: LOSTFOUND.LOST.TYPE,
+    name: LOSTFOUND.LOST.NAME,
   },
   {
-    type: lostfoundKey.found.type,
-    name: lostfoundKey.found.name,
+    type: LOSTFOUND.FOUND.TYPE,
+    name: LOSTFOUND.FOUND.NAME,
   },
 ];
 

@@ -1,8 +1,6 @@
-import color from "@/styles/color";
-import { font } from "@/styles/font";
 import Link from "next/link";
-import React from "react";
 import styled from "styled-components";
+import { color, font } from "@/styles";
 
 const navigations = [
   {

@@ -1,8 +1,6 @@
-import color from "@/styles/color";
-import { font } from "@/styles/font";
-import React from "react";
 import styled, { css } from "styled-components";
-import Row from "../Flex/Row";
+import { color, font } from "@/styles";
+import { Row } from "@/components/Flex";
 
 interface ICategoryProps extends React.InputHTMLAttributes<HTMLInputElement> {
   id?: string;

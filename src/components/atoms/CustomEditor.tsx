@@ -1,9 +1,9 @@
 import React from "react";
-import { Editor as TinymcEditor } from "@tinymce/tinymce-react";
-import { font } from "@/styles/font";
 import styled from "styled-components";
+import { Editor as TinymcEditor } from "@tinymce/tinymce-react";
+import { font } from "@/styles";
 import useEmoji from "@/hooks/useEmoji";
-import EmojiModal from "../common/Modal/EmojiModal";
+import { EmojiModal } from "@/components/common";
 
 interface IBlobInfo {
   id: () => string;

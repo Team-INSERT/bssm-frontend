@@ -1,12 +1,9 @@
-import Column from "@/components/Flex/Column";
-import Row from "@/components/Flex/Row";
-import color from "@/styles/color";
-import { font } from "@/styles/font";
 import Image from "next/image";
-import React from "react";
 import styled from "styled-components";
-import Time from "@/page/forum-post/assets/Time";
 import Link from "next/link";
+import { Row, Column } from "@/components/Flex";
+import { color, font } from "@/styles";
+import { Time } from "@/assets/icons";
 
 const LostFoundTitle = () => {
   return (

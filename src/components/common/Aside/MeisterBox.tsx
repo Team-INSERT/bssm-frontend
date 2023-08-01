@@ -1,9 +1,7 @@
-import color from "@/styles/color";
-import { font } from "@/styles/font";
-import React from "react";
 import styled from "styled-components";
-import SERVICE from "@/global/constants/service.constant";
-import Row from "../../Flex/Row";
+import { color, font } from "@/styles";
+import { SERVICE } from "@/constants";
+import { Row } from "@/components/Flex";
 
 const scores = [
   {

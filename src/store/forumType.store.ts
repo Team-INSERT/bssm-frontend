@@ -1,7 +1,7 @@
-import forum from "@/global/constants/forum.constant";
+import { FORUM } from "@/constants";
 import { atom } from "recoil";
 
 export const forumFilterStore = atom<string>({
   key: "forumFilterStore",
-  default: forum.free.type,
+  default: FORUM.FREE.TYPE,
 });

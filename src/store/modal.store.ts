@@ -1,4 +1,4 @@
-import { IModalState } from "@/global/types/modal.type";
+import { IModalState } from "@/interfaces";
 import { atom } from "recoil";
 
 const modalStore = atom<IModalState>({

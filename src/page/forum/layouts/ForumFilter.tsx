@@ -1,20 +1,19 @@
-import Row from "@/components/Flex/Row";
-import { forumFilterStore } from "@/store/forumType.store";
-import color from "@/styles/color";
-import { font } from "@/styles/font";
-import forum from "@/global/constants/forum.constant";
 import React from "react";
-import { useRecoilState } from "recoil";
 import styled, { css, keyframes } from "styled-components";
+import { Row } from "@/components/Flex";
+import { forumFilterStore } from "@/store/forumType.store";
+import { color, font } from "@/styles";
+import { FORUM } from "@/constants";
+import { useRecoilState } from "recoil";
 
 const filters = [
   {
-    type: forum.student.type,
-    name: forum.student.name,
+    type: FORUM.STUDENT.TYPE,
+    name: FORUM.STUDENT.NAME,
   },
   {
-    type: forum.free.type,
-    name: forum.free.name,
+    type: FORUM.FREE.TYPE,
+    name: FORUM.FREE.NAME,
   },
 ];
 
@@ -34,9 +33,9 @@ const ForumFilter = () => {
           </ForumLabel>
           <ForumRadio
             onChange={onCheckFilter}
-            type={forum.type}
+            type={FORUM.TYPE}
             id={filter.type}
-            name={forum.name}
+            name={FORUM.NAME}
           />
         </Row>
       ))}

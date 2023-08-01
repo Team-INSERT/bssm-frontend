@@ -1,6 +1,6 @@
-import Category from "@/components/atoms/Category";
-import Row from "@/components/Flex/Row";
 import React from "react";
+import { Category } from "@/components/atoms";
+import { Row } from "@/components/Flex";
 
 const states = [
   {
