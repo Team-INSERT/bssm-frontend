@@ -1,8 +1,6 @@
-import Check from "@/global/assets/svgs/Check";
-import color from "@/styles/color";
-import { font } from "@/styles/font";
-import React from "react";
 import styled, { css } from "styled-components";
+import { color, font } from "@/styles";
+import { Check } from "@/assets/icons";
 
 interface IAnonymousBoxProps {
   clicked: boolean;

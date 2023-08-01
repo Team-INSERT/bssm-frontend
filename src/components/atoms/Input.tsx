@@ -1,7 +1,6 @@
-import color from "@/styles/color";
-import { font } from "@/styles/font";
 import React from "react";
 import styled, { css } from "styled-components";
+import { color, font } from "@/styles";
 
 interface IInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   width?: string;

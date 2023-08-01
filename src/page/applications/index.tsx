@@ -1,7 +1,6 @@
-import Aside from "@/components/common/Aside";
-import Column from "@/components/Flex/Column";
-import React from "react";
 import styled from "styled-components";
+import { Aside } from "@/components/common";
+import { Column } from "@/components/Flex";
 import AppList from "./layouts/AppList";
 import AppListFilter from "./layouts/AppListFilter";
 

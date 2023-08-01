@@ -1,9 +1,6 @@
-import XIcon from "@/global/assets/svgs/XIcon";
-import HoldingBackTears from "@/global/assets/svgs/emojis/HoldingBackTears";
-import color from "@/styles/color";
-import { font } from "@/styles/font";
-import React from "react";
 import styled from "styled-components";
+import { color, font } from "@/styles";
+import { XIcon, HoldingBackTears } from "@/assets/icons";
 
 interface IModalHeaderProps {
   handleClickCloseButton: () => void;

@@ -1,8 +1,6 @@
-import Column from "@/components/Flex/Column";
-import color from "@/styles/color";
-import { font } from "@/styles/font";
-import React from "react";
 import styled from "styled-components";
+import { Column } from "@/components/Flex";
+import { color, font } from "@/styles";
 import InputBox from "./InputBox";
 
 const LostFoundWriteBox = () => {

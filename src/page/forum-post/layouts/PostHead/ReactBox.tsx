@@ -1,11 +1,7 @@
-import Row from "@/components/Flex/Row";
-import color from "@/styles/color";
-import { font } from "@/styles/font";
-import React from "react";
 import styled from "styled-components";
-import View from "@/page/forum-post/assets/View";
-import Like from "@/page/forum-post/assets/Like";
-import Comment from "@/page/forum-post/assets/CommentIcon";
+import { CommentIcon, Like, View } from "@/assets/icons";
+import { Row } from "@/components/Flex";
+import { color, font } from "@/styles";
 
 const ReactBox = () => {
   return (
@@ -19,7 +15,7 @@ const ReactBox = () => {
         <LikeText>8</LikeText>
       </Row>
       <Row alignItems="center" gap="4px">
-        <Comment width={14} height={14} />
+        <CommentIcon width={14} height={14} />
         <CommentText>3</CommentText>
       </Row>
     </Container>

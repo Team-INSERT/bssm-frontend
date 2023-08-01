@@ -1,8 +1,8 @@
-import USER from "@/global/constants/user.constant";
-import { Student } from "@/global/types/user.type";
+import { USER } from "@/constants";
+import { IUser } from "@/interfaces";
 import { atom } from "recoil";
 
-export const emptyUser: Student = {
+export const emptyUser: IUser = {
   isLogin: true,
   code: 0,
   nickname: "",
@@ -19,7 +19,7 @@ export const emptyUser: Student = {
   },
 };
 
-export const userStore = atom<Student>({
+export const userStore = atom<IUser>({
   key: "userStore",
   default: emptyUser,
 });

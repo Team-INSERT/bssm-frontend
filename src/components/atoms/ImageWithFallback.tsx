@@ -1,5 +1,5 @@
+import React from "react";
 import Image, { ImageProps, StaticImageData } from "next/image";
-import { useState } from "react";
 import styled, { css } from "styled-components";
 
 interface ImageWithFallbackProps extends ImageProps {
@@ -18,7 +18,7 @@ const ImageWithFallback = ({
   isShouldHide,
   ...props
 }: ImageWithFallbackProps) => {
-  const [imgSrc, setImgSrc] = useState<StaticImageData | string>(src);
+  const [imgSrc, setImgSrc] = React.useState<StaticImageData | string>(src);
 
   return (
     <StyledImage

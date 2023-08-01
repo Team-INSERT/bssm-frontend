@@ -1,11 +1,10 @@
-import React from "react";
 import styled from "styled-components";
 import CalenderListItem from "./CalenderListItem";
 
 const CalenderList = () => {
   return (
     <Container>
-      {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((index) => (
+      {Array.from({ length: 10 }).map((_, index) => (
         <CalenderListItem key={index} />
       ))}
     </Container>

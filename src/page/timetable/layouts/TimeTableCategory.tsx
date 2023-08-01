@@ -1,11 +1,8 @@
-import Column from "@/components/Flex/Column";
-import Row from "@/components/Flex/Row";
-import Category from "@/components/atoms/Category";
-import Select from "@/components/atoms/Select";
-import IClassLevel from "@/global/types/classLevel.type";
-import { font } from "@/styles/font";
-import React from "react";
 import styled from "styled-components";
+import { Column, Row } from "@/components/Flex";
+import { Category, Select } from "@/components/atoms";
+import { IClassLevel } from "@/interfaces";
+import { font } from "@/styles";
 
 interface ITimeTableCategoryProps {
   weekdays: Array<string>;

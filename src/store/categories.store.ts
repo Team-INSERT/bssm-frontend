@@ -1,7 +1,8 @@
-import forum from "@/page/forum/constants/forum.constant";
+import { FORUM } from "@/constants";
+import { PostCategoryType } from "@/types";
 import { atom } from "recoil";
 
-export const categoriesStore = atom<string>({
+export const categoriesStore = atom<PostCategoryType>({
   key: "categoriesStore",
-  default: forum.category.all.type,
+  default: FORUM.CATEGORY.ALL.TYPE,
 });

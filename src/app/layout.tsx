@@ -1,5 +1,4 @@
-import "@/styles/globals.css";
-import Provider from "@/global/helpers/provider.helper";
+import Provider from "@/helpers/provider.helper";
 
 export const metadata = {
   title: "BSM",

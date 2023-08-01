@@ -1,11 +1,10 @@
-import color from "@/styles/color";
 import React from "react";
 import styled from "styled-components";
-import { font } from "@/styles/font";
-import Emoji from "@/global/assets/svgs/Emoji";
+import { color, font } from "@/styles";
+import { Emoji } from "@/assets/icons";
 import useEmoji from "@/hooks/useEmoji";
-import AnonymousBox from "@/components/atoms/AnonymousBox";
-import EmojiModal from "@/components/common/Modal/EmojiModal";
+import { AnonymousBox } from "@/components/atoms";
+import { EmojiModal } from "@/components/common";
 
 const CommentBox = () => {
   const [isAnonymous, setIsAnonymous] = React.useState(false);

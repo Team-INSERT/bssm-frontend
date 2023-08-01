@@ -1,7 +1,6 @@
-import Row from "@/components/Flex/Row";
-import { font } from "@/styles/font";
-import React from "react";
 import styled from "styled-components";
+import { Row } from "@/components/Flex";
+import { font } from "@/styles";
 
 const DateBox = () => {
   const date = new Date();

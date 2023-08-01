@@ -1,20 +1,19 @@
-import React from "react";
 import styled, { css } from "styled-components";
-import slideState from "@/page/meal/constants/meal.constant";
-import color from "@/styles/color";
-import MealListItemsType from "../types/mealListItem.type";
+import { MEAL } from "@/constants";
+import { IMealListItem } from "@/interfaces";
+import { color } from "@/styles";
 
-const MealListItem = ({ date, menu, currentSlideIndex }: MealListItemsType) => {
+const MealListItem = ({ date, menu, currentSlideIndex }: IMealListItem) => {
   const mealSlideTypeGenerator = (dateProps: number) => {
     const isPrevSlide = dateProps === currentSlideIndex - 1;
     const isFirstSlide = dateProps === currentSlideIndex;
     const isThirdSlide = dateProps === currentSlideIndex + 2;
     const isNextSlide = dateProps === currentSlideIndex + 3;
-    if (isPrevSlide) return slideState.prev.type;
-    if (isThirdSlide) return slideState.third.type;
-    if (isFirstSlide) return slideState.first.type;
-    if (isNextSlide) return slideState.next.type;
-    return slideState.second.type;
+    if (isPrevSlide) return MEAL.PREV.TYPE;
+    if (isThirdSlide) return MEAL.THIRD.TYPE;
+    if (isFirstSlide) return MEAL.FIRST.TYPE;
+    if (isNextSlide) return MEAL.NEXT.TYPE;
+    return MEAL.SECOND.TYPE;
   };
 
   const isCurrentSlide =
@@ -52,14 +51,14 @@ const MealList = styled.div<{ current: boolean; state: string }>`
   visibility: ${(props) => (props.current ? "visible" : "hidden")};
 
   ${(props) => {
-    if (props.state === slideState.third.type) {
+    if (props.state === MEAL.THIRD.TYPE) {
       return css`
         transition: all 0.5s linear;
         top: 6vh;
       `;
     }
 
-    if (props.state === slideState.first.type) {
+    if (props.state === MEAL.FIRST.TYPE) {
       return css`
         transition: all 0.5s linear;
         transform: scaleX(0.9);
@@ -67,7 +66,7 @@ const MealList = styled.div<{ current: boolean; state: string }>`
       `;
     }
 
-    if (props.state === slideState.second.type) {
+    if (props.state === MEAL.SECOND.TYPE) {
       return css`
         transform: scaleX(0.95);
         transition: all 0.5s linear;
@@ -75,7 +74,7 @@ const MealList = styled.div<{ current: boolean; state: string }>`
       `;
     }
 
-    if (props.state === slideState.prev.type) {
+    if (props.state === MEAL.PREV.TYPE) {
       return css`
         transform: scaleX(0.85);
         transition: all 0.5s linear;

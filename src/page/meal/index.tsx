@@ -1,6 +1,5 @@
-import Aside from "@/components/common/Aside";
-import React from "react";
 import styled from "styled-components";
+import { Aside } from "@/components/common";
 import Meal from "./layouts/Meal";
 
 const MealPage = () => {

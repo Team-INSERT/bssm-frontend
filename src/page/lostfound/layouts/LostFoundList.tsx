@@ -1,5 +1,4 @@
-import Column from "@/components/Flex/Column";
-import React from "react";
+import { Column } from "@/components/Flex";
 import LostFoundListItem from "./LostFoundListItem";
 
 const LostFoundList = () => {

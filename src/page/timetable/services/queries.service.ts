@@ -1,7 +1,6 @@
-import KEY from "@/global/constants/key.constant";
-import ITimetable from "@/global/types/timetable.type";
+import { KEY } from "@/constants";
 import { useQuery } from "react-query";
-import IClassLevel from "@/global/types/classLevel.type";
+import { ITimetable, IClassLevel } from "@/interfaces";
 import { getTimetable } from "./api.service";
 
 export const useTimetableListQuery = (classLevel: IClassLevel) => {

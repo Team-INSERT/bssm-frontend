@@ -1,12 +1,12 @@
 import React from "react";
 import styled from "styled-components";
+import { IMealList } from "@/interfaces";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import MealListItem from "./MealListItem";
 import SwipeArea from "./SwipeArea";
-import MealListType from "../types/mealList.type";
 
-const ListSlider = ({ mealList }: MealListType) => {
+const ListSlider = ({ mealList }: IMealList) => {
   const [currentSlideIndex, setCurrentSlideIndex] = React.useState(0);
   const [slideSpeed, setSlideSpeed] = React.useState(300);
 

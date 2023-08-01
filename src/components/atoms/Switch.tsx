@@ -1,6 +1,6 @@
-import color from "@/styles/color";
 import React from "react";
 import styled, { keyframes } from "styled-components";
+import { color } from "@/styles";
 
 interface ISwitchProps {
   isSwitch: boolean;

@@ -1,16 +1,14 @@
-import httpClient, { HttpClient } from "@/apis/httpClient/httpClient";
-import Storage from "@/apis/storage";
 import React from "react";
-import KEY from "@/global/constants/key.constant";
-import TOKEN from "@/global/constants/token.constant";
-import { Student } from "@/global/types/user.type";
-import { emptyUser, userStore } from "@/store/user.store";
 import { useRouter } from "next/navigation";
 import { useQuery } from "react-query";
-import getProfileUrl from "@/global/helpers/getProfileUrl.helper";
 import { useRecoilState } from "recoil";
-import useWindow from "./useWindow";
-import useModal from "./useModal";
+import httpClient from "@/apis/httpClient/httpClient";
+import KEY from "@/constants/key.constant";
+import { IUser } from "@/interfaces";
+import { emptyUser, userStore } from "@/store/user.store";
+import getProfileUrl from "@/helpers/getProfileUrl.helper";
+import useWindow from "@/hooks/useWindow";
+import useModal from "@/hooks/useModal";
 
 interface UseUserOptions {
   authorizedPage?: boolean;
@@ -26,22 +24,16 @@ const useUser = (options?: UseUserOptions) => {
     data: userInfo,
     remove,
     isLoading,
-  } = useQuery<Student>(
-    [KEY.USER],
-    async () => {
-      HttpClient.setAccessToken();
-      const { data } = await httpClient.user.get();
-      const profile = getProfileUrl(data.code);
-      return {
-        ...data,
-        profile,
-      };
-    },
-    { enabled: !!Storage.getItem(TOKEN.ACCESS) },
-  );
+  } = useQuery<IUser>([KEY.USER], async () => {
+    const { data } = await httpClient.user.get();
+    const profile = getProfileUrl(data.code);
+    return {
+      ...data,
+      profile,
+    };
+  });
 
   const logout = () => {
-    HttpClient.removeAccessToken();
     setUser(emptyUser);
     remove();
   };

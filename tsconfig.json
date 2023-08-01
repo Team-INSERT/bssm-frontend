@@ -31,6 +31,6 @@
     "tailwind.config.js",
     ".eslintrc.js",
     ".next/types/**/*.ts"
-  ],
+, "public/mockServiceWorker.js"  ],
   "exclude": ["node_modules"]
 }

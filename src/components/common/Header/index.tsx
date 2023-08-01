@@ -1,12 +1,10 @@
-import React from "react";
 import styled from "styled-components";
-import Logo from "@/global/assets/svgs/Logo";
-import Setting from "@/global/assets/svgs/Setting";
-import color from "@/styles/color";
 import Link from "next/link";
+import { color } from "@/styles";
+import { Logo, Setting } from "@/assets/icons";
 import useModal from "@/hooks/useModal";
+import { SettingModal } from "@/components/common";
 import Navigation from "./Navigation";
-import SettingModal from "../Modal/SettingModal";
 
 const Header = () => {
   const { openModal } = useModal();

@@ -1,6 +1,5 @@
-import color from "@/styles/color";
-import React from "react";
 import styled, { css } from "styled-components";
+import { color } from "@/styles";
 import ModalList from "./ModalList";
 import ModalHeader from "./ModalHeader";
 

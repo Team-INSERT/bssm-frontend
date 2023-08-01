@@ -1,9 +1,7 @@
-import Row from "@/components/Flex/Row";
-import React from "react";
-import Like from "@/page/forum-post/assets/Like";
-import Comment from "@/page/forum-post/assets/CommentIcon";
 import styled from "styled-components";
-import { font } from "@/styles/font";
+import { Row } from "@/components/Flex";
+import { font } from "@/styles";
+import { CommentIcon, Like } from "@/assets/icons";
 
 const CountBox = () => {
   return (
@@ -13,7 +11,7 @@ const CountBox = () => {
         <LikeText>18</LikeText>
       </LikeBox>
       <Row alignItems="center" gap="4px">
-        <Comment width={18} height={18} />
+        <CommentIcon width={18} height={18} />
         <CommentText>4</CommentText>
       </Row>
     </Row>

@@ -1,8 +1,7 @@
-import Arrow from "@/global/assets/svgs/Arrow";
-import color from "@/styles/color";
-import { font } from "@/styles/font";
 import React from "react";
 import styled, { css } from "styled-components";
+import { color, font } from "@/styles";
+import { Arrow } from "@/assets/icons";
 
 interface ISelectProps {
   options: string[];

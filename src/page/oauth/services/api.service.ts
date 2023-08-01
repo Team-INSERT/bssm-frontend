@@ -7,6 +7,6 @@ export interface ILoginParams {
 export const login = async ({ authCode }: ILoginParams) => {
   if (!authCode) return;
 
-  const { data } = await httpClient.oauth.postInQuery("code", authCode);
+  const { data } = await httpClient.oauth.postOAuth(authCode);
   return data;
 };
