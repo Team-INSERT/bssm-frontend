@@ -1,9 +1,7 @@
 import React from "react";
-import { useRecoilState } from "recoil";
-import emojiStore from "@/store/emoji.store";
 
 const useEmoji = () => {
-  const [emoji, setEmoji] = useRecoilState(emojiStore);
+  const [emoji, setEmoji] = React.useState({ visible: false });
 
   const openEmoji = React.useCallback(() => {
     setEmoji({ visible: true });
