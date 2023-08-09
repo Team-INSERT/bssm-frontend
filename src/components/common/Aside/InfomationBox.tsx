@@ -16,7 +16,7 @@ const InfomationBox = ({ user, isLogined }: IInfomationBoxProps) => {
   return (
     <Container>
       <ProfileImage
-        src={user.profile ?? defaultProfile}
+        src={user.profile || defaultProfile}
         alt="profile"
         width={50}
         height={50}
@@ -92,8 +92,9 @@ const InfomationButton = styled(Link)`
 
 const ProfileImage = styled(Image)`
   border-radius: 50%;
-  background-color: black;
+  background-color: ${color.black};
   flex-shrink: 0;
+  border: 1px solid ${color.gray};
 `;
 
 const LoginText = styled.span`
