@@ -18,6 +18,7 @@ export class HttpClient {
     this.api = axios.create({
       ...axiosConfig,
       baseURL: `${axiosConfig.baseURL}${url}`,
+      withCredentials: true,
     });
     HttpClient.clientConfig = { headers: { Authorization: "" } };
     this.setting();
