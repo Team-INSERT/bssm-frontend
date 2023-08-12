@@ -8,3 +8,4 @@ export { default as ROUTER } from "./router.constant";
 export { default as SERVICE } from "./service.constant";
 export { default as TOKEN } from "./token.constant";
 export { default as USER } from "./user.constant";
+export { default as STORAGE_KEY } from "./storageKey.constant";
