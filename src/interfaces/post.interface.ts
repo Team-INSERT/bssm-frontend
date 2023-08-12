@@ -1,7 +1,7 @@
 import { PostCategoryType } from "@/types";
 
 export default interface IPost {
-  id: string;
+  id: number;
   user: {
     code: number;
     nickname: string;
