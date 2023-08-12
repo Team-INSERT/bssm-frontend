@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ["bssm.kro.kr"],
+    domains: [process.env.NEXT_PUBLIC_DOMAIN, process.env.NEXT_PUBLIC_TEST_DOMAIN],
   },
 };
 
