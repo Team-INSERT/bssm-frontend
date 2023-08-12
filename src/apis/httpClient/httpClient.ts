@@ -1,7 +1,9 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from "axios";
 import { requestInterceptors, responseInterceptors } from "@/apis/interceptor";
-import { KEY } from "@/constants/";
+import { KEY, STORAGE_KEY } from "@/constants/";
 import { QueryClient } from "react-query";
+import { IPostQuery } from "@/interfaces";
+import Storage from "../storage";
 
 export interface HttpClientConfig {
   baseURL?: string;
@@ -49,8 +51,11 @@ export class HttpClient {
     });
   }
 
-  getPost(requestConfig?: AxiosRequestConfig) {
-    return this.api.get("", {
+  getPostList({ postType, category }: IPostQuery, requestConfig?: AxiosRequestConfig) {
+    const POST_LIMIT = Storage.getItem(STORAGE_KEY.POST_LIMIT) || 99;
+
+    const query = `${postType}/recent?startPostId=-1&limit=${POST_LIMIT}&category=${category}`;
+    return this.api.get(query, {
       ...HttpClient.clientConfig,
       ...requestConfig,
     });
