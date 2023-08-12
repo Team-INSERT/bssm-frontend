@@ -7,6 +7,7 @@ interface ImageWithFallbackProps extends ImageProps {
   fallbackSrc: StaticImageData | string;
   alt: string;
   size?: string;
+  rounded?: boolean;
   isShouldHide?: boolean;
 }
 
@@ -16,6 +17,7 @@ const ImageWithFallback = ({
   alt,
   size,
   isShouldHide,
+  rounded,
   ...props
 }: ImageWithFallbackProps) => {
   const [imgSrc, setImgSrc] = React.useState<StaticImageData | string>(src);
@@ -27,19 +29,24 @@ const ImageWithFallback = ({
       alt={alt}
       isShouldHide={isShouldHide}
       onError={() => setImgSrc(fallbackSrc)}
-      width={0}
-      height={0}
       sizes={size}
+      rounded={rounded}
     />
   );
 };
 
-const StyledImage = styled(Image)<{ isShouldHide?: boolean }>`
+const StyledImage = styled(Image)<{ isShouldHide?: boolean; rounded?: boolean }>`
   height: auto;
   ${({ isShouldHide }) =>
     isShouldHide &&
     css`
       display: none;
+    `}
+  ${({ rounded }) =>
+    rounded &&
+    css`
+      border-radius: 50%;
+      object-fit: cover;
     `}
 `;
 
