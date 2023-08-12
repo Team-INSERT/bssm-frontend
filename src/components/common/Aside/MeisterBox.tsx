@@ -9,8 +9,8 @@ const scores = [
     type: SERVICE.MEISTER.TYPE,
   },
   {
-    name: SERVICE.MEISTER.NAME,
-    type: SERVICE.MEISTER.TYPE,
+    name: SERVICE.REWARD_POINTS.NAME,
+    type: SERVICE.REWARD_POINTS.TYPE,
   },
 ];
 
@@ -21,8 +21,8 @@ const MeisterBox = () => {
         <ScoreHGroup key={score.type}>
           <ScoreName>{score.name}</ScoreName>
           <Row gap="4px">
-            <Score>214.2</Score>
-            <Rank>48</Rank>
+            <Score>{score.name === SERVICE.MEISTER.NAME ? 159.8 : 26}</Score>
+            <Rank>{score.name === SERVICE.MEISTER.NAME ? 11 : 4}</Rank>
           </Row>
         </ScoreHGroup>
       ))}
