@@ -8,14 +8,7 @@ interface IInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   type?: string;
 }
 
-const Input = ({
-  type,
-  width = "100%",
-  children,
-  label,
-  id,
-  ...props
-}: IInputProps) => {
+const Input = ({ type, width = "100%", children, label, id, ...props }: IInputProps) => {
   return (
     <StyledContainer type={type}>
       <StyledLabel type={type} htmlFor={id}>
