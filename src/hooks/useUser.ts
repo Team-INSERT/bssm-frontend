@@ -6,7 +6,7 @@ import httpClient from "@/apis/httpClient/httpClient";
 import KEY from "@/constants/key.constant";
 import { IUser } from "@/interfaces";
 import { emptyUser, userStore } from "@/store/user.store";
-import getProfileUrl from "@/helpers/getProfileUrl.helper";
+import { getProfileUrl } from "@/helpers";
 import useWindow from "@/hooks/useWindow";
 import useModal from "@/hooks/useModal";
 
