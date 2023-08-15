@@ -14,15 +14,9 @@ const LostFoundBody = () => {
 2학년 2반에 맡겨놓고있ㅎ습니다~~
         `}
       </Content>
-      <ImageWithFallback
-        src="/"
-        fallbackSrc=""
-        alt="image"
-        size="40%"
-        isShouldHide
-      />
+      <ImageWithFallback src="/" fallbackSrc="" alt="image" size="40%" isShouldHide />
       <LostFoundInfoBox />
-      <CommentBox />
+      <CommentBox totalComments={3} />
     </Container>
   );
 };
