@@ -45,8 +45,7 @@ const StyledImage = styled(Image)<{ isShouldHide?: boolean; rounded?: boolean }>
   ${({ rounded }) =>
     rounded &&
     css`
-      border-radius: 50%;
-      object-fit: cover;
+      border-radius: 999px;
     `}
 `;
 
