@@ -1,7 +1,12 @@
 import dayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat";
+import "dayjs/locale/ko";
 
 dayjs.extend(customParseFormat);
+
+interface GetDateType {
+  date: string;
+}
 
 interface DateType {
   type?: "KOR" | "ENG";
@@ -24,6 +29,13 @@ const useDate = () => {
     const date = dayjs();
     const HMSDate = dayjs(date).locale("ko").format("A h:mm:ss");
     return HMSDate;
+  };
+
+  const getDate = ({ date }: GetDateType) => {
+    const parseDate = dayjs(date).locale("ko");
+
+    const formattedDate = parseDate.format("YYYY.MM.DD. A hh:mm");
+    return formattedDate;
   };
 
   const getNowWeekDay = ({ type }: DateType) => {
@@ -70,6 +82,7 @@ const useDate = () => {
     weekdaysENG,
     weekdaysKOR,
     getHMSDate,
+    getDate,
     getNowWeekDay,
     translateDay,
     getDiffDayTime,
