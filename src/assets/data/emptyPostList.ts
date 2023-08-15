@@ -1,6 +1,6 @@
-import { IPost } from "@/interfaces";
+import { PostListType } from "@/types";
 
-const emptyPostList: Array<IPost> = [
+const emptyPostList: PostListType = [
   {
     id: 0,
     user: {
