@@ -1,9 +1,9 @@
 import { Column } from "@/components/Flex";
-import { IPost } from "@/interfaces";
+import { PostListType } from "@/types";
 import PostListItem from "./PostListItem";
 
 interface IPostListProps {
-  posts: Array<IPost>;
+  posts: PostListType;
 }
 
 const PostList = ({ posts }: IPostListProps) => {

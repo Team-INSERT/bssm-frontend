@@ -3,7 +3,6 @@ import { Column, Row } from "@/components/Flex";
 import { color, font } from "@/styles";
 import { LikeIcon } from "@/assets/icons";
 import { IPost } from "@/interfaces";
-import Image from "next/image";
 import { getProfileUrl } from "@/helpers";
 import { defaultProfile } from "@/assets/images";
 import { ImageWithFallback } from "@/components/atoms";
@@ -13,7 +12,7 @@ import { useRecoilValue } from "recoil";
 import { forumFilterStore } from "@/store/forumType.store";
 
 interface IPostListItemProps {
-  post: IPost;
+  post: Omit<IPost, "content">;
 }
 
 const PostListItem = ({ post }: IPostListItemProps) => {
