@@ -1,6 +1,6 @@
 import { IPost } from "@/interfaces";
 
-const emptyPost: IPost = {
+const post: IPost = {
   id: 0,
   user: {
     code: 0,
@@ -15,4 +15,4 @@ const emptyPost: IPost = {
   totalLikes: 0,
 };
 
-export default emptyPost;
+export default post;

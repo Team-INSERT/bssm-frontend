@@ -1,12 +1,12 @@
 import React from "react";
 import styled from "styled-components";
-import { emptyPostList } from "@/assets/data";
 import { KEY } from "@/constants";
 import { useQueryClient } from "react-query";
 import { PostListType } from "@/types";
 import { useRecoilValue } from "recoil";
 import { categoriesStore } from "@/store/categories.store";
 import { forumFilterStore } from "@/store/forumType.store";
+import { postList as emptyPostList } from "@/fixture";
 import ForumFilter from "./ForumFilter";
 import Categories from "./Categories";
 import PostList from "./PostList";

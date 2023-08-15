@@ -1,6 +1,6 @@
 import { PostListType } from "@/types";
 
-const emptyPostList: PostListType = [
+const postList: PostListType = [
   {
     id: 0,
     user: {
@@ -16,4 +16,4 @@ const emptyPostList: PostListType = [
   },
 ];
 
-export default emptyPostList;
+export default postList;
