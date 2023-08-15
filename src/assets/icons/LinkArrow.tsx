@@ -1,10 +1,6 @@
 import { SVGAttribute } from "@/interfaces";
 
-const LinkArrow = ({
-  width = 12,
-  height = 20,
-  color = "#727272",
-}: SVGAttribute) => {
+const LinkArrow = ({ width = 12, height = 20, color = "#727272" }: SVGAttribute) => {
   return (
     <svg
       width={width}
