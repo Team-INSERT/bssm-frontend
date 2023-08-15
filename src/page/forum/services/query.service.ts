@@ -1,9 +1,9 @@
 import { KEY } from "@/constants";
 import { useQuery } from "react-query";
-import { IPostList, IPostQuery } from "@/interfaces";
+import { IPostList, IPostListQuery } from "@/interfaces";
 import { getPostList } from "./api.service";
 
-export const usePostListQuery = (postConfig: IPostQuery) => {
+export const usePostListQuery = (postConfig: IPostListQuery) => {
   const { postType, category } = postConfig;
 
   const { data, ...queryRest } = useQuery<IPostList>({
