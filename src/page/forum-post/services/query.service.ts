@@ -1,6 +1,6 @@
 import { KEY } from "@/constants";
 import { useQuery } from "react-query";
-import { IPost, IPostQuery } from "@/interfaces";
+import { IPost, IPostQuery, IComment } from "@/interfaces";
 import { getComment, getPost } from "./api.service";
 
 export const usePostQuery = (postConfig: IPostQuery) => {
@@ -21,4 +21,6 @@ export const useCommentQuery = (commentConfig: IPostQuery) => {
     queryKey: [KEY.COMMENT, postType, id],
     queryFn: async () => getComment(commentConfig),
   });
+
+  return { comment: data, ...queryRest };
 };

@@ -5,11 +5,7 @@ export const metadata = {
   description: "부산소마고 학생 정보 관리 서비스입니다.",
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body>
