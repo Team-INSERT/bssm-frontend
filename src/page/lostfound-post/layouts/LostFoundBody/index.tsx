@@ -6,7 +6,6 @@ import LostFoundInfoBox from "./LostFoundInfoBox";
 const LostFoundBody = () => {
   return (
     <Container>
-      {/* 테스트용 */}
       <Content>
         {`
 남성용 빈폴 지갑을 주웠습니다~~~
@@ -22,7 +21,7 @@ const LostFoundBody = () => {
         isShouldHide
       />
       <LostFoundInfoBox />
-      <CommentBox />
+      <CommentBox totalComments={3} />
     </Container>
   );
 };

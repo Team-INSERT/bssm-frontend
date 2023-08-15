@@ -1,7 +1,7 @@
 const FORUM = {
   FREE: {
     NAME: "자유",
-    TYPE: "free",
+    TYPE: "board",
   },
   STUDENT: {
     NAME: "학생",

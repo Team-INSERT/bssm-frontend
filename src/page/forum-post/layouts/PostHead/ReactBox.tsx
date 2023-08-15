@@ -3,20 +3,26 @@ import { CommentIcon, Like, View } from "@/assets/icons";
 import { Row } from "@/components/Flex";
 import { color, font } from "@/styles";
 
-const ReactBox = () => {
+interface IPostReactBoxProps {
+  totalComments: number;
+  totalLikes: number;
+  view: number;
+}
+
+const ReactBox = ({ totalComments, totalLikes, view }: IPostReactBoxProps) => {
   return (
     <Container>
       <Row alignItems="center" gap="4px">
         <View width={14} height={14} />
-        <ViewText>122</ViewText>
+        <ViewText>{view}</ViewText>
       </Row>
       <Row alignItems="center" gap="4px">
         <Like width={14} height={14} />
-        <LikeText>8</LikeText>
+        <LikeText>{totalLikes}</LikeText>
       </Row>
       <Row alignItems="center" gap="4px">
         <CommentIcon width={14} height={14} />
-        <CommentText>3</CommentText>
+        <CommentText>{totalComments}</CommentText>
       </Row>
     </Container>
   );

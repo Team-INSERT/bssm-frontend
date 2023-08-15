@@ -6,13 +6,17 @@ import useEmoji from "@/hooks/useEmoji";
 import { AnonymousBox } from "@/components/atoms";
 import { EmojiModal } from "@/components/common";
 
-const CommentBox = () => {
+interface ICommentBoxProps {
+  totalComments: number;
+}
+
+const CommentBox = ({ totalComments }: ICommentBoxProps) => {
   const [isAnonymous, setIsAnonymous] = React.useState(false);
   const { openEmoji, closeEmoji, visible } = useEmoji();
 
   return (
     <Container>
-      <CommentCount>124</CommentCount>
+      <CommentCount>{totalComments}</CommentCount>
       <CommentWriteBox>
         <CommentTextArea />
         <CommentToolBox>

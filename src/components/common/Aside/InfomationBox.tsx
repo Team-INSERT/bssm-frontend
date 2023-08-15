@@ -6,6 +6,8 @@ import { defaultProfile } from "@/assets/images";
 import { USER, ROUTER } from "@/constants";
 import { IUser } from "@/interfaces";
 import { Row, Column } from "@/components/Flex";
+import { getUserRole } from "@/helpers";
+import flex from "@/styles/flex";
 
 interface IInfomationBoxProps {
   user: IUser;
@@ -13,25 +15,27 @@ interface IInfomationBoxProps {
 }
 
 const InfomationBox = ({ user, isLogined }: IInfomationBoxProps) => {
+  const ifLoginedStudent = isLogined && user.role === USER.STUDENT;
+
   return (
     <Container>
       <ProfileImage
-        src={user.profile ?? defaultProfile}
+        src={user.profile || defaultProfile}
         alt="profile"
         width={50}
         height={50}
       />
-      {isLogined && user.role === USER.STUDENT && (
+      {ifLoginedStudent && (
         <>
           <Column>
-            <Row>
+            <Row gap="4px">
               <UserInfoText>{user.student.grade}학년</UserInfoText>
               <UserInfoText>{user.student.classNo}반</UserInfoText>
               <UserInfoText>{user.student.studentNo}번</UserInfoText>
             </Row>
             <Row gap="4px">
               <UserName>{user.student.name}</UserName>
-              <UserType>{user.role}</UserType>
+              <UserType>{getUserRole(user.role)}</UserType>
             </Row>
           </Column>
           <InfomationButton href={ROUTER.MYPAGE}>내 정보</InfomationButton>
@@ -52,11 +56,10 @@ const InfomationBox = ({ user, isLogined }: IInfomationBoxProps) => {
 };
 
 const Container = styled.main`
+  ${flex.CENTER};
   width: 100%;
   height: 85px;
   background-color: ${color.white};
-  display: flex;
-  align-items: center;
   gap: 12px;
   padding: 0px 18px;
   border-radius: 5px;
@@ -72,27 +75,24 @@ const UserName = styled.span`
 `;
 
 const UserType = styled.span`
-  margin-top: auto;
   ${font.p3};
   color: ${color.gray};
+  margin-top: auto;
 `;
 
 const InfomationButton = styled(Link)`
+  ${flex.CENTER};
+  ${font.btn3};
   width: 76px;
   height: 26px;
   background-color: ${color.primary_blue};
   border-radius: 5px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   margin-left: auto;
-  ${font.btn3};
   color: ${color.white};
 `;
 
 const ProfileImage = styled(Image)`
   border-radius: 50%;
-  background-color: black;
   flex-shrink: 0;
 `;
 

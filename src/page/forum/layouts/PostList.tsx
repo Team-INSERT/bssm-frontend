@@ -1,11 +1,16 @@
 import { Column } from "@/components/Flex";
+import { PostListType } from "@/types";
 import PostListItem from "./PostListItem";
 
-const PostList = () => {
+interface IPostListProps {
+  posts: PostListType;
+}
+
+const PostList = ({ posts }: IPostListProps) => {
   return (
     <Column gap="8px">
-      {[1, 2, 3, 4, 5, 6, 7, 8].map((key) => (
-        <PostListItem key={key} />
+      {posts.map((post) => (
+        <PostListItem key={post.id} post={post} />
       ))}
     </Column>
   );

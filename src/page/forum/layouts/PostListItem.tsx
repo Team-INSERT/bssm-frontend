@@ -2,18 +2,46 @@ import styled from "styled-components";
 import { Column, Row } from "@/components/Flex";
 import { color, font } from "@/styles";
 import { LikeIcon } from "@/assets/icons";
+import { IPost } from "@/interfaces";
+import { getProfileUrl } from "@/helpers";
+import { defaultProfile } from "@/assets/images";
+import { ImageWithFallback } from "@/components/atoms";
+import Link from "next/link";
+import { ROUTER } from "@/constants";
+import { useRecoilValue } from "recoil";
+import { forumFilterStore } from "@/store/forumType.store";
 
-const PostListItem = () => {
+interface IPostListItemProps {
+  post: Omit<IPost, "content">;
+}
+
+const PostListItem = ({ post }: IPostListItemProps) => {
+  const postType = useRecoilValue(forumFilterStore);
+
   return (
-    <Container>
-      <PostNumber>01</PostNumber>
-      <Column>
-        <PostName>게시판 타이틀입니다</PostName>
-        <Row gap="8px">
-          <PostView>83</PostView>
-          <Row alignItems="center" gap="3px">
-            <LikeIcon />
-            <PostLike>30</PostLike>
+    <Container href={`${ROUTER.POST.LIST}/${postType}/${post.id}`}>
+      <PostNumber>{post.id}</PostNumber>
+      <Column gap="4px">
+        <PostName>{post.title}</PostName>
+        <Row alignItems="center" gap="1vw">
+          <Row gap="8px" alignItems="center">
+            <ImageWithFallback
+              src={getProfileUrl(post.id)}
+              alt="profile"
+              width={22}
+              height={22}
+              fallbackSrc={defaultProfile}
+              rounded
+            />
+            <PostWriterName>{post.user.nickname}</PostWriterName>
+          </Row>
+          <Separator />
+          <Row gap="8px">
+            <PostView>{post.totalComments}</PostView>
+            <Row alignItems="center" gap="3px">
+              <LikeIcon />
+              <PostLike>{post.totalLikes}</PostLike>
+            </Row>
           </Row>
         </Row>
       </Column>
@@ -21,7 +49,7 @@ const PostListItem = () => {
   );
 };
 
-const Container = styled.article`
+const Container = styled(Link)`
   width: 100%;
   height: 80px;
   background-color: ${color.white};
@@ -58,6 +86,16 @@ const PostView = styled.span`
 const PostLike = styled.span`
   ${font.p3};
   color: ${color.gray};
+`;
+
+const PostWriterName = styled.span`
+  ${font.p3};
+`;
+
+const Separator = styled.div`
+  width: 1px;
+  height: 16px;
+  background-color: ${color.on_tertiary};
 `;
 
 export default PostListItem;

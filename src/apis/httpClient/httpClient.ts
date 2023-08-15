@@ -1,7 +1,9 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from "axios";
 import { requestInterceptors, responseInterceptors } from "@/apis/interceptor";
-import { KEY } from "@/constants/";
+import { KEY, STORAGE_KEY } from "@/constants/";
 import { QueryClient } from "react-query";
+import { IPostListQuery } from "@/interfaces";
+import Storage from "../storage";
 
 export interface HttpClientConfig {
   baseURL?: string;
@@ -18,6 +20,7 @@ export class HttpClient {
     this.api = axios.create({
       ...axiosConfig,
       baseURL: `${axiosConfig.baseURL}${url}`,
+      withCredentials: true,
     });
     HttpClient.clientConfig = { headers: { Authorization: "" } };
     this.setting();
@@ -49,7 +52,19 @@ export class HttpClient {
   }
 
   getPost(requestConfig?: AxiosRequestConfig) {
-    return this.api.get("", {
+    return this.api.get("/:postType/:id", {
+      ...HttpClient.clientConfig,
+      ...requestConfig,
+    });
+  }
+
+  getPostList(postConfig: IPostListQuery, requestConfig?: AxiosRequestConfig) {
+    const limit = Storage.getItem(STORAGE_KEY.POST_LIMIT) || 20;
+
+    const params = { limit, ...postConfig };
+
+    return this.api.get("/:postType", {
+      params,
       ...HttpClient.clientConfig,
       ...requestConfig,
     });
@@ -62,10 +77,13 @@ export class HttpClient {
     });
   }
 
-  postOAuth(data: unknown, requestConfig?: AxiosRequestConfig) {
-    return this.api.post(`?code=${data}`, {
+  login(code: unknown, requestConfig?: AxiosRequestConfig) {
+    return this.api.post("", {
       ...HttpClient.clientConfig,
       ...requestConfig,
+      params: {
+        code,
+      },
     });
   }
 
@@ -126,4 +144,5 @@ export default {
   user: new HttpClient("api/user", axiosConfig),
   timetable: new HttpClient("api/timetable", axiosConfig),
   post: new HttpClient("api/post/", axiosConfig),
+  comment: new HttpClient("api/post/", axiosConfig),
 };

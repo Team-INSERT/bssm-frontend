@@ -1,14 +1,20 @@
 import styled from "styled-components";
+import { IPost } from "@/interfaces";
 import Category from "./Category";
 import PostTitle from "./PostTitle";
 import ReactBox from "./ReactBox";
 
-const PostHead = () => {
+interface IPostHeadProps {
+  postType: string;
+  post: IPost;
+}
+
+const PostHead = ({ post, postType }: IPostHeadProps) => {
   return (
     <Container>
-      <Category />
-      <PostTitle />
-      <ReactBox />
+      <Category postType={postType} category={post.category} />
+      <PostTitle {...post} />
+      <ReactBox {...post} />
     </Container>
   );
 };

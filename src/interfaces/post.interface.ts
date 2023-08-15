@@ -1,7 +1,7 @@
 import { PostCategoryType } from "@/types";
 
 export default interface IPost {
-  id: string;
+  id: number;
   user: {
     code: number;
     nickname: string;
@@ -12,4 +12,5 @@ export default interface IPost {
   view: number;
   totalComments: number;
   totalLikes: number;
+  content: string;
 }

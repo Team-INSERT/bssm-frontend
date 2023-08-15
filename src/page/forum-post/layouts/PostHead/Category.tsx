@@ -1,14 +1,20 @@
 import styled from "styled-components";
 import { font } from "@/styles";
 import { CategoryArrow } from "@/assets/icons";
+import getPostType from "@/helpers/getPostType.helper";
 
-const Category = () => {
+interface IPostCategoryProps {
+  postType: string;
+  category: string;
+}
+
+const Category = ({ postType, category }: IPostCategoryProps) => {
   return (
     <Container>
-      <PostType>학생</PostType>
+      <PostType>{getPostType(postType)}</PostType>
       <CategoryArrow width={12} height={12} />
       <CategoryType />
-      <CategoryType>자유</CategoryType>
+      <CategoryType>{category}</CategoryType>
     </Container>
   );
 };

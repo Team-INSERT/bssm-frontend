@@ -13,6 +13,7 @@ const ROUTER = {
   },
   TIMETABLE: "/timetable",
   MYPAGE: "/mypage",
+  NOTFOUND: "*",
 } as const;
 
 export default ROUTER;

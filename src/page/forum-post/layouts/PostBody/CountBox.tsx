@@ -3,16 +3,21 @@ import { Row } from "@/components/Flex";
 import { font } from "@/styles";
 import { CommentIcon, Like } from "@/assets/icons";
 
-const CountBox = () => {
+interface ICountBoxProps {
+  totalComments: number;
+  totalLikes: number;
+}
+
+const CountBox = ({ totalComments, totalLikes }: ICountBoxProps) => {
   return (
     <Row gap="22px">
       <LikeBox>
         <Like width={18} height={18} />
-        <LikeText>18</LikeText>
+        <LikeText>{totalLikes}</LikeText>
       </LikeBox>
       <Row alignItems="center" gap="4px">
         <CommentIcon width={18} height={18} />
-        <CommentText>4</CommentText>
+        <CommentText>{totalComments}</CommentText>
       </Row>
     </Row>
   );
