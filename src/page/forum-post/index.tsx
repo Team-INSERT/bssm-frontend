@@ -3,11 +3,16 @@ import React from "react";
 import styled from "styled-components";
 import Post from "./layouts/Post";
 
-const PostPage = () => {
+interface IPostPageParams {
+  postType: string;
+  id: number;
+}
+
+const PostPage = (params: IPostPageParams) => {
   return (
     <Layout>
       <Container>
-        <Post />
+        <Post {...params} />
         <Aside />
       </Container>
     </Layout>

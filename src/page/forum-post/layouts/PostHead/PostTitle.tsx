@@ -1,27 +1,37 @@
-import Image from "next/image";
 import styled from "styled-components";
 import { Column, Row } from "@/components/Flex";
 import color from "@/styles/color";
 import { font } from "@/styles";
 import Link from "next/link";
 import { Time } from "@/assets/icons";
+import { IPost } from "@/interfaces";
+import { getProfileUrl } from "@/helpers";
+import { ImageWithFallback } from "@/components/atoms";
+import { defaultProfile } from "@/assets/images";
+import useDate from "@/hooks/useDate";
 
-const PostTitle = () => {
+const PostTitle = ({ ...post }: IPost) => {
+  const { getDate } = useDate();
+
   return (
     <Column>
-      <Title>제 13회 윈도우 자격증 취득자는 벗어날 수 있는 문제</Title>
+      <Title>{post.title}</Title>
       <ProfileBox href="/" target="_blank">
-        <Profile
-          src="https://bssm.kro.kr/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fprofile_default.99e93808.png&w=256&q=75"
-          alt="profile"
-          width={46}
-          height={46}
-        />
+        <Profile>
+          <ImageWithFallback
+            src={getProfileUrl(post.user.code)}
+            alt="profile"
+            width={40}
+            height={36}
+            fallbackSrc={defaultProfile}
+            rounded
+          />
+        </Profile>
         <Column justifyContent="center">
-          <Author>우빈우빈</Author>
+          <Author>{post.user.nickname}</Author>
           <Row gap="4px" alignItems="center">
             <Time width={12} height={12} />
-            <Date>2023.07.22.</Date>
+            <Date>{getDate({ date: post.createdAt })}</Date>
           </Row>
         </Column>
       </ProfileBox>
@@ -43,10 +53,9 @@ const ProfileBox = styled(Link)`
   text-decoration: none;
 `;
 
-const Profile = styled(Image)`
+const Profile = styled.div`
   border: 2px solid ${color.on_tertiary};
   border-radius: 50%;
-  padding: 1px;
 `;
 
 const Author = styled.h2`
