@@ -35,7 +35,10 @@ const ImageWithFallback = ({
   );
 };
 
-const StyledImage = styled(Image)<{ isShouldHide?: boolean; rounded?: boolean }>`
+const StyledImage = styled(Image)<{
+  isShouldHide?: boolean;
+  rounded?: boolean;
+}>`
   height: auto;
   ${({ isShouldHide }) =>
     isShouldHide &&

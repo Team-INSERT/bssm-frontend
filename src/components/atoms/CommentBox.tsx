@@ -20,7 +20,9 @@ const CommentBox = ({ totalComments }: ICommentBoxProps) => {
       <CommentWriteBox>
         <CommentTextArea />
         <CommentToolBox>
-          {visible && <EmojiModal onClose={closeEmoji} top="-24%" right="84%" />}
+          {visible && (
+            <EmojiModal onClose={closeEmoji} top="-24%" right="84%" />
+          )}
           <Emoji onClick={openEmoji} />
           <AnonymousBox clicked={isAnonymous} setClicked={setIsAnonymous} />
           <CommentUploadButton />

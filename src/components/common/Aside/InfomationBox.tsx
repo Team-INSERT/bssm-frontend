@@ -44,7 +44,9 @@ const InfomationBox = ({ user, isLogined }: IInfomationBoxProps) => {
       {!isLogined && (
         <>
           <LoginText>로그인이 필요합니다.</LoginText>
-          <InfomationButton href={process.env.NEXT_PUBLIC_OAUTH_URL || ROUTER.HOME}>
+          <InfomationButton
+            href={process.env.NEXT_PUBLIC_OAUTH_URL || ROUTER.HOME}
+          >
             로그인
           </InfomationButton>
         </>
