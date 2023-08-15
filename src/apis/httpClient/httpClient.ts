@@ -78,9 +78,12 @@ export class HttpClient {
   }
 
   login(code: unknown, requestConfig?: AxiosRequestConfig) {
-    return this.api.post(`bsm?code=${code}`, {
+    return this.api.post("", {
       ...HttpClient.clientConfig,
       ...requestConfig,
+      params: {
+        code,
+      },
     });
   }
 
@@ -137,7 +140,7 @@ export const axiosConfig: HttpClientConfig = {
 };
 
 export default {
-  oauth: new HttpClient("api/auth/oauth", axiosConfig),
+  oauth: new HttpClient("api/auth/oauth/bsm", axiosConfig),
   user: new HttpClient("api/user", axiosConfig),
   timetable: new HttpClient("api/timetable", axiosConfig),
   post: new HttpClient("api/post/", axiosConfig),
