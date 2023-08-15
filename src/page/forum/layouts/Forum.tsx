@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import { emptyPostList } from "@/assets/data";
-import { IPost } from "@/interfaces";
 import { KEY } from "@/constants";
 import { useQueryClient } from "react-query";
+import { PostListType } from "@/types";
 import { useRecoilValue } from "recoil";
 import { categoriesStore } from "@/store/categories.store";
 import { forumFilterStore } from "@/store/forumType.store";
@@ -16,7 +16,7 @@ const Forum = () => {
   const queryClient = useQueryClient();
   const postType = useRecoilValue(forumFilterStore);
   const category = useRecoilValue(categoriesStore);
-  const [posts, setPosts] = React.useState<Array<IPost>>(emptyPostList);
+  const [posts, setPosts] = React.useState<PostListType>(emptyPostList);
   const { postList, isSuccess } = usePostListQuery({ postType, category });
 
   React.useEffect(() => {
@@ -25,13 +25,8 @@ const Forum = () => {
   }, [postList, isSuccess]);
 
   React.useEffect(() => {
-    console.log(postType, category);
     queryClient.invalidateQueries({ queryKey: [KEY.POST, postType, category] });
-  }, [postType, category]);
-
-  React.useEffect(() => {
-    console.log(queryClient);
-  }, [queryClient]);
+  }, [postType, category, queryClient]);
 
   return (
     <Container>
