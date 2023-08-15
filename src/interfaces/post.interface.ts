@@ -12,4 +12,5 @@ export default interface IPost {
   view: number;
   totalComments: number;
   totalLikes: number;
+  content: string;
 }
