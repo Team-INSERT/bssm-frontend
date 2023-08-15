@@ -24,7 +24,8 @@ const useTimetableBar = () => {
     const classProgress = date.getDiffTimeProgress(currentClass);
 
     if (scrollRef.current) {
-      const 사용자가스크롤했다면 = classProgress - scrollRef.current.scrollLeft > 1;
+      const 사용자가스크롤했다면 =
+        classProgress - scrollRef.current.scrollLeft > 1;
 
       if (사용자가스크롤했다면 && intervalRef.current !== null) {
         clearInterval(intervalRef.current);
