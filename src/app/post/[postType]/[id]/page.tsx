@@ -2,8 +2,15 @@
 
 import PostPage from "@/page/forum-post";
 
-const Post = () => {
-  return <PostPage />;
+interface IPostAppPageParams {
+  params: {
+    postType: string;
+    id: number;
+  };
+}
+
+const Post = ({ params }: IPostAppPageParams) => {
+  return <PostPage {...params} />;
 };
 
 export default Post;
