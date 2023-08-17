@@ -16,3 +16,5 @@ export { default as HoldingBackTears } from "./emojis/HoldingBackTears";
 export { default as Kissing } from "./emojis/Kissing";
 export { default as Laughing } from "./emojis/Laughing";
 export { default as Relaxed } from "./emojis/Relaxed";
+export { default as Curve } from "./Curve";
+export { default as HistorySeparator } from "./HistorySeparator";
