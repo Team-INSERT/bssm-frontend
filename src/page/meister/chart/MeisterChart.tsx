@@ -62,11 +62,11 @@ const MeisterChart = () => {
 
     data.forEach((item, idx) => {
       const index = idx + 1;
-      const startX = 20;
+      const startX = 1.5;
 
-      const X = index * 30 + startX + separator;
+      const X = `${index * 4 + startX + separator}%`;
 
-      if (index % 3 === 0) separator += 50;
+      if (index % 3 === 0) separator += 8;
 
       svg
         .append("rect")
@@ -82,7 +82,7 @@ const MeisterChart = () => {
 
       svg
         .append("text")
-        .attr("x", X + 1)
+        .attr("x", X)
         .attr("y", `100%`)
         .style("fill", "none")
         .style("font-weight", "600")
@@ -97,7 +97,7 @@ const MeisterChart = () => {
     groups.forEach((groupText, index) => {
       svg
         .append("text")
-        .attr("x", (index + 1) * 138 - 80)
+        .attr("x", `${(index + 1) * 19.5 - 12}%`)
         .attr("y", "20%")
         .text(groupText)
         .style("fill", color.gray)
@@ -109,7 +109,7 @@ const MeisterChart = () => {
       svg
         .append("line")
         .attr("x1", 40)
-        .attr("x2", "95%")
+        .attr("x2", "98%")
         .attr("y1", `${100 - item}%`)
         .attr("y2", `${100 - item}%`)
         .attr("stroke-width", 1)

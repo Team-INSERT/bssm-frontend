@@ -1,15 +1,12 @@
 import flex from "@/styles/flex";
-import { Curve } from "@/assets/icons";
 import { Row } from "@/components/Flex";
-import { color, font } from "@/styles";
+import { color } from "@/styles";
 import React from "react";
 import styled from "styled-components";
 import MeisterProfileBox from "./layouts/MeisterProfileBox";
 import YearlyMeisterScore from "./layouts/YearlyMeisterScore";
 import Distribution from "./layouts/Distribution";
 import StatusCard from "./layouts/StatusCard";
-import LineChart from "./chart/LineChart";
-import AllProgressCircle from "./layouts/AllProgressCircle";
 import HistoryCard from "./layouts/HistoryCard";
 import CreditDemeritCard from "./layouts/CreditDemeritCard";
 
@@ -39,16 +36,6 @@ const MeisterPage = () => {
             />
           ))}
         </StatusCardBox>
-        <SecondAnalyticsBox>
-          <LineChartBox>
-            <Row alignItems="center" gap="8px">
-              <Curve />
-              <CurveText>월별 점수 취득 추이</CurveText>
-            </Row>
-            <LineChart />
-          </LineChartBox>
-          <AllProgressCircle />
-        </SecondAnalyticsBox>
         {Array.from({ length: 2 }).map((_, i) => (
           <HistoryCard key={i} />
         ))}
@@ -75,24 +62,12 @@ const StatusCardBox = styled.div`
   gap: 12px;
 `;
 
-const LineChartBox = styled.div`
-  width: fit-content;
-  display: flex;
-  flex-direction: column;
-  background-color: ${color.white};
-  height: 38vh;
-  padding: 20px 22px;
-`;
-
 const SecondAnalyticsBox = styled.div`
   width: 100%;
+  height: fit-content;
   ${flex.CENTER};
   gap: 14px;
   justify-content: space-between;
-`;
-
-const CurveText = styled.span`
-  ${font.H6};
 `;
 
 export default MeisterPage;
