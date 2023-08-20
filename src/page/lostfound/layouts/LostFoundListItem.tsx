@@ -12,6 +12,8 @@ const LostFoundListItem = () => {
         fallbackSrc={emptyImage}
         alt="image"
         size="90px"
+        width={0}
+        height={0}
       />
       <Column width="100%">
         <LostFoundName>남성용 카드지갑</LostFoundName>
