@@ -1,12 +1,17 @@
 import styled from "styled-components";
 import { Aside } from "@/components/common";
-import Meal from "./layouts/Meal";
+import { Column } from "@/components/Flex";
+import { font } from "@/styles";
+import MealSlider from "./layouts/MealSlider";
 
 const MealPage = () => {
   return (
     <Layout>
       <Container>
-        <Meal />
+        <Column gap="8px" width="67%">
+          <Title />
+          <MealSlider />
+        </Column>
         <Aside />
       </Container>
     </Layout>
@@ -21,8 +26,14 @@ const Layout = styled.div`
 
 const Container = styled.div`
   width: 76%;
-  height: 100vh;
   display: flex;
+`;
+
+const Title = styled.span`
+  ${font.H2};
+  &:after {
+    content: "🍱  오늘의 급식";
+  }
 `;
 
 export default MealPage;
