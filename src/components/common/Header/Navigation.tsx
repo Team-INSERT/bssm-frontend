@@ -4,8 +4,16 @@ import { color, font } from "@/styles";
 
 const navigations = [
   {
-    name: "인증제",
+    name: "마역량",
     href: "/meister",
+  },
+  {
+    name: "이석증 발급",
+    href: "/otolithiasis",
+  },
+  {
+    name: "게시판",
+    href: "/post",
   },
   {
     name: "시간표",
@@ -20,12 +28,8 @@ const navigations = [
     href: "/calender",
   },
   {
-    name: "게시판",
-    href: "/post",
-  },
-  {
-    name: "분실물 찾기",
-    href: "/lostfound",
+    name: "내정보",
+    href: "/mypage",
   },
 ];
 
@@ -44,7 +48,7 @@ const Navigation = () => {
 const NavigationList = styled.ul`
   width: 100%;
   display: flex;
-  gap: 5%;
+  gap: 6%;
 `;
 
 const NavigationListItem = styled(Link)`
