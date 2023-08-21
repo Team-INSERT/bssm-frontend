@@ -1,8 +1,11 @@
 import styled from "styled-components";
 import { font } from "@/styles";
 import { XIcon, Setting } from "@/assets/icons";
+import useModal from "@/hooks/useModal";
 
 const SettingHeader = () => {
+  const { closeModal } = useModal();
+
   return (
     <Header>
       <HGroup>
@@ -10,7 +13,7 @@ const SettingHeader = () => {
         <SettingTitle />
       </HGroup>
       <CloseButton>
-        <XIcon />
+        <XIcon onClick={closeModal} />
       </CloseButton>
     </Header>
   );
