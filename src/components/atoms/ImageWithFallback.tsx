@@ -27,26 +27,26 @@ const ImageWithFallback = ({
       {...props}
       src={imgSrc}
       alt={alt}
-      isShouldHide={isShouldHide}
+      isshouldhide={isShouldHide}
       onError={() => setImgSrc(fallbackSrc)}
       sizes={size}
-      rounded={rounded}
+      isrounded={rounded}
     />
   );
 };
 
 const StyledImage = styled(Image)<{
-  isShouldHide?: boolean;
-  rounded?: boolean;
+  isshouldhide?: boolean;
+  isrounded?: boolean;
 }>`
   height: auto;
-  ${({ isShouldHide }) =>
-    isShouldHide &&
+  ${({ isshouldhide }) =>
+    isshouldhide &&
     css`
       display: none;
     `}
-  ${({ rounded }) =>
-    rounded &&
+  ${({ isrounded }) =>
+    isrounded &&
     css`
       border-radius: 999px;
     `}

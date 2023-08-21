@@ -5,6 +5,7 @@ const color = {
   red: "#F44336",
   gray: "#727272",
   blue: "#228CEA",
+  green: "#3CAD4E",
 
   primary_red: "#E54F5A",
   primary_blue: "#73AEE3",
@@ -24,6 +25,9 @@ const color = {
   emoji_unhover: "#CFCFCF",
   emoji_unhover_tertiary: "#AEAEAE",
   emoji_cheek: "#FF7892",
+
+  spider_first: "#FEA263",
+  spider_second: "#5E97C5",
 };
 
 export default color;

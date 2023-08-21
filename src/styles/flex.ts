@@ -16,6 +16,7 @@ const flex = {
   VERTICAL: flexGenerator({ align: "center" }),
   HORIZONTAL: flexGenerator({ justify: "center " }),
 
+  COLUMN: flexGenerator({ direction: "column" }),
   COLUMN_CENTER: flexGenerator({
     direction: "column",
     align: "center",

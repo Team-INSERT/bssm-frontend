@@ -1,6 +1,7 @@
 import dayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 import "dayjs/locale/ko";
+import useUser from "./useUser";
 
 dayjs.extend(customParseFormat);
 
@@ -25,6 +26,14 @@ const weekdaysENG = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
 const weekdaysKOR = ["일", "월", "화", "수", "목", "금", "토"];
 
 const useDate = () => {
+  const { user } = useUser();
+
+  const openingYear = user.student.enrolledAt;
+
+  const currentYearsWithSchool = Array.from({ length: 3 }).map(
+    (_, i) => openingYear + i,
+  );
+
   const getHMSDate = () => {
     const date = dayjs();
     const HMSDate = dayjs(date).locale("ko").format("A h:mm:ss");
@@ -81,6 +90,7 @@ const useDate = () => {
   return {
     weekdaysENG,
     weekdaysKOR,
+    currentYearsWithSchool,
     getHMSDate,
     getDate,
     getNowWeekDay,
