@@ -1,9 +1,9 @@
 import { color, flex } from "@/styles";
-import BambooPostListItem from "@/page/bamboo/layouts/BambooPostListItem";
 import React from "react";
 import styled from "styled-components";
 import BambooHeader from "./BambooHeader";
 import BambooFilter from "./BambooFilter";
+import BambooManagePostListItem from "./BambooManagePostListItem";
 
 const BambooManageModal = () => {
   return (
@@ -13,7 +13,7 @@ const BambooManageModal = () => {
         <BambooFilter />
         <BambooPostListBox>
           {Array.from({ length: 10 }).map((_, i) => (
-            <BambooPostListItem key={i} />
+            <BambooManagePostListItem key={i} />
           ))}
         </BambooPostListBox>
       </BambooBody>

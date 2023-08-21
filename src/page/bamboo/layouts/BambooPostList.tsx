@@ -1,14 +1,34 @@
 import { color, flex, font } from "@/styles";
+import useUser from "@/hooks/useUser";
+import { Row } from "@/components/Flex";
+import { BambooManageModal } from "@/components/common";
+import useModal from "@/hooks/useModal";
 import React from "react";
 import styled from "styled-components";
 import BambooPostListItem from "./BambooPostListItem";
 
 const BambooPostList = () => {
+  const { isLogined } = useUser();
+  const { openModal } = useModal();
+
+  const handleManageButtonClick = () => {
+    openModal({
+      component: <BambooManageModal />,
+    });
+  };
+
   return (
     <Container>
       <Title />
       <SubTitle />
-      <WriteButton />
+      <Row width="100%" alignItems="center" gap="8px">
+        <StyledButton>제보하기</StyledButton>
+        {isLogined && (
+          <StyledButton onClick={handleManageButtonClick}>
+            글 관리하기
+          </StyledButton>
+        )}
+      </Row>
       <BambooPostListBox>
         {Array.from({ length: 10 }).map((_, i) => (
           <BambooPostListItem key={i} />
@@ -41,11 +61,7 @@ const SubTitle = styled.span`
   }
 `;
 
-const WriteButton = styled.button`
-  &:after {
-    content: "제보하기";
-  }
-  width: 76px;
+const StyledButton = styled.button`
   background-color: ${color.primary_blue};
   border-radius: 4px;
   padding: 6px 10px;

@@ -1,8 +1,12 @@
+import { Row } from "@/components/Flex";
+import Button from "@/components/atoms/Button";
 import { color, flex, font } from "@/styles";
 import React from "react";
 import styled from "styled-components";
 
-const BambooPostListItem = () => {
+const BambooManagePostListItem = () => {
+  const 수락되지않은글이라면 = true;
+
   return (
     <Container>
       <InfomationBox>
@@ -10,6 +14,12 @@ const BambooPostListItem = () => {
         <PostCreatedDate>2023.07.21</PostCreatedDate>
       </InfomationBox>
       <PostContents>{"test ".repeat(40)}</PostContents>
+      <Row gap="8px" alignItems="center">
+        {수락되지않은글이라면 && (
+          <Button color={color.primary_blue}>승인</Button>
+        )}
+        <Button color={color.primary_red}>삭제</Button>
+      </Row>
     </Container>
   );
 };
@@ -53,4 +63,4 @@ const PostContents = styled.div`
   word-break: break-all;
 `;
 
-export default BambooPostListItem;
+export default BambooManagePostListItem;
