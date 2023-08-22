@@ -1,8 +1,8 @@
 import throwAxiosError from "@/apis/error/throwAxiosError";
 import { useRouter } from "next/navigation";
 import { useMutation } from "react-query";
+import Storage from "@/apis/storage";
 import { ROUTER, TOKEN } from "@/constants";
-import Cookie from "@/apis/cookie";
 import { ILoginParams, login } from "./api.service";
 
 export const useLoginMutation = ({ authCode }: ILoginParams) => {
@@ -10,8 +10,8 @@ export const useLoginMutation = ({ authCode }: ILoginParams) => {
 
   return useMutation(() => login({ authCode }), {
     onSuccess: ({ accessToken, refreshToken }) => {
-      Cookie.setItem(TOKEN.ACCESS, accessToken);
-      Cookie.setItem(TOKEN.REFRESH, refreshToken);
+      Storage.setItem(TOKEN.ACCESS, accessToken);
+      Storage.setItem(TOKEN.REFRESH, refreshToken);
 
       router.push(ROUTER.HOME);
     },
