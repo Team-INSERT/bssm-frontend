@@ -1,17 +1,14 @@
 import styled from "styled-components";
 import { font } from "@/styles";
-import { XIcon, Setting } from "@/assets/icons";
+import { XIcon } from "@/assets/icons";
 import useModal from "@/hooks/useModal";
 
-const SettingHeader = () => {
+const BambooHeader = () => {
   const { closeModal } = useModal();
 
   return (
     <Header>
-      <HGroup>
-        <Setting width={16} height={16} />
-        <SettingTitle />
-      </HGroup>
+      <BambooTitle />
       <CloseButton>
         <XIcon onClick={closeModal} />
       </CloseButton>
@@ -27,18 +24,12 @@ const Header = styled.header`
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
 `;
 
-const HGroup = styled.hgroup`
-  display: flex;
-  align-items: center;
-  gap: 6px;
-`;
-
-const SettingTitle = styled.div`
+const BambooTitle = styled.div`
   ${font.p2};
   font-weight: 500;
 
   &:after {
-    content: "설정";
+    content: "🎋 대나무숲 글 관리";
   }
 `;
 
@@ -46,4 +37,4 @@ const CloseButton = styled.button`
   margin: 0 20px 0 auto;
 `;
 
-export default SettingHeader;
+export default BambooHeader;

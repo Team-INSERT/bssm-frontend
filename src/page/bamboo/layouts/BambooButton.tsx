@@ -1,4 +1,3 @@
-import { Arrow } from "@/assets/icons";
 import { Column, Row } from "@/components/Flex";
 import { color, flex, font } from "@/styles";
 import Image, { StaticImageData } from "next/image";
