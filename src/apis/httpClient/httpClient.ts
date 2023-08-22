@@ -1,6 +1,6 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from "axios";
 import { requestInterceptors, responseInterceptors } from "@/apis/interceptor";
-import { KEY, STORAGE_KEY } from "@/constants/";
+import { KEY, TOKEN } from "@/constants/";
 import { QueryClient } from "react-query";
 import { IPostListQuery } from "@/interfaces";
 import Storage from "../storage";
@@ -59,7 +59,7 @@ export class HttpClient {
   }
 
   getPostList(postConfig: IPostListQuery, requestConfig?: AxiosRequestConfig) {
-    const limit = Storage.getItem(STORAGE_KEY.POST_LIMIT) || 20;
+    const limit = Storage.getItem(TOKEN.POST_LIMIT) || 20;
 
     const params = { limit, ...postConfig };
 
