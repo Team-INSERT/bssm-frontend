@@ -1,3 +1,3 @@
-type StorageSettingKey = "postLimit" | "theme" | "viewAllChildComments";
+type StorageSettingKey = "theme" | "viewAllChildComments" | "post_render_limit";
 
 export default StorageSettingKey;
