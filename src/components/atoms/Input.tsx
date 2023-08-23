@@ -37,7 +37,6 @@ const StyledContainer = styled.div<{ type?: string }>`
       flex-direction: row;
       align-items: center;
       background-color: ${color.white};
-      gap: 0px;
       height: 50px;
       padding-left: 8px;
     `}
@@ -66,9 +65,10 @@ const StyledLabel = styled.label<{ type?: string }>`
 
 const StyledInput = styled.input<{ width: string }>`
   width: ${({ width }) => width};
-  padding: 12px 0 12px 16px;
+  padding: 8px 0 12px 16px;
   border-radius: 4px;
   ${font.p2};
+  box-shadow: 4px 4px 15px 0 rgba(0, 0, 0, 0.05);
 
   &[type="file"] {
     width: fit-content;
