@@ -62,12 +62,4 @@ const StatusCardBox = styled.div`
   gap: 12px;
 `;
 
-const SecondAnalyticsBox = styled.div`
-  width: 100%;
-  height: fit-content;
-  ${flex.CENTER};
-  gap: 14px;
-  justify-content: space-between;
-`;
-
 export default MeisterPage;
