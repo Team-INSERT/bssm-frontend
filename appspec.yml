@@ -1,0 +1,12 @@
+version: 0.0
+os: linux
+
+files:
+  - source: /
+    destination: /home/ubuntu/FE-auto
+    overwrite: yes
+permissions:
+  - object: /home/ubuntu/FE-auto
+    owner: ubuntu
+    group: ubuntu
+    mode: 755
