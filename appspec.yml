@@ -12,12 +12,17 @@ permissions:
     mode: 755
     
 hooks:
+  BeforeInstall:
+    - location: scripts/before_install.sh
+      timeout: 300
+      runas: ubuntu
+
   AfterInstall:
-    - location: scripts/after_install.sh  # 스크립트 파일의 상대 경로
+    - location: scripts/after_install.sh
       timeout: 300
       runas: ubuntu
 
   ApplicationStart:
-    - location: scripts/application_start.sh  # 스크립트 파일의 상대 경로
+    - location: scripts/application_start.sh
       timeout: 300
       runas: ubuntu
