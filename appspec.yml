@@ -13,9 +13,11 @@ permissions:
     
 hooks:
   AfterInstall:
-    - location: ~/scripts/after_install.sh  # 배포 후 실행될 스크립트
+    - location: scripts/after_install.sh  # 스크립트 파일의 상대 경로
       timeout: 300
+      runas: ubuntu
 
   ApplicationStart:
-    - location: ~/scripts/application_start.sh  # 애플리케이션 시작 스크립트
+    - location: scripts/application_start.sh  # 스크립트 파일의 상대 경로
       timeout: 300
+      runas: ubuntu
