@@ -1,3 +1,3 @@
 #!/bin/bash
 
-pm2 delete all
+pm2 kill
