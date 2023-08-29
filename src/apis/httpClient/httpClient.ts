@@ -1,3 +1,4 @@
+import { authorization } from "@/apis/token";
 import axios, { AxiosInstance, AxiosRequestConfig } from "axios";
 import { requestInterceptors, responseInterceptors } from "@/apis/interceptor";
 import { KEY, TOKEN } from "@/constants/";
@@ -22,7 +23,9 @@ export class HttpClient {
       baseURL: `${axiosConfig.baseURL}${url}`,
       withCredentials: true,
     });
-    HttpClient.clientConfig = { headers: { Authorization: "" } };
+    HttpClient.clientConfig = {
+      headers: { Authorization: Storage.getItem(TOKEN.ACCESS) || "" },
+    };
     this.setting();
   }
 
@@ -77,13 +80,11 @@ export class HttpClient {
     });
   }
 
-  login(code: unknown, requestConfig?: AxiosRequestConfig) {
-    return this.api.post("", {
+  login(authCode: string, requestConfig?: AxiosRequestConfig) {
+    const data = { authCode };
+    return this.api.post("", data, {
       ...HttpClient.clientConfig,
       ...requestConfig,
-      params: {
-        code,
-      },
     });
   }
 
@@ -145,4 +146,5 @@ export default {
   timetable: new HttpClient("api/timetable", axiosConfig),
   post: new HttpClient("api/post/", axiosConfig),
   comment: new HttpClient("api/post/", axiosConfig),
+  refresh: new HttpClient("api/auth/refresh/access", axiosConfig),
 };
