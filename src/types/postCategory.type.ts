@@ -1,3 +1,3 @@
-type PostCategoryType = "all" | "complain" | "humor" | "information";
+type PostCategoryType = "COMMON" | "NOTICE" | "PROJECT" | "CODE_REVIEW";
 
 export default PostCategoryType;
