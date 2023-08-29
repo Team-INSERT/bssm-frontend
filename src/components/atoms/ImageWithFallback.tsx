@@ -24,8 +24,8 @@ const ImageWithFallback = ({
 
   return (
     <StyledImage
-      {...props}
       src={imgSrc}
+      {...props}
       alt={alt}
       isshouldhide={isShouldHide}
       onError={() => setImgSrc(fallbackSrc)}
