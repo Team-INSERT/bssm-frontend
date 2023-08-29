@@ -2,12 +2,13 @@ import styled from "styled-components";
 import Image from "next/image";
 import Link from "next/link";
 import { color, font } from "@/styles";
-import { defaultProfile } from "@/assets/images";
 import { USER, ROUTER } from "@/constants";
 import { IUser } from "@/interfaces";
 import { Row, Column } from "@/components/Flex";
 import { getUserRole } from "@/helpers";
 import flex from "@/styles/flex";
+import { ImageWithFallback } from "@/components/atoms";
+import { defaultProfile } from "@/assets/images";
 
 interface IInfomationBoxProps {
   user: IUser;
@@ -19,22 +20,24 @@ const InfomationBox = ({ user, isLogined }: IInfomationBoxProps) => {
 
   return (
     <Container>
-      <ProfileImage
-        src={user.profile || defaultProfile}
+      <ImageWithFallback
+        src={user.profile_url}
+        fallbackSrc={defaultProfile}
         alt="profile"
         width={50}
         height={50}
+        rounded
       />
       {ifLoginedStudent && (
         <>
           <Column>
             <Row gap="4px">
-              <UserInfoText>{user.student.grade}학년</UserInfoText>
-              <UserInfoText>{user.student.classNo}반</UserInfoText>
-              <UserInfoText>{user.student.studentNo}번</UserInfoText>
+              <UserInfoText>{user.grade}학년</UserInfoText>
+              <UserInfoText>{user.classNum}반</UserInfoText>
+              <UserInfoText>{user.studentNumber}번</UserInfoText>
             </Row>
             <Row gap="4px">
-              <UserName>{user.student.name}</UserName>
+              <UserName>{user.name}</UserName>
               <UserType>{getUserRole(user.role)}</UserType>
             </Row>
           </Column>
