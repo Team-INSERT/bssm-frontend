@@ -16,4 +16,9 @@ export default class Storage {
     if (typeof window === "undefined") return;
     localStorage.removeItem(key);
   }
+
+  static clear() {
+    if (typeof window === "undefined") return;
+    localStorage.clear();
+  }
 }

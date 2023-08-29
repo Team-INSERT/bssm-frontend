@@ -1,22 +1,20 @@
-import { USER } from "@/constants";
 import { IUser } from "@/interfaces";
 import { atom } from "recoil";
 
 export const emptyUser: IUser = {
-  isLogin: true,
-  code: 0,
+  isLogin: false,
+  id: 0,
   nickname: "",
   email: "",
-  level: 0,
-  profile: "",
-  role: USER.STUDENT,
-  student: {
-    name: "",
-    enrolledAt: 0,
-    grade: 0,
-    classNo: 0,
-    studentNo: 0,
-  },
+  name: "",
+  profile_url: "",
+  profile_image: "",
+  authority: "",
+  role: "",
+  enroll: 0,
+  grade: 0,
+  classNum: 0,
+  studentNumber: 0,
 };
 
 export const userStore = atom<IUser>({

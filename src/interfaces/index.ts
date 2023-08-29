@@ -9,6 +9,6 @@ export type { default as IPost } from "./post.interface";
 export type { default as IPostListQuery } from "./postListQuery.interface";
 export type { default as IPostQuery } from "./postQuery.interface";
 export type { default as ITimetable } from "./timetable.interface";
-export type { Student as IUser } from "./user.interface";
+export type { default as IUser } from "./user.interface";
 export type { default as IPostList } from "./postList.interface";
 export type { default as IComment } from "./comment.interface";
