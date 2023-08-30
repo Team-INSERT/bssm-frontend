@@ -1,8 +1,14 @@
 import React from "react";
 import { emptyClassInfo } from "@/assets/data";
 import useDate from "@/hooks/useDate";
+import { ITimetable } from "@/interfaces";
 
-const useTimetableBar = () => {
+interface IUserTimeTableBarProps {
+  weekday: string;
+  dayTimeTable: ITimetable;
+}
+
+const useTimetableBar = ({ weekday, dayTimeTable }: IUserTimeTableBarProps) => {
   const date = useDate();
   const [nowDate, setNowDate] = React.useState("");
   const [currentClass, setCurrentClass] = React.useState(emptyClassInfo);
@@ -48,11 +54,11 @@ const useTimetableBar = () => {
     synchronizeCurrentTime();
   }, []);
 
-  // React.useEffect(() => {
-  //   const timetable = dayTimeTable[weekday];
-  //   const [nowDateClass] = timetable.filter((item) => item.isNow);
-  //   setCurrentClass(nowDateClass);
-  // }, [weekday, dayTimeTable]);
+  React.useEffect(() => {
+    const timetable = dayTimeTable[weekday];
+    const [nowDateClass] = timetable.filter((item) => item.isNow);
+    setCurrentClass(nowDateClass);
+  }, [weekday, dayTimeTable]);
 
   return {
     scrollRef,
