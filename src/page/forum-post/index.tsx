@@ -4,7 +4,6 @@ import styled from "styled-components";
 import Post from "./layouts/Post";
 
 interface IPostPageParams {
-  postType: string;
   id: number;
 }
 

@@ -4,10 +4,10 @@ import { KEY } from "@/constants";
 import { useQueryClient } from "react-query";
 import { PostListType } from "@/types";
 import { useRecoilValue } from "recoil";
+import { font } from "@/styles";
 import { categoriesStore } from "@/store/categories.store";
-import { forumFilterStore } from "@/store/forumType.store";
+import { forumFilterStore } from "@/store/forumFilter.store";
 import { postList as emptyPostList } from "@/fixture";
-import ForumFilter from "./ForumFilter";
 import Categories from "./Categories";
 import PostList from "./PostList";
 import { usePostListQuery } from "../services/query.service";
@@ -17,12 +17,12 @@ const Forum = () => {
   const postType = useRecoilValue(forumFilterStore);
   const category = useRecoilValue(categoriesStore);
   const [posts, setPosts] = React.useState<PostListType>(emptyPostList);
-  const { postList, isSuccess } = usePostListQuery({ postType, category });
+  const { postList, loading, error } = usePostListQuery(category);
 
   React.useEffect(() => {
-    if (isSuccess && postList) return setPosts(postList);
+    if (!loading && postList) return setPosts(postList.readByCategory);
     return setPosts([]);
-  }, [postList, isSuccess]);
+  }, [postList, loading, error]);
 
   React.useEffect(() => {
     queryClient.invalidateQueries({ queryKey: [KEY.POST, postType, category] });
@@ -30,12 +30,20 @@ const Forum = () => {
 
   return (
     <Container>
-      <ForumFilter />
+      <Title />
       <Categories />
       <PostList posts={posts} />
     </Container>
   );
 };
+
+const Title = styled.span`
+  ${font.H2};
+
+  &:after {
+    content: "📒 학생 게시판";
+  }
+`;
 
 const Container = styled.main`
   width: 67%;

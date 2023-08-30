@@ -5,7 +5,6 @@ import { font } from "@/styles";
 import Link from "next/link";
 import { Time } from "@/assets/icons";
 import { IPost } from "@/interfaces";
-import { getProfileUrl } from "@/helpers";
 import { ImageWithFallback } from "@/components/atoms";
 import { defaultProfile } from "@/assets/images";
 import useDate from "@/hooks/useDate";
@@ -19,7 +18,7 @@ const PostTitle = ({ ...post }: IPost) => {
       <ProfileBox href="/" target="_blank">
         <Profile>
           <ImageWithFallback
-            src={getProfileUrl(post.user.code)}
+            src="/"
             alt="profile"
             width={40}
             height={36}

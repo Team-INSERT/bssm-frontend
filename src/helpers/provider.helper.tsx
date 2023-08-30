@@ -4,16 +4,16 @@ import React from "react";
 import { RecoilRoot } from "recoil";
 import ReactQueryProvider from "./reactQueryProvider.helper";
 import LayoutProvider from "./layoutProvider.helper";
-import ApoloClientProvider from "./apoloClientProvider.helper";
+import ApolloClientProvider from "./apolloClientProvider.helper";
 
 const Provider = ({ children }: React.PropsWithChildren) => {
   return (
     <ReactQueryProvider>
-      <ApoloClientProvider>
+      <ApolloClientProvider>
         <RecoilRoot>
           <LayoutProvider>{children}</LayoutProvider>
         </RecoilRoot>
-      </ApoloClientProvider>
+      </ApolloClientProvider>
     </ReactQueryProvider>
   );
 };

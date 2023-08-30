@@ -1,15 +1,11 @@
-import { KEY } from "@/constants";
-import { useQuery } from "react-query";
-import { IPostList, IPostListQuery } from "@/interfaces";
-import { getPostList } from "./api.service";
+import { useQuery } from "@apollo/client";
+import { GET_POST_LIST } from "@/gql/post/queries";
+import { PostCategoryType } from "@/types";
 
-export const usePostListQuery = (postConfig: IPostListQuery) => {
-  const { postType, category } = postConfig;
-
-  const { data, ...queryRest } = useQuery<IPostList>({
-    queryKey: [KEY.POST, postType, category],
-    queryFn: async () => getPostList(postConfig),
+export const usePostListQuery = (type: PostCategoryType) => {
+  const { data, ...queryRest } = useQuery(GET_POST_LIST({ type }), {
+    variables: { type },
   });
 
-  return { postList: data?.postList, ...queryRest };
+  return { postList: data, ...queryRest };
 };

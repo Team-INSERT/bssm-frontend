@@ -6,7 +6,6 @@ export type { default as IMealList } from "./mealList.interface";
 export type { default as IMealListItem } from "./mealListItem.interface";
 export type { default as IModalState } from "./modal.interface";
 export type { default as IPost } from "./post.interface";
-export type { default as IPostListQuery } from "./postListQuery.interface";
 export type { default as IPostQuery } from "./postQuery.interface";
 export type { default as ITimetable } from "./timetable.interface";
 export type { default as IUser } from "./user.interface";

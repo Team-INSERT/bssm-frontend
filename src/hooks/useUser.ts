@@ -2,13 +2,16 @@ import React from "react";
 import { useRouter } from "next/navigation";
 import { useQuery } from "react-query";
 import { useRecoilState } from "recoil";
-import httpClient from "@/apis/httpClient/httpClient";
+import httpClient, { HttpClient } from "@/apis/httpClient/httpClient";
 import KEY from "@/constants/key.constant";
 import { IUser } from "@/interfaces";
 import { emptyUser, userStore } from "@/store/user.store";
-import { getProfileUrl } from "@/helpers";
 import useWindow from "@/hooks/useWindow";
 import useModal from "@/hooks/useModal";
+import Storage from "@/apis/storage";
+import { ERROR, TOKEN } from "@/constants";
+import { authorization, refresh } from "@/apis/token";
+import { isAxiosError } from "axios";
 
 interface UseUserOptions {
   authorizedPage?: boolean;
@@ -24,19 +27,30 @@ const useUser = (options?: UseUserOptions) => {
     data: userInfo,
     remove,
     isLoading,
-  } = useQuery<IUser>([KEY.USER], async () => {
-    const { data } = await httpClient.user.get();
-    const profile = getProfileUrl(data.code);
-    return {
-      ...data,
-      profile,
-    };
-  });
+    error,
+    refetch,
+  } = useQuery<IUser>(
+    [KEY.USER, Storage.getItem(TOKEN.ACCESS)],
+    async () => {
+      const { data } = await httpClient.user.get(authorization());
+      return data;
+    },
+    { enabled: !!Storage.getItem(TOKEN.ACCESS) },
+  );
 
   const logout = () => {
+    HttpClient.removeAccessToken();
     setUser(emptyUser);
     remove();
   };
+
+  React.useEffect(() => {
+    if (isAxiosError(error) && error.response) {
+      const { code } = error.response.data;
+
+      if (code === ERROR.CODE.TOKEN_403_2) refresh().then(() => refetch());
+    }
+  }, [error, refetch]);
 
   React.useEffect(() => {
     if (userInfo) setUser(userInfo);

@@ -1,4 +1,6 @@
+import { PostCategoryType } from "@/types";
+
 export default interface IPostQuery {
-  postType: string;
+  type: PostCategoryType;
   id: number;
 }

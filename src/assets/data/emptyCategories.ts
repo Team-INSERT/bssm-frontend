@@ -2,20 +2,24 @@ import { FORUM } from "@/constants";
 
 const categories = [
   {
-    name: FORUM.CATEGORY.ALL.NAME,
-    type: FORUM.CATEGORY.ALL.TYPE,
+    type: FORUM.COMMON.TYPE,
+    name: FORUM.COMMON.NAME,
   },
   {
-    name: FORUM.CATEGORY.COMPLAIN.NAME,
-    type: FORUM.CATEGORY.COMPLAIN.TYPE,
+    type: FORUM.NOTICE.TYPE,
+    name: FORUM.NOTICE.NAME,
   },
   {
-    name: FORUM.CATEGORY.HUMOR.NAME,
-    type: FORUM.CATEGORY.HUMOR.TYPE,
+    type: FORUM.PROJECT.TYPE,
+    name: FORUM.PROJECT.NAME,
   },
   {
-    name: FORUM.CATEGORY.INFORMATION.NAME,
-    type: FORUM.CATEGORY.INFORMATION.TYPE,
+    type: FORUM.CODE_REVIEW.TYPE,
+    name: FORUM.CODE_REVIEW.NAME,
+  },
+  {
+    type: FORUM.LOST_FOUND.TYPE,
+    name: FORUM.LOST_FOUND.NAME,
   },
 ];
 

@@ -1,2 +1,2 @@
 export { default as refresh } from "./refresh";
-export { authorization, refreshToken } from "./request";
+export { default as authorization } from "./authorization";

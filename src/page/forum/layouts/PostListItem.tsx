@@ -3,46 +3,41 @@ import { Column, Row } from "@/components/Flex";
 import { color, font } from "@/styles";
 import { LikeIcon } from "@/assets/icons";
 import { IPost } from "@/interfaces";
-import { getProfileUrl } from "@/helpers";
 import { defaultProfile } from "@/assets/images";
 import { ImageWithFallback } from "@/components/atoms";
 import Link from "next/link";
 import { ROUTER } from "@/constants";
-import { useRecoilValue } from "recoil";
-import { forumFilterStore } from "@/store/forumType.store";
 
 interface IPostListItemProps {
   post: Omit<IPost, "content">;
 }
 
 const PostListItem = ({ post }: IPostListItemProps) => {
-  const postType = useRecoilValue(forumFilterStore);
-
   return (
-    <Container href={`${ROUTER.POST.LIST}/${postType}/${post.id}`}>
+    <Container href={`${ROUTER.POST.LIST}/${post.id}`}>
       <PostNumber>{post.id}</PostNumber>
       <Column gap="4px">
         <PostName>{post.title}</PostName>
         <Row alignItems="center" gap="1vw">
           <Row gap="8px" alignItems="center">
             <ImageWithFallback
-              src={getProfileUrl(post.id)}
+              src="/"
               alt="profile"
               width={22}
               height={22}
               fallbackSrc={defaultProfile}
               rounded
             />
-            <PostWriterName>{post.user.nickname}</PostWriterName>
+            <PostWriterName>TEST</PostWriterName>
           </Row>
           <Separator />
-          <Row gap="8px">
+          {/* <Row gap="8px">
             <PostView>{post.totalComments}</PostView>
             <Row alignItems="center" gap="3px">
               <LikeIcon />
               <PostLike>{post.totalLikes}</PostLike>
             </Row>
-          </Row>
+          </Row> */}
         </Row>
       </Column>
     </Container>

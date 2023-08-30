@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { font } from "@/styles";
 import { CategoryArrow } from "@/assets/icons";
-import getPostType from "@/helpers/getPostType.helper";
 
 interface IPostCategoryProps {
   postType: string;
@@ -11,9 +10,8 @@ interface IPostCategoryProps {
 const Category = ({ postType, category }: IPostCategoryProps) => {
   return (
     <Container>
-      <PostType>{getPostType(postType)}</PostType>
+      <PostType>{postType}</PostType>
       <CategoryArrow width={12} height={12} />
-      <CategoryType />
       <CategoryType>{category}</CategoryType>
     </Container>
   );
