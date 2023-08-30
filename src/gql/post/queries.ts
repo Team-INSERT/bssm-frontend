@@ -27,8 +27,11 @@ export const GET_POST = ({ type, id }: IPostQueryProps) => {
 export const GET_POST_LIST = ({ type }: IPostProps) => {
   return gql`
     query {
-      readByCategory ( category: ${type} ) {
-        ${posts[type]}
+      readByCategory ( category: "${type}" ) {
+        id
+        title
+        content
+        category
       }
     }
   `;
