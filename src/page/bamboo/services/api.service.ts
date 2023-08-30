@@ -1,5 +1,5 @@
-import httpClient from "@/apis/httpClient"
+import httpClient from "@/apis/httpClient";
 
 export const getBambooPost = async () => {
-    const { data } = await httpClient.
-}
+  // const { data } = await httpClient.
+};
