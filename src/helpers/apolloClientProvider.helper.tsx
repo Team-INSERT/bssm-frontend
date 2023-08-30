@@ -2,7 +2,7 @@ import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 import { PropsWithChildren } from "react";
 
 const client = new ApolloClient({
-  uri: `${process.env.NEXT_PUBLIC_BASE_URL}/api/graphql`,
+  uri: `${process.env.NEXT_PUBLIC_BASE_URL}api/graphql`,
   cache: new InMemoryCache(),
   connectToDevTools: true,
 });
