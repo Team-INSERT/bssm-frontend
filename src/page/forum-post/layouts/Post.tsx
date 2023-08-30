@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { useRouter } from "next/navigation";
+import { useRecoilValue } from "recoil";
+import { categoriesStore } from "@/store/categories.store";
 import { ROUTER } from "@/constants";
 import { color } from "@/styles";
 import { IPost } from "@/interfaces";
@@ -10,24 +12,24 @@ import PostHead from "./PostHead";
 import { usePostQuery } from "../services/query.service";
 
 interface IPostComponentPrpos {
-  postType: string;
   id: number;
 }
 
-const Post = ({ postType, id }: IPostComponentPrpos) => {
+const Post = ({ id }: IPostComponentPrpos) => {
   const [post, setPost] = React.useState<IPost>(emptyPost);
+  const type = useRecoilValue(categoriesStore);
   const router = useRouter();
-  const { post: data, isError, isSuccess } = usePostQuery({ postType, id });
+  const { post: data, error, loading } = usePostQuery({ type, id });
 
   React.useEffect(() => {
-    if (isError) router.push(ROUTER.NOTFOUND);
-    if (data && isSuccess) return setPost(data);
+    // if (error) router.push(ROUTER.NOTFOUND);
+    if (data && !loading) return setPost(data);
     return setPost(emptyPost);
-  }, [data, isSuccess, isError, router]);
+  }, [data, error, loading, router]);
 
   return (
     <Container>
-      <PostHead postType={postType} post={post} />
+      <PostHead postType={type} post={post} />
       <PostBody {...post} />
     </Container>
   );
