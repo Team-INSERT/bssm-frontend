@@ -7,7 +7,7 @@ const postList: PostListType = [
       code: 0,
       nickname: "",
     },
-    category: "all",
+    category: "COMMON",
     title: "",
     createdAt: "",
     view: 0,
