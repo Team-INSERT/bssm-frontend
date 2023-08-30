@@ -6,7 +6,7 @@ const post: IPost = {
     code: 0,
     nickname: "",
   },
-  category: "all",
+  category: "COMMON",
   content: "",
   title: "",
   createdAt: "",

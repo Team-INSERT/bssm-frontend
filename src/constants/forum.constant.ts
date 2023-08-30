@@ -1,32 +1,28 @@
+import POST from "./post.constant";
+
 const FORUM = {
-  FREE: {
-    NAME: "자유",
-    TYPE: "board",
+  COMMON: {
+    NAME: "일반",
+    TYPE: POST.COMMON,
   },
-  STUDENT: {
-    NAME: "학생",
-    TYPE: "student",
+  NOTICE: {
+    NAME: "공지",
+    TYPE: POST.NOTICE,
+  },
+  PROJECT: {
+    NAME: "프로젝트",
+    TYPE: POST.PROJECT,
+  },
+  CODE_REVIEW: {
+    NAME: "코드 리뷰",
+    TYPE: POST.CODE_REVIEW,
+  },
+  LOST_FOUND: {
+    NAME: "분실물 찾기",
+    TYPE: POST.LOST_FOUND,
   },
   NAME: "forum",
   TYPE: "radio",
-  CATEGORY: {
-    ALL: {
-      NAME: "전체",
-      TYPE: "all",
-    },
-    COMPLAIN: {
-      NAME: "불만",
-      TYPE: "complain",
-    },
-    HUMOR: {
-      NAME: "유머",
-      TYPE: "humor",
-    },
-    INFORMATION: {
-      NAME: "정보",
-      TYPE: "information",
-    },
-  },
 } as const;
 
 export default FORUM;
