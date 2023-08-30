@@ -4,7 +4,6 @@ import PostPage from "@/page/forum-post";
 
 interface IPostAppPageParams {
   params: {
-    postType: string;
     id: number;
   };
 }
