@@ -1,30 +1,24 @@
-import { gql } from "@apollo/client";
-
-const DEFAULT_POST = gql`
-    myLike
+const DEFAULT_POST = `
     category
-    createdAt
-    totalComments
-    totalLikes
     title
     content
 `;
 
 export const posts = {
-  COMMON: gql`
+  COMMON: `
     ${DEFAULT_POST}
   `,
-  NOTICE: gql`
+  NOTICE: `
     ${DEFAULT_POST}
   `,
-  PROJECT: gql`
+  PROJECT: `
     ${DEFAULT_POST}
     techs
     startTime
     endTime
     field
   `,
-  CODE_REVIEW: gql`
+  CODE_REVIEW: `
     ${DEFAULT_POST}
     prUrl
   `,
