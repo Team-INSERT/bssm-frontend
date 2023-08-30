@@ -3,5 +3,5 @@ import { atom } from "recoil";
 
 export const forumFilterStore = atom<string>({
   key: "forumFilterStore",
-  default: FORUM.FREE.TYPE,
+  default: FORUM.COMMON.TYPE,
 });

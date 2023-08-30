@@ -1,18 +1,23 @@
 import React from "react";
 import Image from "next/image";
+import { useQueryClient } from "react-query";
 import { useSearchParams } from "next/navigation";
 import { loading } from "@/assets/images";
+import Storage from "@/apis/storage";
 import styled from "styled-components";
 import { color, font } from "@/styles";
 import { Column } from "@/components/Flex";
+import { KEY, TOKEN } from "@/constants";
 import { useLoginMutation } from "./services/mutations.service";
 
 const OAuthPage = () => {
   const authCode = useSearchParams().get("code");
   const loginMutation = useLoginMutation({ authCode });
+  const queryClient = useQueryClient();
 
   React.useEffect(() => {
     loginMutation.mutate();
+    queryClient.invalidateQueries([KEY.USER, Storage.getItem(TOKEN.ACCESS)]);
   }, []);
 
   return (

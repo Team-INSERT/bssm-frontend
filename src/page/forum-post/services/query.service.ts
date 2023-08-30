@@ -1,26 +1,11 @@
-import { KEY } from "@/constants";
-import { useQuery } from "react-query";
-import { IPost, IPostQuery, IComment } from "@/interfaces";
-import { getComment, getPost } from "./api.service";
+import { IPostQuery } from "@/interfaces";
+import { GET_POST } from "@/gql/post/queries";
+import { useQuery } from "@apollo/client";
 
-export const usePostQuery = (postConfig: IPostQuery) => {
-  const { postType, id } = postConfig;
-
-  const { data, ...queryRest } = useQuery<IPost>({
-    queryKey: [KEY.POST, postType, id],
-    queryFn: async () => getPost(postConfig),
+export const usePostQuery = ({ type, id }: IPostQuery) => {
+  const { data, ...queryRest } = useQuery(GET_POST({ type, id }), {
+    variables: { type, id },
   });
 
   return { post: data, ...queryRest };
-};
-
-export const useCommentQuery = (commentConfig: IPostQuery) => {
-  const { postType, id } = commentConfig;
-
-  const { data, ...queryRest } = useQuery<IComment>({
-    queryKey: [KEY.COMMENT, postType, id],
-    queryFn: async () => getComment(commentConfig),
-  });
-
-  return { comment: data, ...queryRest };
 };
