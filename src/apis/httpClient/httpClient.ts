@@ -1,9 +1,7 @@
-import { authorization } from "@/apis/token";
 import axios, { AxiosInstance, AxiosRequestConfig } from "axios";
 import { requestInterceptors, responseInterceptors } from "@/apis/interceptor";
 import { KEY, TOKEN } from "@/constants/";
 import { QueryClient } from "react-query";
-import { IPostListQuery } from "@/interfaces";
 import Storage from "../storage";
 
 export interface HttpClientConfig {
@@ -54,25 +52,6 @@ export class HttpClient {
     });
   }
 
-  getPost(requestConfig?: AxiosRequestConfig) {
-    return this.api.get("/:postType/:id", {
-      ...HttpClient.clientConfig,
-      ...requestConfig,
-    });
-  }
-
-  getPostList(postConfig: IPostListQuery, requestConfig?: AxiosRequestConfig) {
-    const limit = Storage.getItem(TOKEN.POST_LIMIT) || 20;
-
-    const params = { limit, ...postConfig };
-
-    return this.api.get("/:postType", {
-      params,
-      ...HttpClient.clientConfig,
-      ...requestConfig,
-    });
-  }
-
   post(data: unknown, requestConfig?: AxiosRequestConfig) {
     return this.api.post("", data, {
       ...HttpClient.clientConfig,
@@ -116,6 +95,18 @@ export class HttpClient {
     });
   }
 
+  static setAccessToken() {
+    const accessToken = Storage.getItem(TOKEN.ACCESS);
+    HttpClient.clientConfig.headers = {
+      ...HttpClient.clientConfig.headers,
+      Authorization: accessToken || undefined,
+    };
+  }
+
+  static removeAccessToken() {
+    Storage.setItem(TOKEN.ACCESS, "");
+  }
+
   private setting() {
     HttpClient.setCommonInterceptors(this.api);
     const queryClient = new QueryClient();
@@ -123,7 +114,10 @@ export class HttpClient {
     this.api.interceptors.response.use(
       (response) => response,
       (error) => {
-        queryClient.invalidateQueries(KEY.USER);
+        queryClient.invalidateQueries([
+          KEY.USER,
+          Storage.getItem(TOKEN.ACCESS),
+        ]);
         return Promise.reject(error);
       },
     );
@@ -147,4 +141,5 @@ export default {
   post: new HttpClient("api/post/", axiosConfig),
   comment: new HttpClient("api/post/", axiosConfig),
   refresh: new HttpClient("api/auth/refresh/access", axiosConfig),
+  auth: new HttpClient("api/auth/", axiosConfig),
 };
