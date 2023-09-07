@@ -22,7 +22,9 @@ export class HttpClient {
       withCredentials: true,
     });
     HttpClient.clientConfig = {
-      headers: { Authorization: Storage.getItem(TOKEN.ACCESS) || "" },
+      headers: {
+        Authorization: Storage.getItem(TOKEN.ACCESS) || "",
+      },
     };
     this.setting();
   }
@@ -157,5 +159,5 @@ export default {
   refresh: new HttpClient("api/auth/refresh/access", axiosConfig),
   auth: new HttpClient("api/auth/", axiosConfig),
   bamboo: new HttpClient("api/bamboo", axiosConfig),
-  allow: new HttpClient("api/bamboo/allow", axiosConfig),
+  admin: new HttpClient("api/bamboo/admin", axiosConfig),
 };
