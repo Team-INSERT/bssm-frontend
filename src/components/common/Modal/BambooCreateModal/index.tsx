@@ -10,10 +10,15 @@ const BambooCreateModal = () => {
   const { closeModal } = useModal();
   const { mutate } = useCreateBambooMutation();
   const [content, setContent] = React.useState("");
+  const textareaRef = React.useRef<HTMLTextAreaElement>(null);
 
   const handleAcceptButtonClick = () => {
     mutate(content);
   };
+
+  React.useEffect(() => {
+    if (textareaRef.current) textareaRef.current.focus();
+  }, []);
 
   return (
     <Container>
@@ -24,6 +29,7 @@ const BambooCreateModal = () => {
         </CloseButton>
       </Header>
       <BambooTextArea
+        ref={textareaRef}
         onChange={(e) => setContent(e.target.value)}
         value={content}
       />
@@ -74,6 +80,7 @@ const BambooTextArea = styled.textarea`
   height: 100%;
   margin: 16px 16px 0 16px;
   padding: 16px;
+  ${font.code}
 `;
 
 const BambooButtonBox = styled.div`
