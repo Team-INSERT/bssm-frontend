@@ -1,19 +1,26 @@
+import React from "react";
+import styled from "styled-components";
+import InfiniteScroll from "react-infinite-scroll-component";
+import { PuffLoader } from "react-spinners";
 import { color, flex, font } from "@/styles";
 import useUser from "@/hooks/useUser";
 import { Row } from "@/components/Flex";
+import { IBambooPost } from "@/interfaces";
 import { BambooManageModal } from "@/components/common";
 import useModal from "@/hooks/useModal";
 import { isAdmin } from "@/helpers";
 import BambooCreateModal from "@/components/common/Modal/BambooCreateModal";
-import React from "react";
-import styled from "styled-components";
 import BambooPostListItem from "./BambooPostListItem";
 import { useBambooListQuery } from "../services/query.service";
 
 const BambooPostList = () => {
   const { user } = useUser();
   const { openModal } = useModal();
-  const { bamboos, isSuccess } = useBambooListQuery();
+  const {
+    data: bambooPages,
+    fetchNextPage,
+    hasNextPage,
+  } = useBambooListQuery();
 
   const handleManageButtonClick = () => {
     openModal({
@@ -39,12 +46,24 @@ const BambooPostList = () => {
           </StyledButton>
         )}
       </Row>
-      <BambooPostListBox>
-        {isSuccess &&
-          bamboos?.map((bamboo) => (
-            <BambooPostListItem key={bamboo.allowedId} bamboo={bamboo} />
-          ))}
-      </BambooPostListBox>
+      <InfiniteScroll
+        dataLength={bambooPages?.flatMap(({ data }) => data).length || 0}
+        next={fetchNextPage}
+        hasMore={hasNextPage || false}
+        loader={
+          <LoadingBox>
+            <PuffLoader size={40} />
+          </LoadingBox>
+        }
+      >
+        {bambooPages?.map((bamboos) => (
+          <BambooPostListBox>
+            {bamboos.map((bamboo: IBambooPost) => (
+              <BambooPostListItem key={bamboo.allowedId} bamboo={bamboo} />
+            ))}
+          </BambooPostListBox>
+        ))}
+      </InfiniteScroll>
     </Container>
   );
 };
@@ -82,6 +101,12 @@ const StyledButton = styled.button`
 const BambooPostListBox = styled.div`
   ${flex.COLUMN};
   gap: 14px;
+`;
+
+const LoadingBox = styled.div`
+  margin-top: 20px;
+  width: 100%;
+  ${flex.CENTER};
 `;
 
 export default BambooPostList;
