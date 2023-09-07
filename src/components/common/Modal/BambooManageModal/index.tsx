@@ -6,7 +6,7 @@ import BambooHeader from "./BambooHeader";
 import BambooManagePostListItem from "./BambooManagePostListItem";
 
 const BambooManageModal = () => {
-  const { bamboos, isSuccess } = useBambooPendingListQuery();
+  const { data: bamboos, isSuccess } = useBambooPendingListQuery();
   const isHasPost = !!bamboos?.length;
 
   return (
