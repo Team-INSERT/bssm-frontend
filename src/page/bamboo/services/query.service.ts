@@ -1,16 +1,16 @@
-import { useQuery } from "react-query";
+import { useInfiniteQuery, useQuery } from "react-query";
 import { KEY } from "@/constants";
-import { IBambooPost } from "@/interfaces";
 import IBambooPendingPost from "@/interfaces/bambooPendingPost.interface";
 import { getBambooPendingPostList, getBambooPostList } from "./api.service";
 
 export const useBambooListQuery = () => {
-  const { data, ...queryRest } = useQuery<Array<IBambooPost>>({
+  const { data, ...queryRest } = useInfiniteQuery({
     queryKey: [KEY.BAMBOO],
-    queryFn: getBambooPostList,
+    queryFn: ({ pageParam = 1 }) => getBambooPostList(pageParam),
+    getNextPageParam: ({ nextPage }) => nextPage,
   });
 
-  return { bamboos: data, ...queryRest };
+  return { data: data?.pages, ...queryRest };
 };
 
 export const useBambooPendingListQuery = () => {
@@ -19,5 +19,5 @@ export const useBambooPendingListQuery = () => {
     queryFn: getBambooPendingPostList,
   });
 
-  return { bamboos: data, ...queryRest };
+  return { data, ...queryRest };
 };

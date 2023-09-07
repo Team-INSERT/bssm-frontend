@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { Column, Row } from "@/components/Flex";
 import { color, font } from "@/styles";
-import { LikeIcon } from "@/assets/icons";
 import { IPost } from "@/interfaces";
 import { defaultProfile } from "@/assets/images";
 import { ImageWithFallback } from "@/components/atoms";

@@ -1,7 +1,9 @@
 import httpClient from "@/apis/httpClient";
 
-export const getBambooPostList = async () => {
-  const { data } = await httpClient.bamboo.get();
+export const getBambooPostList = async (page: number) => {
+  const { data } = await httpClient.bamboo.get({
+    params: { page },
+  });
   return data;
 };
 

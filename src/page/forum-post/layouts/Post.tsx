@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { useRouter } from "next/navigation";
 import { useRecoilValue } from "recoil";
 import { categoriesStore } from "@/store/categories.store";
-import { ROUTER } from "@/constants";
 import { color } from "@/styles";
 import { IPost } from "@/interfaces";
 import { post as emptyPost } from "@/fixture";
