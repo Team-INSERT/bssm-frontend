@@ -3,17 +3,27 @@ import useUser from "@/hooks/useUser";
 import { Row } from "@/components/Flex";
 import { BambooManageModal } from "@/components/common";
 import useModal from "@/hooks/useModal";
+import { isAdmin } from "@/helpers";
+import BambooCreateModal from "@/components/common/Modal/BambooCreateModal";
 import React from "react";
 import styled from "styled-components";
 import BambooPostListItem from "./BambooPostListItem";
+import { useBambooListQuery } from "../services/query.service";
 
 const BambooPostList = () => {
-  const { isLogined } = useUser();
+  const { user } = useUser();
   const { openModal } = useModal();
+  const { bamboos, isSuccess } = useBambooListQuery();
 
   const handleManageButtonClick = () => {
     openModal({
       component: <BambooManageModal />,
+    });
+  };
+
+  const handleCreateButtonClick = () => {
+    openModal({
+      component: <BambooCreateModal />,
     });
   };
 
@@ -22,17 +32,18 @@ const BambooPostList = () => {
       <Title />
       <SubTitle />
       <Row width="100%" alignItems="center" gap="8px">
-        <StyledButton>제보하기</StyledButton>
-        {isLogined && (
+        <StyledButton onClick={handleCreateButtonClick}>제보하기</StyledButton>
+        {isAdmin(user.authority) && (
           <StyledButton onClick={handleManageButtonClick}>
             글 관리하기
           </StyledButton>
         )}
       </Row>
       <BambooPostListBox>
-        {Array.from({ length: 10 }).map((_, i) => (
-          <BambooPostListItem key={i} />
-        ))}
+        {isSuccess &&
+          bamboos?.map((bamboo) => (
+            <BambooPostListItem key={bamboo.allowedId} bamboo={bamboo} />
+          ))}
       </BambooPostListBox>
     </Container>
   );

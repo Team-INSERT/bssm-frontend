@@ -1,15 +1,41 @@
+import { Row } from "@/components/Flex";
+import { Button } from "@/components/atoms";
+import { isAdmin } from "@/helpers";
+import useDate from "@/hooks/useDate";
+import useUser from "@/hooks/useUser";
+import { IBambooPost } from "@/interfaces";
 import { color, flex, font } from "@/styles";
 import React from "react";
 import styled from "styled-components";
+import { useDeleteBambooMutation } from "../services/mutation.service";
 
-const BambooPostListItem = () => {
+interface IBambooPostListItemProps {
+  bamboo: IBambooPost;
+}
+
+const BambooPostListItem = ({ bamboo }: IBambooPostListItemProps) => {
+  const { user } = useUser();
+  const { formatDate } = useDate();
+  const { mutate } = useDeleteBambooMutation();
+
+  const handleDeleteButtonClick = () => {
+    mutate(bamboo.allowedId);
+  };
+
   return (
     <Container>
       <InfomationBox>
-        <PostNumber>21</PostNumber>
-        <PostCreatedDate>2023.07.21</PostCreatedDate>
+        <PostNumber>{bamboo.allowedId}</PostNumber>
+        <PostCreatedDate>{formatDate(bamboo.createdAt)}</PostCreatedDate>
       </InfomationBox>
-      <PostContents>{"test ".repeat(40)}</PostContents>
+      <PostContents>{bamboo.content}</PostContents>
+      {isAdmin(user.authority) && (
+        <Row>
+          <Button onClick={handleDeleteButtonClick} color={color.primary_red}>
+            삭제
+          </Button>
+        </Row>
+      )}
     </Container>
   );
 };

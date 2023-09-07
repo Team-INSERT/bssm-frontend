@@ -1,24 +1,37 @@
 import { Row } from "@/components/Flex";
 import Button from "@/components/atoms/Button";
+import useDate from "@/hooks/useDate";
+import IBambooPendingPost from "@/interfaces/bambooPendingPost.interface";
+import { useAllowBambooMutation } from "@/page/bamboo/services/mutation.service";
 import { color, flex, font } from "@/styles";
 import React from "react";
 import styled from "styled-components";
 
-const BambooManagePostListItem = () => {
-  const 수락되지않은글이라면 = true;
+interface IBambooManagePostListItemProps {
+  bamboo: IBambooPendingPost;
+}
+
+const BambooManagePostListItem = ({
+  bamboo,
+}: IBambooManagePostListItemProps) => {
+  const { formatDate } = useDate();
+  const { mutate } = useAllowBambooMutation();
+
+  const handleAcceptButtonClick = async () => {
+    mutate(bamboo.id);
+  };
 
   return (
     <Container>
       <InfomationBox>
-        <PostNumber>21</PostNumber>
-        <PostCreatedDate>2023.07.21</PostCreatedDate>
+        <PostNumber>{bamboo.id}</PostNumber>
+        <PostCreatedDate>{formatDate(bamboo.createdAt)}</PostCreatedDate>
       </InfomationBox>
-      <PostContents>{"test ".repeat(40)}</PostContents>
-      <Row gap="8px" alignItems="center">
-        {수락되지않은글이라면 && (
-          <Button color={color.primary_blue}>승인</Button>
-        )}
-        <Button color={color.primary_red}>삭제</Button>
+      <PostContents>{bamboo.content}</PostContents>
+      <Row>
+        <Button onClick={handleAcceptButtonClick} color={color.primary_blue}>
+          승인
+        </Button>
       </Row>
     </Container>
   );
