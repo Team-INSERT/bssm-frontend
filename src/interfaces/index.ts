@@ -11,3 +11,4 @@ export type { default as ITimetable } from "./timetable.interface";
 export type { default as IUser } from "./user.interface";
 export type { default as IPostList } from "./postList.interface";
 export type { default as IComment } from "./comment.interface";
+export type { default as IBambooPost } from "./bambooPost.interface";

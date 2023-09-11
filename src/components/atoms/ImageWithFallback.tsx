@@ -30,14 +30,14 @@ const ImageWithFallback = ({
       isshouldhide={isShouldHide}
       onError={() => setImgSrc(fallbackSrc)}
       sizes={size}
-      isrounded={rounded}
+      isrounded={rounded?.toString()}
     />
   );
 };
 
 const StyledImage = styled(Image)<{
   isshouldhide?: boolean;
-  isrounded?: boolean;
+  isrounded?: string;
 }>`
   height: auto;
   ${({ isshouldhide }) =>
@@ -46,7 +46,7 @@ const StyledImage = styled(Image)<{
       display: none;
     `}
   ${({ isrounded }) =>
-    isrounded &&
+    isrounded === "true" &&
     css`
       border-radius: 999px;
     `}

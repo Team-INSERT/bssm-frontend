@@ -1,4 +1,5 @@
 import { isAxiosError } from "axios";
+import { toast } from "react-toastify";
 
 const throwAxiosError = (err: unknown) => {
   if (!isAxiosError(err))
@@ -8,10 +9,10 @@ const throwAxiosError = (err: unknown) => {
       message: "",
     };
 
-  // development test
-  console.log(err);
   const data = err?.response?.data;
   const { code, status, message } = data;
+  console.log(err);
+  toast.error("오류가 발생했습니다.");
 
   return { code, status, message };
 };

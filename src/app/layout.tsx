@@ -1,4 +1,4 @@
-import Provider from "@/helpers/provider.helper";
+import Provider from "@/provider/provider.helper";
 
 export const metadata = {
   title: "BSM",

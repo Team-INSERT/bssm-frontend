@@ -22,7 +22,9 @@ export class HttpClient {
       withCredentials: true,
     });
     HttpClient.clientConfig = {
-      headers: { Authorization: Storage.getItem(TOKEN.ACCESS) || "" },
+      headers: {
+        Authorization: Storage.getItem(TOKEN.ACCESS) || "",
+      },
     };
     this.setting();
   }
@@ -52,6 +54,13 @@ export class HttpClient {
     });
   }
 
+  admin(requestConfig?: AxiosRequestConfig) {
+    return this.api.get("/admin", {
+      ...HttpClient.clientConfig,
+      ...requestConfig,
+    });
+  }
+
   post(data: unknown, requestConfig?: AxiosRequestConfig) {
     return this.api.post("", data, {
       ...HttpClient.clientConfig,
@@ -69,6 +78,13 @@ export class HttpClient {
 
   put(data: unknown, requestConfig?: AxiosRequestConfig) {
     return this.api.put("", data, {
+      ...HttpClient.clientConfig,
+      ...requestConfig,
+    });
+  }
+
+  putById(data: unknown, requestConfig?: AxiosRequestConfig) {
+    return this.api.put("/:id", data, {
       ...HttpClient.clientConfig,
       ...requestConfig,
     });
@@ -142,4 +158,6 @@ export default {
   comment: new HttpClient("api/post/", axiosConfig),
   refresh: new HttpClient("api/auth/refresh/access", axiosConfig),
   auth: new HttpClient("api/auth/", axiosConfig),
+  bamboo: new HttpClient("api/bamboo", axiosConfig),
+  admin: new HttpClient("api/bamboo/admin", axiosConfig),
 };

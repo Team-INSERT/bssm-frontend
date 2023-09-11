@@ -1,19 +1,36 @@
+import React from "react";
+import styled from "styled-components";
+import InfiniteScroll from "react-infinite-scroll-component";
+import { PuffLoader } from "react-spinners";
 import { color, flex, font } from "@/styles";
 import useUser from "@/hooks/useUser";
 import { Row } from "@/components/Flex";
+import { IBambooPost } from "@/interfaces";
 import { BambooManageModal } from "@/components/common";
 import useModal from "@/hooks/useModal";
-import React from "react";
-import styled from "styled-components";
+import { isAdmin } from "@/helpers";
+import BambooCreateModal from "@/components/common/Modal/BambooCreateModal";
 import BambooPostListItem from "./BambooPostListItem";
+import { useBambooListQuery } from "../services/query.service";
 
 const BambooPostList = () => {
-  const { isLogined } = useUser();
+  const { user } = useUser();
   const { openModal } = useModal();
+  const {
+    data: bambooPages,
+    fetchNextPage,
+    hasNextPage,
+  } = useBambooListQuery();
 
   const handleManageButtonClick = () => {
     openModal({
       component: <BambooManageModal />,
+    });
+  };
+
+  const handleCreateButtonClick = () => {
+    openModal({
+      component: <BambooCreateModal />,
     });
   };
 
@@ -22,18 +39,31 @@ const BambooPostList = () => {
       <Title />
       <SubTitle />
       <Row width="100%" alignItems="center" gap="8px">
-        <StyledButton>제보하기</StyledButton>
-        {isLogined && (
+        <StyledButton onClick={handleCreateButtonClick}>제보하기</StyledButton>
+        {isAdmin(user.authority) && (
           <StyledButton onClick={handleManageButtonClick}>
             글 관리하기
           </StyledButton>
         )}
       </Row>
-      <BambooPostListBox>
-        {Array.from({ length: 10 }).map((_, i) => (
-          <BambooPostListItem key={i} />
+      <InfiniteScroll
+        dataLength={bambooPages?.flatMap(({ data }) => data).length || 0}
+        next={fetchNextPage}
+        hasMore={hasNextPage || false}
+        loader={
+          <LoadingBox>
+            <PuffLoader size={40} />
+          </LoadingBox>
+        }
+      >
+        {bambooPages?.map((bamboos) => (
+          <BambooPostListBox>
+            {bamboos.map((bamboo: IBambooPost) => (
+              <BambooPostListItem key={bamboo.allowedId} bamboo={bamboo} />
+            ))}
+          </BambooPostListBox>
         ))}
-      </BambooPostListBox>
+      </InfiniteScroll>
     </Container>
   );
 };
@@ -71,6 +101,12 @@ const StyledButton = styled.button`
 const BambooPostListBox = styled.div`
   ${flex.COLUMN};
   gap: 14px;
+`;
+
+const LoadingBox = styled.div`
+  margin-top: 20px;
+  width: 100%;
+  ${flex.CENTER};
 `;
 
 export default BambooPostList;

@@ -25,7 +25,7 @@ const Forum = () => {
   }, [postList, loading, error]);
 
   React.useEffect(() => {
-    queryClient.invalidateQueries({ queryKey: [KEY.POST, postType, category] });
+    queryClient.invalidateQueries([KEY.POST, postType, category]);
   }, [postType, category, queryClient]);
 
   return (

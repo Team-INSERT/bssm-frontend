@@ -32,6 +32,10 @@ const useDate = () => {
     (_, i) => user.enroll + i,
   );
 
+  const formatDate = (date: string) => {
+    return dayjs(date).locale("ko").format("YYYY.MM.DD. A hh:mm");
+  };
+
   const getHMSDate = () => {
     const date = dayjs();
     const HMSDate = dayjs(date).locale("ko").format("A h:mm:ss");
@@ -89,6 +93,7 @@ const useDate = () => {
     weekdaysENG,
     weekdaysKOR,
     currentYearsWithSchool,
+    formatDate,
     getHMSDate,
     getDate,
     getNowWeekDay,

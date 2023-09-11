@@ -8,7 +8,7 @@ import styled from "styled-components";
 import { color, font } from "@/styles";
 import { Column } from "@/components/Flex";
 import { KEY, TOKEN } from "@/constants";
-import { useLoginMutation } from "./services/mutations.service";
+import { useLoginMutation } from "./services/mutation.service";
 
 const OAuthPage = () => {
   const authCode = useSearchParams().get("code");

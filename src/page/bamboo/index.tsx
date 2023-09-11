@@ -33,6 +33,7 @@ const BambooPage = () => {
           <Aside />
           {bambooButtonInfomations.map((infomation) => (
             <BambooButton
+              key={infomation.title}
               icon={infomation.icon}
               title={infomation.title}
               subtitle={infomation.subtitle}

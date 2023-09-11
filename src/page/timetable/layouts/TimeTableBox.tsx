@@ -5,7 +5,7 @@ import { useQueryClient } from "react-query";
 import { KEY } from "@/constants";
 import { emptyTimetable, emptyClassLevel } from "@/assets/data";
 import TimeTableBar from "./TimeTableBar";
-import { useTimetableListQuery } from "../services/queries.service";
+import { useTimetableListQuery } from "../services/query.service";
 import TimeTableCategory from "./TimeTableCategory";
 
 const TimeTableBox = () => {
