@@ -8,7 +8,8 @@ interface IPostProps {
   size: string | number;
 }
 
-interface IPostQueryProps extends IPostProps {
+interface IPostQueryProps {
+  type: PostCategoryType;
   id: number;
 }
 
@@ -29,7 +30,7 @@ export const GET_POST = ({ type, id }: IPostQueryProps) => {
 export const GET_POST_LIST = ({ type, page, size }: IPostProps) => {
   return gql`
     query {
-      readByCategory ( category: "${type}" page: ${page}  ) {
+      readByCategory ( category: "${type}" page: ${page} size: ${size}  ) {
         entity {
           id
           ${DEFAULT_POST}
