@@ -12,3 +12,5 @@ export type { default as IUser } from "./user.interface";
 export type { default as IPostList } from "./postList.interface";
 export type { default as IComment } from "./comment.interface";
 export type { default as IBambooPost } from "./bambooPost.interface";
+export type { default as IPostInfiniteList } from "./postInfiniteList.interface";
+export type { default as IInfiniteResult } from "./infiniteResult.interface";

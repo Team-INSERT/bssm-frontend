@@ -10,7 +10,7 @@ import { defaultProfile } from "@/assets/images";
 import useDate from "@/hooks/useDate";
 
 const PostTitle = ({ ...post }: IPost) => {
-  const { getDate } = useDate();
+  const { formatDate } = useDate();
 
   return (
     <Column>
@@ -27,10 +27,10 @@ const PostTitle = ({ ...post }: IPost) => {
           />
         </Profile>
         <Column justifyContent="center">
-          <Author>{post.user.nickname}</Author>
+          {/* <Author>{post.user.nickname}</Author> */}
           <Row gap="4px" alignItems="center">
             <Time width={12} height={12} />
-            <Date>{getDate({ date: post.createdAt })}</Date>
+            <Date>{formatDate(post.createdAt)}</Date>
           </Row>
         </Column>
       </ProfileBox>

@@ -1,18 +1,19 @@
 import styled from "styled-components";
 import { font } from "@/styles";
 import { CategoryArrow } from "@/assets/icons";
+import getCategory from "@/helpers/getCategory.helper";
+import { PostCategoryType } from "@/types";
 
 interface IPostCategoryProps {
-  postType: string;
-  category: string;
+  postType: PostCategoryType;
 }
 
-const Category = ({ postType, category }: IPostCategoryProps) => {
+const Category = ({ postType }: IPostCategoryProps) => {
   return (
     <Container>
-      <PostType>{postType}</PostType>
+      <PostType />
       <CategoryArrow width={12} height={12} />
-      <CategoryType>{category}</CategoryType>
+      <CategoryType>{getCategory(postType)}</CategoryType>
     </Container>
   );
 };
@@ -20,7 +21,7 @@ const Category = ({ postType, category }: IPostCategoryProps) => {
 const Container = styled.div`
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 6px;
 `;
 
 const PostType = styled.h1`
@@ -28,7 +29,7 @@ const PostType = styled.h1`
   font-weight: 600;
 
   &:after {
-    content: " 게시판";
+    content: "게시판";
   }
 `;
 
