@@ -56,15 +56,13 @@ const BambooPostList = () => {
           </LoadingBox>
         }
       >
-        <BambooPostListBox>
-          {bambooPages?.map((bamboos) => (
-            <BambooPostListBox>
-              {bamboos.content.map((bamboo: IBambooPost) => (
-                <BambooPostListItem key={bamboo.allowedId} bamboo={bamboo} />
-              ))}
-            </BambooPostListBox>
-          ))}
-        </BambooPostListBox>
+        {bambooPages?.map((bamboos) => (
+          <BambooPostListBox>
+            {bamboos.content.map((bamboo: IBambooPost) => (
+              <BambooPostListItem key={bamboo.allowedId} bamboo={bamboo} />
+            ))}
+          </BambooPostListBox>
+        ))}
       </InfiniteScroll>
     </Container>
   );
