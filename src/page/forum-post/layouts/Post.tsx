@@ -21,7 +21,6 @@ const Post = ({ id }: IPostComponentPrpos) => {
   const { post: data, error, loading } = usePostQuery({ type, id });
 
   React.useEffect(() => {
-    // if (error) router.push(ROUTER.NOTFOUND);
     if (data && !loading) return setPost(data);
     return setPost(emptyPost);
   }, [data, error, loading, router]);

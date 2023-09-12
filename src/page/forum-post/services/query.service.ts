@@ -7,5 +7,5 @@ export const usePostQuery = ({ type, id }: IPostQuery) => {
     variables: { type, id },
   });
 
-  return { post: data, ...queryRest };
+  return { post: data?.readOne, ...queryRest };
 };
