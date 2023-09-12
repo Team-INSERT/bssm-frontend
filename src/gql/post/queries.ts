@@ -1,9 +1,11 @@
 import { gql } from "@apollo/client";
 import { PostCategoryType } from "@/types";
-import { posts } from "./data";
+import { DEFAULT_POST, posts } from "./data";
 
 interface IPostProps {
   type: PostCategoryType;
+  page: number;
+  size: string | number;
 }
 
 interface IPostQueryProps extends IPostProps {
@@ -24,14 +26,16 @@ export const GET_POST = ({ type, id }: IPostQueryProps) => {
   `;
 };
 
-export const GET_POST_LIST = ({ type }: IPostProps) => {
+export const GET_POST_LIST = ({ type, page, size }: IPostProps) => {
   return gql`
     query {
-      readByCategory ( category: "${type}" ) {
-        id
-        title
-        content
-        category
+      readByCategory ( category: "${type}" page: ${page}  ) {
+        entity {
+          id
+          ${DEFAULT_POST}
+        }
+        totalPage
+        currentPage
       }
     }
   `;
