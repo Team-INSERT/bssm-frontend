@@ -1,7 +1,8 @@
-const DEFAULT_POST = `
+export const DEFAULT_POST = `
     category
     title
     content
+    createdAt
 `;
 
 export const posts = {
