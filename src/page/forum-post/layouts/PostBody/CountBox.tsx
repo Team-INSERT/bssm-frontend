@@ -4,20 +4,20 @@ import { font } from "@/styles";
 import { CommentIcon, Like } from "@/assets/icons";
 
 interface ICountBoxProps {
-  totalComments: number;
-  totalLikes: number;
+  commentCount: number;
+  likeCount: number;
 }
 
-const CountBox = ({ totalComments, totalLikes }: ICountBoxProps) => {
+const CountBox = ({ likeCount, commentCount }: ICountBoxProps) => {
   return (
     <Row gap="22px">
       <LikeBox>
         <Like width={18} height={18} />
-        <LikeText>{totalLikes}</LikeText>
+        <LikeText>{likeCount}</LikeText>
       </LikeBox>
       <Row alignItems="center" gap="4px">
         <CommentIcon width={18} height={18} />
-        <CommentText>{totalComments}</CommentText>
+        <CommentText>{commentCount}</CommentText>
       </Row>
     </Row>
   );

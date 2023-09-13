@@ -11,7 +11,7 @@ const LostFoundListItem = () => {
         src="/"
         fallbackSrc={emptyImage}
         alt="image"
-        size="90px"
+        sizes="90px"
         width={0}
         height={0}
       />
