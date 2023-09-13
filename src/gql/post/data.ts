@@ -3,6 +3,12 @@ export const DEFAULT_POST = `
     title
     content
     createdAt
+    likeCount
+    user {
+      id
+      nickName
+      profileImage
+    }
 `;
 
 export const posts = {
