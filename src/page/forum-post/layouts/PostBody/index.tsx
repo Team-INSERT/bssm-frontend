@@ -9,7 +9,7 @@ const PostBody = ({ ...post }: IPost) => {
     <Container>
       <Content dangerouslySetInnerHTML={{ __html: post.content }} />
       <CountBox {...post} />
-      <CommentBox totalComments={post.totalComments} />
+      <CommentBox totalComments={post.commentCount || 0} />
     </Container>
   );
 };

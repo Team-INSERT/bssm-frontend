@@ -1,13 +1,13 @@
 import styled from "styled-components";
 import { Column, Row } from "@/components/Flex";
 import color from "@/styles/color";
-import { font } from "@/styles";
-import Link from "next/link";
+import { flex, font } from "@/styles";
 import { Time } from "@/assets/icons";
 import { IPost } from "@/interfaces";
 import { ImageWithFallback } from "@/components/atoms";
 import { defaultProfile } from "@/assets/images";
 import useDate from "@/hooks/useDate";
+import React from "react";
 
 const PostTitle = ({ ...post }: IPost) => {
   const { formatDate } = useDate();
@@ -15,19 +15,19 @@ const PostTitle = ({ ...post }: IPost) => {
   return (
     <Column>
       <Title>{post.title}</Title>
-      <ProfileBox href="/" target="_blank">
+      <ProfileBox>
         <Profile>
           <ImageWithFallback
-            src="/"
+            src={post.user.profileImage}
             alt="profile"
-            width={40}
-            height={36}
+            width={38}
+            height={38}
             fallbackSrc={defaultProfile}
             rounded
           />
         </Profile>
         <Column justifyContent="center">
-          {/* <Author>{post.user.nickname}</Author> */}
+          <Author>{post.user.nickName}</Author>
           <Row gap="4px" alignItems="center">
             <Time width={12} height={12} />
             <Date>{formatDate(post.createdAt)}</Date>
@@ -43,7 +43,7 @@ const Title = styled.h1`
   padding-bottom: 10px;
 `;
 
-const ProfileBox = styled(Link)`
+const ProfileBox = styled.div`
   display: flex;
   gap: 12px;
   align-items: center;
@@ -53,8 +53,11 @@ const ProfileBox = styled(Link)`
 `;
 
 const Profile = styled.div`
+  width: 42px;
+  height: 42px;
   border: 2px solid ${color.on_tertiary};
   border-radius: 50%;
+  ${flex.CENTER};
 `;
 
 const Author = styled.h2`

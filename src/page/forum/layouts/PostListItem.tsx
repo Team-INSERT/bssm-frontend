@@ -6,6 +6,7 @@ import { defaultProfile } from "@/assets/images";
 import { ImageWithFallback } from "@/components/atoms";
 import Link from "next/link";
 import { ROUTER } from "@/constants";
+import { CommentIcon, LikeIcon } from "@/assets/icons";
 
 interface IPostListItemProps {
   post: Omit<IPost, "content">;
@@ -20,23 +21,26 @@ const PostListItem = ({ post }: IPostListItemProps) => {
         <Row alignItems="center" gap="1vw">
           <Row gap="8px" alignItems="center">
             <ImageWithFallback
-              src="/"
+              src={post.user.profileImage}
               alt="profile"
-              width={22}
-              height={22}
+              width={18}
+              height={18}
               fallbackSrc={defaultProfile}
               rounded
             />
-            <PostWriterName>TEST</PostWriterName>
+            <PostWriterName>{post.user.nickName}</PostWriterName>
           </Row>
           <Separator />
-          {/* <Row gap="8px">
-            <PostView>{post.totalComments}</PostView>
+          <Row gap="12px">
             <Row alignItems="center" gap="3px">
-              <LikeIcon />
-              <PostLike>{post.totalLikes}</PostLike>
+              <CommentIcon width={12} />
+              <PostComment>{0}</PostComment>
             </Row>
-          </Row> */}
+            <Row alignItems="center" gap="3px">
+              <LikeIcon width={12} />
+              <PostLike>{post.likeCount}</PostLike>
+            </Row>
+          </Row>
         </Row>
       </Column>
     </Container>
@@ -64,23 +68,12 @@ const PostName = styled.h1`
   ${font.H4};
 `;
 
-const PostView = styled.span`
-  ${font.p3};
-  color: ${color.gray};
-
-  &:before {
-    content: "조회수 ";
-  }
-
-  &:after {
-    content: "회";
-  }
-`;
-
-const PostLike = styled.span`
+const PostComment = styled.span`
   ${font.p3};
   color: ${color.gray};
 `;
+
+const PostLike = styled(PostComment)``;
 
 const PostWriterName = styled.span`
   ${font.p3};

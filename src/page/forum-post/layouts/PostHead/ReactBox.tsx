@@ -4,25 +4,20 @@ import { Row } from "@/components/Flex";
 import { color, font } from "@/styles";
 
 interface IPostReactBoxProps {
-  totalComments: number;
-  totalLikes: number;
-  view: number;
+  commentCount: number;
+  likeCount: number;
 }
 
-const ReactBox = ({ totalComments, totalLikes, view }: IPostReactBoxProps) => {
+const ReactBox = ({ commentCount, likeCount }: IPostReactBoxProps) => {
   return (
     <Container>
       <Row alignItems="center" gap="4px">
-        <View width={14} height={14} />
-        <ViewText>{view}</ViewText>
-      </Row>
-      <Row alignItems="center" gap="4px">
         <Like width={14} height={14} />
-        <LikeText>{totalLikes}</LikeText>
+        <LikeText>{likeCount}</LikeText>
       </Row>
       <Row alignItems="center" gap="4px">
         <CommentIcon width={14} height={14} />
-        <CommentText>{totalComments}</CommentText>
+        <CommentText>{commentCount}</CommentText>
       </Row>
     </Container>
   );
