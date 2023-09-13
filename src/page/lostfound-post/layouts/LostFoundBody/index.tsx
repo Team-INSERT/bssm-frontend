@@ -17,7 +17,7 @@ const LostFoundBody = () => {
         src="/"
         fallbackSrc=""
         alt="image"
-        size="40%"
+        sizes="40%"
         isShouldHide
       />
       <LostFoundInfoBox />
