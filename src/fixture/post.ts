@@ -3,16 +3,17 @@ import { IPost } from "@/interfaces";
 const post: IPost = {
   id: 0,
   user: {
-    code: 0,
-    nickname: "",
+    id: 0,
+    nickName: "",
+    profileImage: "",
   },
   category: "COMMON",
   content: "",
   title: "",
   createdAt: "",
   view: 0,
-  totalComments: 0,
-  totalLikes: 0,
+  commentCount: 0,
+  likeCount: 0,
 };
 
 export default post;
