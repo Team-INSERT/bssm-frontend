@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { CommentIcon, Like, View } from "@/assets/icons";
+import { CommentIcon, Like } from "@/assets/icons";
 import { Row } from "@/components/Flex";
 import { color, font } from "@/styles";
 
