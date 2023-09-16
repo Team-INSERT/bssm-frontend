@@ -10,21 +10,21 @@ interface ICountBoxProps {
   commentCount: number;
   likeCount: number;
   isMyLike: boolean;
-  postId: number;
+  id: number;
 }
 
 const CountBox = ({
   likeCount,
   commentCount,
   isMyLike,
-  postId,
+  id,
 }: ICountBoxProps) => {
   const [isLiked, setIsLiked] = React.useState(isMyLike);
 
   const handleLikeButtonClick = async () => {
     const { data: like } = await httpClient.like.put({
       type: LIKE.POST,
-      partyId: postId,
+      partyId: id,
     });
     setIsLiked(like);
   };
