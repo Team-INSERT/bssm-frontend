@@ -1,21 +1,42 @@
 import React from "react";
 import styled from "styled-components";
 import { Row } from "@/components/Flex";
-import { font } from "@/styles";
-import { CommentIcon, Like, LikeIcon } from "@/assets/icons";
+import { color, font } from "@/styles";
+import { CommentIcon, LikeIcon } from "@/assets/icons";
+import httpClient from "@/apis/httpClient";
+import { LIKE } from "@/constants";
 
 interface ICountBoxProps {
   commentCount: number;
   likeCount: number;
+  isMyLike: boolean;
+  id: number;
 }
 
-const CountBox = ({ likeCount, commentCount }: ICountBoxProps) => {
-  const [isLiked, setIsLikded] = React.useState(false);
+const CountBox = ({
+  likeCount,
+  commentCount,
+  isMyLike,
+  id,
+}: ICountBoxProps) => {
+  const [isLiked, setIsLiked] = React.useState(isMyLike);
+
+  const handleLikeButtonClick = async () => {
+    const { data: like } = await httpClient.like.put({
+      type: LIKE.POST,
+      partyId: id,
+    });
+    setIsLiked(like);
+  };
+
   return (
     <Row gap="22px">
-      <LikeBox onClick={() => setIsLikded(!isLiked)}>
-        {isLiked ? <LikeIcon width={18} /> : <Like width={18} height={18} />}
-        <LikeText>{likeCount}</LikeText>
+      <LikeBox onClick={handleLikeButtonClick}>
+        <LikeIcon
+          width={18}
+          color={isLiked ? color.primary_red : color.black}
+        />
+        <LikeText>{likeCount + Number(isLiked)}</LikeText>
       </LikeBox>
       <Row alignItems="center" gap="4px">
         <CommentIcon width={18} height={18} />

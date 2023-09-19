@@ -14,4 +14,5 @@ export default interface IPost {
   likeCount: number;
   commentCount: number;
   content: string;
+  isMyLike: boolean;
 }

@@ -1,3 +1,4 @@
+import { POST } from "@/constants";
 import { PostListType } from "@/types";
 
 const postList: PostListType = [
@@ -8,12 +9,13 @@ const postList: PostListType = [
       nickName: "",
       profileImage: "",
     },
-    category: "COMMON",
+    category: POST.COMMON,
     title: "",
     createdAt: "",
     view: 0,
     commentCount: 0,
     likeCount: 0,
+    isMyLike: false,
   },
 ];
 

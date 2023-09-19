@@ -160,4 +160,5 @@ export default {
   auth: new HttpClient("api/auth/", axiosConfig),
   bamboo: new HttpClient("api/bamboo", axiosConfig),
   admin: new HttpClient("api/bamboo/admin", axiosConfig),
+  like: new HttpClient("api/likes/update", axiosConfig),
 };

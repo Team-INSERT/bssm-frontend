@@ -9,3 +9,4 @@ export { default as SERVICE } from "./service.constant";
 export { default as TOKEN } from "./token.constant";
 export { default as USER } from "./user.constant";
 export { default as POST } from "./post.constant";
+export { default as LIKE } from "./likeType.constant";
