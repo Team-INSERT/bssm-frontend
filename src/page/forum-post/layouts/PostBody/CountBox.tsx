@@ -36,7 +36,7 @@ const CountBox = ({
           width={18}
           color={isLiked ? color.primary_red : color.black}
         />
-        <LikeText>{likeCount + +isLiked}</LikeText>
+        <LikeText>{likeCount + Number(isLiked)}</LikeText>
       </LikeBox>
       <Row alignItems="center" gap="4px">
         <CommentIcon width={18} height={18} />
