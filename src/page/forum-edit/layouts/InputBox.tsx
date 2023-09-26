@@ -136,6 +136,7 @@ const InputBox = ({ id }: IInputBoxProps) => {
             onChange={handleInputPostChange}
             value={inputPost.place}
           />
+          <StyledTitle>물품의 이미지를 업로드해주세요.</StyledTitle>
           <DragDrop handler={handleImageFileSelected} previewImage={image} />
         </>
       )}
