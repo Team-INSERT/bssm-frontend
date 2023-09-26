@@ -1,6 +1,6 @@
 import { gql } from "@apollo/client";
 import { PostCategoryType } from "@/types";
-import { DEFAULT_POST, posts } from "./data";
+import { DEFAULT_POST, ALL_POST, posts } from "./data";
 
 interface IPostProps {
   type: PostCategoryType;
@@ -8,56 +8,65 @@ interface IPostProps {
   size: string | number;
 }
 
-interface IPostQueryProps {
-  type: PostCategoryType;
+interface IPostUpdateQueryProps {
   id: number;
 }
 
-interface IPostMutateProps extends IPostProps {
-  data: unknown;
-}
-
-export const GET_POST = ({ type, id }: IPostQueryProps) => {
-  return gql`
-    query {
+export const GET_POST = ({ id }: IPostUpdateQueryProps) => gql`
+    query GetPost {
         readOne ( id: ${id} ) {
-          ${posts[type]}
+          id
+          ${DEFAULT_POST}
+          ${ALL_POST}
         }
     }
   `;
-};
 
-export const GET_POST_LIST = ({ type, page, size }: IPostProps) => {
-  return gql`
-    query {
+export const GET_UPDATE_POST = ({ id }: IPostUpdateQueryProps) => gql`
+    query GetPost {
+        readOne ( id: ${id} ) {
+          id
+          ${DEFAULT_POST}
+          ${ALL_POST}
+        }
+    }
+`;
+
+export const GET_POST_LIST = ({ type, page, size }: IPostProps) =>
+  gql`
+    query GetPostList {
       readByCategory ( category: "${type}" page: ${page} size: ${size}  ) {
         entity {
           id
           ${DEFAULT_POST}
+          ${posts[type]}
         }
         totalPage
         currentPage
       }
     }
   `;
-};
 
-export const UPDATE_POST = ({ type, data }: IPostMutateProps) => {
-  return gql`
-    mutation {
-      update ( input: ${data} ) {
-        ${posts[type]}
-      }
+export const UPDATE_POST = gql`
+  mutation UpdatePost($data: PostInput) {
+    update(input: $data) {
+      id
     }
-  `;
-};
+  }
+`;
 
-export const CREATE_POST = ({ type, data }: IPostMutateProps) => {
-  return gql`
-    mutation {
-      create ( input: ${data} ) {
-        ${posts[type]}
-      }
+export const CREATE_POST = gql`
+  mutation CreatePost($data: PostInput) {
+    create(input: $data) {
+      id
     }
-  `;
-};
+  }
+`;
+
+export const DELETE_POST = gql`
+  mutation DeletePost($id: Int) {
+    delete(id: $id) {
+      deletedId
+    }
+  }
+`;
