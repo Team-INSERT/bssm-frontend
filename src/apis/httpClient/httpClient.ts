@@ -1,7 +1,6 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from "axios";
 import { requestInterceptors, responseInterceptors } from "@/apis/interceptor";
-import { KEY, TOKEN } from "@/constants/";
-import { QueryClient } from "@tanstack/react-query";
+import { TOKEN } from "@/constants/";
 import Storage from "../storage";
 
 export interface HttpClientConfig {
@@ -22,9 +21,7 @@ export class HttpClient {
       withCredentials: true,
     });
     HttpClient.clientConfig = {
-      headers: {
-        Authorization: Storage.getItem(TOKEN.ACCESS) || "",
-      },
+      headers: { Authorization: Storage.getItem(TOKEN.ACCESS) || "" },
     };
     this.setting();
   }
@@ -125,15 +122,10 @@ export class HttpClient {
 
   private setting() {
     HttpClient.setCommonInterceptors(this.api);
-    const queryClient = new QueryClient();
 
     this.api.interceptors.response.use(
       (response) => response,
       (error) => {
-        queryClient.invalidateQueries([
-          KEY.USER,
-          Storage.getItem(TOKEN.ACCESS),
-        ]);
         return Promise.reject(error);
       },
     );
