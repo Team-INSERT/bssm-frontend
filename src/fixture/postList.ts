@@ -3,7 +3,7 @@ import { PostListType } from "@/types";
 
 const postList: PostListType = [
   {
-    id: 0,
+    id: "0",
     user: {
       id: 0,
       nickName: "",
@@ -12,10 +12,9 @@ const postList: PostListType = [
     category: POST.COMMON,
     title: "",
     createdAt: "",
-    view: 0,
     commentCount: 0,
     likeCount: 0,
-    isMyLike: false,
+    doesLike: false,
   },
 ];
 
