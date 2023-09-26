@@ -1,18 +1,37 @@
 import { PostCategoryType } from "@/types";
 
 export default interface IPost {
-  id: number;
+  id: string;
+  title: string;
+  content: string;
   user: {
     id: number;
     nickName: string;
     profileImage: string;
   };
   category: PostCategoryType;
-  title: string;
   createdAt: string;
-  view: number;
   likeCount: number;
   commentCount: number;
-  content: string;
-  isMyLike: boolean;
+  doesLike: boolean;
+
+  // POST.PROJECT
+  startTime?: string;
+  endTime?: string;
+  field?: string;
+
+  // POST.CODE_REVIEW
+  prUrl?: string;
+  isFinished?: boolean;
+
+  // POST.LOST & POST.FOUND
+  lostThingImage?: string;
+  place?: string;
+  foundUser?: {
+    id: number;
+    nickName: string;
+  };
+
+  // POST.FOUND
+  keepingPlace?: string;
 }
