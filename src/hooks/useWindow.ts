@@ -1,11 +1,15 @@
-import { useEffect, useState } from "react";
+"use client";
 
-export default function useWindow() {
-  const [isWindow, setIsWindow] = useState(false);
+import React from "react";
 
-  useEffect(() => {
+const useWindow = () => {
+  const [isWindow, setIsWindow] = React.useState(false);
+
+  React.useEffect(() => {
     if (typeof window !== "undefined") setIsWindow(true);
   }, []);
 
   return { isWindow };
-}
+};
+
+export default useWindow;
