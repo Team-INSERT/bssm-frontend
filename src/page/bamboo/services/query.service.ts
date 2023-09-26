@@ -4,7 +4,7 @@ import IBambooPendingPost from "@/interfaces/bambooPendingPost.interface";
 import { getBambooPendingPostList, getBambooPostList } from "./api.service";
 
 export const useBambooListQuery = () => {
-  const { data, hasNextPage, fetchNextPage, ...queryRest } = useInfiniteQuery({
+  const { data, ...queryRest } = useInfiniteQuery({
     queryKey: [KEY.BAMBOO],
     queryFn: ({ pageParam = 0 }) => getBambooPostList(pageParam),
     getNextPageParam: (lastPage) => {
@@ -14,7 +14,7 @@ export const useBambooListQuery = () => {
     },
   });
 
-  return { data: data?.pages, hasNextPage, fetchNextPage, ...queryRest };
+  return { data: data?.pages, ...queryRest };
 };
 
 export const useBambooPendingListQuery = () => {
