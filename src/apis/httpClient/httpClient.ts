@@ -68,6 +68,13 @@ export class HttpClient {
     });
   }
 
+  postById(data: unknown, requestConfig?: AxiosRequestConfig) {
+    return this.api.post("/:id", data, {
+      ...HttpClient.clientConfig,
+      ...requestConfig,
+    });
+  }
+
   login(authCode: string, requestConfig?: AxiosRequestConfig) {
     const data = { authCode };
     return this.api.post("", data, {
@@ -155,7 +162,7 @@ export default {
   user: new HttpClient("api/user", axiosConfig),
   timetable: new HttpClient("api/timetable", axiosConfig),
   post: new HttpClient("api/post/", axiosConfig),
-  comment: new HttpClient("api/post/", axiosConfig),
+  comment: new HttpClient("api/comment", axiosConfig),
   refresh: new HttpClient("api/auth/refresh/access", axiosConfig),
   auth: new HttpClient("api/auth/", axiosConfig),
   bamboo: new HttpClient("api/bamboo", axiosConfig),
