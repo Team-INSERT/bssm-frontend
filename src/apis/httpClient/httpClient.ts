@@ -1,7 +1,8 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from "axios";
 import { requestInterceptors, responseInterceptors } from "@/apis/interceptor";
-import { TOKEN } from "@/constants/";
+import { ERROR, TOKEN } from "@/constants/";
 import Storage from "../storage";
+import { refresh } from "../token";
 
 export interface HttpClientConfig {
   baseURL?: string;
@@ -126,6 +127,11 @@ export class HttpClient {
     this.api.interceptors.response.use(
       (response) => response,
       (error) => {
+        if (error.response) {
+          const { code } = error.response.data;
+
+          if (code === ERROR.CODE.TOKEN_403_2) refresh();
+        }
         return Promise.reject(error);
       },
     );
