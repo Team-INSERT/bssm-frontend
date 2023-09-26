@@ -1,9 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import { KEY } from "@/constants";
-import { useQueryClient } from "react-query";
+import { useRouter } from "next/navigation";
+import { KEY, ROUTER } from "@/constants";
+import { Row } from "@/components/Flex";
+import { useQueryClient } from "@tanstack/react-query";
 import { useRecoilValue } from "recoil";
-import { font } from "@/styles";
+import { color, flex, font } from "@/styles";
 import { categoriesStore } from "@/store/categories.store";
 import Categories from "./Categories";
 import PostList from "./PostList";
@@ -13,6 +15,11 @@ const Forum = () => {
   const queryClient = useQueryClient();
   const category = useRecoilValue(categoriesStore);
   const postListQuery = usePostListQuery({ category });
+  const router = useRouter();
+
+  const handleCreateButtonClick = () => {
+    router.push(ROUTER.POST.WRITE);
+  };
 
   React.useEffect(() => {
     queryClient.invalidateQueries([KEY.POST, category]);
@@ -21,7 +28,10 @@ const Forum = () => {
   return (
     <Container>
       <Title />
-      <Categories />
+      <Row>
+        <Categories />
+        <CreateButton onClick={handleCreateButtonClick} />
+      </Row>
       <PostList {...postListQuery} />
     </Container>
   );
@@ -40,6 +50,21 @@ const Container = styled.main`
   display: flex;
   flex-direction: column;
   gap: 12px;
+`;
+
+const CreateButton = styled.button`
+  padding: 2px 12px;
+  border-radius: 4px;
+  border: none;
+  background-color: ${color.primary_blue};
+  color: ${color.white};
+  ${font.caption};
+  ${flex.CENTER};
+  margin-left: auto;
+
+  &:after {
+    content: "글쓰기";
+  }
 `;
 
 export default Forum;
