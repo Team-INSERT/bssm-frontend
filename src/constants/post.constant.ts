@@ -3,7 +3,8 @@ const POST = {
   PROJECT: "PROJECT",
   NOTICE: "NOTICE",
   CODE_REVIEW: "CODE_REVIEW",
-  LOST_FOUND: "LOST_FOUND",
+  LOST: "LOST",
+  FOUND: "FOUND",
 } as const;
 
 export default POST;
