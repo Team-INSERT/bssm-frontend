@@ -2,7 +2,7 @@ import { useApolloClient } from "@apollo/client";
 import { GET_POST_LIST } from "@/gql/post/queries";
 import { PostCategoryType } from "@/types";
 import { KEY } from "@/constants";
-import { useInfiniteQuery } from "react-query";
+import { useInfiniteQuery } from "@tanstack/react-query";
 import { IPostInfiniteList } from "@/interfaces";
 import getPageSize from "@/helpers/getPageSize.helper";
 
