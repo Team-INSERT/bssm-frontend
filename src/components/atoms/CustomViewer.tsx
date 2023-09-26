@@ -6,7 +6,14 @@ interface MDViewerPropsType {
 }
 
 const CustomViewer = ({ content }: MDViewerPropsType) => {
-  return <MDViewer source={content} />;
+  return (
+    <MDViewer
+      source={content}
+      wrapperElement={{
+        "data-color-mode": "light",
+      }}
+    />
+  );
 };
 
 export default CustomViewer;
