@@ -14,3 +14,4 @@ export type { default as IComment } from "./comment.interface";
 export type { default as IBambooPost } from "./bambooPost.interface";
 export type { default as IPostInfiniteList } from "./postInfiniteList.interface";
 export type { default as IInfiniteResult } from "./infiniteResult.interface";
+export type { default as IInputPost } from "./inputPost.interface";

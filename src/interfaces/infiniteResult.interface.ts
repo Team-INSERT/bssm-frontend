@@ -1,4 +1,4 @@
-import { QueryStatus } from "react-query";
+import { QueryStatus } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 import IPostInfiniteList from "./postInfiniteList.interface";
 
