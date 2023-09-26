@@ -17,9 +17,13 @@ const FORUM = {
     NAME: "코드 리뷰",
     TYPE: POST.CODE_REVIEW,
   },
-  LOST_FOUND: {
-    NAME: "분실물 찾기",
-    TYPE: POST.LOST_FOUND,
+  LOST: {
+    NAME: "분실했어요",
+    TYPE: POST.LOST,
+  },
+  FOUND: {
+    NAME: "습득했어요",
+    TYPE: POST.FOUND,
   },
   NAME: "forum",
   TYPE: "radio",
