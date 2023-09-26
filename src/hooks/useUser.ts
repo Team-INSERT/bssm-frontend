@@ -1,6 +1,6 @@
 import React from "react";
 import { useRouter } from "next/navigation";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import { useRecoilState } from "recoil";
 import httpClient, { HttpClient } from "@/apis/httpClient/httpClient";
 import KEY from "@/constants/key.constant";
