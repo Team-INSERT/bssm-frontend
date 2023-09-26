@@ -3,9 +3,7 @@ import styled from "styled-components";
 import { Row } from "@/components/Flex";
 import { font } from "@/styles";
 import { CommentIcon, LikeIcon } from "@/assets/icons";
-import httpClient from "@/apis/httpClient";
-import { LIKE } from "@/constants";
-import { useApolloClient } from "@apollo/client";
+import { useUpdatePostLikeMutation } from "../../services/mutation.service";
 
 interface ICountBoxProps {
   commentCount: number;
@@ -22,19 +20,11 @@ const CountBox = ({
 }: ICountBoxProps) => {
   const [isLiked, setIsLiked] = React.useState(doesLike);
   const [currentLikeCount, setCurrentLikeCount] = React.useState(likeCount);
-  const apolloClient = useApolloClient();
+  const { mutate } = useUpdatePostLikeMutation();
 
   // 연속 클릭을 막기 위해 해당 컴포넌트가 unmount될 때만 clenaup함수를 실행해서 서버 부하를 줄이는 방법으로 바꾸는 것이 좋을 것 같음
   const handleLikeButtonClick = async () => {
-    const { data: like } = await httpClient.like.put({
-      type: LIKE.POST,
-      partyId: id,
-    });
-    apolloClient.cache.reset();
-    setIsLiked(like);
-
-    if (like) return setCurrentLikeCount(currentLikeCount + 1);
-    return setCurrentLikeCount(currentLikeCount - 1);
+    mutate(id);
   };
 
   React.useEffect(() => {
