@@ -1,107 +1,60 @@
+import "@uiw/react-md-editor/markdown-editor.css";
+import "@uiw/react-markdown-preview/markdown.css";
 import React from "react";
-import styled from "styled-components";
-import { Editor as TinymcEditor } from "@tinymce/tinymce-react";
-import { font } from "@/styles";
-import useEmoji from "@/hooks/useEmoji";
-import { EmojiModal } from "@/components/common";
+import { toast } from "react-toastify";
+import MDEditor, {
+  ContextStore,
+  ICommand,
+  MDEditorProps,
+  getCommands,
+} from "@uiw/react-md-editor";
+import { UploadIcon } from "@/assets/icons";
+import { getImageUrl } from "@/helpers";
+import useModal from "@/hooks/useModal";
+import DragDrop from "./DragDrop";
 
-interface IBlobInfo {
-  id: () => string;
-  name: () => string;
-  filename: () => string;
-  blob: () => Blob;
-  base64: () => string;
-  blobUri: () => string;
-  uri: () => string | undefined;
+type CustomEditorPropsType = MDEditorProps & React.RefAttributes<ContextStore>;
+
+interface ICustomEditorProps extends CustomEditorPropsType {
+  value: string;
 }
 
-const CustomEditor = () => {
-  const [content, setContent] = React.useState("");
-  const { openEmoji, closeEmoji, visible } = useEmoji();
+const CustomEditor = ({ ...props }: ICustomEditorProps) => {
+  const { openModal, closeModal } = useModal();
 
-  const imagesUploadHandler = async (blobInfo: IBlobInfo): Promise<string> => {
-    return new Promise(() => {
-      const file = new FormData();
-      file.append("file", blobInfo.blob());
+  const handleImageSelected = async (file: File | undefined) => {
+    closeModal();
+    const imageUrl = await getImageUrl(file);
+
+    try {
+      await navigator.clipboard.writeText(imageUrl);
+      toast.success("이미지 주소를 클립보드에 저장했어요.");
+    } catch (err) {
+      toast.error("이미지를 업로드를 실패했습니다.");
+    }
+  };
+
+  const handleImageUploaderClick = () => {
+    openModal({
+      component: (
+        <DragDrop width="70vw" height="70vh" handler={handleImageSelected} />
+      ),
     });
   };
 
+  const imageUploader: ICommand = {
+    name: "imageUploader",
+    keyCommand: "imageUploader",
+    icon: <UploadIcon onClick={handleImageUploaderClick} />,
+  };
+
   return (
-    <Container>
-      {visible && <EmojiModal top="14%" left="54%" onClose={closeEmoji} />}
-      <TinymcEditor
-        init={{
-          language: "ko_KR",
-          height: "300px",
-          menubar: false,
-          content_css: "white",
-          plugins: [
-            "code",
-            "autolink",
-            "lists",
-            "link",
-            "image",
-            "charmap",
-            "preview",
-            "anchor",
-            "searchreplace",
-            "visualblocks",
-            "media",
-            "table",
-            "wordcount",
-            "codesample",
-          ],
-          toolbar:
-            "undo redo codesample | bold italic | alignleft alignright aligncenter alignjustify | emoticon image media | preview code",
-          codesample_global_prismjs: true,
-          setup: (tinymceEditor) => {
-            tinymceEditor.ui.registry.addButton("emoticon", {
-              icon: "emoji",
-              onAction: openEmoji,
-            });
-          },
-          relative_urls: false,
-          convert_urls: false,
-          extended_valid_elements: "img[src|class|alt|e_id|e_idx|e_type]",
-          images_upload_handler: imagesUploadHandler,
-          init_instance_callback: (e) => {
-            const css = document.createElement("style");
-            css.innerHTML = StyledCSS;
-            e.contentDocument.head.appendChild(css);
-          },
-        }}
-        value={content}
-        onEditorChange={(props) => setContent(props)}
-      />
-    </Container>
+    <MDEditor
+      {...props}
+      preview="edit"
+      commands={[...getCommands(), imageUploader]}
+    />
   );
 };
-
-const StyledCSS = `
-  html {
-    ${font.p3};
-  }
-
-  * {
-    border-color: green !important;
-    list-style: none;
-    text-decoration: none;
-    margin: 0;
-    padding: 0;
-  }
-
-  .emoticon {
-    width: 100px !important;
-    height: 100px !important;
-  }
-
-  body {
-    padding: 18px !important;
-  }
-`;
-
-const Container = styled.div`
-  position: relative;
-`;
 
 export default CustomEditor;
