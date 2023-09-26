@@ -1,6 +1,6 @@
 import { Column } from "@/components/Flex";
 import { IPostInfiniteList } from "@/interfaces";
-import { UseInfiniteQueryResult } from "react-query";
+import { UseInfiniteQueryResult } from "@tanstack/react-query";
 import { PuffLoader } from "react-spinners";
 import InfiniteScroll from "react-infinite-scroll-component";
 import styled from "styled-components";
@@ -24,7 +24,7 @@ const PostList = ({
       }
     >
       {postList?.pages?.map((posts) => (
-        <Column gap="8px">
+        <Column gap="8px" key={posts.currentPage}>
           {posts.entity.map((post) => (
             <PostListItem key={post.id} post={post} />
           ))}
