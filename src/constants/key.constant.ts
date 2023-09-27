@@ -3,6 +3,7 @@ const KEY = {
   TIMETABLE: "useTimetable",
   POST: "usePost",
   COMMENT: "useComment",
+  RECOMMENT: "useRecomment",
   BAMBOO: "useBamboo",
   BAMBOO_ADMIN: "useBambooAdmin",
 } as const;
