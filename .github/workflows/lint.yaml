@@ -22,6 +22,7 @@ jobs:
       NEXT_PUBLIC_TEST_DOMAIN: ${{ secrets.NEXT_PUBLIC_TEST_DOMAIN }}
       NEXT_PUBLIC_TEST_DOMAIN_KEYWORD: ${{ secrets.NEXT_PUBLIC_TEST_DOMAIN_KEYWORD }}
       NEXT_PUBLIC_USER_IMAGE_URL: ${{ secrets.NEXT_PUBLIC_USER_IMAGE_URL }}
+      NEXT_PUBLIC_FILE_SERVER_URL: ${{ secrets.NEXT_PUBLIC_FILE_SERVER_URL }}
 
     steps:
       - uses: actions/checkout@v3
@@ -44,6 +45,7 @@ jobs:
           echo "NEXT_PUBLIC_TEST_DOMAIN=${{ secrets.NEXT_PUBLIC_TEST_DOMAIN }}" >> .env
           echo "NEXT_PUBLIC_TEST_DOMAIN_KEYWORD=${{ secrets.NEXT_PUBLIC_TEST_DOMAIN_KEYWORD }}" >> .env
           echo "NEXT_PUBLIC_USER_IMAGE_URL=${{ secrets.NEXT_PUBLIC_USER_IMAGE_URL }}" >> .env
+          echo "NEXT_PUBLIC_FILE_SERVER_URL=${{ secrets.NEXT_PUBLIC_FILE_SERVER_URL }}" >> .env
       - run: yarn
       - run: yarn build
       - run: yarn lint
