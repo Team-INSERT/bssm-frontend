@@ -18,8 +18,12 @@ const categories = [
     name: FORUM.CODE_REVIEW.NAME,
   },
   {
-    type: FORUM.LOST_FOUND.TYPE,
-    name: FORUM.LOST_FOUND.NAME,
+    type: FORUM.LOST.TYPE,
+    name: FORUM.LOST.NAME,
+  },
+  {
+    type: FORUM.FOUND.TYPE,
+    name: FORUM.FOUND.NAME,
   },
 ];
 

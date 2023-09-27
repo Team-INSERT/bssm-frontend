@@ -4,7 +4,7 @@ type StorageKey = StorageSettingKey | StorageTokenKey;
 
 export default class Storage {
   static getItem(key: StorageKey) {
-    return typeof window !== "undefined" ? localStorage.getItem(key) : null;
+    return typeof window !== "undefined" ? localStorage.getItem(key) : "";
   }
 
   static setItem(key: StorageKey, value: string) {

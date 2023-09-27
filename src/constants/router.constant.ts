@@ -10,6 +10,7 @@ const ROUTER = {
   POST: {
     LIST: "/post",
     WRITE: "/post/write",
+    UPDATE: "/update",
   },
   TIMETABLE: "/timetable",
   MYPAGE: "/mypage",

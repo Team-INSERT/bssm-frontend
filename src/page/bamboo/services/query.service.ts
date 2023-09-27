@@ -1,4 +1,4 @@
-import { useInfiniteQuery, useQuery } from "react-query";
+import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import { KEY } from "@/constants";
 import IBambooPendingPost from "@/interfaces/bambooPendingPost.interface";
 import { getBambooPendingPostList, getBambooPostList } from "./api.service";

@@ -1,6 +1,6 @@
 import throwAxiosError from "@/apis/error/throwAxiosError";
 import { useRouter } from "next/navigation";
-import { useMutation, useQueryClient } from "react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import Storage from "@/apis/storage";
 import { KEY, ROUTER, TOKEN } from "@/constants";
 import { ILoginParams, login } from "./api.service";

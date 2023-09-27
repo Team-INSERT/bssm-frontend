@@ -1,8 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import { useRouter } from "next/navigation";
-import { useRecoilValue } from "recoil";
-import { categoriesStore } from "@/store/categories.store";
 import { color } from "@/styles";
 import { IPost } from "@/interfaces";
 import { post as emptyPost } from "@/fixture";
@@ -16,18 +14,17 @@ interface IPostComponentPrpos {
 
 const Post = ({ id }: IPostComponentPrpos) => {
   const [post, setPost] = React.useState<IPost>(emptyPost);
-  const type = useRecoilValue(categoriesStore);
   const router = useRouter();
-  const { post: data, error, loading } = usePostQuery({ type, id });
+  const { post: data, error, loading } = usePostQuery({ id });
 
   React.useEffect(() => {
-    if (data && !loading) return setPost(data);
+    if (data) return setPost(data);
     return setPost(emptyPost);
   }, [data, error, loading, router]);
 
   return (
     <Container>
-      <PostHead postType={type} post={post} />
+      <PostHead postType={post.category} post={post} />
       <PostBody {...post} />
     </Container>
   );

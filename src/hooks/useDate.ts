@@ -22,6 +22,10 @@ interface TimeDiffType {
   startTime: string;
 }
 
+interface IFormatDateOptions {
+  summary: boolean;
+}
+
 const weekdaysENG = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
 const weekdaysKOR = ["일", "월", "화", "수", "목", "금", "토"];
 
@@ -32,8 +36,14 @@ const useDate = () => {
     (_, i) => user.enroll + i,
   );
 
-  const formatDate = (date: string) => {
+  const formatDate = (date?: string, option?: IFormatDateOptions) => {
+    if (option?.summary) return dayjs(date).locale("ko").format("YYYY.MM.DD.");
     return dayjs(date).locale("ko").format("YYYY.MM.DD. A hh:mm");
+  };
+
+  const unformatDate = (date: string, option?: IFormatDateOptions) => {
+    if (option?.summary) return dayjs(date).format("YYYY-MM-DD");
+    return dayjs(date).format("YYYY-MM-DDThh:mm:ss");
   };
 
   const getHMSDate = () => {
@@ -93,6 +103,7 @@ const useDate = () => {
     weekdaysENG,
     weekdaysKOR,
     currentYearsWithSchool,
+    unformatDate,
     formatDate,
     getHMSDate,
     getDate,

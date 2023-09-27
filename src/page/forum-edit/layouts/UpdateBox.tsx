@@ -3,14 +3,18 @@ import { Column } from "@/components/Flex";
 import { color, font } from "@/styles";
 import InputBox from "./InputBox";
 
-const LostFoundWriteBox = () => {
+interface IUpdateBoxProps {
+  id: number;
+}
+
+const UpdateBox = ({ id }: IUpdateBoxProps) => {
   return (
     <Layout>
       <Column gap="4px">
         <Title />
         <SubTitle />
       </Column>
-      <InputBox />
+      <InputBox id={id} />
     </Layout>
   );
 };
@@ -26,7 +30,7 @@ const Title = styled.h1`
   ${font.H2};
 
   &:after {
-    content: "📦 분실물 찾기";
+    content: "✍🏻 글 수정하기";
   }
 `;
 
@@ -35,8 +39,8 @@ const SubTitle = styled.p`
   color: ${color.gray};
 
   &:after {
-    content: "습득하거나 분실한 물건을 올려주세요!";
+    content: "게시글의 어떤 내용을 수정하고 싶으신가요?";
   }
 `;
 
-export default LostFoundWriteBox;
+export default UpdateBox;

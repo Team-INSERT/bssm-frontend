@@ -1,7 +1,7 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from "axios";
 import { requestInterceptors, responseInterceptors } from "@/apis/interceptor";
 import { KEY, TOKEN } from "@/constants/";
-import { QueryClient } from "react-query";
+import { QueryClient } from "@tanstack/react-query";
 import Storage from "../storage";
 
 export interface HttpClientConfig {
@@ -161,4 +161,5 @@ export default {
   bamboo: new HttpClient("api/bamboo", axiosConfig),
   admin: new HttpClient("api/bamboo/admin", axiosConfig),
   like: new HttpClient("api/likes/update", axiosConfig),
+  image: new HttpClient("api/image/save", axiosConfig),
 };

@@ -1,5 +1,5 @@
 import { KEY } from "@/constants";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import { ITimetable, IClassLevel } from "@/interfaces";
 import { getTimetable } from "./api.service";
 

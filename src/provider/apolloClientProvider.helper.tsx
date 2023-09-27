@@ -1,8 +1,12 @@
+import { getToken } from "@/helpers";
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 import { PropsWithChildren } from "react";
 
 const client = new ApolloClient({
   uri: `${process.env.NEXT_PUBLIC_BASE_URL}api/graphql`,
+  headers: {
+    Authorization: getToken(),
+  },
   cache: new InMemoryCache(),
   connectToDevTools: true,
 });

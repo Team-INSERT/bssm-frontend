@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import useDate from "@/hooks/useDate";
-import { useQueryClient } from "react-query";
+import { useQueryClient } from "@tanstack/react-query";
 import { KEY } from "@/constants";
 import { emptyTimetable, emptyClassLevel } from "@/assets/data";
 import TimeTableBar from "./TimeTableBar";
@@ -20,7 +20,7 @@ const TimeTableBox = () => {
   const { data } = useTimetableListQuery(classLevel);
 
   React.useEffect(() => {
-    queryClient.invalidateQueries(KEY.TIMETABLE);
+    queryClient.invalidateQueries([KEY.TIMETABLE]);
     if (data) setDayTimeTable(data);
   }, [data, queryClient]);
 

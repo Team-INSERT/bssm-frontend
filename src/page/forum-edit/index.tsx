@@ -1,12 +1,16 @@
 import styled from "styled-components";
 import { Aside } from "@/components/common";
-import LostFoundWriteBox from "./layouts/LostFoundWriteBox";
+import UpdateBox from "./layouts/UpdateBox";
 
-const LostFoundWritePage = () => {
+interface IPostPageParams {
+  id: number;
+}
+
+const UpdatePage = (params: IPostPageParams) => {
   return (
     <Layout>
       <Container>
-        <LostFoundWriteBox />
+        <UpdateBox {...params} />
         <Aside />
       </Container>
     </Layout>
@@ -26,4 +30,4 @@ const Container = styled.div`
   gap: 8px;
 `;
 
-export default LostFoundWritePage;
+export default UpdatePage;

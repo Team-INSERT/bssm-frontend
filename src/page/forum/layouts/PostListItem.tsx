@@ -2,20 +2,34 @@ import styled from "styled-components";
 import { Column, Row } from "@/components/Flex";
 import { color, font } from "@/styles";
 import { IPost } from "@/interfaces";
-import { defaultProfile } from "@/assets/images";
+import { defaultProfile, emptyImage } from "@/assets/images";
 import { ImageWithFallback } from "@/components/atoms";
 import Link from "next/link";
-import { ROUTER } from "@/constants";
-import { CommentIcon, LikeIcon } from "@/assets/icons";
+import { POST, ROUTER } from "@/constants";
+import { CommentIcon, LikeIcon, Time } from "@/assets/icons";
+import useDate from "@/hooks/useDate";
 
 interface IPostListItemProps {
   post: Omit<IPost, "content">;
 }
 
 const PostListItem = ({ post }: IPostListItemProps) => {
+  const { formatDate } = useDate();
+
+  const is카테고리가분실물찾기라면 =
+    post.category === POST.FOUND || post.category === POST.LOST;
+
   return (
     <Container href={`${ROUTER.POST.LIST}/${post.id}`}>
-      <PostNumber>{post.id}</PostNumber>
+      {is카테고리가분실물찾기라면 && (
+        <ImageWithFallback
+          src={post.lostThingImage || ""}
+          alt="분실물 이미지"
+          fallbackSrc={emptyImage}
+          width={50}
+          height={50}
+        />
+      )}
       <Column gap="4px">
         <PostName>{post.title}</PostName>
         <Row alignItems="center" gap="1vw">
@@ -34,11 +48,17 @@ const PostListItem = ({ post }: IPostListItemProps) => {
           <Row gap="12px">
             <Row alignItems="center" gap="3px">
               <CommentIcon width={12} />
-              <PostComment>{0}</PostComment>
+              <PostComment>{post.commentCount}</PostComment>
             </Row>
             <Row alignItems="center" gap="3px">
               <LikeIcon width={12} />
               <PostLike>{post.likeCount}</PostLike>
+            </Row>
+            <Row alignItems="center" gap="3px">
+              <Time width={12} />
+              <PostDate>
+                {formatDate(post.createdAt, { summary: true })}
+              </PostDate>
             </Row>
           </Row>
         </Row>
@@ -53,15 +73,10 @@ const Container = styled(Link)`
   background-color: ${color.white};
   display: flex;
   align-items: center;
-  padding: 0px 32px;
+  padding: 0px 24px;
   box-shadow: 0 0 10px 0 rgba(144, 144, 144, 0.1);
   border-radius: 4px;
   gap: 24px;
-`;
-
-const PostNumber = styled.span`
-  ${font.H3};
-  font-weight: 800;
 `;
 
 const PostName = styled.h1`
@@ -74,6 +89,8 @@ const PostComment = styled.span`
 `;
 
 const PostLike = styled(PostComment)``;
+
+const PostDate = styled(PostComment)``;
 
 const PostWriterName = styled.span`
   ${font.p3};
