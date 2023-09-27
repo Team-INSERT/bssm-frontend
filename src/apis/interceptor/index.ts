@@ -1,10 +1,9 @@
 import { AxiosRequestConfig, AxiosResponse } from "axios";
-import { TOKEN } from "@/constants";
-import Storage from "../storage";
+import { getToken } from "@/helpers";
 
 export const requestInterceptors = (requestConfig: AxiosRequestConfig) => {
   const urlParams = requestConfig.url?.split("/:") || [];
-  const accessToken = Storage.getItem(TOKEN.ACCESS);
+  const accessToken = getToken();
 
   if (accessToken && requestConfig.headers)
     requestConfig.headers.Authorization = accessToken;
