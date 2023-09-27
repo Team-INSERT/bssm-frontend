@@ -1,5 +1,7 @@
+const removeImports = require("next-remove-imports")();
+
 /** @type {import('next').NextConfig} */
-const nextConfig = {
+const nextConfig = removeImports({
   // images: {
   //   domains: [
   //     process.env.NEXT_PUBLIC_DOMAIN,
@@ -7,6 +9,6 @@ const nextConfig = {
   //     process.env.NEXT_PUBLIC_AUTH_DOMAIN,
   //   ],
   // },
-};
+});
 
 module.exports = nextConfig;
