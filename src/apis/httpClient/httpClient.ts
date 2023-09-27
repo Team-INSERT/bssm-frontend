@@ -162,6 +162,7 @@ export default {
   user: new HttpClient("api/user", axiosConfig),
   timetable: new HttpClient("api/timetable", axiosConfig),
   post: new HttpClient("api/post/", axiosConfig),
+  recomment: new HttpClient("api/recomment", axiosConfig),
   comment: new HttpClient("api/comment", axiosConfig),
   refresh: new HttpClient("api/auth/refresh/access", axiosConfig),
   auth: new HttpClient("api/auth/", axiosConfig),
