@@ -4,10 +4,10 @@ import { color, font } from "@/styles";
 import { Emoji } from "@/assets/icons";
 import useEmoji from "@/hooks/useEmoji";
 import { EmojiModal } from "@/components/common";
-import { useCreatePostCommentMutation } from "../../services/mutation.service";
+import { useCreatePostCommentMutation } from "../../../services/mutation.service";
 
 interface ICreateCommentBoxProps {
-  postId: string;
+  postId: number;
 }
 
 const CreateCommentBox = ({ postId: id }: ICreateCommentBoxProps) => {

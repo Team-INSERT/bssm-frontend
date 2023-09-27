@@ -5,7 +5,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { PuffLoader } from "react-spinners";
 import { IComment } from "@/interfaces";
 import CommentListItem from "./CommentListItem";
-import { useCommentListQuery } from "../../services/query.service";
+import { useCommentListQuery } from "../../../services/query.service";
 
 interface ICommentListBoxProps {
   postId: string;
