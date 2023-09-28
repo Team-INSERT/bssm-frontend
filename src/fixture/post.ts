@@ -2,7 +2,7 @@ import { POST } from "@/constants";
 import { IPost } from "@/interfaces";
 
 const post: IPost = {
-  id: "0",
+  id: "-1",
   title: "",
   content: "",
   user: {

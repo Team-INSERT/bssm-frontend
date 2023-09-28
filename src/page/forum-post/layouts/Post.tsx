@@ -25,7 +25,7 @@ const Post = ({ id }: IPostComponentPrpos) => {
   return (
     <Container>
       <PostHead postType={post.category} post={post} />
-      <PostBody {...post} />
+      <PostBody post={post} />
     </Container>
   );
 };

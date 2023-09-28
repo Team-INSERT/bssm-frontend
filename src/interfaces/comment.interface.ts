@@ -1,12 +1,14 @@
 export default interface IComment {
   id: number;
-  content: string;
+  detail: string;
+  reCommentCount: number;
+  postId: number;
+  likeCount: number;
   createdAt: string;
-  permission: boolean;
-  depth: number;
-  delete: boolean;
+  doesLike: boolean;
   user: {
-    code: number;
-    nickname: string;
+    id: number;
+    nickName: string;
+    profileImage: string;
   };
 }

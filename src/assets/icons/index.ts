@@ -19,3 +19,4 @@ export { default as Relaxed } from "./emojis/Relaxed";
 export { default as Curve } from "./Curve";
 export { default as HistorySeparator } from "./HistorySeparator";
 export { default as UploadIcon } from "./UploadIcon";
+export { default as AddCommentIcon } from "./AddCommentIcon";
