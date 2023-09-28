@@ -40,10 +40,6 @@ const CommentListItem = ({ comment }: ICommentListItemProps) => {
   const { mutate: deleteCommentMutate } = useDeletePostCommentMutation();
   const { mutate: updateCommentLikeMutate } = useUpdateCommentLikeMutation();
 
-  const handleChangeEditModeClick = () => {
-    setIsEditMode(!isEditMode);
-  };
-
   const handleUpdateCommentDetailClick = () => {
     if (!editDetail) return toast.error("내용을 입력해주세요.");
     updateCommentMutate({
@@ -95,7 +91,7 @@ const CommentListItem = ({ comment }: ICommentListItemProps) => {
                   <>
                     <CommentButton
                       color={color.primary_red}
-                      onClick={handleChangeEditModeClick}
+                      onClick={() => setIsEditMode(!isEditMode)}
                     >
                       취소
                     </CommentButton>
@@ -110,7 +106,7 @@ const CommentListItem = ({ comment }: ICommentListItemProps) => {
                   <>
                     <CommentButton
                       color={color.primary_blue}
-                      onClick={handleChangeEditModeClick}
+                      onClick={() => setIsEditMode(!isEditMode)}
                     >
                       수정
                     </CommentButton>
