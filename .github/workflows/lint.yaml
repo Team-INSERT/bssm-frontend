@@ -47,5 +47,4 @@ jobs:
           echo "NEXT_PUBLIC_USER_IMAGE_URL=${{ secrets.NEXT_PUBLIC_USER_IMAGE_URL }}" >> .env
           echo "NEXT_PUBLIC_FILE_SERVER_URL=${{ secrets.NEXT_PUBLIC_FILE_SERVER_URL }}" >> .env
       - run: yarn
-      - run: yarn build
       - run: yarn lint
