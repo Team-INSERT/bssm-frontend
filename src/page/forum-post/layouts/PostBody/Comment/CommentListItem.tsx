@@ -1,9 +1,10 @@
-import { AddCommentIcon, LikeIcon } from "@/assets/icons";
+import { AddCommentIcon, Arrow, LikeIcon } from "@/assets/icons";
 import { defaultProfile } from "@/assets/images";
 import { Column, Row } from "@/components/Flex";
 import { ImageWithFallback } from "@/components/atoms";
 import useDate from "@/hooks/useDate";
 import useUser from "@/hooks/useUser";
+import { checkTextOverflow, getTextDepth } from "@/helpers";
 import { IComment } from "@/interfaces";
 import { color, flex, font } from "@/styles";
 import React from "react";
@@ -14,7 +15,9 @@ import {
   useDeletePostCommentMutation,
   useUpdateCommentLikeMutation,
   useUpdatePostCommentMutation,
-} from "../../services/mutation.service";
+} from "../../../services/mutation.service";
+import CreateRecommentBox from "../Recomment/CreateRecommentBox";
+import RecommentList from "../Recomment/RecommentList";
 
 interface ICommentListItemProps {
   comment: IComment;
@@ -22,6 +25,10 @@ interface ICommentListItemProps {
 
 const CommentListItem = ({ comment }: ICommentListItemProps) => {
   const [isEditMode, setIsEditMode] = React.useState(false);
+  const [isDetailMode, setIsDetailMode] = React.useState(false);
+  const [isRecommentMode, setIsRecommentMode] = React.useState(false);
+  const [isViewRecommentMode, setIsViewRecommentMode] = React.useState(false);
+
   const { user } = useUser();
   const [editDetail, setEditDetail] = React.useState(comment.detail);
   const [isLiked, setIsLiked] = React.useState(comment.doesLike);
@@ -32,10 +39,6 @@ const CommentListItem = ({ comment }: ICommentListItemProps) => {
   const { mutate: updateCommentMutate } = useUpdatePostCommentMutation();
   const { mutate: deleteCommentMutate } = useDeletePostCommentMutation();
   const { mutate: updateCommentLikeMutate } = useUpdateCommentLikeMutation();
-
-  const handleChangeEditModeClick = () => {
-    setIsEditMode(!isEditMode);
-  };
 
   const handleUpdateCommentDetailClick = () => {
     if (!editDetail) return toast.error("내용을 입력해주세요.");
@@ -76,7 +79,7 @@ const CommentListItem = ({ comment }: ICommentListItemProps) => {
           height={42}
         />
       </ProfileImage>
-      <Column gap="6px" width="100%">
+      <Column gap="4px" width="100%">
         <Column justifyContent="center" width="100%">
           <Row gap="4px" width="100%">
             <CommentWriter>{comment.user.nickName}</CommentWriter>
@@ -88,7 +91,7 @@ const CommentListItem = ({ comment }: ICommentListItemProps) => {
                   <>
                     <CommentButton
                       color={color.primary_red}
-                      onClick={handleChangeEditModeClick}
+                      onClick={() => setIsEditMode(!isEditMode)}
                     >
                       취소
                     </CommentButton>
@@ -103,7 +106,7 @@ const CommentListItem = ({ comment }: ICommentListItemProps) => {
                   <>
                     <CommentButton
                       color={color.primary_blue}
-                      onClick={handleChangeEditModeClick}
+                      onClick={() => setIsEditMode(!isEditMode)}
                     >
                       수정
                     </CommentButton>
@@ -124,7 +127,20 @@ const CommentListItem = ({ comment }: ICommentListItemProps) => {
               value={editDetail}
             />
           ) : (
-            <CommentDetail>{comment.detail}</CommentDetail>
+            <Column gap="4px">
+              <CommentDetail>
+                {isDetailMode
+                  ? comment.detail
+                  : checkTextOverflow(comment.detail)}
+              </CommentDetail>
+              {getTextDepth(editDetail) > 4 && (
+                <DetailViewButton
+                  onClick={() => setIsDetailMode(!isDetailMode)}
+                >
+                  {isDetailMode ? "간략히" : "자세히 보기"}
+                </DetailViewButton>
+              )}
+            </Column>
           )}
         </Column>
         <Row gap="6px">
@@ -132,11 +148,33 @@ const CommentListItem = ({ comment }: ICommentListItemProps) => {
             <LikeIcon isLiked={isLiked} />
             <StyledText>{currentLikeCount}</StyledText>
           </StyledBox>
-          <StyledBox>
+          <StyledBox onClick={() => setIsRecommentMode(!isRecommentMode)}>
             <AddCommentIcon />
             <StyledText>답글</StyledText>
           </StyledBox>
         </Row>
+        {isRecommentMode && (
+          <CreateRecommentBox
+            id={comment.id}
+            handleModeCancelClick={() => setIsRecommentMode(!isRecommentMode)}
+          />
+        )}
+        {!!comment.reCommentCount && (
+          <RecommentViewButton
+            onClick={() => setIsViewRecommentMode(!isViewRecommentMode)}
+          >
+            <Arrow
+              direction={isViewRecommentMode ? "top" : "bottom"}
+              width={12}
+              height={12}
+              color={color.primary_blue}
+            />
+            <RecommentViewCountText>
+              {comment.reCommentCount}
+            </RecommentViewCountText>
+          </RecommentViewButton>
+        )}
+        {isViewRecommentMode && <RecommentList commentId={comment.id} />}
       </Column>
     </Container>
   );
@@ -169,6 +207,7 @@ const CommentCreatedAt = styled.span`
 
 const CommentDetail = styled.p`
   ${font.p3};
+  white-space: pre-wrap;
 `;
 
 const CommentSeparator = styled.span`
@@ -214,6 +253,46 @@ const CommentTextArea = styled.textarea`
   padding: 6px 12px;
   margin: 6px 0;
   ${font.p3};
+`;
+
+const DetailViewButton = styled.button`
+  border: none;
+  width: fit-content;
+  color: ${color.gray};
+  ${font.caption};
+  border-radius: 999px;
+
+  &:hover {
+    text-decoration: underline;
+  }
+`;
+
+const RecommentViewButton = styled.button`
+  width: fit-content;
+  ${flex.CENTER};
+  gap: 6px;
+  margin-top: 6px;
+  padding: 8px 10px 4px 10px;
+  border-radius: 999px;
+
+  &:hover {
+    background-color: ${color.on_tertiary};
+  }
+`;
+
+const RecommentViewCountText = styled.span`
+  color: ${color.primary_blue};
+  ${font.caption};
+  font-weight: 600;
+  margin-top: -4px;
+
+  &:before {
+    content: "답글 ";
+  }
+
+  &:after {
+    content: "개";
+  }
 `;
 
 export default CommentListItem;

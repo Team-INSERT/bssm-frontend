@@ -6,8 +6,8 @@ import { CustomViewer } from "@/components/atoms";
 import { color, flex, font } from "@/styles";
 import CountBox from "./CountBox";
 import SectionBox from "./SectionBox";
-import CreateCommentBox from "./CreateCommentBox";
-import CommentList from "./CommentList";
+import CreateCommentBox from "./Comment/CreateCommentBox";
+import CommentList from "./Comment/CommentList";
 
 interface IPostBodyProps {
   post: IPost;
@@ -63,7 +63,7 @@ const PostBody = ({ post }: IPostBodyProps) => {
       <CountBox {...post} />
       <CommentWrap>
         <CommentCount>{post.commentCount}</CommentCount>
-        <CreateCommentBox postId={post.id} />
+        <CreateCommentBox postId={parseInt(post.id, 10)} />
         {post.id !== "-1" && <CommentList postId={post.id} />}
       </CommentWrap>
     </Container>

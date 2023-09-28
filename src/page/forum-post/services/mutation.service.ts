@@ -9,12 +9,42 @@ import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import {
   createPostComment,
+  createRecomment,
   deletePostComment,
+  deleteRecomment,
   updateCommentLike,
   updatePostComment,
   updatePostLike,
+  updateRecomment,
+  updateRecommentLike,
 } from "./api.service";
 
+interface IUsePostCommentMutationProps {
+  id: number;
+  detail: string;
+}
+
+// like
+
+export const useUpdatePostLikeMutation = () => {
+  const apolloClient = useApolloClient();
+
+  return useMutation((id: string) => updatePostLike(id), {
+    onSuccess: () => {
+      apolloClient.cache.reset();
+    },
+  });
+};
+
+export const useUpdateCommentLikeMutation = () => {
+  return useMutation((id: number) => updateCommentLike(id));
+};
+
+export const useUpdateRecommentLikeMutation = () => {
+  return useMutation((id: number) => updateRecommentLike(id));
+};
+
+// post
 export const useDeletePostMutation = () => {
   const apolloClient = useApolloClient();
   const router = useRouter();
@@ -29,26 +59,13 @@ export const useDeletePostMutation = () => {
   return mutations;
 };
 
-interface IUseCreateCommentMutationProps {
-  id: string;
-  detail: string;
-}
-
-export const useUpdatePostLikeMutation = () => {
-  const apolloClient = useApolloClient();
-
-  return useMutation((id: string) => updatePostLike(id), {
-    onSuccess: () => {
-      apolloClient.cache.reset();
-    },
-  });
-};
+// comment
 
 export const useCreatePostCommentMutation = () => {
   const queryClient = useQueryClient();
 
   return useMutation(
-    (props: IUseCreateCommentMutationProps) => createPostComment(props),
+    (comment: IUsePostCommentMutationProps) => createPostComment(comment),
     {
       onSuccess: () => {
         toast.success("댓글을 작성했어요!");
@@ -58,16 +75,11 @@ export const useCreatePostCommentMutation = () => {
   );
 };
 
-interface IUseUpdatePostCommentMutationProps {
-  id: number;
-  detail: string;
-}
-
 export const useUpdatePostCommentMutation = () => {
   const queryClient = useQueryClient();
 
   return useMutation(
-    (comment: IUseUpdatePostCommentMutationProps) => updatePostComment(comment),
+    (comment: IUsePostCommentMutationProps) => updatePostComment(comment),
     {
       onSuccess: () => {
         toast.success("댓글이 수정되었어요!");
@@ -88,6 +100,44 @@ export const useDeletePostCommentMutation = () => {
   });
 };
 
-export const useUpdateCommentLikeMutation = () => {
-  return useMutation((id: number) => updateCommentLike(id));
+// recomment
+
+export const useCreateRecommentMutation = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation(
+    (comment: IUsePostCommentMutationProps) => createRecomment(comment),
+    {
+      onSuccess: () => {
+        toast.success("답글을 작성했어요!");
+        queryClient.invalidateQueries([KEY.RECOMMENT]);
+        queryClient.invalidateQueries([KEY.COMMENT]);
+      },
+    },
+  );
+};
+
+export const useUpdateRecommentMutation = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation(
+    (comment: IUsePostCommentMutationProps) => updateRecomment(comment),
+    {
+      onSuccess: () => {
+        toast.success("답글이 수정되었어요!");
+        queryClient.invalidateQueries([KEY.RECOMMENT]);
+      },
+    },
+  );
+};
+
+export const useDeleteRecommentMutation = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation((id: number) => deleteRecomment(id), {
+    onSuccess: () => {
+      toast.success("답글이 삭제되었어요.");
+      queryClient.invalidateQueries([KEY.RECOMMENT]);
+    },
+  });
 };

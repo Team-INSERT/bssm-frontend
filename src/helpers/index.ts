@@ -6,3 +6,5 @@ export { default as isAdmin } from "./isAdmin.helper";
 export { default as filterInputPost } from "./filterInputPost.helper";
 export { default as getWriteContentLabel } from "./getWriteContentLabel.helper";
 export { default as checkPostValid } from "./checkPostValid.helper";
+export { default as checkTextOverflow } from "./checkTextOverflow.helper";
+export { default as getTextDepth } from "./getTextDepth.helper";
