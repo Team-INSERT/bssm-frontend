@@ -2,9 +2,9 @@
 
 import React from "react";
 import { RecoilRoot } from "recoil";
-import ReactQueryProvider from "./reactQueryProvider.helper";
-import LayoutProvider from "./layoutProvider.helper";
-import ApolloClientProvider from "./apolloClientProvider.helper";
+import ReactQueryProvider from "./ReactQueryProvider.helper";
+import ApolloClientProvider from "./ApolloClientProvider.helper";
+import LayoutProvider from "./LayoutProvider.helper";
 
 const Provider = ({ children }: React.PropsWithChildren) => {
   return (
