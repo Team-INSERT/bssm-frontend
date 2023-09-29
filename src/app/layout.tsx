@@ -1,4 +1,5 @@
-import Provider from "@/provider/provider.helper";
+import Provider from "@/provider/Provider.helper";
+import ServerStyleProvider from "@/provider/ServerStyleProvider";
 
 export const metadata = {
   title: "BSM",
@@ -13,7 +14,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Provider>{children}</Provider>
+        <Provider>
+          <ServerStyleProvider>{children}</ServerStyleProvider>
+        </Provider>
       </body>
     </html>
   );
