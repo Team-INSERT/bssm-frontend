@@ -2,7 +2,7 @@ import Provider from "@/provider/provider.helper";
 
 export const metadata = {
   title: "BSM",
-  description: "부산소마고 학생 정보 관리 서비스입니다.",
+  description: "부산소마고 학생 정보 관리 서비스 BSM입니다.",
 };
 
 export default function RootLayout({
