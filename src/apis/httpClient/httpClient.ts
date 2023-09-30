@@ -170,4 +170,5 @@ export default {
   admin: new HttpClient("api/bamboo/admin", axiosConfig),
   like: new HttpClient("api/likes/update", axiosConfig),
   image: new HttpClient("api/image/save", axiosConfig),
+  meal: new HttpClient("api/meal", axiosConfig),
 };
