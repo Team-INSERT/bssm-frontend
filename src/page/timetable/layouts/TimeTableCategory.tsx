@@ -63,7 +63,6 @@ const TimeTableCategory = ({
 
 const Title = styled.div`
   ${font.H2};
-
   &:after {
     content: "시간표";
   }

@@ -26,11 +26,11 @@ const useUser = (options?: UseUserOptions) => {
   const {
     data: userInfo,
     remove,
-    isLoading,
     error,
     refetch,
+    isLoading,
   } = useQuery<IUser>(
-    [KEY.USER, Storage.getItem(TOKEN.ACCESS)],
+    [KEY.USER],
     async () => {
       const { data } = await httpClient.user.get(authorization());
       return data;
@@ -47,7 +47,6 @@ const useUser = (options?: UseUserOptions) => {
   React.useEffect(() => {
     if (isAxiosError(error) && error.response) {
       const { code } = error.response.data;
-
       if (code === ERROR.CODE.TOKEN_403_2) refresh().then(() => refetch());
     }
   }, [error, refetch]);

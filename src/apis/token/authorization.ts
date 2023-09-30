@@ -1,9 +1,8 @@
-import Storage from "@/apis/storage";
-import { TOKEN } from "@/constants";
+import { getToken } from "@/helpers";
 
 const authorization = () => ({
   headers: {
-    Authorization: `Bearer ${Storage.getItem(TOKEN.ACCESS)}`,
+    Authorization: `Bearer ${getToken()}`,
   },
 });
 
