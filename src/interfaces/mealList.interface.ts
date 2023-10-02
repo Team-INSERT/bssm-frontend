@@ -1,3 +1,8 @@
+import IMeal from "./meal.interface";
+
 export default interface MealListType {
-  mealList: Array<object>;
+  data: {
+    [meal: string]: IMeal;
+  };
+  keys: Array<string>;
 }

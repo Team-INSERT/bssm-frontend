@@ -59,6 +59,22 @@ const useDate = () => {
     return formattedDate;
   };
 
+  const getMealDate = () => {
+    return dayjs().format("YYMMDD");
+  };
+
+  const getDayOfWeek = (date: string) => {
+    return dayjs(date, "YYMMDD").locale("ko").format("dddd");
+  };
+
+  const getMealDateTitle = (date: string) => {
+    return dayjs(date, "YYMMDD").locale("ko").format("M월 D일 dddd");
+  };
+
+  const setMealDate = (date: string, day: number) => {
+    return dayjs(date, "YYMMDD").add(day, "day").format("YYMMDD");
+  };
+
   const getNowWeekDay = ({ type }: DateType) => {
     const today = dayjs().day();
 
@@ -107,6 +123,10 @@ const useDate = () => {
     formatDate,
     getHMSDate,
     getDate,
+    getDayOfWeek,
+    getMealDate,
+    getMealDateTitle,
+    setMealDate,
     getNowWeekDay,
     translateDay,
     getDiffDayTime,
