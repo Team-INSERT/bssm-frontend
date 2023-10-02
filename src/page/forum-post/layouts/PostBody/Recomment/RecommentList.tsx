@@ -31,7 +31,7 @@ const RecommentList = ({ commentId }: IRecommentListBoxProps) => {
         }
       >
         {recommentList?.map((recomments) => (
-          <RecommentListBox>
+          <RecommentListBox key={recomments.currentPage}>
             {recomments.entity.map((recomment: IRecomment) => (
               <RecommentListItem key={recomment.id} recomment={recomment} />
             ))}
