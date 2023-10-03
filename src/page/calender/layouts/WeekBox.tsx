@@ -1,13 +1,15 @@
 import styled from "styled-components";
-import { color, font } from "@/styles";
-
-const weeks = ["월", "화", "수", "목", "금"];
+import { color, flex, font } from "@/styles";
+import useDate from "@/hooks/useDate";
 
 const WeekBox = () => {
+  const { weekdaysKOR: weekdays } = useDate();
   return (
     <Weeks>
-      {weeks.map((week) => (
-        <Week key={week}>{week}</Week>
+      {weekdays.map((weekday) => (
+        <Week key={weekday} day={weekday}>
+          {weekday}
+        </Week>
       ))}
     </Weeks>
   );
@@ -19,10 +21,22 @@ const Weeks = styled.article`
   gap: 1.5%;
 `;
 
-const Week = styled.div`
-  width: 19%;
-  ${font.caption};
-  color: ${color.gray};
+const Week = styled.div<{ day: string }>`
+  width: 100%;
+  ${font.code};
+  font-weight: 600;
+  color: ${({ day }) => {
+    switch (day) {
+      case "토":
+        return color.primary_blue;
+      case "일":
+        return color.primary_red;
+      default:
+        return color.gray;
+    }
+  }};
+
+  ${flex.CENTER};
 
   &:after {
     content: "요일";

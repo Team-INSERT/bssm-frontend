@@ -17,6 +17,7 @@ const color = {
   container: "#F9FAFF",
   content: "#D9D9D9",
   shadow: "#505050",
+  light_gray: "#fafafa",
 
   meal_shadow: "#EDEDED",
   meal_header: "#FCFCFC",

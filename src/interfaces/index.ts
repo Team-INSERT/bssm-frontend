@@ -16,3 +16,5 @@ export type { default as IPostInfiniteList } from "./postInfiniteList.interface"
 export type { default as IInfiniteResult } from "./infiniteResult.interface";
 export type { default as IInputPost } from "./inputPost.interface";
 export type { default as IRecomment } from "./recomment.interface";
+export type { default as ICalender } from "./calender.interface";
+export type { default as IPlan } from "./plan.interface";
