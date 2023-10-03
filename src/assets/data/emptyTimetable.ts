@@ -1,67 +1,102 @@
 import { ITimetable } from "@/interfaces";
 
 const emptyTimetable: ITimetable = {
-  SUN: [
+  SUNDAY: [
     {
-      className: "",
-      endTime: "23:59:59",
-      startTime: "00:00:00",
-      type: "normal",
-      isNow: false,
+      period: "",
+      subject: "",
+      startTime: {
+        hour: 0,
+        minute: 0,
+      },
+      endTime: {
+        hour: 24,
+        minute: 0,
+      },
     },
   ],
-  FRI: [
+  FRIDAY: [
     {
-      className: "",
-      endTime: "23:59:59",
-      startTime: "00:00:00",
-      type: "normal",
-      isNow: false,
+      period: "",
+      subject: "",
+      startTime: {
+        hour: 0,
+        minute: 0,
+      },
+      endTime: {
+        hour: 24,
+        minute: 0,
+      },
     },
   ],
-  SAT: [
+  SATURDAY: [
     {
-      className: "",
-      endTime: "23:59:59",
-      startTime: "00:00:00",
-      type: "normal",
-      isNow: false,
+      period: "",
+      subject: "",
+      startTime: {
+        hour: 0,
+        minute: 0,
+      },
+      endTime: {
+        hour: 24,
+        minute: 0,
+      },
     },
   ],
-  TUE: [
+  TUESDAY: [
     {
-      className: "",
-      endTime: "23:59:59",
-      startTime: "00:00:00",
-      type: "normal",
-      isNow: false,
+      period: "",
+      subject: "",
+      startTime: {
+        hour: 0,
+        minute: 0,
+      },
+      endTime: {
+        hour: 24,
+        minute: 0,
+      },
     },
   ],
-  THU: [
+  THURSDAY: [
     {
-      className: "",
-      endTime: "23:59:59",
-      startTime: "00:00:00",
-      type: "normal",
-      isNow: false,
+      period: "",
+      subject: "",
+      startTime: {
+        hour: 0,
+        minute: 0,
+      },
+      endTime: {
+        hour: 24,
+        minute: 0,
+      },
     },
   ],
-  MON: [
+  MONDAY: [
     {
-      className: "",
-      endTime: "23:59:59",
-      startTime: "00:00:00",
-      type: "normal",
-      isNow: false,
+      period: "",
+      subject: "",
+      startTime: {
+        hour: 0,
+        minute: 0,
+      },
+      endTime: {
+        hour: 24,
+        minute: 0,
+      },
     },
   ],
-  WED: [
+  WEDNESDAY: [
     {
-      className: "",
-      endTime: "23:59:59",
-      startTime: "00:00:00",
-      type: "normal",
-      isNow: false,
+      period: "",
+      subject: "",
+      startTime: {
+        hour: 0,
+        minute: 0,
+      },
+      endTime: {
+        hour: 24,
+        minute: 0,
+      },
     },
   ],
 };
