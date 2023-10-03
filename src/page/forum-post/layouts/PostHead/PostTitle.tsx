@@ -31,6 +31,9 @@ const PostTitle = ({ ...post }: IPost) => {
           <Row gap="4px" alignItems="center">
             <Time width={12} height={12} />
             <Date>{formatDate(post.createdAt)}</Date>
+            <ResponsiveDate>
+              {formatDate(post.createdAt, { summary: true })}
+            </ResponsiveDate>
           </Row>
         </Column>
       </ProfileBox>
@@ -67,6 +70,17 @@ const Author = styled.h2`
 const Date = styled.span`
   ${font.p3};
   color: ${color.gray};
+
+  @media screen and (max-width: 541px) {
+    display: none;
+  }
+`;
+
+const ResponsiveDate = styled(Date)`
+  display: none;
+  @media screen and (max-width: 541px) {
+    display: block;
+  }
 `;
 
 export default PostTitle;

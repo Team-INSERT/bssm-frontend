@@ -46,14 +46,14 @@ const PostListItem = ({ post }: IPostListItemProps) => {
           </Row>
           <Separator />
           <Row gap="12px">
-            <Row alignItems="center" gap="3px">
+            <StyledReactBox>
               <CommentIcon width={12} />
               <PostComment>{post.commentCount}</PostComment>
-            </Row>
-            <Row alignItems="center" gap="3px">
+            </StyledReactBox>
+            <StyledReactBox>
               <LikeIcon width={12} />
               <PostLike>{post.likeCount}</PostLike>
-            </Row>
+            </StyledReactBox>
             <Row alignItems="center" gap="3px">
               <Time width={12} />
               <PostDate>
@@ -100,6 +100,16 @@ const Separator = styled.div`
   width: 1px;
   height: 16px;
   background-color: ${color.on_tertiary};
+`;
+
+const StyledReactBox = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 3px;
+
+  @media screen and (max-width: 340px) {
+    display: none;
+  }
 `;
 
 export default PostListItem;

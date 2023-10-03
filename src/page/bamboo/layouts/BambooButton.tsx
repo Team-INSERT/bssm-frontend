@@ -25,12 +25,13 @@ const BambooButton = ({ icon, title, subtitle }: IBambooButtonProps) => {
 };
 
 const StyledButton = styled.button`
-  width: 24vw;
+  width: 100%;
   background-color: ${color.white};
   border-radius: 8px;
   ${flex.CENTER};
   justify-content: space-between;
-  padding: 10px 1.5vw;
+  padding: 0 1.5vw;
+  height: 90px;
 `;
 
 const StyledButtonTitle = styled.h1`

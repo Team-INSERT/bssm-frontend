@@ -10,16 +10,20 @@ const GlobalStyle = createGlobalStyle`
   }
 
   :root {
-    @media screen and (min-width: 769px) and (max-width: 1023px) {
+    @media screen and (min-width: 769px) and (max-width: 1025px) {
+      font-size: 80%;
+    }
+
+    @media screen and (min-width: 541px) and (max-width: 768px) {
       font-size: 70%;
     }
 
-    @media screen and (min-width: 301px) and (max-width: 768px) {
-      font-size: 40%;
+    @media screen and (min-width: 301px) and (max-width: 540px) {
+      font-size: 60%;
     }
 
     @media screen and (max-width: 300px) {
-      font-size: 25%;
+      font-size: 50%;
     }
   }
 

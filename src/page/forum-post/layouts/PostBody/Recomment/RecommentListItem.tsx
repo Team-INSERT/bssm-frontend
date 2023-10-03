@@ -91,7 +91,7 @@ const RecommentListItem = ({ recomment }: ICommentListItemProps) => {
             {recomment.user.id === user.id && (
               <CommentButtonBox>
                 {isEditMode ? (
-                  <>
+                  <ButtonBox>
                     <CommentButton
                       color={color.primary_red}
                       onClick={handleChangeEditModeClick}
@@ -104,9 +104,9 @@ const RecommentListItem = ({ recomment }: ICommentListItemProps) => {
                     >
                       수정
                     </CommentButton>
-                  </>
+                  </ButtonBox>
                 ) : (
-                  <>
+                  <ButtonBox>
                     <CommentButton
                       color={color.primary_blue}
                       onClick={handleChangeEditModeClick}
@@ -119,7 +119,7 @@ const RecommentListItem = ({ recomment }: ICommentListItemProps) => {
                     >
                       삭제
                     </CommentButton>
-                  </>
+                  </ButtonBox>
                 )}
               </CommentButtonBox>
             )}
@@ -180,6 +180,10 @@ const CommentWriter = styled.span`
 const CommentCreatedAt = styled.span`
   ${font.caption};
   color: ${color.gray};
+
+  @media screen and (max-width: 541px) {
+    display: none;
+  }
 `;
 
 const CommentDetail = styled.p`
@@ -190,6 +194,10 @@ const CommentDetail = styled.p`
 const CommentSeparator = styled.span`
   &:after {
     content: "·";
+  }
+
+  @media screen and (max-width: 541px) {
+    display: none;
   }
 `;
 
@@ -241,6 +249,15 @@ const DetailViewButton = styled.button`
 
   &:hover {
     text-decoration: underline;
+  }
+`;
+
+const ButtonBox = styled.div`
+  display: flex;
+  gap: 6px;
+
+  @media screen and (max-width: 400px) {
+    display: none;
   }
 `;
 

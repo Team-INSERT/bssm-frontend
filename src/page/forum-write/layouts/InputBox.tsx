@@ -73,7 +73,7 @@ const InputBox = () => {
     <Container>
       <Column gap="6px">
         <CategoryLabel />
-        <Row gap="6px">
+        <CategoryBox>
           {emptyCategories.map((category) => {
             if (category.type === POST.NOTICE && !isAdmin(user.authority))
               return;
@@ -88,7 +88,7 @@ const InputBox = () => {
               />
             );
           })}
-        </Row>
+        </CategoryBox>
       </Column>
       <Input
         label="글 제목"
@@ -213,6 +213,12 @@ const StyledInputDate = styled.input`
 
 const StyledTitle = styled.h1`
   ${font.p3};
+`;
+
+const CategoryBox = styled.div`
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
 `;
 
 export default InputBox;

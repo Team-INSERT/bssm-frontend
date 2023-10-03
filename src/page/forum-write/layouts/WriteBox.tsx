@@ -16,7 +16,7 @@ const WriteBox = () => {
 };
 
 const Layout = styled.div`
-  width: 67%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 16px;
