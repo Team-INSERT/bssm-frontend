@@ -30,7 +30,7 @@ const useUser = (options?: UseUserOptions) => {
     error,
     refetch,
   } = useQuery<IUser>(
-    [KEY.USER, Storage.getItem(TOKEN.ACCESS)],
+    [KEY.USER],
     async () => {
       const { data } = await httpClient.user.get(authorization());
       return data;
