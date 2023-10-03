@@ -160,7 +160,7 @@ export const axiosConfig: HttpClientConfig = {
 export default {
   oauth: new HttpClient("api/auth/oauth/bsm", axiosConfig),
   user: new HttpClient("api/user", axiosConfig),
-  timetable: new HttpClient("api/timetable", axiosConfig),
+  timetable: new HttpClient("api/timeTable", axiosConfig),
   post: new HttpClient("api/post/", axiosConfig),
   recomment: new HttpClient("api/recomment", axiosConfig),
   comment: new HttpClient("api/comment", axiosConfig),

@@ -10,16 +10,11 @@ interface GetDateType {
 }
 
 interface DateType {
-  type?: "KOR" | "ENG";
+  type?: "KOR" | "ENG" | "ENG_DETAIL";
 }
 
 interface TranslateType {
-  to: "KOR" | "ENG";
-}
-
-interface TimeDiffType {
-  endTime: string;
-  startTime: string;
+  to: "KOR" | "ENG" | "ENG_DETAIL";
 }
 
 interface IFormatDateOptions {
@@ -27,6 +22,15 @@ interface IFormatDateOptions {
 }
 
 const weekdaysENG = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+const weekdaysENGDetail = [
+  "SUNDAY",
+  "MONDAY",
+  "TUESDAY",
+  "WEDNESDAY",
+  "THURSDAY",
+  "FRIDAY",
+  "SATURDAY",
+];
 const weekdaysKOR = ["일", "월", "화", "수", "목", "금", "토"];
 
 const useDate = () => {
@@ -79,14 +83,23 @@ const useDate = () => {
     const today = dayjs().day();
 
     if (type === "KOR") return weekdaysKOR[today];
-
+    if (type === "ENG_DETAIL") return weekdaysENGDetail[today];
     return weekdaysENG[today];
   };
 
   const translateDay = (date: string, { to }: TranslateType) => {
     if (to === "KOR") {
+      if (date.includes("DAY")) {
+        const index = weekdaysENGDetail.indexOf(date);
+        return weekdaysKOR[index];
+      }
       const index = weekdaysENG.indexOf(date);
       return weekdaysKOR[index];
+    }
+
+    if (to === "ENG_DETAIL") {
+      const index = weekdaysKOR.indexOf(date);
+      return weekdaysENGDetail[index];
     }
 
     const index = weekdaysKOR.indexOf(date);
@@ -94,30 +107,32 @@ const useDate = () => {
   };
 
   const getDiffDayTime = (from: string, to: string) => {
-    const fromDayTime = dayjs(from, "HH:mm:ss");
-    const toDayTime = dayjs(to, "HH:mm:ss");
+    const fromDayTime = dayjs(from, "HH:mm");
+    const toDayTime = dayjs(to, "HH:mm");
 
     return fromDayTime.diff(toDayTime);
   };
 
   const getDiffNowDayTime = (day: string) => {
-    const currentDayTime = dayjs(day, "HH:mm:ss");
+    const currentDayTime = dayjs(day, "HH:mm");
     const nowDayTime = dayjs();
 
     return nowDayTime.diff(currentDayTime);
   };
 
-  const getDiffTimeProgress = ({ endTime, startTime }: TimeDiffType) => {
-    const diffClassDayTime = getDiffDayTime(endTime, startTime);
-    const diffNowDayTime = getDiffNowDayTime(startTime);
+  const getDiffTimeProgress = () => {
+    const nowTime = "00:00";
+    const dayTime = getDiffDayTime("24:00", "00:00");
+    const diffNowDayTime = getDiffNowDayTime(nowTime);
 
-    const classProgress = (diffNowDayTime / diffClassDayTime) * 240;
+    const classProgress = diffNowDayTime / dayTime;
     return classProgress;
   };
 
   return {
     weekdaysENG,
     weekdaysKOR,
+    weekdaysENGDetail,
     currentYearsWithSchool,
     unformatDate,
     formatDate,

@@ -1,7 +1,12 @@
 export default interface IClassInfo {
-  className: string;
-  endTime: string;
-  startTime: string;
-  type: string;
-  isNow: boolean;
+  period: string;
+  subject: string;
+  endTime: {
+    hour: number;
+    minute: number;
+  };
+  startTime: {
+    hour: number;
+    minute: number;
+  };
 }

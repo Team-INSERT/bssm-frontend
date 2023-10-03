@@ -2,6 +2,8 @@ import { color, font } from "@/styles";
 import styled from "styled-components";
 import { ITimetable } from "@/interfaces";
 import useTimetableBar from "@/hooks/useTimetableBar";
+import useDate from "@/hooks/useDate";
+import React from "react";
 
 interface ITimeTableBarProps {
   weekday: string;
@@ -15,7 +17,8 @@ const TimeTableBar = ({ weekday, dayTimeTable }: ITimeTableBarProps) => {
     nowDate,
     handleTimetableBarScroll,
     handleTimetableButtonClick,
-  } = useTimetableBar({ weekday, dayTimeTable });
+  } = useTimetableBar();
+  const { getDiffDayTime } = useDate();
 
   return (
     <Container>
@@ -26,11 +29,19 @@ const TimeTableBar = ({ weekday, dayTimeTable }: ITimeTableBarProps) => {
           <Bar />
         </BarBox>
         <BarList onScroll={handleTimetableBarScroll} ref={scrollRef}>
-          {dayTimeTable[weekday].map((timetable, index) => (
-            <BarItem key={index}>
-              <BarItemText>{timetable.className}</BarItemText>
-            </BarItem>
-          ))}
+          {dayTimeTable[weekday].map((timetable) => {
+            const { startTime, endTime } = timetable;
+            const newStartTime = `${startTime.hour}:${startTime.minute}`;
+            const newEndTime = `${endTime.hour}:${endTime.minute}`;
+
+            const time = getDiffDayTime(newEndTime, newStartTime) / 23400000;
+
+            return (
+              <BarItem key={timetable.period} time={time}>
+                <BarItemText>{timetable.subject}</BarItemText>
+              </BarItem>
+            );
+          })}
         </BarList>
       </Box>
     </Container>
@@ -74,18 +85,18 @@ const BarList = styled.div`
   padding: 10px 28vw;
   border-radius: 6px;
   position: relative;
-  gap: 8px;
+  gap: 4px;
 
   &::-webkit-scrollbar {
     display: none;
   }
 `;
 
-const BarItem = styled.div`
+const BarItem = styled.div<{ time: number }>`
   width: 100px;
-  padding: 0 120px;
+  padding: ${({ time }) => `0 ${time * 1100}px`};
   border-radius: 6px;
-  height: 80px;
+  height: 100px;
   display: flex;
   overflow-x: scroll;
   align-items: center;
@@ -93,6 +104,8 @@ const BarItem = styled.div`
   position: relative;
   background-color: ${color.white};
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+  ${font.p3};
+  font-weight: 500;
 `;
 
 const BarItemText = styled.span`

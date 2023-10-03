@@ -3,26 +3,32 @@ import styled from "styled-components";
 import useDate from "@/hooks/useDate";
 import { useQueryClient } from "@tanstack/react-query";
 import { KEY } from "@/constants";
-import { emptyTimetable, emptyClassLevel } from "@/assets/data";
+import { emptyTimetable } from "@/assets/data";
 import TimeTableBar from "./TimeTableBar";
 import { useTimetableListQuery } from "../services/query.service";
 import TimeTableCategory from "./TimeTableCategory";
+import TimeTableTable from "./TimeTableTable";
 
 const TimeTableBox = () => {
-  const queryClient = useQueryClient();
   const { weekdaysKOR: weekdays, getNowWeekDay, translateDay } = useDate();
+  const queryClient = useQueryClient();
   const [selectedDay, setSelectedDay] = React.useState<string>(
     getNowWeekDay({ type: "KOR" }),
   );
+  const [timetableType, setTimetableType] = React.useState<"bar" | "table">(
+    "bar",
+  );
 
-  const [classLevel, setClassLevel] = React.useState(emptyClassLevel);
   const [dayTimeTable, setDayTimeTable] = React.useState(emptyTimetable);
-  const { data } = useTimetableListQuery(classLevel);
+  const { data, isSuccess } = useTimetableListQuery({ timetableType });
 
   React.useEffect(() => {
-    queryClient.invalidateQueries([KEY.TIMETABLE]);
-    if (data) setDayTimeTable(data);
-  }, [data, queryClient]);
+    if (isSuccess) setDayTimeTable(data);
+  }, [isSuccess, data]);
+
+  React.useEffect(() => {
+    queryClient.invalidateQueries([KEY.TIMETABLE, timetableType]);
+  }, [timetableType, queryClient]);
 
   return (
     <Container>
@@ -30,13 +36,18 @@ const TimeTableBox = () => {
         weekdays={weekdays}
         checked={selectedDay}
         setChecked={setSelectedDay}
-        classLevel={classLevel}
-        setClassLevel={setClassLevel}
+        timetableType={timetableType}
+        setTimetableType={setTimetableType}
       />
-      <TimeTableBar
-        weekday={translateDay(selectedDay, { to: "ENG" })}
-        dayTimeTable={dayTimeTable}
-      />
+      {timetableType === "bar" && (
+        <TimeTableBar
+          weekday={translateDay(selectedDay, { to: "ENG_DETAIL" })}
+          dayTimeTable={dayTimeTable}
+        />
+      )}
+      {timetableType === "table" && (
+        <TimeTableTable dayTimeTable={dayTimeTable} />
+      )}
     </Container>
   );
 };
