@@ -7,6 +7,7 @@ const KEY = {
   BAMBOO: "useBamboo",
   BAMBOO_ADMIN: "useBambooAdmin",
   MEAL: "useMeal",
+  CALENDER: "useCalender",
 } as const;
 
 export default KEY;
