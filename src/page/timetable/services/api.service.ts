@@ -1,10 +1,8 @@
 import httpClient from "@/apis/httpClient";
-import { IClassLevel } from "@/interfaces";
 
-export const getTimetable = async (classLevel: IClassLevel) => {
-  const { data } = await httpClient.timetable.getTimetable({
-    params: classLevel,
+export const getTimetable = async (timetableType: "bar" | "table") => {
+  const { data } = await httpClient.timetable.getById({
+    params: { id: timetableType },
   });
-
   return data;
 };
