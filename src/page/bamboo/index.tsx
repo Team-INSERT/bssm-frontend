@@ -1,4 +1,5 @@
 import { Aside } from "@/components/common";
+import { Row } from "@/components/Flex";
 import { flex } from "@/styles";
 import React from "react";
 import styled from "styled-components";
@@ -14,12 +15,12 @@ const bambooButtonInfomations = [
   },
   {
     icon: ThinkingFace,
-    title: "제보를 삭제하고 싶을 때",
+    title: "제보를 삭제할 때",
     subtitle: "삭제를 원하는 글과 이유를 제보해주세요!",
   },
   {
     icon: HuggingFace,
-    title: "제보가 승인될 경우",
+    title: "제보가 승인되면",
     subtitle: "인스타그램에도 자동으로 글이 업로드돼요!",
   },
 ];
@@ -30,7 +31,9 @@ const BambooPage = () => {
       <Container>
         <BambooPostList />
         <AsideButtonBox>
-          <Aside />
+          <Row>
+            <Aside />
+          </Row>
           {bambooButtonInfomations.map((infomation) => (
             <BambooButton
               key={infomation.title}
@@ -59,10 +62,14 @@ const Container = styled.div`
 `;
 
 const AsideButtonBox = styled.div`
-  width: fit-content;
-  margin-left: auto;
+  width: 21.4vw;
   ${flex.COLUMN};
   gap: 12px;
+  margin-left: auto;
+
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
 `;
 
 export default BambooPage;

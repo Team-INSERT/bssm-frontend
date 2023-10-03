@@ -50,6 +50,10 @@ const PostHead = ({ post, postType }: IPostHeadProps) => {
           </PostButtonBox>
         )}
       </Row>
+      <ResponsivePostButtonBox>
+        <PostUpdateButton onClick={handlePostUpdateButtonClick} />
+        <PostDeleteButton onClick={handlePostDeleteButtonClick} />
+      </ResponsivePostButtonBox>
       <PostTitle {...post} />
       <ReactBox {...post} />
     </Container>
@@ -67,6 +71,19 @@ const PostButtonBox = styled.div`
   margin-left: auto;
   ${flex.CENTER};
   gap: 8px;
+
+  @media screen and (max-width: 541px) {
+    display: none;
+  }
+`;
+
+const ResponsivePostButtonBox = styled(PostButtonBox)`
+  margin: 0 auto 0 0;
+  display: none;
+
+  @media screen and (max-width: 541px) {
+    display: flex;
+  }
 `;
 
 const PostDeleteButton = styled.button`

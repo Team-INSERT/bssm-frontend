@@ -26,6 +26,9 @@ const BambooManagePostListItem = ({
       <InfomationBox>
         <PostNumber>{bamboo.id}</PostNumber>
         <PostCreatedDate>{formatDate(bamboo.createdAt)}</PostCreatedDate>
+        <ResponsivePostCreateDate>
+          {formatDate(bamboo.createdAt, { summary: true })}
+        </ResponsivePostCreateDate>
       </InfomationBox>
       <PostContents>{bamboo.content}</PostContents>
       <Row>
@@ -51,6 +54,10 @@ const InfomationBox = styled.div`
   border-bottom: 1.5px solid ${color.on_tertiary};
   display: flex;
   gap: 8px;
+
+  @media screen and (max-width: 541px) {
+    flex-direction: column;
+  }
 `;
 
 const PostNumber = styled.span`
@@ -68,6 +75,17 @@ const PostNumber = styled.span`
 const PostCreatedDate = styled.span`
   ${font.p3};
   color: ${color.gray};
+
+  @media screen and (max-width: 541px) {
+    display: none;
+  }
+`;
+
+const ResponsivePostCreateDate = styled(PostCreatedDate)`
+  display: none;
+  @media screen and (max-width: 541px) {
+    display: block;
+  }
 `;
 
 const PostContents = styled.div`

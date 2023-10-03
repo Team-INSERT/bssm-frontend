@@ -47,6 +47,14 @@ const Container = styled.div`
     transition: ease-in-out;
     transition-duration: 0.2s;
   }
+
+  @media screen and (max-width: 768px) {
+    width: 70vw;
+
+    &:hover {
+      width: 72vw;
+    }
+  }
 `;
 
 const MealHeader = styled.div`
@@ -70,6 +78,10 @@ const MealCal = styled(MealTime)`
 
   &:after {
     content: "kcal";
+  }
+
+  @media screen and (max-width: 500px) {
+    display: none;
   }
 `;
 

@@ -55,7 +55,7 @@ const TimeTableBox = () => {
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  width: 67%;
+  width: 100%;
   justify-content: center;
   gap: 4vh;
 `;
