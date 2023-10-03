@@ -24,7 +24,7 @@ const MealListItem = ({ mealName, meal }: IMealListItemProps) => {
         </Row>
       </MealHeader>
       <MealBody>
-        <MealContent>{meal?.content}</MealContent>
+        <MealContent>{meal?.content.replace(/<br\/>/gi, "\n")}</MealContent>
       </MealBody>
     </Container>
   );
