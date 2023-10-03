@@ -1,8 +1,8 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from "axios";
 import { requestInterceptors, responseInterceptors } from "@/apis/interceptor";
-import { KEY, TOKEN } from "@/constants/";
-import { QueryClient } from "@tanstack/react-query";
+import { ERROR, TOKEN } from "@/constants/";
 import Storage from "../storage";
+import { refresh } from "../token";
 
 export interface HttpClientConfig {
   baseURL?: string;
@@ -132,16 +132,15 @@ export class HttpClient {
 
   private setting() {
     HttpClient.setCommonInterceptors(this.api);
-    const queryClient = new QueryClient();
 
     this.api.interceptors.response.use(
       (response) => response,
-      (error) => {
-        queryClient.invalidateQueries([
-          KEY.USER,
-          Storage.getItem(TOKEN.ACCESS),
-        ]);
-        return Promise.reject(error);
+      async (error) => {
+        const originalRequest = error.config;
+        if (error.response.data.code === ERROR.CODE.TOKEN_403_2) {
+          await refresh();
+          return this.api(originalRequest);
+        }
       },
     );
   }
@@ -164,7 +163,6 @@ export default {
   post: new HttpClient("api/post/", axiosConfig),
   recomment: new HttpClient("api/recomment", axiosConfig),
   comment: new HttpClient("api/comment", axiosConfig),
-  refresh: new HttpClient("api/auth/refresh/access", axiosConfig),
   auth: new HttpClient("api/auth/", axiosConfig),
   bamboo: new HttpClient("api/bamboo", axiosConfig),
   admin: new HttpClient("api/bamboo/admin", axiosConfig),
