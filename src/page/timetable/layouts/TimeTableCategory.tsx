@@ -1,30 +1,30 @@
 import styled from "styled-components";
-import { Column, Row } from "@/components/Flex";
-import { Category, Select } from "@/components/atoms";
-import { IClassLevel } from "@/interfaces";
+import { Column } from "@/components/Flex";
+import { Category } from "@/components/atoms";
 import { font } from "@/styles";
+import { getTimetableType } from "@/helpers";
 
 interface ITimeTableCategoryProps {
   weekdays: Array<string>;
   checked: string;
-  classLevel: IClassLevel;
   setChecked: React.Dispatch<React.SetStateAction<string>>;
-  setClassLevel: React.Dispatch<React.SetStateAction<IClassLevel>>;
+  timetableType: "bar" | "table";
+  setTimetableType: React.Dispatch<React.SetStateAction<"bar" | "table">>;
 }
 
 const TimeTableCategory = ({
   weekdays,
   checked,
   setChecked,
-  classLevel,
-  setClassLevel,
+  timetableType,
+  setTimetableType,
 }: ITimeTableCategoryProps) => {
   return (
     <Column gap="16px">
       <Title />
       <Column gap="8px">
         <Label>날짜</Label>
-        <Row gap="8px">
+        <CategoryBox>
           {weekdays.map((weekday) => (
             <Category
               key={weekday}
@@ -35,27 +35,22 @@ const TimeTableCategory = ({
               name="date"
             />
           ))}
-        </Row>
+        </CategoryBox>
       </Column>
       <Column gap="8px">
-        <Label>학급</Label>
-        <Row gap="6px">
-          <Select
-            options={["1", "2", "3"]}
-            defaultOption={classLevel.grade}
-            label="학년"
-            handler={(grade: string) => setClassLevel({ ...classLevel, grade })}
-          />
-          <Select
-            options={["1", "2", "3", "4"]}
-            defaultOption={classLevel.class}
-            label="반"
-            width="62px"
-            handler={(cls: string) =>
-              setClassLevel({ ...classLevel, class: cls })
-            }
-          />
-        </Row>
+        <Label>시간표 형식</Label>
+        <CategoryBox>
+          {["bar", "table"].map((type) => (
+            <Category
+              key={type}
+              id={type}
+              label={getTimetableType(type)}
+              checked={timetableType === type}
+              onChange={(e) => setTimetableType(e.target.id as "bar" | "table")}
+              name="date"
+            />
+          ))}
+        </CategoryBox>
       </Column>
     </Column>
   );
@@ -72,6 +67,12 @@ const Title = styled.div`
 const Label = styled.span`
   ${font.context};
   padding-left: 4px;
+`;
+
+const CategoryBox = styled.div`
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
 `;
 
 export default TimeTableCategory;
