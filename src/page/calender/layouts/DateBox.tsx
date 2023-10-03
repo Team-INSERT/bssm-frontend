@@ -2,14 +2,15 @@ import styled from "styled-components";
 import { Row } from "@/components/Flex";
 import { font } from "@/styles";
 
-const DateBox = () => {
-  const date = new Date();
-  const [year, month] = [date.getFullYear(), date.getMonth()];
+interface IDateBoxProps {
+  currentMonth: number;
+}
 
+const DateBox = ({ currentMonth }: IDateBoxProps) => {
   return (
     <Row gap="8px">
-      <YearText>{year}</YearText>
-      <MonthText>{month}</MonthText>
+      <YearText>{new Date().getFullYear()}</YearText>
+      <MonthText>{currentMonth}</MonthText>
     </Row>
   );
 };
