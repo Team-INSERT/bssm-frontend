@@ -1,17 +1,9 @@
 import React from "react";
-import { emptyClassInfo } from "@/assets/data";
 import useDate from "@/hooks/useDate";
-import { ITimetable } from "@/interfaces";
 
-interface IUserTimeTableBarProps {
-  weekday: string;
-  dayTimeTable: ITimetable;
-}
-
-const useTimetableBar = ({ weekday, dayTimeTable }: IUserTimeTableBarProps) => {
+const useTimetableBar = () => {
   const date = useDate();
   const [nowDate, setNowDate] = React.useState("");
-  const [currentClass, setCurrentClass] = React.useState(emptyClassInfo);
   const [isScrollBox, setIsScrollBox] = React.useState(false);
 
   const scrollRef = React.useRef<HTMLDivElement>(null);
@@ -20,28 +12,26 @@ const useTimetableBar = ({ weekday, dayTimeTable }: IUserTimeTableBarProps) => {
   const 현재시간과동기화 = () => {
     const HMSDate = date.getHMSDate();
     setNowDate(HMSDate);
-
-    const classProgress = date.getDiffTimeProgress(currentClass);
-
-    if (scrollRef.current) scrollRef.current.scrollLeft = classProgress;
+    if (scrollRef.current) {
+      const { scrollWidth } = scrollRef.current;
+      const classProgress = date.getDiffTimeProgress() * scrollWidth;
+      scrollRef.current.scrollLeft = classProgress;
+    }
   };
 
   const handleTimetableBarScroll = () => {
-    const classProgress = date.getDiffTimeProgress(currentClass);
-
     if (scrollRef.current) {
-      const 사용자가스크롤했다면 =
-        classProgress - scrollRef.current.scrollLeft > 1;
+      const { scrollWidth } = scrollRef.current;
+      const classProgress = date.getDiffTimeProgress() * scrollWidth;
 
-      if (사용자가스크롤했다면 && intervalRef.current !== null) {
-        clearInterval(intervalRef.current);
-        setIsScrollBox(true);
-        intervalRef.current = null;
-      }
+      const 사용자가스크롤했다면 =
+        Math.abs(classProgress - scrollRef.current.scrollLeft) > 1;
+      if (사용자가스크롤했다면) setIsScrollBox(true);
     }
   };
 
   const synchronizeCurrentTime = () => {
+    if (intervalRef.current && isScrollBox) return;
     intervalRef.current = window.setInterval(현재시간과동기화, 1000);
   };
 
@@ -51,14 +41,19 @@ const useTimetableBar = ({ weekday, dayTimeTable }: IUserTimeTableBarProps) => {
   };
 
   React.useEffect(() => {
-    synchronizeCurrentTime();
-  }, []);
+    if (isScrollBox) {
+      window.clearInterval(intervalRef.current as number);
+      intervalRef.current = null;
+    }
+  }, [isScrollBox]);
 
   React.useEffect(() => {
-    const timetable = dayTimeTable[weekday];
-    const [nowDateClass] = timetable.filter((item) => item.isNow);
-    setCurrentClass(nowDateClass);
-  }, [weekday, dayTimeTable]);
+    synchronizeCurrentTime();
+    return () => {
+      clearInterval(intervalRef.current as number);
+    };
+    // eslint-disable-next-line
+  }, []);
 
   return {
     scrollRef,
