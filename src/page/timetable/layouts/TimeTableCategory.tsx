@@ -22,21 +22,23 @@ const TimeTableCategory = ({
   return (
     <Column gap="16px">
       <Title />
-      <Column gap="8px">
-        <Label>날짜</Label>
-        <CategoryBox>
-          {weekdays.map((weekday) => (
-            <Category
-              key={weekday}
-              id={weekday}
-              label={`${weekday}요일`}
-              checked={weekday === checked}
-              onChange={(e) => setChecked(e.target.id)}
-              name="date"
-            />
-          ))}
-        </CategoryBox>
-      </Column>
+      {timetableType === "bar" && (
+        <Column gap="8px">
+          <Label>날짜</Label>
+          <CategoryBox>
+            {weekdays.map((weekday) => (
+              <Category
+                key={weekday}
+                id={weekday}
+                label={`${weekday}요일`}
+                checked={weekday === checked}
+                onChange={(e) => setChecked(e.target.id)}
+                name="date"
+              />
+            ))}
+          </CategoryBox>
+        </Column>
+      )}
       <Column gap="8px">
         <Label>시간표 형식</Label>
         <CategoryBox>
