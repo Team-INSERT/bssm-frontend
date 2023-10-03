@@ -1,10 +1,9 @@
 import { SVGAttribute } from "@/interfaces";
+import styled from "styled-components";
 
-const Logo = ({ width = 41, height = 40, isPointable }: SVGAttribute) => {
+const Logo = ({ isPointable }: SVGAttribute) => {
   return (
-    <svg
-      width={width}
-      height={height}
+    <StyledSVG
       cursor={isPointable ? "pointer" : ""}
       viewBox="0 0 41 40"
       fill="none"
@@ -203,8 +202,28 @@ const Logo = ({ width = 41, height = 40, isPointable }: SVGAttribute) => {
           />
         </filter>
       </defs>
-    </svg>
+    </StyledSVG>
   );
 };
+
+const StyledSVG = styled.svg`
+  width: 40px;
+  height: 40px;
+
+  @media screen and (max-width: 1025px) {
+    width: 34px;
+    height: 34px;
+  }
+
+  @media screen and (max-width: 768px) {
+    width: 28px;
+    height: 28px;
+  }
+
+  @media screen and (max-width: 360px) {
+    width: 22px;
+    height: 22px;
+  }
+`;
 
 export default Logo;
