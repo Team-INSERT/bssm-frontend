@@ -9,3 +9,4 @@ export { default as checkPostValid } from "./checkPostValid.helper";
 export { default as checkTextOverflow } from "./checkTextOverflow.helper";
 export { default as getTextDepth } from "./getTextDepth.helper";
 export { default as getMealName } from "./getMealName.helper";
+export { default as getTimetableType } from "./getTimetableType.helper";
