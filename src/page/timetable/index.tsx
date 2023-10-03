@@ -1,4 +1,3 @@
-import { Aside } from "@/components/common";
 import styled from "styled-components";
 import TimeTableBox from "./layouts/TimeTableBox";
 
@@ -7,7 +6,6 @@ const TimeTablePage = () => {
     <Layout>
       <Container>
         <TimeTableBox />
-        <Aside />
       </Container>
     </Layout>
   );
@@ -16,7 +14,6 @@ const TimeTablePage = () => {
 const Layout = styled.div`
   width: 100%;
   display: flex;
-  justify-content: center;
 `;
 
 const Container = styled.div`
