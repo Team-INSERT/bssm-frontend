@@ -171,4 +171,5 @@ export default {
   like: new HttpClient("api/likes/update", axiosConfig),
   image: new HttpClient("api/image/save", axiosConfig),
   meal: new HttpClient("api/meal", axiosConfig),
+  calender: new HttpClient("api/calender", axiosConfig),
 };
