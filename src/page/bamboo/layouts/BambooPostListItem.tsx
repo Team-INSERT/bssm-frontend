@@ -27,6 +27,9 @@ const BambooPostListItem = ({ bamboo }: IBambooPostListItemProps) => {
       <InfomationBox>
         <PostNumber>{bamboo.allowedId}</PostNumber>
         <PostCreatedDate>{formatDate(bamboo.createdAt)}</PostCreatedDate>
+        <ResponsivePostCreatedDate>
+          {formatDate(bamboo.createdAt, { summary: true })}
+        </ResponsivePostCreatedDate>
       </InfomationBox>
       <PostContents>{bamboo.content}</PostContents>
       {isAdmin(user.authority) && (
@@ -71,6 +74,17 @@ const PostNumber = styled.span`
 const PostCreatedDate = styled.span`
   ${font.p3};
   color: ${color.gray};
+
+  @media screen and (max-width: 541px) {
+    display: none;
+  }
+`;
+
+const ResponsivePostCreatedDate = styled(PostCreatedDate)`
+  display: none;
+  @media screen and (max-width: 541px) {
+    display: block;
+  }
 `;
 
 const PostContents = styled.div`

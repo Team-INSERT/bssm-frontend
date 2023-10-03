@@ -8,7 +8,7 @@ const ApplicationsPage = () => {
   return (
     <Layout>
       <Container>
-        <Column width="76%" gap="12px">
+        <Column width="100%" gap="12px">
           <AppListFilter />
           <AppList />
         </Column>

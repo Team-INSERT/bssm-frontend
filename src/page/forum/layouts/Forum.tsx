@@ -28,6 +28,7 @@ const Forum = () => {
   return (
     <Container>
       <Title />
+      <ResponsiveCreateButton onClick={handleCreateButtonClick} />
       <Row>
         <Categories />
         <CreateButton onClick={handleCreateButtonClick} />
@@ -46,14 +47,14 @@ const Title = styled.span`
 `;
 
 const Container = styled.main`
-  width: 67%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 12px;
 `;
 
 const CreateButton = styled.button`
-  padding: 2px 12px;
+  padding: 6px 12px;
   border-radius: 4px;
   border: none;
   background-color: ${color.primary_blue};
@@ -64,6 +65,20 @@ const CreateButton = styled.button`
 
   &:after {
     content: "글쓰기";
+  }
+
+  @media screen and (max-width: 1025px) {
+    display: none;
+  }
+`;
+
+const ResponsiveCreateButton = styled(CreateButton)`
+  display: none;
+  @media screen and (max-width: 1025px) {
+    display: flex;
+    margin: 0 auto 0 0;
+    padding: 6px 18px;
+    background-color: ${color.primary_mint};
   }
 `;
 

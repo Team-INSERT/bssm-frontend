@@ -100,7 +100,11 @@ const MealList = styled.div`
   justify-content: space-between;
   align-items: center;
   height: 60vh;
-  gap: 30px;
+  gap: 2%;
+
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
 
 const MealDate = styled.span`

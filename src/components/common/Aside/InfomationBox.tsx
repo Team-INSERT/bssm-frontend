@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import Image from "next/image";
 import Link from "next/link";
 import { color, font } from "@/styles";
 import { USER, ROUTER } from "@/constants";
@@ -20,22 +19,24 @@ const InfomationBox = ({ user, isLogined }: IInfomationBoxProps) => {
 
   return (
     <Container>
-      <ImageWithFallback
-        src={user.profile_url || "/"}
-        fallbackSrc={defaultProfile}
-        alt="profile"
-        width={50}
-        height={50}
-        rounded
-      />
+      {isLogined && (
+        <ImageWithFallback
+          src={user.profile_image}
+          fallbackSrc={defaultProfile}
+          alt="profile"
+          width={46}
+          height={46}
+          rounded
+        />
+      )}
       {ifLoginedStudent && (
         <>
           <Column>
-            <Row gap="4px">
-              <UserInfoText>{user.grade}학년</UserInfoText>
-              <UserInfoText>{user.classNum}반</UserInfoText>
-              <UserInfoText>{user.studentNumber}번</UserInfoText>
-            </Row>
+            <UserInfoBox>
+              <UserGrade>{user.grade}</UserGrade>
+              <UserClass>{user.classNum}</UserClass>
+              <UserStudentNumber>{user.studentNumber}</UserStudentNumber>
+            </UserInfoBox>
             <Row gap="4px">
               <UserName>{user.name}</UserName>
               <UserType>{getUserRole(user.role)}</UserType>
@@ -46,7 +47,7 @@ const InfomationBox = ({ user, isLogined }: IInfomationBoxProps) => {
       )}
       {!isLogined && (
         <>
-          <LoginText>로그인이 필요합니다.</LoginText>
+          <LoginText>로그인이 필요해요</LoginText>
           <InfomationButton
             href={process.env.NEXT_PUBLIC_OAUTH_URL || ROUTER.HOME}
           >
@@ -63,14 +64,49 @@ const Container = styled.main`
   width: 100%;
   height: 85px;
   background-color: ${color.white};
-  gap: 12px;
-  padding: 0px 18px;
+  gap: 8px;
+  padding: 0px 22px;
   border-radius: 5px;
+
+  @media screen and (max-width: 1074px) {
+    padding: 0px 14px;
+  }
+`;
+
+const UserInfoBox = styled.div`
+  display: flex;
+  gap: 4px;
+
+  @media screen and (max-width: 1074px) {
+    display: none;
+  }
 `;
 
 const UserInfoText = styled.span`
   ${font.p3};
   color: ${color.gray};
+`;
+
+const UserGrade = styled(UserInfoText)`
+  &:after {
+    content: "학년";
+  }
+`;
+
+const UserClass = styled(UserInfoText)`
+  &:after {
+    content: "반";
+  }
+`;
+
+const UserStudentNumber = styled(UserInfoText)`
+  @media screen and (max-width: 1360px) {
+    display: none;
+  }
+
+  &:after {
+    content: "번";
+  }
 `;
 
 const UserName = styled.span`
@@ -81,22 +117,24 @@ const UserType = styled.span`
   ${font.p3};
   color: ${color.gray};
   margin-top: auto;
+
+  @media screen and (max-width: 1360px) {
+    display: none;
+  }
 `;
 
 const InfomationButton = styled(Link)`
   ${flex.CENTER};
   ${font.btn3};
-  width: 76px;
-  height: 26px;
+  padding: 4px 10px;
   background-color: ${color.primary_blue};
   border-radius: 5px;
   margin-left: auto;
   color: ${color.white};
-`;
 
-const ProfileImage = styled(Image)`
-  border-radius: 50%;
-  flex-shrink: 0;
+  @media screen and (max-width: 900px) {
+    display: none;
+  }
 `;
 
 const LoginText = styled.span`

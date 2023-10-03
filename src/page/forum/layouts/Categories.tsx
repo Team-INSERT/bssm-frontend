@@ -1,10 +1,10 @@
 import React from "react";
 import { useRecoilState } from "recoil";
-import { Row } from "@/components/Flex";
 import { categoriesStore } from "@/store/categories.store";
 import { Category } from "@/components/atoms";
 import { emptyCategories } from "@/assets/data";
 import { PostCategoryType } from "@/types";
+import styled from "styled-components";
 
 const Categories = () => {
   const [checked, setChecked] = useRecoilState(categoriesStore);
@@ -14,7 +14,7 @@ const Categories = () => {
   };
 
   return (
-    <Row gap="6px">
+    <Container>
       {emptyCategories.map((category) => (
         <Category
           key={category.type}
@@ -25,8 +25,17 @@ const Categories = () => {
           checked={category.type === checked}
         />
       ))}
-    </Row>
+    </Container>
   );
 };
+
+const Container = styled.div`
+  display: flex;
+  gap: 6px;
+
+  @media screen and (max-width: 600px) {
+    flex-wrap: wrap;
+  }
+`;
 
 export default Categories;

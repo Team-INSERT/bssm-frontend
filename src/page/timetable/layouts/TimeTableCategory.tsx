@@ -24,7 +24,7 @@ const TimeTableCategory = ({
       <Title />
       <Column gap="8px">
         <Label>날짜</Label>
-        <Row gap="8px">
+        <WeekDayBox>
           {weekdays.map((weekday) => (
             <Category
               key={weekday}
@@ -35,7 +35,7 @@ const TimeTableCategory = ({
               name="date"
             />
           ))}
-        </Row>
+        </WeekDayBox>
       </Column>
       <Column gap="8px">
         <Label>학급</Label>
@@ -72,6 +72,12 @@ const Title = styled.div`
 const Label = styled.span`
   ${font.context};
   padding-left: 4px;
+`;
+
+const WeekDayBox = styled.div`
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
 `;
 
 export default TimeTableCategory;

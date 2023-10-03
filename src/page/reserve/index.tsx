@@ -1,3 +1,4 @@
+import { DesktopIcon } from "@/assets/icons";
 import { Column } from "@/components/Flex";
 import { Aside } from "@/components/common";
 import { flex, font } from "@/styles";
@@ -10,13 +11,17 @@ const ReservePage = () => {
   return (
     <Layout>
       <Container>
-        <Column width="67%" gap="12px">
+        <Column width="100%" gap="12px">
           <Title />
           <ReserveBox />
           <ReserveJoinBox />
         </Column>
         <Aside />
       </Container>
+      <ResponsiveBox>
+        <DesktopIcon />
+        <ResponsiveText />
+      </ResponsiveBox>
     </Layout>
   );
 };
@@ -29,7 +34,11 @@ const Layout = styled.div`
 const Container = styled.div`
   width: 76%;
   display: flex;
-  gap: 18px;
+  gap: 8px;
+
+  @media screen and (max-width: 1136px) {
+    display: none;
+  }
 `;
 
 const Title = styled.span`
@@ -37,6 +46,23 @@ const Title = styled.span`
 
   &:after {
     content: "🚪 베르실 예약";
+  }
+`;
+
+const ResponsiveBox = styled.div`
+  height: 70vh;
+  ${flex.COLUMN_CENTER};
+  gap: 12px;
+  display: none;
+
+  @media screen and (max-width: 1136px) {
+    display: flex;
+  }
+`;
+
+const ResponsiveText = styled.span`
+  &:after {
+    content: "데스크톱 모드로 이용해주세요";
   }
 `;
 

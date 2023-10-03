@@ -31,7 +31,7 @@ const Post = ({ id }: IPostComponentPrpos) => {
 };
 
 const Container = styled.div`
-  width: 67%;
+  width: 100%;
   border-radius: 4px;
   background-color: ${color.white};
   display: flex;

@@ -1,43 +1,26 @@
-import Link from "next/link";
 import styled from "styled-components";
-import { color, font } from "@/styles";
+import { color, flex, font } from "@/styles";
 
-const navigations = [
+const navigationTypes = [
   {
-    name: "마역량",
-    href: "/meister",
+    name: "학교",
   },
   {
-    name: "이석증 발급",
-    href: "/otolithiasis",
+    name: "기숙사",
   },
   {
-    name: "게시판",
-    href: "/post",
+    name: "커뮤니티",
   },
   {
-    name: "시간표",
-    href: "/timetable",
-  },
-  {
-    name: "급식표",
-    href: "/meal",
-  },
-  {
-    name: "일정표",
-    href: "/calender",
-  },
-  {
-    name: "내정보",
-    href: "/mypage",
+    name: "기타 목록",
   },
 ];
 
 const Navigation = () => {
   return (
     <NavigationList>
-      {navigations.map((navigation) => (
-        <NavigationListItem key={navigation.href} href={navigation.href}>
+      {navigationTypes.map((navigation) => (
+        <NavigationListItem key={navigation.name}>
           {navigation.name}
         </NavigationListItem>
       ))}
@@ -48,13 +31,24 @@ const Navigation = () => {
 const NavigationList = styled.ul`
   width: 100%;
   display: flex;
-  gap: 6%;
+  gap: 4%;
 `;
 
-const NavigationListItem = styled(Link)`
+const NavigationListItem = styled.li`
   font-size: ${font.H5};
   color: ${color.black};
+  ${flex.CENTER};
   cursor: pointer;
+  width: 100px;
+
+  &:nth-child(1),
+  &:nth-child(2) {
+    @media screen and (min-width: 420px) {
+      &:after {
+        content: " 생활";
+      }
+    }
+  }
 `;
 
 export default Navigation;

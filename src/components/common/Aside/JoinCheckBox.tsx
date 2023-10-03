@@ -15,7 +15,7 @@ const JoinCheckBox = () => {
 
 const Container = styled.section`
   width: 40%;
-  height: 140px;
+  height: 100%;
   border-radius: 5px;
   background-color: ${color.white};
   display: flex;
@@ -23,6 +23,10 @@ const Container = styled.section`
   justify-content: space-between;
   flex-direction: column;
   align-items: center;
+
+  @media screen and (max-width: 900px) {
+    width: 100%;
+  }
 `;
 
 const HGroup = styled.hgroup`
@@ -30,6 +34,10 @@ const HGroup = styled.hgroup`
   flex-direction: column;
   margin-right: auto;
   padding-left: 18px;
+
+  @media screen and (max-width: 900px) {
+    display: none;
+  }
 `;
 
 const Date = styled.span`
@@ -54,14 +62,14 @@ const CheckButton = styled.button`
   ${font.btn3};
 
   &:after {
-    content: "입사 체크하기";
+    content: "입사 체크";
   }
 
   &:disabled {
     background-color: ${color.content};
 
     &:after {
-      content: "입사 체크완료";
+      content: "입사 완료";
     }
   }
 `;

@@ -69,7 +69,7 @@ const BambooPostList = () => {
 };
 
 const Container = styled.div`
-  width: 67%;
+  width: 100%;
   ${flex.COLUMN};
   gap: 14px;
 `;

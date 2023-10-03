@@ -32,14 +32,18 @@ const MeisterBox = () => {
 
 const Container = styled.section`
   width: 60%;
-  height: 140px;
+  height: 100%;
   border-radius: 5px;
   background-color: ${color.white};
   display: flex;
-  padding-left: 18px;
+  padding: 6px 0 6px 18px;
   flex-direction: column;
   justify-content: center;
-  gap: 12px;
+  gap: 6px;
+
+  @media screen and (max-width: 900px) {
+    display: none;
+  }
 `;
 
 const ScoreHGroup = styled.hgroup`
@@ -48,7 +52,8 @@ const ScoreHGroup = styled.hgroup`
 `;
 
 const ScoreName = styled.h1`
-  ${font.H6};
+  ${font.p3};
+  font-weight: 500;
   color: ${color.gray};
 `;
 

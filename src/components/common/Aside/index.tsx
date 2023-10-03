@@ -22,11 +22,23 @@ const Aside = () => {
 };
 
 const Container = styled.aside`
-  width: 24vw;
+  width: 30vw;
   display: flex;
   gap: 6px;
   margin-left: auto;
   flex-direction: column;
+
+  @media screen and (max-width: 900px) {
+    width: 28vw;
+  }
+
+  @media screen and (max-width: 800px) {
+    width: 24vw;
+  }
+
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
 `;
 
 export default Aside;

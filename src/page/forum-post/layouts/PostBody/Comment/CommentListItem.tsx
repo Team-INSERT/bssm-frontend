@@ -88,7 +88,7 @@ const CommentListItem = ({ comment }: ICommentListItemProps) => {
             {comment.user.id === user.id && (
               <CommentButtonBox>
                 {isEditMode ? (
-                  <>
+                  <ButtonBox>
                     <CommentButton
                       color={color.primary_red}
                       onClick={() => setIsEditMode(!isEditMode)}
@@ -101,9 +101,9 @@ const CommentListItem = ({ comment }: ICommentListItemProps) => {
                     >
                       수정
                     </CommentButton>
-                  </>
+                  </ButtonBox>
                 ) : (
-                  <>
+                  <ButtonBox>
                     <CommentButton
                       color={color.primary_blue}
                       onClick={() => setIsEditMode(!isEditMode)}
@@ -116,7 +116,7 @@ const CommentListItem = ({ comment }: ICommentListItemProps) => {
                     >
                       삭제
                     </CommentButton>
-                  </>
+                  </ButtonBox>
                 )}
               </CommentButtonBox>
             )}
@@ -150,7 +150,7 @@ const CommentListItem = ({ comment }: ICommentListItemProps) => {
           </StyledBox>
           <StyledBox onClick={() => setIsRecommentMode(!isRecommentMode)}>
             <AddCommentIcon />
-            <StyledText>답글</StyledText>
+            <StyledCommentText>답글</StyledCommentText>
           </StyledBox>
         </Row>
         {isRecommentMode && (
@@ -203,6 +203,10 @@ const CommentWriter = styled.span`
 const CommentCreatedAt = styled.span`
   ${font.caption};
   color: ${color.gray};
+
+  @media screen and (max-width: 470px) {
+    display: none;
+  }
 `;
 
 const CommentDetail = styled.p`
@@ -213,6 +217,10 @@ const CommentDetail = styled.p`
 const CommentSeparator = styled.span`
   &:after {
     content: "·";
+  }
+
+  @media screen and (max-width: 470px) {
+    display: none;
   }
 `;
 
@@ -231,6 +239,12 @@ const StyledBox = styled.div`
 const StyledText = styled.span`
   ${font.p3};
   color: ${color.gray};
+`;
+
+const StyledCommentText = styled(StyledText)`
+  @media screen and (max-width: 300px) {
+    display: none;
+  }
 `;
 
 const CommentButtonBox = styled.div`
@@ -292,6 +306,15 @@ const RecommentViewCountText = styled.span`
 
   &:after {
     content: "개";
+  }
+`;
+
+const ButtonBox = styled.div`
+  display: flex;
+  gap: 6px;
+
+  @media screen and (max-width: 320px) {
+    display: none;
   }
 `;
 

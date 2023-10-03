@@ -2,7 +2,7 @@ import Link from "next/link";
 import styled from "styled-components";
 import { Row, Column } from "@/components/Flex";
 import { color, font } from "@/styles";
-import { LinkArrow } from "@/assets/icons";
+import { Arrow } from "@/assets/icons";
 
 const AppListItem = () => {
   return (
@@ -12,7 +12,7 @@ const AppListItem = () => {
           <AppName>BSM Deploy</AppName>
           <LinkBox>
             <LinkText href="/" />
-            <LinkArrow />
+            <Arrow direction="right" width={12} />
           </LinkBox>
         </Row>
         <AppDescription>
@@ -34,6 +34,10 @@ const Container = styled.article`
   box-shadow: 0 0 10px 0 rgba(144, 144, 144, 0.1);
   border-radius: 4px;
   gap: 4px;
+
+  @media screen and (max-width: 1025px) {
+    padding: 0 22px;
+  }
 `;
 
 const AppName = styled.h1`
@@ -49,7 +53,7 @@ const AppDescription = styled.p`
 const LinkBox = styled.div`
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 8px;
   margin-left: auto;
 `;
 
