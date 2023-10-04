@@ -1,15 +1,15 @@
 import styled from "styled-components";
 import { Aside } from "@/components/common";
 import { Column } from "@/components/Flex";
+import { font } from "@/styles";
 import AppList from "./layouts/AppList";
-import AppListFilter from "./layouts/AppListFilter";
 
 const ApplicationsPage = () => {
   return (
     <Layout>
       <Container>
         <Column width="100%" gap="12px">
-          <AppListFilter />
+          <StyledTitle />
           <AppList />
         </Column>
         <Aside />
@@ -28,6 +28,14 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   gap: 8px;
+`;
+
+const StyledTitle = styled.span`
+  ${font.H3};
+
+  &:after {
+    content: "외부 서비스";
+  }
 `;
 
 export default ApplicationsPage;
