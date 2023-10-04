@@ -10,7 +10,7 @@ interface ISelectProps {
   width?: string;
   handler:
     | React.Dispatch<React.SetStateAction<string>>
-    | ((props: string) => void);
+    | ((props: string | number) => void);
 }
 
 const Select = ({

@@ -170,4 +170,5 @@ export default {
   image: new HttpClient("api/image/save", axiosConfig),
   meal: new HttpClient("api/meal", axiosConfig),
   calender: new HttpClient("api/calender", axiosConfig),
+  reserve: new HttpClient("api/ber", axiosConfig),
 };

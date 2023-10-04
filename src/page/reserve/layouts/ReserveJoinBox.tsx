@@ -1,25 +1,31 @@
 import { XIcon } from "@/assets/icons";
 import CheckIcon from "@/assets/icons/CheckIcon";
 import { Column, Row } from "@/components/Flex";
-import { Select } from "@/components/atoms";
+import { roomStore } from "@/store/room.store";
 import { color, flex, font } from "@/styles";
 import React from "react";
+import { toast } from "react-toastify";
+import { useRecoilState } from "recoil";
 import styled, { css } from "styled-components";
+import { useCreateReserveMutation } from "../services/mutation.service";
 
 const noticeTexts = [
   "1. 사용 가능 시간은 9시 10분부터 10시 20분까지입니다.",
   "2. 너무 시끄럽게 떠들 경우 퇴실처리될 수 있습니다.",
   "3. 퇴실시, 소지품을 잘 챙기고 정리정돈 및 청소를 하고 나와야 합니다.",
-  "4. 예약 후 노쇼나, 위 사항을 어길 경우 예약에 페널티가 있을 수 있습니다.",
+  "4. 예약 후 노쇼나, 위의 사항들을 어길 경우 페널티가 발생할 수 있습니다.",
 ];
 
-const reserveOptions = ["베르 1실", "베르 2실", "베르 3실", "베르 4실"];
+interface IReserveJoinBoxProps {
+  date: string;
+}
 
-const ReserveJoinBox = () => {
-  const [room, setRoom] = React.useState("베르 1실");
+const ReserveJoinBox = ({ date }: IReserveJoinBoxProps) => {
+  const [room, setRoom] = useRecoilState(roomStore);
   const [inputStudent, setInputStudent] = React.useState<string>("");
   const [students, setStudents] = React.useState<Array<string>>([]);
   const [isChecked, setIsChecked] = React.useState(false);
+  const { mutate } = useCreateReserveMutation();
 
   const handleStudentInputChange = (
     e: React.KeyboardEvent<HTMLInputElement>,
@@ -36,20 +42,27 @@ const ReserveJoinBox = () => {
     setStudents(students.filter((x) => x !== student));
   };
 
+  const handleCreateReserveClick = () => {
+    if (!room) return toast.error("베르실을 선택해주세요.");
+    if (!isChecked) return toast.error("숙지 사항에 동의해주세요.");
+
+    mutate({
+      berNumber: room,
+      reservationTime: date,
+      reservationUsersName: students.join(", "),
+    });
+    setStudents([]);
+    setRoom(0);
+  };
+
   return (
     <Container>
       <Column gap="6px">
-        <ReserveSelectTitle>베르실</ReserveSelectTitle>
-        <Select
-          options={reserveOptions}
-          defaultOption={room}
-          label=""
-          handler={setRoom}
-          width="100px"
-        />
+        <ReserveSelectTitle>선택된 베르실</ReserveSelectTitle>
+        <StyledTitle>{!room ? `선택하세요` : `베르 ${room}실`}</StyledTitle>
       </Column>
       <Column gap="16px">
-        <ReserveSelectTitle>학번/이름</ReserveSelectTitle>
+        <ReserveSelectTitle>팀원 학번/이름 입력</ReserveSelectTitle>
         <Row alignItems="center" gap="12px">
           <StyledInput
             value={inputStudent}
@@ -70,21 +83,23 @@ const ReserveJoinBox = () => {
             </StudentListItem>
           ))}
         </StudentList>
-        <ReserveSelectTitle>숙지 사항</ReserveSelectTitle>
-        <NoticeTextList>
-          {noticeTexts.map((noticeText) => (
-            <NoticeTextListItem key={noticeText}>
-              {noticeText}
-            </NoticeTextListItem>
-          ))}
-        </NoticeTextList>
+        <Column gap="6px">
+          <ReserveSelectTitle>숙지 사항</ReserveSelectTitle>
+          <NoticeTextList>
+            {noticeTexts.map((noticeText) => (
+              <NoticeTextListItem key={noticeText}>
+                {noticeText}
+              </NoticeTextListItem>
+            ))}
+          </NoticeTextList>
+        </Column>
         <CheckBox onClick={() => setIsChecked(!isChecked)}>
           <NoticeCheckText />
           <CheckButton isChecked={isChecked}>
             {isChecked && <CheckIcon />}
           </CheckButton>
         </CheckBox>
-        <SubmitButton />
+        <SubmitButton onClick={handleCreateReserveClick} />
       </Column>
     </Container>
   );
@@ -120,7 +135,7 @@ const InfomationText = styled.span`
   color: ${color.gray};
 
   &:after {
-    content: "사용하는 모든 학생을 추가해주세요. 엔터 키를 눌러 추가할 수 있어요.";
+    content: "본인을 제외한 사용하는 모든 학생을 추가해주세요. 엔터 키를 눌러 추가할 수 있어요.";
   }
 `;
 
@@ -149,11 +164,13 @@ const NoticeTextList = styled.ul`
 `;
 
 const NoticeTextListItem = styled.li`
-  ${font.p3};
+  ${font.p2};
   color: ${color.gray};
+  font-weight: 500;
 `;
 
 const CheckBox = styled.div`
+  width: fit-content;
   ${flex.HORIZONTAL};
   gap: 8px;
   cursor: pointer;
@@ -192,6 +209,11 @@ const SubmitButton = styled.button`
   &:after {
     content: "신청하기";
   }
+`;
+
+const StyledTitle = styled.span`
+  ${font.p1};
+  font-weight: 600;
 `;
 
 export default ReserveJoinBox;
