@@ -1,4 +1,3 @@
-import { DesktopIcon } from "@/assets/icons";
 import { Column } from "@/components/Flex";
 import { Aside } from "@/components/common";
 import { color, flex, font } from "@/styles";
