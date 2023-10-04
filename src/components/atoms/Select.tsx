@@ -9,8 +9,8 @@ interface ISelectProps {
   label: string;
   width?: string;
   handler:
-    | React.Dispatch<React.SetStateAction<string>>
-    | ((props: string) => void);
+    | React.Dispatch<React.SetStateAction<string | number>>
+    | ((props: string | number) => void);
 }
 
 const Select = ({
@@ -22,7 +22,7 @@ const Select = ({
 }: ISelectProps) => {
   const [isHover, setIsHover] = React.useState(true);
 
-  const toggleHandler = (option: string) => {
+  const toggleHandler = (option: string | number) => {
     handler(option);
     setIsHover(true);
   };
