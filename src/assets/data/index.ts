@@ -4,3 +4,4 @@ export { default as emptyClassLevel } from "./emptyClassLevel";
 export { default as emptyTimetable } from "./emptyTimetable";
 export { default as emptyInputPost } from "./emptyInputPost";
 export { default as emptyMealList } from "./emptyMealList";
+export { default as emptyReserve } from "./emptyReserve";
