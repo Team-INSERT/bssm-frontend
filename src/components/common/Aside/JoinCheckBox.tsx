@@ -69,7 +69,7 @@ const CheckButton = styled.button`
     background-color: ${color.content};
 
     &:after {
-      content: "입사 완료";
+      content: "미완성 기능";
     }
   }
 `;
