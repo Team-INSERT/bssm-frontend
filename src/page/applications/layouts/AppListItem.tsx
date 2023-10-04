@@ -4,20 +4,24 @@ import { Row, Column } from "@/components/Flex";
 import { color, font } from "@/styles";
 import { Arrow } from "@/assets/icons";
 
-const AppListItem = () => {
+interface IAppListItemProps {
+  name: string;
+  href: string;
+  content: string;
+}
+
+const AppListItem = ({ name, href, content }: IAppListItemProps) => {
   return (
     <Container>
       <Column gap="4px">
         <Row>
-          <AppName>BSM Deploy</AppName>
+          <AppName>{name}</AppName>
           <LinkBox>
-            <LinkText href="/" />
+            <LinkText href={href} target="_blank" />
             <Arrow direction="right" width={12} />
           </LinkBox>
         </Row>
-        <AppDescription>
-          웹사이트는 만들었는데 배포하기 어려울 때 배포를 도와주는 서비스입니다.
-        </AppDescription>
+        <AppDescription>{content}</AppDescription>
       </Column>
     </Container>
   );
@@ -25,12 +29,12 @@ const AppListItem = () => {
 
 const Container = styled.article`
   width: 100%;
-  height: 90px;
+  height: fit-content;
   background-color: ${color.white};
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 0px 32px;
+  padding: 16px 32px;
   box-shadow: 0 0 10px 0 rgba(144, 144, 144, 0.1);
   border-radius: 4px;
   gap: 4px;

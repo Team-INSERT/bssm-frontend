@@ -1,11 +1,12 @@
 import styled from "styled-components";
+import { applicaionList } from "@/fixture";
 import AppListItem from "./AppListItem";
 
 const AppList = () => {
   return (
     <Container>
-      {Array.from({ length: 7 }).map((_, x) => (
-        <AppListItem key={x} />
+      {applicaionList.map((app) => (
+        <AppListItem key={app.href} {...app} />
       ))}
     </Container>
   );
