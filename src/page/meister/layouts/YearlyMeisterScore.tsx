@@ -1,26 +1,28 @@
 import GraphIcon from "@/assets/icons/GraphIcon";
-import useDate from "@/hooks/useDate";
 import { Row } from "@/components/Flex";
 import { color, font } from "@/styles";
 import React from "react";
 import styled from "styled-components";
 import { getStatusColor } from "@/helpers";
+import { IMeister } from "@/interfaces";
 import MeisterChart from "../chart/MeisterChart";
 
-const YearlyMeisterScore = () => {
-  const { currentYearsWithSchool } = useDate();
+interface IYearlyMeisterScroeProps {
+  meisterData: IMeister;
+}
 
+const YearlyMeisterScore = ({ meisterData }: IYearlyMeisterScroeProps) => {
   return (
     <Container>
       <Row alignItems="center" gap="8px">
         <GraphIcon />
         <TitleText />
       </Row>
-      <MeisterChart />
+      <MeisterChart meisterData={meisterData} />
       <StatusBox>
-        {currentYearsWithSchool.map((year, index) => (
+        {["학년 평균", "내 점수", "최고 점수"].map((year, index) => (
           <Row key={year} alignItems="center" gap="4px">
-            <StatusCircle statusColor={getStatusColor(index)} />
+            <StatusCircle statuscolor={getStatusColor(index)} />
             <StatusText>{year}</StatusText>
           </Row>
         ))}
@@ -55,11 +57,11 @@ const StatusBox = styled.div`
   gap: 16px;
 `;
 
-const StatusCircle = styled.div<{ statusColor: string }>`
+const StatusCircle = styled.div<{ statuscolor: string }>`
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background-color: ${({ statusColor }) => statusColor};
+  background-color: ${({ statuscolor }) => statuscolor};
 `;
 
 const StatusText = styled.span`

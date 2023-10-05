@@ -1,37 +1,61 @@
 import { defaultProfile } from "@/assets/images";
 import { Column, Row } from "@/components/Flex";
 import { ImageWithFallback } from "@/components/atoms";
+import useUser from "@/hooks/useUser";
 import { color, font } from "@/styles";
 import React from "react";
 import styled from "styled-components";
 
-const MeisterProfileBox = () => {
+interface IMeisterProfileBoxProps {
+  meister: {
+    score: number;
+    positivePoint: number;
+    negativePoint: number;
+  };
+}
+
+const MeisterProfileBox = ({ meister }: IMeisterProfileBoxProps) => {
+  const { user, isLogined } = useUser();
+
   return (
     <Container>
-      <ImageWithFallback
-        src="https://auth.bssm.kro.kr/_next/image?url=https%3A%2F%2Fauth.bssm.kro.kr%2Fresource%2Fuser%2Fprofile%2F45.png&w=256&q=75"
-        fallbackSrc={defaultProfile}
-        alt="profile"
-        width={50}
-        height={50}
-        rounded
-      />
-      <Column>
-        <Row alignItems="center" gap="5px">
-          <Department>소프트웨어</Department>
-          <Grade>2</Grade>
-          <ClassNo>2</ClassNo>
-          <StudentNo>10</StudentNo>
-          <Name>박우빈</Name>
-        </Row>
-        <MeisterPoint>135.2</MeisterPoint>
-        <Row alignItems="center" gap="8px">
-          <CreditPoint>48</CreditPoint>
-          <Separator />
-          <DemeritPoint>22</DemeritPoint>
-        </Row>
-      </Column>
-      <MyPageButton />
+      {isLogined && (
+        <>
+          <ImageWithFallback
+            src={user.profile_image}
+            fallbackSrc={defaultProfile}
+            alt="profile"
+            width={50}
+            height={50}
+            rounded
+          />
+          <Column>
+            <Row alignItems="center" gap="5px">
+              <Department>
+                {user.grade >= 2 ? (
+                  <>
+                    {user.classNum <= 2 && "소프트웨어"}
+                    {user.classNum >= 3 && "임베디드소프트웨어"}
+                  </>
+                ) : (
+                  "통합"
+                )}
+              </Department>
+              <Grade>{user.grade}</Grade>
+              <ClassNo>{user.classNum}</ClassNo>
+              <StudentNo>{user.studentNumber}</StudentNo>
+              <Name>{user.name}</Name>
+            </Row>
+            <MeisterPoint>{meister.score}</MeisterPoint>
+            <Row alignItems="center" gap="8px">
+              <CreditPoint>{meister.positivePoint}</CreditPoint>
+              <Separator />
+              <DemeritPoint>{meister.negativePoint}</DemeritPoint>
+            </Row>
+          </Column>
+          <MyPageButton />
+        </>
+      )}
     </Container>
   );
 };

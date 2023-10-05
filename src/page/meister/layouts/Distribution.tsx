@@ -1,5 +1,6 @@
 import DistributionIcon from "@/assets/icons/DistributionIcon";
 import { Row } from "@/components/Flex";
+import { IMeister } from "@/interfaces";
 import { color, font } from "@/styles";
 import flex from "@/styles/flex";
 import React from "react";
@@ -11,7 +12,11 @@ const spiderChartValue = [
   { name: "학년 평균", color: color.spider_second },
 ];
 
-const Distribution = () => {
+interface IDistributionProps {
+  meisterData: IMeister;
+}
+
+const Distribution = ({ meisterData }: IDistributionProps) => {
   return (
     <Container>
       <Row alignItems="center" gap="4px">
@@ -19,7 +24,7 @@ const Distribution = () => {
         <TitleText />
       </Row>
       <RadarBox>
-        <RadarChart />
+        <RadarChart meisterData={meisterData} />
       </RadarBox>
       <StatusBox>
         {spiderChartValue.map((chart) => (

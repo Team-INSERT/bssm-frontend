@@ -1,3 +1,4 @@
+import { IMeister } from "@/interfaces";
 import React, { useState } from "react";
 import Radar from "react-d3-radar";
 
@@ -21,41 +22,45 @@ interface ChartData {
   sets: DataSet[];
 }
 
-const chartData: ChartData = {
-  variables: [
-    { key: "anxiety", label: "직업기초능력" },
-    { key: "illness", label: "전문기술역량" },
-    { key: "sucidal", label: "인성/직업의식" },
-    { key: "distress", label: "인문학적 소양" },
-    { key: "depression", label: "외국어 능력" },
-  ],
-  sets: [
-    {
-      key: "served",
-      label: "학년 평균",
-      values: {
-        anxiety: 20,
-        illness: 30,
-        sucidal: 26,
-        distress: 31,
-        openness: 8,
-      },
-    },
-    {
-      key: "civilians",
-      label: "Civilians",
-      values: {
-        anxiety: 20,
-        illness: 52,
-        sucidal: 20,
-        distress: 10,
-        openness: 24,
-      },
-    },
-  ],
-};
+interface IRadarChartProps {
+  meisterData: IMeister;
+}
 
-const RadarChart = () => {
+const RadarChart = ({ meisterData }: IRadarChartProps) => {
+  const chartData: ChartData = {
+    variables: [
+      { key: "a", label: "직업기초능력" },
+      { key: "b", label: "전문기술역량" },
+      { key: "c", label: "인성/직업의식" },
+      { key: "d", label: "인문학적 소양" },
+      { key: "e", label: "외국어 능력" },
+    ],
+    sets: [
+      {
+        key: "avg",
+        label: "학년 평균",
+        values: {
+          a: meisterData.avg.basicJobSkills,
+          b: meisterData.avg.professionalTech,
+          c: meisterData.avg.workEthic,
+          d: meisterData.avg.humanities,
+          e: meisterData.avg.foreignScore,
+        },
+      },
+      {
+        key: "my",
+        label: "내 점수",
+        values: {
+          a: meisterData.meister.basicJobSkills,
+          b: meisterData.meister.professionalTech,
+          c: meisterData.meister.workEthic,
+          d: meisterData.meister.humanities,
+          e: meisterData.meister.foreignScore,
+        },
+      },
+    ],
+  };
+
   const [highlighted, setHighlighted] = useState<Variable | null>(null);
 
   const onHover = (hovered: Variable | null) => {
