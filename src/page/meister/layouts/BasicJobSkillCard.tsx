@@ -11,11 +11,14 @@ import { getMeisterChapter } from "@/helpers";
 interface IStatusCard {
   chapter: string;
   score: number;
-  maxScore: number;
   statusColor: string;
 }
 
-const StatusCard = ({ chapter, score, statusColor, maxScore }: IStatusCard) => {
+const rankList = ["A", "B", "C", "D"];
+
+const scoreList = [100, 75, 50, 25];
+
+const BasicJobSkillCard = ({ chapter, score, statusColor }: IStatusCard) => {
   return (
     <Container>
       <Row width="100%" alignItems="center" justifyContent="space-between">
@@ -25,8 +28,8 @@ const StatusCard = ({ chapter, score, statusColor, maxScore }: IStatusCard) => {
         </Column>
         <CircularProgressBox>
           <CircularProgressbar
-            value={(score / maxScore) * 100}
-            text={`${Math.round((score / maxScore) * 100)}%`}
+            value={scoreList[score - 1]}
+            text={`${rankList[score - 1]}`}
             styles={buildStyles({
               textSize: "24px",
               pathColor: statusColor,
@@ -63,7 +66,7 @@ const ScoreBox = styled.div<{ statusColor: string }>`
   border-left: ${({ statusColor }) => `4px solid ${statusColor}`};
 
   &:after {
-    content: "점";
+    content: "등급";
   }
 `;
 
@@ -71,4 +74,4 @@ const CircularProgressBox = styled.div`
   width: 80px;
 `;
 
-export default StatusCard;
+export default BasicJobSkillCard;

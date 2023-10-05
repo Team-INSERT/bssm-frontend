@@ -21,3 +21,4 @@ export type { default as IPlan } from "./plan.interface";
 export type { default as IReserve } from "./reserve.interface";
 export type { default as IReserveList } from "./reserveList.interface";
 export type { default as ICreateReserve } from "./createReserve.interface";
+export type { default as IMeister } from "./meister.interface";

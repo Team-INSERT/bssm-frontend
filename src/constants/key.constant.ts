@@ -9,6 +9,9 @@ const KEY = {
   MEAL: "useMeal",
   CALENDER: "useCalender",
   RESERVE: "useReserve",
+  MEISTER: "useMeister",
+  MEISTER_DETAIL: "useMeisterDetail",
+  RANKING: "useRanking",
 } as const;
 
 export default KEY;
