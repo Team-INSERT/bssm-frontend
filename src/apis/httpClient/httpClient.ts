@@ -33,6 +33,13 @@ export class HttpClient {
     return this.api.get("", { ...HttpClient.clientConfig, ...requestConfig });
   }
 
+  getDetail(data: unknown, requestConfig?: AxiosRequestConfig) {
+    return this.api.post("/detail", data, {
+      ...HttpClient.clientConfig,
+      ...requestConfig,
+    });
+  }
+
   getById(requestConfig?: AxiosRequestConfig) {
     return this.api.get("/:id", {
       ...HttpClient.clientConfig,
@@ -171,4 +178,6 @@ export default {
   meal: new HttpClient("api/meal", axiosConfig),
   calender: new HttpClient("api/calender", axiosConfig),
   reserve: new HttpClient("api/ber", axiosConfig),
+  meister: new HttpClient("api/meister", axiosConfig),
+  ranking: new HttpClient("api/meister/ranking", axiosConfig),
 };
