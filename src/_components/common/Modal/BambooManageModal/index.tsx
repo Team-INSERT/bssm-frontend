@@ -1,7 +1,7 @@
 import { color, flex, font } from "@/_styles";
 import React from "react";
 import styled from "styled-components";
-import { useBambooPendingListQuery } from "@/insert.bamboo/services/query.service";
+import { useBambooPendingListQuery } from "@/_pages/bamboo/services/query.service";
 import BambooHeader from "./BambooHeader";
 import BambooManagePostListItem from "./BambooManagePostListItem";
 

@@ -1,6 +1,6 @@
 "use client";
 
-import CalenderPage from "@/insert.calender";
+import CalenderPage from "@/_pages/calender";
 
 const Calender = () => {
   return <CalenderPage />;

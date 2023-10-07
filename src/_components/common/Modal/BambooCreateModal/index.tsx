@@ -1,7 +1,7 @@
 import { XIcon } from "@/_assets/icons";
 import { Button } from "@/_components/atoms";
 import useModal from "@/_hooks/useModal";
-import { useCreateBambooMutation } from "@/insert.bamboo/services/mutation.service";
+import { useCreateBambooMutation } from "@/_pages/bamboo/services/mutation.service";
 import { color, flex, font } from "@/_styles";
 import React from "react";
 import styled from "styled-components";

@@ -1,6 +1,6 @@
 "use client";
 
-import MealPage from "@/insert.meal";
+import MealPage from "@/_pages/meal";
 import React from "react";
 
 const Meal = () => {

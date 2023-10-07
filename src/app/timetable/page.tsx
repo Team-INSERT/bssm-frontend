@@ -1,6 +1,6 @@
 "use client";
 
-import TimeTablePage from "@/insert.timetable";
+import TimeTablePage from "@/_pages/timetable";
 
 const TimeTable = () => {
   return <TimeTablePage />;
