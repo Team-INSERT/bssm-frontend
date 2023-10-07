@@ -1,6 +1,6 @@
 "use client";
 
-import MeisterPage from "@/page/meister";
+import MeisterPage from "@/insert.meister";
 
 const Meister = () => {
   return <MeisterPage />;

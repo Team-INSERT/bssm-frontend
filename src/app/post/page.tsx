@@ -1,6 +1,6 @@
 "use client";
 
-import ForumPage from "@/page/forum";
+import ForumPage from "@/insert.forum";
 
 const Post = () => {
   return <ForumPage />;

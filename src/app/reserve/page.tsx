@@ -1,6 +1,6 @@
 "use client";
 
-import ReservePage from "@/page/reserve";
+import ReservePage from "@/insert.reserve";
 
 const Reserve = () => {
   return <ReservePage />;

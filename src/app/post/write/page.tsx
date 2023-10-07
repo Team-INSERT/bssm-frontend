@@ -1,6 +1,6 @@
 "use client";
 
-import WritePage from "@/page/forum-write";
+import WritePage from "@/insert.forum-write";
 
 const Write = () => {
   return <WritePage />;

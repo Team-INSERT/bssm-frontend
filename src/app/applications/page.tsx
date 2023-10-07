@@ -1,6 +1,6 @@
 "use client";
 
-import ApplicationsPage from "@/page/applications";
+import ApplicationsPage from "@/insert.applications";
 import React from "react";
 
 const Applications = () => {

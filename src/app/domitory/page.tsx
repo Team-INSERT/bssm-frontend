@@ -1,6 +1,6 @@
 "use client";
 
-import DomitoryPage from "@/page/domitory";
+import DomitoryPage from "@/insert.domitory";
 
 const Domitory = () => {
   return <DomitoryPage />;

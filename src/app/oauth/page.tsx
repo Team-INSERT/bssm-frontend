@@ -1,6 +1,6 @@
 "use client";
 
-import OAuthPage from "@/page/oauth";
+import OAuthPage from "@/insert.oauth";
 
 const OAuth = () => {
   return <OAuthPage />;
