@@ -3,7 +3,7 @@ import { Column, Row } from "@/components/Flex";
 import { ImageWithFallback } from "@/components/atoms";
 import useTextarea from "@/hooks/useTextarea";
 import useUser from "@/hooks/useUser";
-import { useCreateRecommentMutation } from "@/page/forum-post/services/mutation.service";
+import { useCreateRecommentMutation } from "@/templates/forum-post/services/mutation.service";
 import { color, font } from "@/styles";
 import React from "react";
 import styled from "styled-components";

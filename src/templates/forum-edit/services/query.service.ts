@@ -1,4 +1,4 @@
-import { GET_UPDATE_POST } from "@/gql/post/queries";
+import { GET_UPDATE_POST } from "@/graphql/post/queries";
 import { useQuery } from "@apollo/client";
 
 interface IUseUpdatePostQueryProps {

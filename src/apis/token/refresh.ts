@@ -1,4 +1,4 @@
-import { TOKEN } from "@/constants/";
+import { TOKEN } from "@/constants";
 import Storage from "@/apis/storage";
 import axios from "axios";
 

@@ -1,4 +1,4 @@
-import { CREATE_POST } from "@/gql/post/queries";
+import { CREATE_POST } from "@/graphql/post/queries";
 import { useMutation } from "@apollo/client";
 
 export const useCreatePostMutation = () => {

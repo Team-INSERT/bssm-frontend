@@ -1,6 +1,6 @@
 "use client";
 
-import PostPage from "@/page/forum-post";
+import PostPage from "@/templates/forum-post";
 
 interface IPostAppPageParams {
   params: {

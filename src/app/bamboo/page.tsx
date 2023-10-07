@@ -1,6 +1,6 @@
 "use client";
 
-import BambooPage from "@/page/bamboo";
+import BambooPage from "@/templates/bamboo";
 
 const Bamboo = () => {
   return <BambooPage />;

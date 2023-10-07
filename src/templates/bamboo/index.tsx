@@ -1,6 +1,6 @@
+import { flex } from "@/styles";
 import { Aside } from "@/components/common";
 import { Row } from "@/components/Flex";
-import { flex } from "@/styles";
 import React from "react";
 import styled from "styled-components";
 import { HuggingFace, ShushingFace, ThinkingFace } from "@/assets/images";

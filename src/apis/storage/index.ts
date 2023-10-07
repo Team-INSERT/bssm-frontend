@@ -1,4 +1,4 @@
-import { StorageSettingKey, StorageTokenKey } from "@/types/";
+import { StorageSettingKey, StorageTokenKey } from "@/types";
 
 type StorageKey = StorageSettingKey | StorageTokenKey;
 

@@ -1,5 +1,5 @@
 import { KEY, ROUTER } from "@/constants";
-import { DELETE_POST } from "@/gql/post/queries";
+import { DELETE_POST } from "@/graphql/post/queries";
 import {
   useApolloClient,
   useMutation as useApolloMutation,

@@ -1,5 +1,5 @@
 import { IRecomment } from "@/interfaces";
-import { useRecommentListQuery } from "@/page/forum-post/services/query.service";
+import { useRecommentListQuery } from "@/templates/forum-post/services/query.service";
 import { color, flex } from "@/styles";
 import React from "react";
 import InfiniteScroll from "react-infinite-scroll-component";

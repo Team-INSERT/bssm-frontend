@@ -3,7 +3,7 @@ import { Column } from "@/components/Flex";
 import { Button, Input, Select } from "@/components/atoms";
 import useModal from "@/hooks/useModal";
 import useUser from "@/hooks/useUser";
-import { useAddCalenderPlanMutation } from "@/page/calender/services/mutation.service";
+import { useAddCalenderPlanMutation } from "@/templates/calender/services/mutation.service";
 import { color, flex, font } from "@/styles";
 import React from "react";
 import styled from "styled-components";

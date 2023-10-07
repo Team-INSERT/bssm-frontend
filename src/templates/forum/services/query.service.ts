@@ -1,5 +1,5 @@
 import { useApolloClient } from "@apollo/client";
-import { GET_POST_LIST } from "@/gql/post/queries";
+import { GET_POST_LIST } from "@/graphql/post/queries";
 import { PostCategoryType } from "@/types";
 import { KEY } from "@/constants";
 import { useInfiniteQuery } from "@tanstack/react-query";

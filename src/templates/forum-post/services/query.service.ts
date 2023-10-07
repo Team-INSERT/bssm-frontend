@@ -1,5 +1,5 @@
 import { IPostQuery } from "@/interfaces";
-import { GET_POST } from "@/gql/post/queries";
+import { GET_POST } from "@/graphql/post/queries";
 import { useQuery as useApolloQuery } from "@apollo/client";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { KEY } from "@/constants";

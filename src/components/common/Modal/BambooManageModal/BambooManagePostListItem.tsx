@@ -2,7 +2,7 @@ import { Row } from "@/components/Flex";
 import Button from "@/components/atoms/Button";
 import useDate from "@/hooks/useDate";
 import IBambooPendingPost from "@/interfaces/bambooPendingPost.interface";
-import { useAllowBambooMutation } from "@/page/bamboo/services/mutation.service";
+import { useAllowBambooMutation } from "@/templates/bamboo/services/mutation.service";
 import { color, flex, font } from "@/styles";
 import React from "react";
 import styled from "styled-components";
