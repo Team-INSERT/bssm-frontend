@@ -1,6 +1,6 @@
 "use client";
 
-import HomePage from "@/_pages/home";
+import HomePage from "@/templates/home";
 
 const Home = () => {
   return <HomePage />;

@@ -1,6 +1,6 @@
 "use client";
 
-import DomitoryPage from "@/_pages/domitory";
+import DomitoryPage from "@/templates/domitory";
 
 const Domitory = () => {
   return <DomitoryPage />;

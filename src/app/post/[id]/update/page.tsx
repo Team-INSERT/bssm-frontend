@@ -1,6 +1,6 @@
 "use client";
 
-import UpdatePage from "@/_pages/forum-edit";
+import UpdatePage from "@/templates/forum-edit";
 
 interface IPostUpdateAppPageParams {
   params: {

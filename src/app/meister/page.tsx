@@ -1,6 +1,6 @@
 "use client";
 
-import MeisterPage from "@/_pages/meister";
+import MeisterPage from "@/templates/meister";
 
 const Meister = () => {
   return <MeisterPage />;
