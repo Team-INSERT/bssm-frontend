@@ -1,5 +1,6 @@
 import React from "react";
 import MDViewer from "@uiw/react-markdown-preview";
+import { getXSSContent } from "@/helpers";
 
 interface MDViewerPropsType {
   content?: string;
@@ -8,7 +9,7 @@ interface MDViewerPropsType {
 const CustomViewer = ({ content }: MDViewerPropsType) => {
   return (
     <MDViewer
-      source={content}
+      source={getXSSContent(content)}
       wrapperElement={{
         "data-color-mode": "light",
       }}
