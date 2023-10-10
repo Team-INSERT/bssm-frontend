@@ -8,6 +8,7 @@ import MDEditor, {
   MDEditorProps,
   getCommands,
 } from "@uiw/react-md-editor";
+import rehypeSanitize from "rehype-sanitize";
 import { UploadIcon } from "@/assets/icons";
 import { getImageUrl } from "@/helpers";
 import useModal from "@/hooks/useModal";
@@ -53,6 +54,9 @@ const CustomEditor = ({ ...props }: ICustomEditorProps) => {
       {...props}
       preview="edit"
       commands={[...getCommands(), imageUploader]}
+      previewOptions={{
+        rehypePlugins: [[rehypeSanitize]],
+      }}
     />
   );
 };

@@ -1,6 +1,6 @@
 import React from "react";
 import MDViewer from "@uiw/react-markdown-preview";
-import { getXSSContent } from "@/helpers";
+import rehypeSanitize from "rehype-sanitize";
 
 interface MDViewerPropsType {
   content?: string;
@@ -9,10 +9,11 @@ interface MDViewerPropsType {
 const CustomViewer = ({ content }: MDViewerPropsType) => {
   return (
     <MDViewer
-      source={getXSSContent(content)}
+      source={content}
       wrapperElement={{
         "data-color-mode": "light",
       }}
+      rehypePlugins={[rehypeSanitize]}
     />
   );
 };
