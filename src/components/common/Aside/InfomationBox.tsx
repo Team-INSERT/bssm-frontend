@@ -21,7 +21,7 @@ const InfomationBox = ({ user, isLogined }: IInfomationBoxProps) => {
     <Container>
       {isLogined && (
         <ImageWithFallback
-          src={user.profile_image}
+          src={user.profile_image ?? "/"}
           fallbackSrc={defaultProfile}
           alt="profile"
           width={46}
