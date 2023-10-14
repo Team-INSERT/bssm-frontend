@@ -18,39 +18,48 @@ const ReserveMap = ({ reservedList }: IReserveMapProps) => {
   };
 
   return (
-    <Column gap="8px">
-      <Row gap="8px">
-        <CommonRoom
-          isReserved={reservedList.includes(1)}
-          isClicked={room === 1}
-          onClick={() => handleRoomButtonClick(1)}
-        />
-        <CommonRoom
-          isReserved={reservedList.includes(2)}
-          isClicked={room === 2}
-          onClick={() => handleRoomButtonClick(2)}
-        />
-        <CommonRoom
-          isReserved={reservedList.includes(3)}
-          isClicked={room === 3}
-          onClick={() => handleRoomButtonClick(3)}
-        />
-        <Wall />
-      </Row>
-      <Row gap="8px">
+    <Container>
+      <Column gap="8px" width="100%">
+        <Row gap="8px" width="100%" justifyContent="space-between">
+          <CommonRoom
+            isReserved={reservedList.includes(1)}
+            isClicked={room === 1}
+            onClick={() => handleRoomButtonClick(1)}
+          />
+          <CommonRoom
+            isReserved={reservedList.includes(2)}
+            isClicked={room === 2}
+            onClick={() => handleRoomButtonClick(2)}
+          />
+          <CommonRoom
+            isReserved={reservedList.includes(3)}
+            isClicked={room === 3}
+            onClick={() => handleRoomButtonClick(3)}
+          />
+        </Row>
         <CommunityHall />
+      </Column>
+      <Column gap="8px" width="30%">
+        <Wall />
         <LongRoom
           isReserved={reservedList.includes(4)}
           isClicked={room === 4}
           onClick={() => handleRoomButtonClick(4)}
         />
-      </Row>
-    </Column>
+      </Column>
+    </Container>
   );
 };
 
+const Container = styled.div`
+  width: 100%;
+  display: flex;
+  height: 100%;
+  gap: 8px;
+`;
+
 const CommonRoom = styled.div<{ isClicked?: boolean; isReserved?: boolean }>`
-  width: 10vw;
+  width: 100%;
   height: 8vh;
   cursor: pointer;
   ${({ isReserved }) =>
@@ -84,12 +93,12 @@ const CommonRoom = styled.div<{ isClicked?: boolean; isReserved?: boolean }>`
 `;
 
 const LongRoom = styled(CommonRoom)`
-  width: 13.3vw;
+  width: 100%;
   height: 12vw;
 `;
 
 const Wall = styled.div`
-  width: 10vw;
+  width: 100%;
   height: 8vh;
   background-color: ${color.light_gray};
   box-shadow: 4px 4px 15px 0 rgba(0, 0, 0, 0.05);
