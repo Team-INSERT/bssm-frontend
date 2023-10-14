@@ -9,20 +9,27 @@ const Aside = () => {
   const { user, isLogined } = useUser();
 
   return (
-    <Container>
-      <InfomationBox user={user} isLogined={isLogined} />
-      {isLogined && (
-        <Row gap="6px">
-          <MeisterBox />
-          <JoinCheckBox />
-        </Row>
-      )}
-    </Container>
+    <Layout>
+      <Container>
+        <InfomationBox user={user} isLogined={isLogined} />
+        {isLogined && (
+          <Row gap="6px" height="100%">
+            <MeisterBox />
+            <JoinCheckBox />
+          </Row>
+        )}
+      </Container>
+    </Layout>
   );
 };
 
+const Layout = styled.div`
+  display: flex;
+`;
+
 const Container = styled.aside`
-  width: 30vw;
+  width: 22vw;
+  height: 30vh;
   display: flex;
   gap: 6px;
   margin-left: auto;
