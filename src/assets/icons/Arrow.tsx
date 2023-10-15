@@ -14,9 +14,11 @@ const Arrow = ({
   height = 25,
   color = "#727272",
   direction = "bottom",
+  ...props
 }: SVGAttribute) => {
   return (
     <svg
+      {...props}
       width={width}
       height={height}
       viewBox="0 0 41 41"

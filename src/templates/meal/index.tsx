@@ -1,9 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import { emptyMealList } from "@/assets/data";
+import { Arrow } from "@/assets/icons";
 import { IMealList } from "@/interfaces";
 import { color, flex, font } from "@/styles";
-import { Column } from "@/components/Flex";
+import { Column, Row } from "@/components/Flex";
 import useDate from "@/hooks/useDate";
 import MealListItem from "./layouts/MealListItem";
 import { useMealQuery } from "./services/query.service";
@@ -15,20 +16,27 @@ const MealPage = () => {
   const [mealList, setMealList] = React.useState<IMealList>(emptyMealList);
   const { refetch } = useMealQuery({ date: currentDate });
 
-  React.useEffect(() => {
-    const handleSetDateKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "ArrowLeft")
-        setCurrentDate((p) => {
-          if (getDayOfWeek(p) === "월요일") return setMealDate(p, -3);
-          return setMealDate(p, -1);
-        });
-      if (e.key === "ArrowRight")
-        setCurrentDate((p) => {
-          if (getDayOfWeek(p) === "금요일") return setMealDate(p, 3);
-          return setMealDate(p, 1);
-        });
-    };
+  const handleDateChange = ({ op }: { op: "+" | "-" }) => {
+    if (op === "+") {
+      setCurrentDate((p) => {
+        if (getDayOfWeek(p) === "금요일") return setMealDate(p, 3);
+        return setMealDate(p, 1);
+      });
+    }
+    if (op === "-") {
+      setCurrentDate((p) => {
+        if (getDayOfWeek(p) === "월요일") return setMealDate(p, -3);
+        return setMealDate(p, -1);
+      });
+    }
+  };
 
+  const handleSetDateKeyDown = (e: KeyboardEvent) => {
+    if (e.key === "ArrowLeft") handleDateChange({ op: "-" });
+    if (e.key === "ArrowRight") handleDateChange({ op: "+" });
+  };
+
+  React.useEffect(() => {
     window.addEventListener("keydown", handleSetDateKeyDown);
     return () => {
       window.removeEventListener("keydown", handleSetDateKeyDown);
@@ -52,18 +60,39 @@ const MealPage = () => {
           <Description />
         </Column>
         <MealDate>{getMealDateTitle(currentDate)}</MealDate>
-        <MealList>
-          {mealList.keys.map((mealName) => (
-            <MealListItem
-              key={mealName}
-              mealName={mealName}
-              meal={mealList.data[mealName]}
-            />
-          ))}
-          {!mealList.keys.length && (
-            <NoMealText>{getMealDateTitle(currentDate)}</NoMealText>
-          )}
-        </MealList>
+        <Row
+          width="100%"
+          justifyContent="center"
+          alignItems="center"
+          gap="36px"
+        >
+          <Arrow
+            direction="left"
+            cursor="pointer"
+            onClick={() => handleDateChange({ op: "-" })}
+            color={color.on_tertiary}
+          />
+          <MealList>
+            {mealList.keys.map((mealName) => (
+              <MealListItem
+                keyLength={mealList.keys.length}
+                handleChange={handleDateChange}
+                key={mealName}
+                mealName={mealName}
+                meal={mealList.data[mealName]}
+              />
+            ))}
+            {!mealList.keys.length && (
+              <NoMealText>{getMealDateTitle(currentDate)}</NoMealText>
+            )}
+          </MealList>
+          <Arrow
+            cursor="pointer"
+            direction="right"
+            onClick={() => handleDateChange({ op: "+" })}
+            color={color.on_tertiary}
+          />
+        </Row>
       </Container>
     </Layout>
   );

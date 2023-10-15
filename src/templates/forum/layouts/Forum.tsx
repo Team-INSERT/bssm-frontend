@@ -3,8 +3,11 @@ import styled from "styled-components";
 import { useRouter } from "next/navigation";
 import { KEY, ROUTER } from "@/constants";
 import { Row } from "@/components/Flex";
+import useUser from "@/hooks/useUser";
+import LoginModal from "@/components/common/Modal/LoginModal";
 import { useQueryClient } from "@tanstack/react-query";
 import { useRecoilValue } from "recoil";
+import useModal from "@/hooks/useModal";
 import { color, flex, font } from "@/styles";
 import { categoriesStore } from "@/store/categories.store";
 import Categories from "./Categories";
@@ -14,10 +17,17 @@ import { usePostListQuery } from "../services/query.service";
 const Forum = () => {
   const queryClient = useQueryClient();
   const category = useRecoilValue(categoriesStore);
+  const { isLogined } = useUser();
+  const { openModal } = useModal();
   const postListQuery = usePostListQuery({ category });
   const router = useRouter();
 
   const handleCreateButtonClick = () => {
+    if (!isLogined) {
+      return openModal({
+        component: <LoginModal />,
+      });
+    }
     router.push(ROUTER.POST.WRITE);
   };
 
