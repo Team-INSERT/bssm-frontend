@@ -35,7 +35,7 @@ const CalenderListItem = ({ calender, isEmpty }: ICalenderListItemProps) => {
       <CalenderHead>{getDay(calender.date)}</CalenderHead>
       <CalenderBody>
         {calender.plans.map((plan) => (
-          <Plan onClick={() => handleDeletePlanClick(plan.id)}>
+          <Plan type={plan.type} onClick={() => handleDeletePlanClick(plan.id)}>
             {plan.title}
             <PlanWriterBox>
               <ProfileBox>
@@ -90,13 +90,12 @@ const CalenderBody = styled.section`
   gap: 8px;
 `;
 
-const Plan = styled.div`
+const Plan = styled.div<{ type: string }>`
   width: 100%;
   padding: 4px 10px;
   display: flex;
   align-items: center;
   ${font.p3};
-  background-color: ${color.primary_blue};
   color: ${color.white};
   cursor: pointer;
   position: relative;
@@ -106,12 +105,33 @@ const Plan = styled.div`
       ${flex.COLUMN_CENTER};
     }
   }
+
+  ${({ type }) => {
+    switch (type) {
+      case "CLASS":
+        return css`
+          background-color: ${color.primary_blue};
+        `;
+      case "GRADE":
+        return css`
+          background-color: ${color.primary_yellow};
+        `;
+      case "SCHOOL":
+        return css`
+          background-color: ${color.primary_red};
+        `;
+      default:
+        return css`
+          background-color: ${color.primary_mint};
+        `;
+    }
+  }}
 `;
 
 const PlanWriterBox = styled.div`
   display: none;
   width: fit-content;
-  padding: 10px;
+  padding: 2px;
   background-color: ${color.white};
   position: absolute;
   margin-top: -14vh;
