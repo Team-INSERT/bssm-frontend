@@ -1,6 +1,5 @@
-import { Column } from "@/components/Flex";
 import { Footer, Header, Modal } from "@/components/common";
-import { GlobalStyle } from "@/styles";
+import { GlobalStyle, flex } from "@/styles";
 import React from "react";
 import { ToastContainer, toast } from "react-toastify";
 import styled from "styled-components";
@@ -12,11 +11,11 @@ const LayoutProvider = ({ children }: React.PropsWithChildren) => {
       <StyledToastify autoClose={1000} position={toast.POSITION.TOP_RIGHT} />
       <GlobalStyle />
       <Modal />
-      <Column gap="6vh">
+      <Layout>
         <Header />
-        {children}
+        <Container>{children}</Container>
         <Footer />
-      </Column>
+      </Layout>
     </>
   );
 };
@@ -26,6 +25,15 @@ const StyledToastify = styled(ToastContainer)`
     color: black;
     font-size: 14px;
   }
+`;
+
+const Layout = styled.div`
+  ${flex.COLUMN};
+  gap: 6vh;
+`;
+
+const Container = styled.div`
+  min-height: 80vh;
 `;
 
 export default LayoutProvider;

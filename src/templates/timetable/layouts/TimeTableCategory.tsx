@@ -3,6 +3,7 @@ import { Column } from "@/components/Flex";
 import { Category } from "@/components/atoms";
 import { font } from "@/styles";
 import { getTimetableType } from "@/helpers";
+import Storage from "@/apis/storage";
 
 interface ITimeTableCategoryProps {
   weekdays: Array<string>;
@@ -19,9 +20,31 @@ const TimeTableCategory = ({
   timetableType,
   setTimetableType,
 }: ITimeTableCategoryProps) => {
+  const handleTimetableTypeChange = (
+    e: React.ChangeEvent<HTMLInputElement>,
+  ) => {
+    setTimetableType(e.target.id as "bar" | "table");
+    Storage.setItem("timetable_type", e.target.id);
+  };
+
   return (
     <Column gap="16px">
       <Title />
+      <Column gap="8px">
+        <Label>시간표 형식</Label>
+        <CategoryBox>
+          {["bar", "table"].map((type) => (
+            <Category
+              key={type}
+              id={type}
+              label={getTimetableType(type)}
+              checked={timetableType === type}
+              onChange={handleTimetableTypeChange}
+              name="date"
+            />
+          ))}
+        </CategoryBox>
+      </Column>
       {timetableType === "bar" && (
         <Column gap="8px">
           <Label>날짜</Label>
@@ -39,21 +62,6 @@ const TimeTableCategory = ({
           </CategoryBox>
         </Column>
       )}
-      <Column gap="8px">
-        <Label>시간표 형식</Label>
-        <CategoryBox>
-          {["bar", "table"].map((type) => (
-            <Category
-              key={type}
-              id={type}
-              label={getTimetableType(type)}
-              checked={timetableType === type}
-              onChange={(e) => setTimetableType(e.target.id as "bar" | "table")}
-              name="date"
-            />
-          ))}
-        </CategoryBox>
-      </Column>
     </Column>
   );
 };

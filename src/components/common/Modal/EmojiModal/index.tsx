@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { color } from "@/styles";
+import { color, flex } from "@/styles";
 import ModalList from "./ModalList";
 import ModalHeader from "./ModalHeader";
 
@@ -17,8 +17,13 @@ const EmojiModal = (direction: IEmojiModalProps) => {
   return (
     <>
       <Container {...direction}>
-        <ModalHeader handleClickCloseButton={onClose} />
-        <ModalList />
+        아직 지원하지 않는 기능이에요.
+        {false && (
+          <>
+            <ModalHeader handleClickCloseButton={onClose} />
+            <ModalList />
+          </>
+        )}
       </Container>
       <ModalBackground onClick={onClose} />
     </>
@@ -35,9 +40,9 @@ const Container = styled.div<{
   z-index: 10;
   width: 30vw;
   border-radius: 12px;
+  min-height: 20vh;
   height: fit-content;
-  display: flex;
-  flex-direction: column;
+  ${flex.COLUMN_CENTER};
   background-color: ${color.white};
   box-shadow: 2px 2px 10px 0 rgba(0, 0, 0, 0.1);
   ${({ top, right, bottom, left }) => css`

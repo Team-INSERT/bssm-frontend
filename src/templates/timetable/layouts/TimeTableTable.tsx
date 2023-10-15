@@ -13,32 +13,34 @@ const TimeTableTable = ({ dayTimeTable }: ITimeTableTableProps) => {
   const { weekdaysENGDetail: weekdays, translateDay } = useDate();
 
   return (
-    <Container>
-      <Column>
-        {Array.from({ length: 8 }).map((_, i) => (
-          <TableItem color={color.content}>
-            <TableHeadText>{i ? `${i}교시` : "교시 \\ 요일"}</TableHeadText>
-          </TableItem>
-        ))}
-      </Column>
-      {weekdays.map((weekday) => {
-        if (!dayTimeTable[weekday]) return;
-        return (
-          <TableBox>
+    !!Object.entries(dayTimeTable).length && (
+      <Container>
+        <Column>
+          {Array.from({ length: 8 }).map((_, i) => (
             <TableItem color={color.content}>
-              <TableHeadText>
-                {translateDay(weekday, { to: "KOR" })}요일
-              </TableHeadText>
+              <TableHeadText>{i ? `${i}교시` : "교시 \\ 요일"}</TableHeadText>
             </TableItem>
-            {dayTimeTable[weekday]?.map((timetable) => (
-              <TableItem color={color.white}>
-                <TableText>{timetable.subject}</TableText>
+          ))}
+        </Column>
+        {weekdays.map((weekday) => {
+          if (!dayTimeTable[weekday]) return;
+          return (
+            <TableBox>
+              <TableItem color={color.content}>
+                <TableHeadText>
+                  {translateDay(weekday, { to: "KOR" })}요일
+                </TableHeadText>
               </TableItem>
-            ))}
-          </TableBox>
-        );
-      })}
-    </Container>
+              {dayTimeTable[weekday]?.map((timetable) => (
+                <TableItem color={color.white}>
+                  <TableText>{timetable.subject}</TableText>
+                </TableItem>
+              ))}
+            </TableBox>
+          );
+        })}
+      </Container>
+    )
   );
 };
 
