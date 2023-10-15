@@ -46,6 +46,7 @@ const TimeTableBox = () => {
         <>
           {timetableType === "bar" && (
             <TimeTableBar
+              setSelectedDay={setSelectedDay}
               weekday={translateDay(selectedDay, { to: "ENG_DETAIL" })}
               dayTimeTable={dayTimeTable}
             />
