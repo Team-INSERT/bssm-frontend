@@ -1,7 +1,9 @@
 import { Column, Row } from "@/components/Flex";
 import { roomStore } from "@/store/room.store";
 import { color, flex, font } from "@/styles";
-import React from "react";
+import dayjs from "dayjs";
+import { useRouter } from "next/navigation";
+import React, { useState } from "react";
 import { useRecoilState } from "recoil";
 import styled, { css } from "styled-components";
 
@@ -9,18 +11,24 @@ interface IReserveMapProps {
   reservedList: Array<number>;
 }
 
-const ReserveMap = ({ reservedList }: IReserveMapProps) => {
+const HomeReserveMap = ({ reservedList }: IReserveMapProps) => {
   const [room, setRoom] = useRecoilState(roomStore);
+  const [date, setDate] = useState(dayjs().format("YYYY-MM-DD"));
+  const router = useRouter();
 
   const handleRoomButtonClick = (roomNumber: number) => {
     if (reservedList.includes(roomNumber)) return;
     setRoom(roomNumber);
   };
 
+  const handleReserveButtonClick = () => {
+    router.push(`/reserve?date=${date}`);
+  };
+
   return (
     <Container>
       <Column gap="8px" width="100%">
-        <Row gap="8px" width="100%" justifyContent="space-between">
+        <Row gap="8px" width="100%">
           <CommonRoom
             isReserved={reservedList.includes(1)}
             isClicked={room === 1}
@@ -37,10 +45,28 @@ const ReserveMap = ({ reservedList }: IReserveMapProps) => {
             onClick={() => handleRoomButtonClick(3)}
           />
         </Row>
-        <CommunityHall />
+        <InputContainer>
+          <Row gap="12px" justifyContent="space-between" alignItems="center">
+            <StyledInputWrap>
+              <StyledTitle>선택된 베르실</StyledTitle>
+              <StyledInput
+                value={room ? `베르 ${room}실` : "선택하세요"}
+                readOnly
+              />
+            </StyledInputWrap>
+            <StyledInputWrap>
+              <StyledTitle>선택된 날짜</StyledTitle>
+              <StyledInput
+                type="date"
+                onChange={(e) => setDate(e.target.value)}
+                value={date}
+              />
+            </StyledInputWrap>
+            <StyledButton onClick={handleReserveButtonClick} disabled={!room} />
+          </Row>
+        </InputContainer>
       </Column>
       <Column gap="8px" width="30%">
-        <Wall />
         <LongRoom
           isReserved={reservedList.includes(4)}
           isClicked={room === 4}
@@ -60,7 +86,7 @@ const Container = styled.div`
 
 const CommonRoom = styled.div<{ isClicked?: boolean; isReserved?: boolean }>`
   width: 100%;
-  height: 8vh;
+  height: 6vh;
   cursor: pointer;
   ${({ isReserved }) =>
     isReserved
@@ -87,36 +113,62 @@ const CommonRoom = styled.div<{ isClicked?: boolean; isReserved?: boolean }>`
         content: "선택중";
       }
     `}
-  box-shadow: 4px 4px 15px 0 rgba(0, 0, 0, 0.05);
+  box-shadow: 4px 4px 15px 0 rgba(0, 0, 0, 0.03);
   ${flex.CENTER};
   ${font.p3};
 `;
 
 const LongRoom = styled(CommonRoom)`
   width: 100%;
-  height: 12vw;
+  height: 20vh;
 `;
 
-const Wall = styled.div`
+const InputContainer = styled.div`
   width: 100%;
-  height: 8vh;
-  background-color: ${color.light_gray};
+  height: 13vh;
+  background-color: ${color.white};
   box-shadow: 4px 4px 15px 0 rgba(0, 0, 0, 0.05);
-  ${flex.CENTER};
-  ${font.p3};
+  padding: 14px;
+  display: ${flex.CENTER};
+  gap: 8px;
 `;
 
-const CommunityHall = styled.div`
-  width: 100%;
-  height: 12vw;
-  background-color: ${color.light_gray};
-  box-shadow: 4px 4px 15px 0 rgba(0, 0, 0, 0.03);
-  ${flex.CENTER};
-  ${font.H6};
+const StyledInputWrap = styled.div`
+  ${flex.COLUMN};
+  gap: 6px;
+  margin-top: auto;
+`;
 
+const StyledTitle = styled.div`
+  ${font.caption};
+`;
+
+const StyledInput = styled.input`
+  width: 120px;
+  padding: 6px 10px;
+  height: 30px;
+  background-color: ${color.white};
+  ${font.caption};
+  box-shadow: 4px 4px 15px 0 rgba(0, 0, 0, 0.05);
+`;
+
+const StyledButton = styled.button`
+  margin-top: auto;
+  border: none;
+  background-color: ${color.primary_blue};
+  padding: 6px 14px;
+  border-radius: 4px;
+  width: fit-content;
+  height: fit-content;
+  ${font.caption};
+  color: ${color.white};
   &:after {
-    content: "커뮤니티 홀";
+    content: "예약하기";
+  }
+
+  &:disabled {
+    background-color: ${color.on_tertiary};
   }
 `;
 
-export default ReserveMap;
+export default HomeReserveMap;

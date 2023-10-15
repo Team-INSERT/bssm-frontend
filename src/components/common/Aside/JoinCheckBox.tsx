@@ -19,7 +19,7 @@ const Container = styled.section`
   border-radius: 5px;
   background-color: ${color.white};
   display: flex;
-  padding: 18px 0;
+  padding: 22px 0;
   justify-content: space-between;
   flex-direction: column;
   align-items: center;

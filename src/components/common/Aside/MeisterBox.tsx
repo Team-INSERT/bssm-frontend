@@ -36,7 +36,7 @@ const Container = styled.section`
   border-radius: 5px;
   background-color: ${color.white};
   display: flex;
-  padding: 6px 0 6px 18px;
+  padding: 10px 0 10px 18px;
   flex-direction: column;
   justify-content: center;
   gap: 6px;

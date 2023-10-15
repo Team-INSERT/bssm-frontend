@@ -12,6 +12,7 @@ const KEY = {
   MEISTER: "useMeister",
   MEISTER_DETAIL: "useMeisterDetail",
   RANKING: "useRanking",
+  MAIN: "useMain",
 } as const;
 
 export default KEY;

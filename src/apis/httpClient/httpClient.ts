@@ -180,4 +180,5 @@ export default {
   reserve: new HttpClient("api/ber", axiosConfig),
   meister: new HttpClient("api/meister", axiosConfig),
   ranking: new HttpClient("api/meister/ranking", axiosConfig),
+  main: new HttpClient("api/main", axiosConfig),
 };

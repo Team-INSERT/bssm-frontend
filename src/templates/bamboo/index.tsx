@@ -62,7 +62,6 @@ const Container = styled.div`
 `;
 
 const AsideButtonBox = styled.div`
-  width: 21.4vw;
   ${flex.COLUMN};
   gap: 12px;
   margin-left: auto;

@@ -7,6 +7,7 @@ import React from "react";
 import dayjs from "dayjs";
 import styled from "styled-components";
 import { useRecoilValue } from "recoil";
+import { useSearchParams } from "next/navigation";
 import { reserveViewTypeStore } from "@/store/reserveViewType.store";
 import ReserveJoinBox from "./layouts/ReserveJoinBox";
 import ReserveCategories from "./layouts/ReserveCategories";
@@ -16,7 +17,10 @@ import ReserveList from "./layouts/ReserveList";
 
 const ReservePage = () => {
   const reserveViewType = useRecoilValue(reserveViewTypeStore);
-  const [date, setDate] = React.useState(dayjs().format("YYYY-MM-DD"));
+  const searchParams = useSearchParams();
+  const [date, setDate] = React.useState(
+    searchParams.get("date") || dayjs().format("YYYY-MM-DD"),
+  );
   const [reserve, setReserve] = React.useState<IReserveList>(emptyReserve);
   const { data, isSuccess, refetch } = useReserveListQuery({ date });
 
@@ -78,9 +82,9 @@ const Title = styled.span`
 `;
 
 const ReservationBox = styled.div`
-  width: fit-content;
+  width: 100%;
   height: fit-content;
-  padding: 10px 20px;
+  padding: 0px 20px;
   ${flex.COLUMN};
   gap: 12px;
 `;

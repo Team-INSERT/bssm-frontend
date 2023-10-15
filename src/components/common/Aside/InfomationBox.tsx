@@ -62,10 +62,10 @@ const InfomationBox = ({ user, isLogined }: IInfomationBoxProps) => {
 const Container = styled.main`
   ${flex.CENTER};
   width: 100%;
-  height: 85px;
+  height: 100%;
   background-color: ${color.white};
   gap: 8px;
-  padding: 0px 22px;
+  padding: 14px 22px;
   border-radius: 5px;
 
   @media screen and (max-width: 1074px) {
