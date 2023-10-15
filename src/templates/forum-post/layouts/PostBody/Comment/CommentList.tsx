@@ -21,7 +21,7 @@ const CommentList = ({ postId }: ICommentListBoxProps) => {
   return (
     <Container>
       <InfiniteScroll
-        dataLength={commentList?.flatMap(({ data }) => data).length || 1}
+        dataLength={commentList?.flatMap(({ data }) => data).length || 0}
         next={fetchNextPage}
         hasMore={hasNextPage || false}
         loader={
