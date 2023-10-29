@@ -3,6 +3,7 @@ type StorageSettingKey =
   | "viewAllChildComments"
   | "post_render_limit"
   | "timetable_type"
-  | "display";
+  | "display"
+  | "path";
 
 export default StorageSettingKey;

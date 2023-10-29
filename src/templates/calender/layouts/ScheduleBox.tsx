@@ -34,7 +34,7 @@ const ScheduleBox = () => {
   }, []);
 
   return (
-    <Row gap="12px">
+    <Row gap="12px" width="100%">
       <Arrow
         direction="left"
         cursor="pointer"
