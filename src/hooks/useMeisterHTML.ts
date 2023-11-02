@@ -123,19 +123,19 @@ export const useMeisterHTML = () => {
       .replaceAll("`", "")
       .replaceAll(
         "(상점 : ",
-        `\n<span style="font-size: 24px !important; font-weight: 600 !important;">상점 `,
+        `\n<span style="font-size: 20px !important; font-weight: 600 !important;">상점 `,
       )
       .replaceAll(
         "(벌점 : ",
-        `\n<span style="font-size: 24px !important; font-weight: 600 !important;">벌점 `,
+        `\n<span style="font-size: 20px !important; font-weight: 600 !important;">벌점 `,
       )
       .replaceAll("점)", "점</span>")
       .replaceAll("부여일 : ", "20")
       .replace(/상\d{2}-/gi, "")
       .replace(/기숙사\d{2}-/gi, "")
       .replace(/학교\d{2}-/gi, "")
-      .replace(/\(([^)]*선생님[^)]*)\)/g, "$1")
-      .replace(/·/gi, "asdfasfsf");
+      .replace(/\(([^)]*선생님[^)]*)\)/gi, "$1")
+      .replace(/\([^)]*\)/gi, "");
   };
 
   return { getBasicJobSkills, scoreParser, pointParser };

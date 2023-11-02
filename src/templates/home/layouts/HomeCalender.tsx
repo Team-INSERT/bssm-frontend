@@ -1,5 +1,6 @@
 import { color, flex, font } from "@/styles";
 import { CalenderIcon } from "@/assets/icons";
+import getPlanType from "@/helpers/getPlanType.helper";
 import React from "react";
 import styled from "styled-components";
 import HomeHead from "./HomeHead";
@@ -19,7 +20,7 @@ const HomeCalender = ({ calenders }: IHomeCalenderProps) => {
       <CalenderBody>
         {calenders.map((calender) => (
           <CalenderContent>
-            - {calender.title} ({calender.type})
+            - {calender.title} <span>{getPlanType(calender.type)}</span>
           </CalenderContent>
         ))}
       </CalenderBody>
@@ -43,10 +44,15 @@ const CalenderBody = styled.div`
 `;
 
 const CalenderContent = styled.p`
-  ${font.p3};
+  ${font.p2};
   padding-left: 6px;
   white-space: pre;
   line-height: 160%;
+
+  span {
+    ${font.p4};
+    color: ${color.gray};
+  }
 `;
 
 export default HomeCalender;
