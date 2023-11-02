@@ -1,31 +1,24 @@
 import styled from "styled-components";
 import { color, font } from "@/styles";
-import { SERVICE } from "@/constants";
 import { Row } from "@/components/Flex";
-
-const scores = [
-  {
-    name: SERVICE.MEISTER.NAME,
-    type: SERVICE.MEISTER.TYPE,
-  },
-  {
-    name: SERVICE.REWARD_POINTS.NAME,
-    type: SERVICE.REWARD_POINTS.TYPE,
-  },
-];
+import useMeister from "@/hooks/useMeister";
 
 const MeisterBox = () => {
+  const { meister } = useMeister();
   return (
     <Container>
-      {scores.map((score) => (
-        <ScoreHGroup key={score.type}>
-          <ScoreName>{score.name}</ScoreName>
-          <Row gap="4px">
-            <Score>{score.name === SERVICE.MEISTER.NAME ? 159.8 : 26}</Score>
-            <Rank>{score.name === SERVICE.MEISTER.NAME ? 11 : 4}</Rank>
-          </Row>
-        </ScoreHGroup>
-      ))}
+      <ScoreHGroup>
+        <ScoreName>인증제 점수</ScoreName>
+        <Row gap="4px">
+          <Score>{meister.score}</Score>
+        </Row>
+      </ScoreHGroup>
+      <ScoreHGroup>
+        <ScoreName>상벌점</ScoreName>
+        <Row gap="4px">
+          <Score>{meister.positivePoint - meister.negativePoint}</Score>
+        </Row>
+      </ScoreHGroup>
     </Container>
   );
 };

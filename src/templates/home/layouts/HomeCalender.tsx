@@ -4,20 +4,24 @@ import React from "react";
 import styled from "styled-components";
 import HomeHead from "./HomeHead";
 
-const HomeCalender = () => {
+interface IHomeCalenderProps {
+  calenders: Array<{
+    id: number;
+    title: string;
+    type: string;
+  }>;
+}
+
+const HomeCalender = ({ calenders }: IHomeCalenderProps) => {
   return (
     <Container>
       <HomeHead icon={<CalenderIcon />} title="오늘의 일정" href="/Calender" />
       <CalenderBody>
-        <CalenderType>학년일정</CalenderType>
-        <CalenderContent>
-          - asdmlkasnl
-          <br />
-          - asdmlkasnl
-          <br />
-          - asdmlkasnl
-          <br />- asdmlkasnl
-        </CalenderContent>
+        {calenders.map((calender) => (
+          <CalenderContent>
+            - {calender.title} ({calender.type})
+          </CalenderContent>
+        ))}
       </CalenderBody>
     </Container>
   );
@@ -36,11 +40,6 @@ const CalenderBody = styled.div`
   height: 100%;
   padding: 6px 24px;
   ${flex.COLUMN};
-`;
-
-const CalenderType = styled.span`
-  ${font.p3};
-  font-weight: 500;
 `;
 
 const CalenderContent = styled.p`

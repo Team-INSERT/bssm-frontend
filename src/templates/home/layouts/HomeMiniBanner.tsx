@@ -17,7 +17,8 @@ const HomeMiniBanner = ({ href }: IHomeMiniBanner) => {
 };
 
 const Container = styled(Link)`
-  width: 31.2vw;
+  width: 20vw;
+  height: 100%;
 `;
 
 const StyledBanner = styled(Image)`

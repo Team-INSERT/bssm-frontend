@@ -11,6 +11,7 @@ const KEY = {
   RESERVE: "useReserve",
   MEISTER: "useMeister",
   MEISTER_DETAIL: "useMeisterDetail",
+  MEISTER_ME: "useMeisterMe",
   RANKING: "useRanking",
   MAIN: "useMain",
 } as const;

@@ -18,7 +18,6 @@ interface IInfomationBoxProps {
 
 const InfomationBox = ({ user, isLogined }: IInfomationBoxProps) => {
   const router = useRouter();
-  const isLoginedStudent = isLogined && user.role === USER.STUDENT;
   const { openModal } = useModal();
 
   const handleLoginButtonClick = () => {
@@ -40,24 +39,20 @@ const InfomationBox = ({ user, isLogined }: IInfomationBoxProps) => {
           rounded
         />
       )}
-      {isLoginedStudent && (
-        <>
-          <Column>
-            <UserInfoBox>
-              <UserGrade>{user.grade}</UserGrade>
-              <UserClass>{user.classNum}</UserClass>
-              <UserStudentNumber>{user.studentNumber}</UserStudentNumber>
-            </UserInfoBox>
-            <Row gap="4px">
-              <UserName>{user.name}</UserName>
-              <UserType>{getUserRole(user.role)}</UserType>
-            </Row>
-          </Column>
-          <InfomationButton onClick={handleLoginButtonClick}>
-            내 정보
-          </InfomationButton>
-        </>
-      )}
+      <Column>
+        <UserInfoBox>
+          <UserGrade>{user.grade}</UserGrade>
+          <UserClass>{user.classNum}</UserClass>
+          <UserStudentNumber>{user.studentNumber}</UserStudentNumber>
+        </UserInfoBox>
+        <Row gap="4px">
+          <UserName>{user.name}</UserName>
+          <UserType>{getUserRole(user.role)}</UserType>
+        </Row>
+      </Column>
+      <InfomationButton onClick={handleLoginButtonClick}>
+        내 정보
+      </InfomationButton>
       {!isLogined && (
         <>
           <LoginText>로그인이 필요해요</LoginText>
