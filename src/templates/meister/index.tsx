@@ -369,7 +369,7 @@ const PointHTMLContent = styled.div`
   }
 
   li > div > div {
-    font-size: 20px !important;
+    font-size: 16px !important;
     font-weight: 500 !important;
     text-align: center !important;
     white-space: pre-wrap !important;
@@ -378,7 +378,7 @@ const PointHTMLContent = styled.div`
   }
 
   li > div > div:first-child > div {
-    font-size: 20px !important;
+    font-size: 18px !important;
     font-weight: 500 !important;
     color: black !important;
   }
