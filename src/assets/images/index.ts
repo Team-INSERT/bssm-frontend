@@ -8,3 +8,4 @@ export { default as ThinkingFace } from "./thinking_face.png";
 export { default as HuggingFace } from "./hugging_face.png";
 export { default as TestBanner } from "./test_banner.png";
 export { default as TestSmallBanner } from "./test_small_banner.png";
+export { default as PageNotFound } from "./page_not_found.png";

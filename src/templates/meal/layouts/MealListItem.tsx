@@ -11,11 +11,24 @@ interface IMealListItemProps {
     content: string;
     cal: number;
   };
+  keyLength: number;
+  handleChange: ({ op }: { op: "+" | "-" }) => void;
 }
 
-const MealListItem = ({ mealName, meal }: IMealListItemProps) => {
+const MealListItem = ({
+  mealName,
+  meal,
+  handleChange,
+  keyLength,
+}: IMealListItemProps) => {
+  const handleMealChangeClick = () => {
+    if (mealName === "MORNING") handleChange({ op: "-" });
+    if (mealName === "DINNER") handleChange({ op: "+" });
+    if (keyLength === 2 && mealName === "LUNCH") handleChange({ op: "+" });
+  };
+
   return (
-    <Container>
+    <Container onClick={handleMealChangeClick}>
       <MealHeader>
         <BlinkerBox />
         <Row gap="4px">
@@ -31,7 +44,7 @@ const MealListItem = ({ mealName, meal }: IMealListItemProps) => {
 };
 
 const Container = styled.div`
-  width: 24vw;
+  width: 21vw;
   height: 56vh;
   border-radius: 12px;
   background-color: ${color.white};
@@ -40,9 +53,10 @@ const Container = styled.div`
   transition: ease-in-out;
   transition-duration: 0.2s;
   white-space: pre-wrap;
+  cursor: pointer;
 
   &:hover {
-    width: 26vw;
+    width: 22vw;
     height: 58vh;
     transition: ease-in-out;
     transition-duration: 0.2s;

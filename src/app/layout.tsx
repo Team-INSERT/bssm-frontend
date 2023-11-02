@@ -1,4 +1,5 @@
 import Provider from "@/provider/provider.helper";
+import React from "react";
 
 export const metadata = {
   title: "BSM",

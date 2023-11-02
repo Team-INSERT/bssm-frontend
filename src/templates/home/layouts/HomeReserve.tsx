@@ -21,6 +21,10 @@ const Container = styled.div`
   height: 30vh;
   background-color: ${color.white};
   border-radius: 4px;
+
+  @media screen and (max-width: 1024px) {
+    display: none;
+  }
 `;
 
 const ReserveBox = styled.div`

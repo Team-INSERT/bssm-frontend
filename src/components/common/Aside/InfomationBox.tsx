@@ -1,13 +1,15 @@
 import styled from "styled-components";
-import Link from "next/link";
 import { color, font } from "@/styles";
-import { USER, ROUTER } from "@/constants";
+import { USER } from "@/constants";
 import { IUser } from "@/interfaces";
 import { Row, Column } from "@/components/Flex";
 import { getUserRole } from "@/helpers";
 import flex from "@/styles/flex";
 import { ImageWithFallback } from "@/components/atoms";
 import { defaultProfile } from "@/assets/images";
+import useModal from "@/hooks/useModal";
+import { useRouter } from "next/navigation";
+import LoginModal from "../Modal/LoginModal";
 
 interface IInfomationBoxProps {
   user: IUser;
@@ -15,7 +17,16 @@ interface IInfomationBoxProps {
 }
 
 const InfomationBox = ({ user, isLogined }: IInfomationBoxProps) => {
-  const ifLoginedStudent = isLogined && user.role === USER.STUDENT;
+  const router = useRouter();
+  const isLoginedStudent = isLogined && user.role === USER.STUDENT;
+  const { openModal } = useModal();
+
+  const handleLoginButtonClick = () => {
+    if (isLogined) router.push("/");
+    openModal({
+      component: <LoginModal />,
+    });
+  };
 
   return (
     <Container>
@@ -29,7 +40,7 @@ const InfomationBox = ({ user, isLogined }: IInfomationBoxProps) => {
           rounded
         />
       )}
-      {ifLoginedStudent && (
+      {isLoginedStudent && (
         <>
           <Column>
             <UserInfoBox>
@@ -42,15 +53,15 @@ const InfomationBox = ({ user, isLogined }: IInfomationBoxProps) => {
               <UserType>{getUserRole(user.role)}</UserType>
             </Row>
           </Column>
-          <InfomationButton href={ROUTER.MYPAGE}>내 정보</InfomationButton>
+          <InfomationButton onClick={handleLoginButtonClick}>
+            내 정보
+          </InfomationButton>
         </>
       )}
       {!isLogined && (
         <>
           <LoginText>로그인이 필요해요</LoginText>
-          <InfomationButton
-            href={process.env.NEXT_PUBLIC_OAUTH_URL || ROUTER.HOME}
-          >
+          <InfomationButton onClick={handleLoginButtonClick}>
             로그인
           </InfomationButton>
         </>
@@ -123,10 +134,11 @@ const UserType = styled.span`
   }
 `;
 
-const InfomationButton = styled(Link)`
+const InfomationButton = styled.button`
   ${flex.CENTER};
   ${font.btn3};
   padding: 4px 10px;
+  border: none;
   background-color: ${color.primary_blue};
   border-radius: 5px;
   margin-left: auto;

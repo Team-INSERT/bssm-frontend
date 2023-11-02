@@ -28,7 +28,7 @@ export const useCommentListQuery = ({
     queryKey: [KEY.COMMENT],
     queryFn: ({ pageParam = 0 }) => getPostCommentList({ id, pageParam }),
     getNextPageParam: (lastPage) => {
-      return lastPage.currentPage !== lastPage.totalPage - 1
+      return lastPage.currentPage !== lastPage.totalPage
         ? lastPage.currentPage + 1
         : undefined;
     },
@@ -43,7 +43,7 @@ export const useRecommentListQuery = ({
     queryKey: [KEY.RECOMMENT],
     queryFn: ({ pageParam = 0 }) => getRecommentList({ id, pageParam }),
     getNextPageParam: (lastPage) => {
-      return lastPage.currentPage !== lastPage.totalPage - 1
+      return lastPage.currentPage !== lastPage.totalPage
         ? lastPage.currentPage + 1
         : undefined;
     },

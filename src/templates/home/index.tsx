@@ -10,8 +10,6 @@ import HomeMainBanner from "./layouts/HomeMainBanner";
 import HomeCalender from "./layouts/HomeCalender";
 import HomePost from "./layouts/HomePost";
 import HomeRadarChart from "./layouts/HomeRadarChart";
-import HomeBamboo from "./layouts/HomeBamboo";
-import HomeMiniBanner from "./layouts/HomeMiniBanner";
 
 const HomePage = () => {
   const { data } = useMainQuery();
@@ -38,10 +36,6 @@ const HomePage = () => {
           </Column>
           <HomeRadarChart />
         </Row>
-        <Row gap="8px" width="100%">
-          <HomeBamboo />
-          <HomeMiniBanner href="https://buma.wiki" />
-        </Row>
       </Container>
     </Layout>
   );
@@ -55,7 +49,6 @@ const Layout = styled.div`
 
 const Container = styled.div`
   width: 76%;
-  height: 100vh;
   ${flex.COLUMN};
   gap: 8px;
 `;

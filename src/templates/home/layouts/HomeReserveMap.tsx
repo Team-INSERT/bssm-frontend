@@ -119,7 +119,7 @@ const CommonRoom = styled.div<{ isClicked?: boolean; isReserved?: boolean }>`
 `;
 
 const LongRoom = styled(CommonRoom)`
-  width: 100%;
+  width: 7vw;
   height: 20vh;
 `;
 
@@ -164,6 +164,12 @@ const StyledButton = styled.button`
   color: ${color.white};
   &:after {
     content: "예약하기";
+  }
+
+  @media screen and (max-width: 1200px) {
+    &:after {
+      content: "예약";
+    }
   }
 
   &:disabled {

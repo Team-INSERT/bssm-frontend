@@ -12,7 +12,7 @@ interface ITimeTableTableProps {
 const TimeTableTable = ({ dayTimeTable }: ITimeTableTableProps) => {
   const { weekdaysENGDetail: weekdays, translateDay } = useDate();
 
-  return (
+  return Object.entries(dayTimeTable).length ? (
     <Container>
       <Column>
         {Array.from({ length: 8 }).map((_, i) => (
@@ -39,6 +39,8 @@ const TimeTableTable = ({ dayTimeTable }: ITimeTableTableProps) => {
         );
       })}
     </Container>
+  ) : (
+    <> </>
   );
 };
 

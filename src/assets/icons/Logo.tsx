@@ -1,12 +1,10 @@
-import { SVGAttribute } from "@/interfaces";
 import styled from "styled-components";
 
-const Logo = ({ isPointable }: SVGAttribute) => {
+const Logo = ({ ...props }: React.SVGProps<SVGSVGElement>) => {
   return (
     <StyledSVG
-      cursor={isPointable ? "pointer" : ""}
-      width={20}
-      height={20}
+      {...props}
+      cursor="pointer"
       viewBox="0 0 41 40"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -209,9 +207,6 @@ const Logo = ({ isPointable }: SVGAttribute) => {
 };
 
 const StyledSVG = styled.svg`
-  width: 40px;
-  height: 40px;
-
   @media screen and (max-width: 1025px) {
     width: 34px;
     height: 34px;

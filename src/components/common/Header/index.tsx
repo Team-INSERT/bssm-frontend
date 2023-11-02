@@ -16,24 +16,24 @@ const Header = () => {
   >>(null);
 
   const handleMouseEnter = () => {
-    if (isHover) return setIsHover(true);
-    setDelayHandeler(setTimeout(() => setIsHover(true), 400));
+    if (isHover) return setIsHover((prev) => !prev);
+    setDelayHandeler(setTimeout(() => setIsHover((prev) => !prev), 300));
   };
 
   const handleMouseLeave = () => {
     if (!isHover && delayHandler) return clearTimeout(delayHandler);
-    setIsHover(false);
+    setIsHover((prev) => !prev);
   };
 
   return (
     <HeaderLayout
-      onMouseOver={handleMouseEnter}
+      onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
       <Layout>
         <Container>
           <Link href="/">
-            <Logo width={42} isPointable />
+            <Logo width={42} />
           </Link>
           <Navigation />
           <Setting onClick={() => openModal({ component: <SettingModal /> })} />
@@ -46,6 +46,7 @@ const Header = () => {
 
 const HeaderLayout = styled.div`
   ${flex.COLUMN};
+  background-color: green;
 `;
 
 const Layout = styled.div`

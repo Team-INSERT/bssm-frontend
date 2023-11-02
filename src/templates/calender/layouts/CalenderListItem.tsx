@@ -11,7 +11,7 @@ import styled, { css } from "styled-components";
 import { useDeleteCalenderPlanMutation } from "../services/mutation.service";
 
 interface ICalenderListItemProps {
-  calender: ICalenderItem;
+  calender?: ICalenderItem;
   isEmpty?: boolean;
 }
 
@@ -22,7 +22,7 @@ const CalenderListItem = ({ calender, isEmpty }: ICalenderListItemProps) => {
 
   const handleOpenModalClick = () => {
     openModal({
-      component: <PlanAddModal date={calender.date} />,
+      component: <PlanAddModal date={calender?.date || ""} />,
     });
   };
 
@@ -32,30 +32,34 @@ const CalenderListItem = ({ calender, isEmpty }: ICalenderListItemProps) => {
 
   return (
     <Container isEmpty={isEmpty}>
-      <CalenderHead>{getDay(calender.date)}</CalenderHead>
+      <CalenderHead>{getDay(calender?.date || "")}</CalenderHead>
       <CalenderBody>
-        {calender.plans.map((plan) => (
-          <Plan onClick={() => handleDeletePlanClick(plan.id)}>
-            {plan.title}
-            <PlanWriterBox>
-              <ProfileBox>
-                <ImageWithFallback
-                  width={20}
-                  height={20}
-                  src={plan.user.profileImage}
-                  fallbackSrc={defaultProfile}
-                  alt="프로필"
-                  rounded
-                />
-              </ProfileBox>
-              <Row gap="4px">
-                <PlanWriterText>{plan.user.nickName}</PlanWriterText>
-                <PlanTypes>{getClassName(plan.type)}</PlanTypes>
-              </Row>
-              {plan.user.id === user.id && <PlanWriterDeleteText />}
-            </PlanWriterBox>
-          </Plan>
-        ))}
+        {calender &&
+          calender.plans.map((plan) => (
+            <Plan
+              type={plan.type}
+              onClick={() => handleDeletePlanClick(plan.id)}
+            >
+              {plan.title}
+              <PlanWriterBox>
+                <ProfileBox>
+                  <ImageWithFallback
+                    width={20}
+                    height={20}
+                    src={plan.user.profileImage}
+                    fallbackSrc={defaultProfile}
+                    alt="프로필"
+                    rounded
+                  />
+                </ProfileBox>
+                <Row gap="4px">
+                  <PlanWriterText>{plan.user.nickName}</PlanWriterText>
+                  <PlanTypes>{getClassName(plan.type)}</PlanTypes>
+                </Row>
+                {plan.user.id === user.id && <PlanWriterDeleteText />}
+              </PlanWriterBox>
+            </Plan>
+          ))}
         <PlanAddButton onClick={handleOpenModalClick} />
       </CalenderBody>
     </Container>
@@ -73,6 +77,7 @@ const Container = styled.li<{ isEmpty?: boolean }>`
     `}
 `;
 
+// eslint-disable-next-line
 const CalenderHead = styled.header`
   ${font.H5};
   width: 100%;
@@ -90,13 +95,12 @@ const CalenderBody = styled.section`
   gap: 8px;
 `;
 
-const Plan = styled.div`
+const Plan = styled.div<{ type: string }>`
   width: 100%;
   padding: 4px 10px;
   display: flex;
   align-items: center;
   ${font.p3};
-  background-color: ${color.primary_blue};
   color: ${color.white};
   cursor: pointer;
   position: relative;
@@ -106,12 +110,33 @@ const Plan = styled.div`
       ${flex.COLUMN_CENTER};
     }
   }
+
+  ${({ type }) => {
+    switch (type) {
+      case "CLASS":
+        return css`
+          background-color: ${color.primary_blue};
+        `;
+      case "GRADE":
+        return css`
+          background-color: ${color.primary_yellow};
+        `;
+      case "SCHOOL":
+        return css`
+          background-color: ${color.primary_red};
+        `;
+      default:
+        return css`
+          background-color: ${color.primary_mint};
+        `;
+    }
+  }}
 `;
 
 const PlanWriterBox = styled.div`
   display: none;
   width: fit-content;
-  padding: 10px;
+  padding: 2px;
   background-color: ${color.white};
   position: absolute;
   margin-top: -14vh;

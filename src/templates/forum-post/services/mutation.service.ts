@@ -63,6 +63,7 @@ export const useDeletePostMutation = () => {
 
 export const useCreatePostCommentMutation = () => {
   const queryClient = useQueryClient();
+  const apolloClient = useApolloClient();
 
   return useMutation(
     (comment: IUsePostCommentMutationProps) => createPostComment(comment),
@@ -70,6 +71,7 @@ export const useCreatePostCommentMutation = () => {
       onSuccess: () => {
         toast.success("댓글을 작성했어요!");
         queryClient.invalidateQueries([KEY.COMMENT]);
+        apolloClient.cache.reset();
       },
     },
   );
@@ -91,11 +93,13 @@ export const useUpdatePostCommentMutation = () => {
 
 export const useDeletePostCommentMutation = () => {
   const queryClient = useQueryClient();
+  const apolloClient = useApolloClient();
 
   return useMutation((id: number) => deletePostComment(id), {
     onSuccess: () => {
       toast.success("댓글이 삭제되었어요.");
       queryClient.invalidateQueries([KEY.COMMENT]);
+      apolloClient.cache.reset();
     },
   });
 };

@@ -7,6 +7,8 @@ import { useAddCalenderPlanMutation } from "@/templates/calender/services/mutati
 import { color, flex, font } from "@/styles";
 import React from "react";
 import styled from "styled-components";
+import { toast } from "react-toastify";
+import getPlanType from "@/helpers/getPlanType.helper";
 
 interface IPlanAddModalProps {
   date: string;
@@ -21,12 +23,16 @@ const PlanAddModal = ({ date }: IPlanAddModalProps) => {
   const textareaRef = React.useRef<HTMLTextAreaElement>(null);
 
   const handleAddButtonClick = () => {
+    if (!title.trim()) return toast.error("내용을 입력해주세요!");
+    const gradeClassType = planType === "학급 일정" ? "CLASS" : "GRADE";
+    const type = planType === "학교 일정" ? "SCHOOL" : gradeClassType;
+
     mutate({
       title,
       priority: 0,
       date,
       color: "#000",
-      type: planType,
+      type,
       grade: user.grade,
       classNumber: user.classNum,
     });
@@ -56,8 +62,8 @@ const PlanAddModal = ({ date }: IPlanAddModalProps) => {
           <Select
             label=""
             width="100px"
-            options={["CLASS", "GRADE", "SCHOOL"]}
-            defaultOption={planType}
+            options={["학급 일정", "학년 일정", "학교 일정"]}
+            defaultOption={getPlanType(planType)}
             handler={setPlanType}
           />
         </Column>

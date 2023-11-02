@@ -3,6 +3,7 @@ import styled from "styled-components";
 import useDate from "@/hooks/useDate";
 import { useQueryClient } from "@tanstack/react-query";
 import { KEY } from "@/constants";
+import Storage from "@/apis/storage";
 import { emptyTimetable } from "@/assets/data";
 import TimeTableBar from "./TimeTableBar";
 import { useTimetableListQuery } from "../services/query.service";
@@ -16,7 +17,7 @@ const TimeTableBox = () => {
     getNowWeekDay({ type: "KOR" }),
   );
   const [timetableType, setTimetableType] = React.useState<"bar" | "table">(
-    "bar",
+    (Storage.getItem("timetable_type") as "bar" | "table") ?? "bar",
   );
 
   const [dayTimeTable, setDayTimeTable] = React.useState(emptyTimetable);
@@ -32,21 +33,28 @@ const TimeTableBox = () => {
 
   return (
     <Container>
-      <TimeTableCategory
-        weekdays={weekdays}
-        checked={selectedDay}
-        setChecked={setSelectedDay}
-        timetableType={timetableType}
-        setTimetableType={setTimetableType}
-      />
-      {timetableType === "bar" && (
-        <TimeTableBar
-          weekday={translateDay(selectedDay, { to: "ENG_DETAIL" })}
-          dayTimeTable={dayTimeTable}
+      <TimeTableLayoutBox>
+        <TimeTableCategory
+          weekdays={weekdays}
+          checked={selectedDay}
+          setChecked={setSelectedDay}
+          timetableType={timetableType}
+          setTimetableType={setTimetableType}
         />
-      )}
-      {timetableType === "table" && (
-        <TimeTableTable dayTimeTable={dayTimeTable} />
+      </TimeTableLayoutBox>
+      {!!dayTimeTable[translateDay(selectedDay, { to: "ENG_DETAIL" })] && (
+        <>
+          {timetableType === "bar" && (
+            <TimeTableBar
+              setSelectedDay={setSelectedDay}
+              weekday={translateDay(selectedDay, { to: "ENG_DETAIL" })}
+              dayTimeTable={dayTimeTable}
+            />
+          )}
+          {timetableType === "table" && (
+            <TimeTableTable dayTimeTable={dayTimeTable} />
+          )}
+        </>
       )}
     </Container>
   );
@@ -55,9 +63,15 @@ const TimeTableBox = () => {
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: fit-content;
   justify-content: center;
+  align-items: center;
   gap: 4vh;
+  width: 56%;
+`;
+
+const TimeTableLayoutBox = styled.div`
+  margin-right: auto;
 `;
 
 export default TimeTableBox;

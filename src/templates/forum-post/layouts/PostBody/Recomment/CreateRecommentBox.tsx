@@ -7,6 +7,7 @@ import { useCreateRecommentMutation } from "@/templates/forum-post/services/muta
 import { color, font } from "@/styles";
 import React from "react";
 import styled from "styled-components";
+import { toast } from "react-toastify";
 
 interface ICreateRecommentBoxProps {
   handleModeCancelClick: () => void;
@@ -29,6 +30,7 @@ const CreateRecommentBox = ({
   const textareaRef = React.useRef<HTMLTextAreaElement>(null);
 
   const handleCreateRecommentClick = () => {
+    if (!detail.trim()) return toast.error("내용을 입력해주세요.");
     mutate({ id, detail });
     handleModeCancelClick();
   };

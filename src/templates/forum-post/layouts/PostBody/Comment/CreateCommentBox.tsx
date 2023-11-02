@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { toast } from "react-toastify";
 import { color, font } from "@/styles";
 import { Emoji } from "@/assets/icons";
 import useEmoji from "@/hooks/useEmoji";
@@ -16,6 +17,7 @@ const CreateCommentBox = ({ postId: id }: ICreateCommentBoxProps) => {
   const { mutate } = useCreatePostCommentMutation();
 
   const handleCreateCommentClick = async () => {
+    if (!detail.trim()) return toast.error("내용을 입력해주세요.");
     mutate({ id, detail });
     setDetail("");
   };
