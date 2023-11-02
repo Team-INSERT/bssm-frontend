@@ -1,6 +1,7 @@
 import Storage from "@/apis/storage";
 import { Logo } from "@/assets/icons";
 import { ROUTER, TOKEN } from "@/constants";
+import useWindow from "@/hooks/useWindow";
 import { color, flex, font } from "@/styles";
 import { useRouter } from "next/navigation";
 import React from "react";
@@ -8,10 +9,13 @@ import styled from "styled-components";
 
 const LoginModal = () => {
   const router = useRouter();
+  const { isWindow } = useWindow();
 
   const handleLoginButtonClick = () => {
-    Storage.setItem(TOKEN.PATH, window.location.pathname);
-    router.push(process.env.NEXT_PUBLIC_OAUTH_URL || ROUTER.HOME);
+    if (isWindow) {
+      Storage.setItem(TOKEN.PATH, window.location.pathname);
+      router.push(process.env.NEXT_PUBLIC_OAUTH_URL || ROUTER.HOME);
+    }
   };
 
   return (

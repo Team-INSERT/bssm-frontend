@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { color, flex, font } from "@/styles";
+import useWindow from "@/hooks/useWindow";
 
 const navigationTypes = [
   {
@@ -21,17 +22,19 @@ const navigationTypes = [
 ];
 
 const Navigation = () => {
+  const { isWindow } = useWindow();
   return (
     <NavigationList>
-      {navigationTypes.map((navigation) => {
-        if (navigation.isDisplayNoneAtResponsive && window.innerWidth <= 768)
-          return;
-        return (
-          <NavigationListItem key={navigation.name}>
-            {navigation.name}
-          </NavigationListItem>
-        );
-      })}
+      {isWindow &&
+        navigationTypes.map((navigation) => {
+          if (navigation.isDisplayNoneAtResponsive && window.innerWidth <= 768)
+            return;
+          return (
+            <NavigationListItem key={navigation.name}>
+              {navigation.name}
+            </NavigationListItem>
+          );
+        })}
     </NavigationList>
   );
 };

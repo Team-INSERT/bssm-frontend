@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { color, flex, font } from "@/styles";
 import Link from "next/link";
+import useWindow from "@/hooks/useWindow";
 
 const navigations = [
   {
@@ -38,21 +39,24 @@ const navigations = [
 ];
 
 const SubNavigation = () => {
+  const { isWindow } = useWindow();
+
   return (
     <SubNavigationList>
-      {navigations.map((navigation) => {
-        if (navigation.isDisplayNoneAtResponsive && window.innerWidth <= 768)
-          return;
-        return (
-          <SubNavigationListItem key={navigation.key}>
-            {navigation.items.map((item) => (
-              <SubNavigationListItemLink key={item.href} href={item.href}>
-                {item.name}
-              </SubNavigationListItemLink>
-            ))}
-          </SubNavigationListItem>
-        );
-      })}
+      {isWindow &&
+        navigations.map((navigation) => {
+          if (navigation.isDisplayNoneAtResponsive && window.innerWidth <= 768)
+            return;
+          return (
+            <SubNavigationListItem key={navigation.key}>
+              {navigation.items.map((item) => (
+                <SubNavigationListItemLink key={item.href} href={item.href}>
+                  {item.name}
+                </SubNavigationListItemLink>
+              ))}
+            </SubNavigationListItem>
+          );
+        })}
     </SubNavigationList>
   );
 };
