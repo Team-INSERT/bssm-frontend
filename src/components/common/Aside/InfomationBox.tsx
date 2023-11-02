@@ -39,20 +39,24 @@ const InfomationBox = ({ user, isLogined }: IInfomationBoxProps) => {
           rounded
         />
       )}
-      <Column>
-        <UserInfoBox>
-          <UserGrade>{user.grade}</UserGrade>
-          <UserClass>{user.classNum}</UserClass>
-          <UserStudentNumber>{user.studentNumber}</UserStudentNumber>
-        </UserInfoBox>
-        <Row gap="4px">
-          <UserName>{user.name}</UserName>
-          <UserType>{getUserRole(user.role)}</UserType>
-        </Row>
-      </Column>
-      <InfomationButton onClick={handleLoginButtonClick}>
-        내 정보
-      </InfomationButton>
+      {isLogined && (
+        <>
+          <Column>
+            <UserInfoBox>
+              <UserGrade>{user.grade}</UserGrade>
+              <UserClass>{user.classNum}</UserClass>
+              <UserStudentNumber>{user.studentNumber}</UserStudentNumber>
+            </UserInfoBox>
+            <Row gap="4px">
+              <UserName>{user.name}</UserName>
+              <UserType>{getUserRole(user.role)}</UserType>
+            </Row>
+          </Column>
+          <InfomationButton onClick={handleLoginButtonClick}>
+            내 정보
+          </InfomationButton>
+        </>
+      )}
       {!isLogined && (
         <>
           <LoginText>로그인이 필요해요</LoginText>
@@ -71,7 +75,7 @@ const Container = styled.main`
   height: 100%;
   background-color: ${color.white};
   gap: 8px;
-  padding: 14px 22px;
+  padding: 4px 22px;
   border-radius: 5px;
 
   @media screen and (max-width: 1074px) {

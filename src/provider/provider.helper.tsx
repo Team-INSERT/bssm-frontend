@@ -9,15 +9,15 @@ import StyledComponentsProvider from "./styledComponentsProvider.helper";
 
 const Provider = ({ children }: React.PropsWithChildren) => {
   return (
-    <ReactQueryProvider>
-      <ApolloClientProvider>
-        <RecoilRoot>
-          <LayoutProvider>
-            <StyledComponentsProvider>{children}</StyledComponentsProvider>
-          </LayoutProvider>
-        </RecoilRoot>
-      </ApolloClientProvider>
-    </ReactQueryProvider>
+    <StyledComponentsProvider>
+      <ReactQueryProvider>
+        <ApolloClientProvider>
+          <RecoilRoot>
+            <LayoutProvider>{children}</LayoutProvider>
+          </RecoilRoot>
+        </ApolloClientProvider>
+      </ReactQueryProvider>
+    </StyledComponentsProvider>
   );
 };
 

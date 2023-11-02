@@ -8,7 +8,7 @@ const JoinCheckBox = () => {
         <Date>7월 1주차</Date>
         <RoomNumber>334</RoomNumber>
       </HGroup>
-      <CheckButton disabled />
+      <CheckButton />
     </Container>
   );
 };

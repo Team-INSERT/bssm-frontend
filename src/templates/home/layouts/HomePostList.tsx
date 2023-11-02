@@ -17,7 +17,7 @@ const HomePostList = ({ posts }: IHomePostListProps) => {
   const { formatDate } = useDate();
   return (
     <Container>
-      {posts.map((post) => (
+      {posts?.map((post) => (
         <PostListItem href={`${ROUTER.POST.LIST}/${post.id}`} key={post.id}>
           <StyledTitle>{post.title}</StyledTitle>
           <StyledDate>

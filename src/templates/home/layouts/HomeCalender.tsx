@@ -16,9 +16,9 @@ interface IHomeCalenderProps {
 const HomeCalender = ({ calenders }: IHomeCalenderProps) => {
   return (
     <Container>
-      <HomeHead icon={<CalenderIcon />} title="오늘의 일정" href="/Calender" />
+      <HomeHead icon={<CalenderIcon />} title="오늘의 일정" href="/calender" />
       <CalenderBody>
-        {calenders.map((calender) => (
+        {calenders?.map((calender) => (
           <CalenderContent>
             - {calender.title} <span>{getPlanType(calender.type)}</span>
           </CalenderContent>

@@ -17,7 +17,7 @@ const navigations = [
   {
     key: "기숙사 생활",
     items: [
-      { name: "🚪 (미완)", href: "/" },
+      { name: "🚪 입사 체크", href: "/" },
       { name: "☕️ 베르실 예약", href: "/reserve" },
     ],
     isDisplayNoneAtResponsive: false,

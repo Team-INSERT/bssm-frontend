@@ -18,7 +18,7 @@ const HomeBamboo = ({ allowedId, content }: IHomeBambooProps) => {
         href="/bamboo"
       />
       <StyledContent>
-        {content.length > 30 ? `${content}...` : content}
+        {content?.length > 30 ? `${content}...` : content}
       </StyledContent>
     </Container>
   );

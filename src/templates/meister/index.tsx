@@ -154,7 +154,7 @@ const MeisterPage = () => {
                   </StatusCardBox>
                   <Row width="100%" justifyContent="space-between">
                     {meisterData.isSuccess && (
-                      <YearlyMeisterScore meisterData={meister} />
+                      <YearlyMeisterScore meisterData={meisterData.data} />
                     )}
                     <Distribution meisterData={meister} />
                   </Row>
