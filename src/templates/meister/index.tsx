@@ -70,6 +70,7 @@ const MeisterPage = () => {
       setStudentInfo(
         A.substring(
           A.indexOf(
+            // eslint-disable-next-line
             `<div style=\"padding-top:10px; padding-bottom:10px; text-align:right;\">`,
           ),
           A.indexOf(`</div>`),
