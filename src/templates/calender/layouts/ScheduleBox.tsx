@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { color } from "@/styles";
-import { Column } from "@/components/Flex";
+import { Column, Row } from "@/components/Flex";
+import { Arrow } from "@/assets/icons";
 import DateBox from "./DateBox";
 import WeekBox from "./WeekBox";
 import CalenderList from "./CalenderList";
@@ -33,13 +34,31 @@ const ScheduleBox = () => {
   }, []);
 
   return (
-    <Container>
-      <DateBox currentMonth={currentMonth} />
-      <Column gap="18px">
-        <WeekBox />
-        <CalenderList currentMonth={currentMonth} calenderList={calenderList} />
-      </Column>
-    </Container>
+    <Row gap="12px" width="100%">
+      <Arrow
+        direction="left"
+        cursor="pointer"
+        onClick={() => setCurrentMonth((m) => (m <= 1 ? m : m - 1))}
+        color={color.on_tertiary}
+      />
+      <Container>
+        <DateBox currentMonth={currentMonth} />
+
+        <Column gap="18px">
+          <WeekBox />
+          <CalenderList
+            currentMonth={currentMonth}
+            calenderList={calenderList}
+          />
+        </Column>
+      </Container>
+      <Arrow
+        direction="right"
+        cursor="pointer"
+        onClick={() => setCurrentMonth((m) => (m >= 12 ? m : m + 1))}
+        color={color.on_tertiary}
+      />
+    </Row>
   );
 };
 

@@ -1,5 +1,9 @@
 export interface IToken {
-  [TOKEN: string]: "access_token" | "refresh_token" | "post_render_limit";
+  [TOKEN: string]:
+    | "access_token"
+    | "refresh_token"
+    | "post_render_limit"
+    | "path";
 }
 
 const TOKEN: IToken = {

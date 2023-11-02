@@ -16,6 +16,9 @@ const CalenderList = ({ currentMonth, calenderList }: ICalenderListProps) => {
 
   return (
     <Container>
+      {Array.from({ length: dayOfWeek }).map((_, i) => (
+        <CalenderListItem key={i} isEmpty />
+      ))}
       {calenderList?.map((calender) => (
         <CalenderListItem key={calender.date} calender={calender} />
       ))}

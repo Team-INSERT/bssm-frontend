@@ -12,8 +12,6 @@ import HomeMainBanner from "./layouts/HomeMainBanner";
 import HomeCalender from "./layouts/HomeCalender";
 import HomePost from "./layouts/HomePost";
 import HomeRadarChart from "./layouts/HomeRadarChart";
-import HomeBamboo from "./layouts/HomeBamboo";
-import HomeMiniBanner from "./layouts/HomeMiniBanner";
 
 const HomePage = () => {
   const { isSuccess, data } = useMainQuery();

@@ -10,11 +10,11 @@ export const getMeisterRanking = async (grade: number) => {
   return data;
 };
 
-export const getMeisterDetail = async () => {
+export const getMeisterDetail = async (student: string) => {
   const { data } = await httpClient.meister.getDetail({
-    grade: 2,
-    classNo: 3,
-    studentNo: 1,
+    grade: student[0],
+    classNo: student[1],
+    studentNo: +(student[2] + student[3]),
     pw: "",
   });
   return data;

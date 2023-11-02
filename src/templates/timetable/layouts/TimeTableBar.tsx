@@ -4,13 +4,19 @@ import { ITimetable } from "@/interfaces";
 import useTimetableBar from "@/hooks/useTimetableBar";
 import useDate from "@/hooks/useDate";
 import React from "react";
+import dayjs from "dayjs";
 
 interface ITimeTableBarProps {
   weekday: string;
   dayTimeTable: ITimetable;
+  setSelectedDay: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const TimeTableBar = ({ weekday, dayTimeTable }: ITimeTableBarProps) => {
+const TimeTableBar = ({
+  weekday,
+  dayTimeTable,
+  setSelectedDay,
+}: ITimeTableBarProps) => {
   const {
     scrollRef,
     isScrollBox,
@@ -18,11 +24,18 @@ const TimeTableBar = ({ weekday, dayTimeTable }: ITimeTableBarProps) => {
     handleTimetableBarScroll,
     handleTimetableButtonClick,
   } = useTimetableBar();
-  const { getDiffDayTime } = useDate();
+  const { weekdaysKOR, getDiffDayTime } = useDate();
+
+  const handleTimetable동기화ButtonClick = () => {
+    setSelectedDay(weekdaysKOR[dayjs().day()]);
+    handleTimetableButtonClick();
+  };
 
   return (
     <Container>
-      {isScrollBox && <TimetableButton onClick={handleTimetableButtonClick} />}
+      {isScrollBox && (
+        <TimetableButton onClick={handleTimetable동기화ButtonClick} />
+      )}
       <Box>
         <BarBox>
           <BarDate>{nowDate}</BarDate>

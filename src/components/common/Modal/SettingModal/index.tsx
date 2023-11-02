@@ -14,7 +14,7 @@ const SettingModal = () => {
 
 const Container = styled.div`
   width: 40vw;
-  height: 90vh;
+  height: fit-content;
   overflow-y: scroll;
   background-color: ${color.white};
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);

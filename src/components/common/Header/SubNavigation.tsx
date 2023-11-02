@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { color, flex, font } from "@/styles";
 import Link from "next/link";
+import useWindow from "@/hooks/useWindow";
 
 const navigations = [
   {
@@ -11,13 +12,15 @@ const navigations = [
       { name: "🕐 시간표", href: "/timetable" },
       { name: "🗓️ 캘린더", href: "/calender" },
     ],
+    isDisplayNoneAtResponsive: false,
   },
   {
     key: "기숙사 생활",
     items: [
-      { name: "🚪 입사 체크", href: "https://team-insert.com" },
+      { name: "🚪 (미완)", href: "/" },
       { name: "☕️ 베르실 예약", href: "/reserve" },
     ],
+    isDisplayNoneAtResponsive: false,
   },
   {
     key: "커뮤니티",
@@ -26,25 +29,34 @@ const navigations = [
       { name: "🎋 대나무숲", href: "/bamboo" },
       { name: "📊 랭킹(미완)", href: "/rank" },
     ],
+    isDisplayNoneAtResponsive: false,
   },
   {
     key: "기타",
     items: [{ name: "💼 외부 서비스", href: "/applications" }],
+    isDisplayNoneAtResponsive: true,
   },
 ];
 
 const SubNavigation = () => {
+  const { isWindow } = useWindow();
+
   return (
     <SubNavigationList>
-      {navigations.map((navigation) => (
-        <SubNavigationListItem key={navigation.key}>
-          {navigation.items.map((item) => (
-            <SubNavigationListItemLink key={item.href} href={item.href}>
-              {item.name}
-            </SubNavigationListItemLink>
-          ))}
-        </SubNavigationListItem>
-      ))}
+      {isWindow &&
+        navigations.map((navigation) => {
+          if (navigation.isDisplayNoneAtResponsive && window.innerWidth <= 768)
+            return;
+          return (
+            <SubNavigationListItem key={navigation.key}>
+              {navigation.items.map((item) => (
+                <SubNavigationListItemLink key={item.href} href={item.href}>
+                  {item.name}
+                </SubNavigationListItemLink>
+              ))}
+            </SubNavigationListItem>
+          );
+        })}
     </SubNavigationList>
   );
 };
@@ -68,6 +80,14 @@ const SubNavigationListItemLink = styled(Link)`
   font-weight: 500;
   width: 90px;
   cursor: pointer;
+
+  @media screen and (max-width: 570px) {
+    width: 85px;
+  }
+
+  @media screen and (max-width: 490px) {
+    width: 80px;
+  }
 `;
 
 export default SubNavigation;

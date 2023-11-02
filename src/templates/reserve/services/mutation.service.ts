@@ -2,6 +2,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { KEY } from "@/constants";
 import { ICreateReserve } from "@/interfaces";
 import { toast } from "react-toastify";
+import Swal from "sweetalert2";
 import { createReserve, deleteReserve } from "./api.service";
 
 export const useCreateReserveMutation = () => {
@@ -13,6 +14,14 @@ export const useCreateReserveMutation = () => {
       onSuccess: () => {
         queryClient.invalidateQueries([KEY.RESERVE]);
         toast.success("베르실 예약에 성공했어요!");
+      },
+      onError: () => {
+        Swal.fire({
+          title: "오류 발생",
+          text: "예약 가능한 날짜에 예약했는지, 혹은 같은 날에 중복으로 예약하진 않았는지 확인해주세요.",
+          icon: "error",
+          confirmButtonText: "확인",
+        });
       },
     },
   );

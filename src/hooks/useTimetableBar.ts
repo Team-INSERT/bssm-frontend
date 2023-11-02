@@ -1,10 +1,12 @@
 import React from "react";
 import useDate from "@/hooks/useDate";
+import useWindow from "./useWindow";
 
 const useTimetableBar = () => {
   const date = useDate();
   const [nowDate, setNowDate] = React.useState("");
   const [isScrollBox, setIsScrollBox] = React.useState(false);
+  const { isWindow } = useWindow();
 
   const scrollRef = React.useRef<HTMLDivElement>(null);
   const intervalRef = React.useRef<number | null>(null);
@@ -32,7 +34,8 @@ const useTimetableBar = () => {
 
   const synchronizeCurrentTime = () => {
     if (intervalRef.current && isScrollBox) return;
-    intervalRef.current = window.setInterval(현재시간과동기화, 1000);
+    if (isWindow)
+      intervalRef.current = window.setInterval(현재시간과동기화, 1000);
   };
 
   const handleTimetableButtonClick = () => {
@@ -41,7 +44,7 @@ const useTimetableBar = () => {
   };
 
   React.useEffect(() => {
-    if (isScrollBox) {
+    if (isScrollBox && isWindow) {
       window.clearInterval(intervalRef.current as number);
       intervalRef.current = null;
     }

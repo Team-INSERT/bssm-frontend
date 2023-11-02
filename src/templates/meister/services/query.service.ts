@@ -1,5 +1,7 @@
 import { KEY } from "@/constants";
 import { useQuery } from "@tanstack/react-query";
+import { useRecoilValue } from "recoil";
+import { searchStudentNumberStore } from "@/store/searchStudentNumber.store";
 import { getMeister, getMeisterDetail, getMeisterRanking } from "./api.service";
 
 export const useMeisterQuery = () => {
@@ -23,8 +25,9 @@ export const useMeisterRankingQuery = ({
 };
 
 export const useMeisterDetailQuery = () => {
+  const student = useRecoilValue(searchStudentNumberStore);
   const { data, ...queryRest } = useQuery([KEY.MEISTER_DETAIL], async () =>
-    getMeisterDetail(),
+    getMeisterDetail(student),
   );
   return { data, ...queryRest };
 };
