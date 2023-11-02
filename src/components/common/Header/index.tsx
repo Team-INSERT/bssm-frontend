@@ -33,7 +33,7 @@ const Header = () => {
       <Layout>
         <Container>
           <Link href="/">
-            <Logo width={42} isPointable />
+            <Logo width={42} />
           </Link>
           <Navigation />
           <Setting onClick={() => openModal({ component: <SettingModal /> })} />
