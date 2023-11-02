@@ -13,13 +13,9 @@ const CalenderList = ({ currentMonth, calenderList }: ICalenderListProps) => {
     .year(new Date().getFullYear())
     .month(currentMonth - 1)
     .date(1);
-  const dayOfWeek = firstDayOfMonth.day();
 
   return (
     <Container>
-      {Array.from({ length: dayOfWeek }).map((_, i) => (
-        <CalenderListItem key={i} calender={calenderList[0]} isEmpty />
-      ))}
       {calenderList?.map((calender) => (
         <CalenderListItem key={calender.date} calender={calender} />
       ))}

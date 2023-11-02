@@ -4,21 +4,21 @@ import React from "react";
 import styled from "styled-components";
 import HomeHead from "./HomeHead";
 
-const HomeMeal = () => {
+interface IHomeMealProps {
+  content: string;
+  cal: string;
+  name: string;
+}
+
+const HomeMeal = ({ content, cal, name }: IHomeMealProps) => {
   return (
     <Container>
       <HomeHead icon={<MealIcon />} title="오늘의 급식" href="/meal" />
       <MealBody>
-        <MealContent>
-          asdmlkasnl
-          <br />
-          asdmlkasnl
-          <br />
-          asdmlkasnl
-          <br />
-          asdmlkasnl
-        </MealContent>
-        <MealCalorie>852.1</MealCalorie>
+        <MealContent dangerouslySetInnerHTML={{ __html: content }} />
+        <MealCalorie>
+          {name}, {cal}
+        </MealCalorie>
       </MealBody>
     </Container>
   );
@@ -42,7 +42,8 @@ const MealBody = styled.div`
 const MealContent = styled.p`
   ${font.p3};
   white-space: pre;
-  line-height: 160%;
+  font-size: 12px;
+  line-height: 180%;
 `;
 
 const MealCalorie = styled.span`

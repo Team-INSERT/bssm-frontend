@@ -1,14 +1,28 @@
+import { ROUTER } from "@/constants";
+import useDate from "@/hooks/useDate";
 import { color, flex, font } from "@/styles";
+import Link from "next/link";
 import React from "react";
 import styled from "styled-components";
 
-const HomePostList = () => {
+interface IHomePostListProps {
+  posts: Array<{
+    id: number;
+    title: string;
+    createdAt: string;
+  }>;
+}
+
+const HomePostList = ({ posts }: IHomePostListProps) => {
+  const { formatDate } = useDate();
   return (
     <Container>
-      {Array.from({ length: 4 }).map((_, index) => (
-        <PostListItem key={index}>
-          <StyledTitle>asodnsaklcn</StyledTitle>
-          <StyledDate>2023.10.14.</StyledDate>
+      {posts.map((post) => (
+        <PostListItem href={`${ROUTER.POST.LIST}/${post.id}`} key={post.id}>
+          <StyledTitle>{post.title}</StyledTitle>
+          <StyledDate>
+            {formatDate(post.createdAt, { summary: true })}
+          </StyledDate>
         </PostListItem>
       ))}
     </Container>
@@ -22,9 +36,10 @@ const Container = styled.div`
   gap: 8px;
 `;
 
-const PostListItem = styled.div`
+const PostListItem = styled(Link)`
   width: 100%;
-  ${flex.VERTICAL};
+  display: flex;
+  align-items: center;
   padding: 0 20px;
 `;
 
