@@ -13,6 +13,7 @@ const CalenderList = ({ currentMonth, calenderList }: ICalenderListProps) => {
     .year(new Date().getFullYear())
     .month(currentMonth - 1)
     .date(1);
+  const dayOfWeek = firstDayOfMonth.day();
 
   return (
     <Container>
