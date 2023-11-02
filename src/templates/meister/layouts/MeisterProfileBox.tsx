@@ -1,6 +1,4 @@
-import { defaultProfile } from "@/assets/images";
 import { Column, Row } from "@/components/Flex";
-import { ImageWithFallback } from "@/components/atoms";
 import useUser from "@/hooks/useUser";
 import { color, font } from "@/styles";
 import React from "react";
@@ -12,39 +10,19 @@ interface IMeisterProfileBoxProps {
     positivePoint: number;
     negativePoint: number;
   };
+  name: string;
 }
 
-const MeisterProfileBox = ({ meister }: IMeisterProfileBoxProps) => {
-  const { user, isLogined } = useUser();
+const MeisterProfileBox = ({ meister, name }: IMeisterProfileBoxProps) => {
+  const { isLogined } = useUser();
 
   return (
     <Container>
       {isLogined && (
         <>
-          <ImageWithFallback
-            src={user.profile_image}
-            fallbackSrc={defaultProfile}
-            alt="profile"
-            width={50}
-            height={50}
-            rounded
-          />
           <Column>
             <Row alignItems="center" gap="5px">
-              <Department>
-                {user.grade >= 2 ? (
-                  <>
-                    {user.classNum <= 2 && "소프트웨어"}
-                    {user.classNum >= 3 && "임베디드소프트웨어"}
-                  </>
-                ) : (
-                  "통합"
-                )}
-              </Department>
-              <Grade>{user.grade}</Grade>
-              <ClassNo>{user.classNum}</ClassNo>
-              <StudentNo>{user.studentNumber}</StudentNo>
-              <Name>{user.name}</Name>
+              <Name>{name}</Name>
             </Row>
             <MeisterPoint>{meister.score}</MeisterPoint>
             <Row alignItems="center" gap="8px">
@@ -72,30 +50,6 @@ const Container = styled.div`
 const InfomationText = styled.span`
   ${font.H6};
   color: ${color.black};
-`;
-
-const Department = styled(InfomationText)`
-  &:after {
-    content: "개발과";
-  }
-`;
-
-const Grade = styled(InfomationText)`
-  &:after {
-    content: "학년";
-  }
-`;
-
-const ClassNo = styled(InfomationText)`
-  &:after {
-    content: "반";
-  }
-`;
-
-const StudentNo = styled(InfomationText)`
-  &:after {
-    content: "번";
-  }
 `;
 
 const Name = styled(InfomationText)``;
