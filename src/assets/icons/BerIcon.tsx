@@ -1,10 +1,11 @@
 import React from "react";
 
-const BerIcon = () => {
+const BerIcon = ({ ...props }: React.SVGProps<SVGSVGElement>) => {
   return (
     <svg
       width="20"
       height="21"
+      {...props}
       viewBox="0 0 20 21"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

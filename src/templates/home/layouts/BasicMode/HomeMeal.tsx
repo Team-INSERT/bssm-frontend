@@ -15,7 +15,14 @@ const HomeMeal = ({ content, cal, name }: IHomeMealProps) => {
     <Container>
       <HomeHead icon={<MealIcon />} title="오늘의 급식" href="/meal" />
       <MealBody>
-        <MealContent dangerouslySetInnerHTML={{ __html: content }} />
+        <MealContent
+          dangerouslySetInnerHTML={{
+            __html:
+              content.split("<br/>").length > 7
+                ? `${content.split("<br/>").slice(0, 7).join("<br/>")}...`
+                : content,
+          }}
+        />
         <MealCalorie>
           {name}, {cal}
         </MealCalorie>
