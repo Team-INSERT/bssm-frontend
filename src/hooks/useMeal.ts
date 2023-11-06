@@ -3,13 +3,10 @@ import dayjs from "dayjs";
 const useMeal = () => {
   const getMealTime = () => {
     const now = dayjs();
-    const dinnerTime = now.add(1, "hour").add(20, "minute");
-    const morningTime = now.add(7, "hour");
-    const lunchTime = now.add(8, "hour");
 
-    if (now.isAfter(dinnerTime)) return "DINNER";
-    if (now.isAfter(morningTime)) return "MORNING";
-    if (now.isAfter(lunchTime)) return "LUNCH";
+    if (now.isAfter(13)) return "DINNER";
+    if (now.isAfter(7)) return "LUNCH";
+    if (now.isAfter(19)) return "MORNING";
     return "MORNING";
   };
 

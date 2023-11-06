@@ -49,12 +49,13 @@ const MealBody = styled.div`
 const MealContent = styled.p`
   ${font.p3};
   white-space: pre;
-  font-size: 12px;
+  font-size: 11px;
   line-height: 180%;
 `;
 
 const MealCalorie = styled.span`
   ${font.caption};
+  font-size: 10px;
   color: ${color.gray};
   margin-left: auto;
 
