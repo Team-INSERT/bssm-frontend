@@ -16,33 +16,31 @@ const BasicMode = () => {
   const { isSuccess, data } = useMainQuery();
   const { getMealTime } = useMeal();
 
-  return (
-    isSuccess && (
-      <>
-        <Row gap="8px" width="100%">
-          <HomeMeal
-            {...data.meal.data[getMealTime()]}
-            name={getMealName(getMealTime())}
-          />
-          <HomeReserve />
-          <Aside />
-        </Row>
-        <Row gap="8px" width="100%">
-          <Column gap="8px" width="100%">
-            <HomeMainBanner href="/post" />
-            <Row gap="8px" width="100%">
-              <HomeCalender {...data.calender} />
-              <HomePost notice={data.notice} common={data.common} />
-            </Row>
-          </Column>
-          <Column gap="8px">
-            <HomeMiniBanner href="https://buma.wiki" />
-            <HomeBamboo {...data.bamboo} />
-          </Column>
-        </Row>
-      </>
-    )
-  );
+  return isSuccess ? (
+    <>
+      <Row gap="8px" width="100%">
+        <HomeMeal
+          {...data.meal.data[getMealTime()]}
+          name={getMealName(getMealTime())}
+        />
+        <HomeReserve />
+        <Aside />
+      </Row>
+      <Row gap="8px" width="100%">
+        <Column gap="8px" width="100%">
+          <HomeMainBanner href="/post" />
+          <Row gap="8px" width="100%">
+            <HomeCalender {...data.calender} />
+            <HomePost notice={data.notice} common={data.common} />
+          </Row>
+        </Column>
+        <Column gap="8px">
+          <HomeMiniBanner href="https://buma.wiki" />
+          <HomeBamboo {...data.bamboo} />
+        </Column>
+      </Row>
+    </>
+  ) : null;
 };
 
 export default BasicMode;
