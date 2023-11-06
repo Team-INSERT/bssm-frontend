@@ -23,6 +23,11 @@ const HomeCalender = ({ calenders }: IHomeCalenderProps) => {
             - {calender.title} <span>{getPlanType(calender.type)}</span>
           </CalenderContent>
         ))}
+        {!calenders.length && (
+          <CalenderContent>
+            <span>등록된 일정이 없어요.</span>
+          </CalenderContent>
+        )}
       </CalenderBody>
     </Container>
   );

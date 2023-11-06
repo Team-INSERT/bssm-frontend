@@ -35,6 +35,7 @@ const weekdaysKOR = ["일", "월", "화", "수", "목", "금", "토"];
 
 const useDate = () => {
   const { user } = useUser();
+  const dateObject = new Date();
 
   const currentYearsWithSchool = Array.from({ length: 3 }).map(
     (_, i) => user.enroll + i,
@@ -147,6 +148,7 @@ const useDate = () => {
     getDiffDayTime,
     getDiffNowDayTime,
     getDiffTimeProgress,
+    date: dateObject,
   };
 };
 

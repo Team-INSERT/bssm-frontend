@@ -1,50 +1,43 @@
 import React from "react";
 import styled from "styled-components";
-import { Aside } from "@/components/common";
+import Storage from "@/apis/storage";
 import { flex } from "@/styles";
-import { getMealName } from "@/helpers";
-import { Column, Row } from "@/components/Flex";
-import useMeal from "@/hooks/useMeal";
-import { useMainQuery } from "./services/query.service";
-import HomeMeal from "./layouts/HomeMeal";
-import HomeReserve from "./layouts/HomeReserve";
-import HomeMainBanner from "./layouts/HomeMainBanner";
-import HomeCalender from "./layouts/HomeCalender";
-import HomePost from "./layouts/HomePost";
-import HomeMiniBanner from "./layouts/HomeMiniBanner";
-import HomeBamboo from "./layouts/HomeBamboo";
+import { Category } from "@/components/atoms";
+import useWindow from "@/hooks/useWindow";
+import BasicMode from "./layouts/BasicMode";
+import RemoconMode from "./layouts/RemoconMode";
 
 const HomePage = () => {
-  const { isSuccess, data } = useMainQuery();
-  const { getMealTime } = useMeal();
+  const [viewMode, setViewMode] = React.useState("");
+  const { isWindow } = useWindow();
+
+  React.useEffect(() => {
+    setViewMode(Storage.getItem("home_view_mode") || "기본 모드");
+  }, [isWindow]);
+
+  const handleChangeClick = (modeName: string) => {
+    setViewMode(modeName);
+    Storage.setItem("home_view_mode", modeName);
+  };
 
   return (
     <Layout>
-      {isSuccess && (
-        <Container>
-          <Row gap="8px" width="100%">
-            <HomeMeal
-              {...data.meal.data[getMealTime()]}
-              name={getMealName(getMealTime())}
+      <Container>
+        <ModeBox>
+          {["기본 모드", "리모콘 모드"].map((modeName) => (
+            <Category
+              key={modeName}
+              id={modeName}
+              name="viewMode"
+              onChange={() => handleChangeClick(modeName)}
+              label={modeName}
+              checked={modeName === viewMode}
             />
-            <HomeReserve />
-            <Aside />
-          </Row>
-          <Row gap="8px" width="100%">
-            <Column gap="8px" width="100%">
-              <HomeMainBanner href="/post" />
-              <Row gap="8px" width="100%">
-                <HomeCalender {...data.calender} />
-                <HomePost notice={data.notice} common={data.common} />
-              </Row>
-            </Column>
-            <Column gap="8px">
-              <HomeMiniBanner href="https://buma.wiki" />
-              <HomeBamboo {...data.bamboo} />
-            </Column>
-          </Row>
-        </Container>
-      )}
+          ))}
+        </ModeBox>
+        {viewMode === "기본 모드" && <BasicMode />}
+        {viewMode === "리모콘 모드" && <RemoconMode />}
+      </Container>
     </Layout>
   );
 };
@@ -59,6 +52,13 @@ const Container = styled.div`
   width: 76%;
   ${flex.COLUMN};
   gap: 8px;
+`;
+
+const ModeBox = styled.div`
+  width: fit-content;
+  ${flex.VERTICAL};
+  flex-wrap: wrap;
+  gap: 12px;
 `;
 
 export default HomePage;

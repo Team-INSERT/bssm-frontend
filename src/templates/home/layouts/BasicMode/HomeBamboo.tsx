@@ -25,7 +25,7 @@ const HomeBamboo = ({ allowedId, content }: IHomeBambooProps) => {
 };
 
 const Container = styled.div`
-  width: 100%;
+  width: 20vw;
   height: 100%;
   background-color: ${color.white};
   border-radius: 4px;
