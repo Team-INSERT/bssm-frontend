@@ -3,6 +3,10 @@ import { getMealName } from "@/helpers";
 import { Column, Row } from "@/components/Flex";
 import { Aside } from "@/components/common";
 import useMeal from "@/hooks/useMeal";
+import useUser from "@/hooks/useUser";
+import useModal from "@/hooks/useModal";
+import LoginModal from "@/components/common/Modal/LoginModal";
+import { useDidMountEffect } from "@/hooks/useDidMountEffect";
 import { useMainQuery } from "../../services/query.service";
 import HomeMeal from "./HomeMeal";
 import HomeReserve from "./HomeReserve";
@@ -13,10 +17,20 @@ import HomeMiniBanner from "./HomeMiniBanner";
 import HomeBamboo from "./HomeBamboo";
 
 const BasicMode = () => {
+  const { openModal, closeModal } = useModal();
   const { isSuccess, data } = useMainQuery();
+  const { isLogined } = useUser();
   const { getMealTime } = useMeal();
 
-  return isSuccess ? (
+  useDidMountEffect(() => {
+    if (!isLogined)
+      return openModal({
+        component: <LoginModal />,
+      });
+    return closeModal();
+  }, [isLogined]);
+
+  return isSuccess && isLogined ? (
     <>
       <Row gap="8px" width="100%">
         <HomeMeal
