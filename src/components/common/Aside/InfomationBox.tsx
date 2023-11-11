@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { color, font } from "@/styles";
-import { USER } from "@/constants";
 import { IUser } from "@/interfaces";
 import { Row, Column } from "@/components/Flex";
 import { getUserRole } from "@/helpers";

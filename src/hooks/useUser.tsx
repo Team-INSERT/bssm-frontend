@@ -12,6 +12,7 @@ import Storage from "@/apis/storage";
 import { ERROR, TOKEN } from "@/constants";
 import { authorization, refresh } from "@/apis/token";
 import { isAxiosError } from "axios";
+import LoginModal from "@/components/common/Modal/LoginModal";
 
 interface UseUserOptions {
   authorizedPage?: boolean;
@@ -21,7 +22,6 @@ const useUser = (options?: UseUserOptions) => {
   const [user, setUser] = useRecoilState(userStore);
   const router = useRouter();
   const { openModal, visible } = useModal();
-  const { isWindow } = useWindow();
 
   const {
     data: userInfo,
@@ -45,6 +45,12 @@ const useUser = (options?: UseUserOptions) => {
   };
 
   React.useEffect(() => {
+    if (!Storage.getItem(TOKEN.ACCESS)) {
+      openModal({ component: <LoginModal /> });
+    }
+  }, [Storage]);
+
+  React.useEffect(() => {
     if (isAxiosError(error) && error.response) {
       const { code } = error.response.data;
 
@@ -57,12 +63,12 @@ const useUser = (options?: UseUserOptions) => {
   }, [setUser, userInfo]);
 
   React.useEffect(() => {
-    if (options?.authorizedPage && !isLoading && !userInfo && !visible) {
-      // openModal({
-      //   component: <LoginModal/>,
-      // });
+    if (!isLoading && !userInfo && !visible) {
+      openModal({
+        component: <LoginModal />,
+      });
     }
-  }, [options, userInfo, isLoading, router, visible, openModal, isWindow]);
+  }, [options, userInfo, isLoading, router, visible, openModal]);
 
   return { user, isLogined: !!userInfo, logout };
 };

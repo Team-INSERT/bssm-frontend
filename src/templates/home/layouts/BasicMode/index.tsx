@@ -17,18 +17,9 @@ import HomeMiniBanner from "./HomeMiniBanner";
 import HomeBamboo from "./HomeBamboo";
 
 const BasicMode = () => {
-  const { openModal, closeModal } = useModal();
   const { isSuccess, data } = useMainQuery();
   const { isLogined } = useUser();
   const { getMealTime } = useMeal();
-
-  useDidMountEffect(() => {
-    if (!isLogined)
-      return openModal({
-        component: <LoginModal />,
-      });
-    return closeModal();
-  }, [isLogined]);
 
   return isSuccess && isLogined ? (
     <>
