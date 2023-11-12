@@ -1,22 +1,23 @@
 import styled from "styled-components";
 import { color, font } from "@/styles";
 import { Row } from "@/components/Flex";
-import useMeister from "@/hooks/useMeister";
+import useAside from "@/hooks/useAside";
 
 const MeisterBox = () => {
-  const { meister } = useMeister();
+  const { asideInfo } = useAside();
   return (
     <Container>
       <ScoreHGroup>
         <ScoreName>인증제 점수</ScoreName>
         <Row gap="4px">
-          <Score>{meister.score}</Score>
+          <Score>{asideInfo.score}</Score>
+          <Rank>{asideInfo.ranking}</Rank>
         </Row>
       </ScoreHGroup>
       <ScoreHGroup>
         <ScoreName>상벌점</ScoreName>
         <Row gap="4px">
-          <Score>{meister.positivePoint - meister.negativePoint}</Score>
+          <Score>{asideInfo.positivePoint - asideInfo.negativePoint}</Score>
         </Row>
       </ScoreHGroup>
     </Container>

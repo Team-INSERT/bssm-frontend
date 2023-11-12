@@ -1,14 +1,23 @@
 import styled from "styled-components";
 import { color, font } from "@/styles";
+import useAside from "@/hooks/useAside";
 
 const JoinCheckBox = () => {
+  const { asideInfo } = useAside();
   return (
     <Container>
-      <HGroup>
-        <Date>7월 1주차</Date>
-        <RoomNumber>334</RoomNumber>
-      </HGroup>
-      <CheckButton />
+      {asideInfo.room && (
+        <HGroup>
+          <Date>
+            {`${asideInfo.room.yearSemester.year}`.substring(2, 4)}년{" "}
+            {asideInfo.room.yearSemester.semester}학기
+          </Date>
+          <RoomNumber>
+            {asideInfo.room.dormitoryType}동 {asideInfo.room.roomNumber}
+          </RoomNumber>
+        </HGroup>
+      )}
+      <CheckButton disabled={asideInfo.isCheckIn} />
     </Container>
   );
 };
@@ -46,7 +55,7 @@ const Date = styled.span`
 `;
 
 const RoomNumber = styled.span`
-  ${font.H4};
+  ${font.H5};
 
   &:after {
     content: "호";
@@ -69,7 +78,7 @@ const CheckButton = styled.button`
     background-color: ${color.content};
 
     &:after {
-      content: "미완성 기능";
+      content: "입사 완료";
     }
   }
 `;
