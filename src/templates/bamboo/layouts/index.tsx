@@ -10,7 +10,7 @@ import { useBamboo } from "../hooks";
 import { BambooPostType } from "../interfaces";
 
 const BambooPage = () => {
-  const { isAdmin, handleManageButtonClick, handleCreateButtonClick } =
+  const { isAdmin, handleOpenCreateModalClick, handleOpenManageModalClick } =
     useBamboo();
   const { bambooList, fetchNextPage, dataLength, hasMore } =
     useBambooListQuery();
@@ -21,11 +21,11 @@ const BambooPage = () => {
       <SubTitleText>
         말 못할 고민이나 사연들을 익명으로 편하게 이야기해봐요.
       </SubTitleText>
-      <Button color={color.primary_blue} onClick={handleCreateButtonClick}>
+      <Button color={color.primary_blue} onClick={handleOpenCreateModalClick}>
         제보하기
       </Button>
       {isAdmin && (
-        <Button color={color.primary_blue} onClick={handleManageButtonClick}>
+        <Button color={color.primary_blue} onClick={handleOpenManageModalClick}>
           글 관리하기
         </Button>
       )}

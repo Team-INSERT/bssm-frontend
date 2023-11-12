@@ -1,20 +1,16 @@
-import { XIcon } from "@/assets/icons";
 import { Button } from "@/components/atoms";
 import useModal from "@/hooks/useModal";
-import { useCreateBambooMutation } from "@/templates/bamboo/services/mutation.service";
 import { color, flex, font } from "@/styles";
 import React from "react";
 import styled from "styled-components";
+import { useBamboo } from "../hooks";
+import { ModalCloseIcon } from "../assets/icons";
 
 const BambooCreateModal = () => {
   const { closeModal } = useModal();
-  const { mutate } = useCreateBambooMutation();
   const [content, setContent] = React.useState("");
   const textareaRef = React.useRef<HTMLTextAreaElement>(null);
-
-  const handleAcceptButtonClick = () => {
-    mutate(content);
-  };
+  const { handleCreateButtonClick } = useBamboo();
 
   React.useEffect(() => {
     if (textareaRef.current) textareaRef.current.focus();
@@ -22,19 +18,20 @@ const BambooCreateModal = () => {
 
   return (
     <Container>
-      <Header>
-        <BambooTitle />
-        <CloseButton>
-          <XIcon onClick={closeModal} />
-        </CloseButton>
-      </Header>
+      <BambooModalHeader>
+        <TitleText>🎋 대나무숲 제보하기</TitleText>
+        <ModalCloseIcon onClick={closeModal} />
+      </BambooModalHeader>
       <BambooTextArea
         ref={textareaRef}
         onChange={(e) => setContent(e.target.value)}
         value={content}
       />
       <BambooButtonBox>
-        <Button onClick={handleAcceptButtonClick} color={color.primary_blue}>
+        <Button
+          onClick={() => handleCreateButtonClick(content)}
+          color={color.primary_blue}
+        >
           제보하기
         </Button>
       </BambooButtonBox>
@@ -52,25 +49,17 @@ const Container = styled.div`
   ${flex.COLUMN};
 `;
 
-const Header = styled.header`
+const BambooModalHeader = styled.header`
   width: 100%;
-  padding: 10px 0 10px 18px;
-  display: flex;
-  align-items: center;
+  padding: 10px 18px;
+  ${flex.HORIZONTAL};
+  justify-content: space-between;
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
 `;
 
-const BambooTitle = styled.div`
+const TitleText = styled.div`
   ${font.p2};
   font-weight: 500;
-
-  &:after {
-    content: "🎋 대나무숲 제보하기";
-  }
-`;
-
-const CloseButton = styled.button`
-  margin: 0 20px 0 auto;
 `;
 
 const BambooTextArea = styled.textarea`

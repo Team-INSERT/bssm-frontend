@@ -1,7 +1,7 @@
 import { Button } from "@/components/atoms";
 import useDate from "@/hooks/useDate";
 import { color, flex, font } from "@/styles";
-import React from "react";
+import { Row } from "@/components/Flex";
 import styled from "styled-components";
 import { BambooPostListItemProps } from "../interfaces/@props";
 import { useBamboo } from "../hooks";
@@ -11,9 +11,10 @@ const BambooPostListItem = ({
   createdAt,
   content,
   isAdmin,
+  isManageMode,
 }: BambooPostListItemProps) => {
   const { formatDate } = useDate();
-  const { handleDeleteButtonClick } = useBamboo();
+  const { handleAcceptButtonClick, handleDeleteButtonClick } = useBamboo();
 
   return (
     <Container>
@@ -23,12 +24,22 @@ const BambooPostListItem = ({
       </InfomationBox>
       <PostContentText>{content}</PostContentText>
       {isAdmin && (
-        <Button
-          onClick={() => handleDeleteButtonClick(allowedId)}
-          color={color.primary_red}
-        >
-          삭제
-        </Button>
+        <Row gap="8px">
+          {isManageMode && (
+            <Button
+              onClick={() => handleAcceptButtonClick(allowedId)}
+              color={color.primary_blue}
+            >
+              승인
+            </Button>
+          )}
+          <Button
+            onClick={() => handleDeleteButtonClick(allowedId)}
+            color={color.primary_red}
+          >
+            삭제
+          </Button>
+        </Row>
       )}
     </Container>
   );

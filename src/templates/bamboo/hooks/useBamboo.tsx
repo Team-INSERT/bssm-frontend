@@ -1,36 +1,52 @@
-import { BambooManageModal } from "@/components/common";
-import BambooCreateModal from "@/components/common/Modal/BambooCreateModal";
 import { isAdmin } from "@/helpers";
 import useModal from "@/hooks/useModal";
 import useUser from "@/hooks/useUser";
-import { useDeleteBambooMutation } from "../services/mutation.service";
+import BambooCreateModal from "../layouts/BambooCreateModal";
+import {
+  useAllowBambooMutation,
+  useCreateBambooMutation,
+  useDeleteBambooMutation,
+} from "../services/mutation.service";
+import BambooManageModal from "../layouts/BambooManageModal";
 
 const useBamboo = () => {
   const { user } = useUser();
   const { openModal } = useModal();
-  const { mutate } = useDeleteBambooMutation();
+  const { mutate: createMutate } = useCreateBambooMutation();
+  const { mutate: deleteMutate } = useDeleteBambooMutation();
+  const { mutate: acceptMutate } = useAllowBambooMutation();
 
-  const handleManageButtonClick = () => {
+  const handleOpenManageModalClick = () => {
     openModal({
       component: <BambooManageModal />,
     });
   };
 
-  const handleCreateButtonClick = () => {
+  const handleOpenCreateModalClick = () => {
     openModal({
       component: <BambooCreateModal />,
     });
   };
 
   const handleDeleteButtonClick = (bambooId: number) => {
-    mutate(bambooId);
+    deleteMutate(bambooId);
+  };
+
+  const handleAcceptButtonClick = (bambooId: number) => {
+    acceptMutate(bambooId);
+  };
+
+  const handleCreateButtonClick = (content: string) => {
+    createMutate(content);
   };
 
   return {
-    handleManageButtonClick,
+    isAdmin: isAdmin(user.authority),
+    handleOpenManageModalClick,
+    handleOpenCreateModalClick,
     handleCreateButtonClick,
     handleDeleteButtonClick,
-    isAdmin: isAdmin(user.authority),
+    handleAcceptButtonClick,
   };
 };
 
