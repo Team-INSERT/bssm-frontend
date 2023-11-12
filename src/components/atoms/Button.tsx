@@ -10,6 +10,7 @@ const Button = ({ ...props }: IButtonProps) => {
 };
 
 const StyledButton = styled.button<{ color: string }>`
+  width: fit-content;
   padding: 4px 16px;
   border-radius: 4px;
   background-color: ${(props) => props.color};

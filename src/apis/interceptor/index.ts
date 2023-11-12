@@ -1,6 +1,6 @@
 import { AxiosRequestConfig, AxiosResponse } from "axios";
-import { TOKEN } from "@/constants";
-import Storage from "../storage";
+import { TOKEN } from "@/storage/constants";
+import Storage from "../../storage";
 
 export const requestInterceptors = (requestConfig: AxiosRequestConfig) => {
   const urlParams = requestConfig.url?.split("/:") || [];

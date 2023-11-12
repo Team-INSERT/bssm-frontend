@@ -1,4 +1,4 @@
-import { Footer, Header, Modal } from "@/components/common";
+import { Aside, Footer, Header, Modal } from "@/components/common";
 import { GlobalStyle, flex } from "@/styles";
 import React from "react";
 import { ToastContainer, toast } from "react-toastify";
@@ -13,7 +13,10 @@ const LayoutProvider = ({ children }: React.PropsWithChildren) => {
       <Modal />
       <Layout>
         <Header />
-        <Container>{children}</Container>
+        <Main>
+          <Container>{children}</Container>
+          <Aside />
+        </Main>
         <Footer />
       </Layout>
     </>
@@ -33,7 +36,15 @@ const Layout = styled.div`
 `;
 
 const Container = styled.div`
+  width: 100%;
   min-height: 80vh;
+`;
+
+const Main = styled.main`
+  ${flex.VERTICAL};
+  gap: 12px;
+  width: 100%;
+  padding: 0 8vw;
 `;
 
 export default LayoutProvider;

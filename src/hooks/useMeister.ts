@@ -1,11 +1,12 @@
 import httpClient from "@/apis/httpClient";
-import Storage from "@/apis/storage";
+import Storage from "@/storage";
 import { authorization } from "@/apis/token";
-import { KEY, TOKEN } from "@/constants";
+import { KEY } from "@/constants";
 import { meisterStore } from "@/store/meister.store";
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import { useRecoilState } from "recoil";
+import { TOKEN } from "@/storage/constants";
 
 const useMeister = () => {
   const [meister, setMeister] = useRecoilState(meisterStore);

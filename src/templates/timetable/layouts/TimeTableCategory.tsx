@@ -3,7 +3,7 @@ import { Column } from "@/components/Flex";
 import { Category } from "@/components/atoms";
 import { font } from "@/styles";
 import { getTimetableType } from "@/helpers";
-import Storage from "@/apis/storage";
+import Storage from "@/storage";
 
 interface ITimeTableCategoryProps {
   weekdays: Array<string>;

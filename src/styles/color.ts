@@ -7,6 +7,8 @@ const color = {
   blue: "#228CEA",
   green: "#3CAD4E",
 
+  background: "#F9FAFF",
+
   primary_red: "#E54F5A",
   primary_blue: "#73AEE3",
   primary_yellow: "#FEBC56",

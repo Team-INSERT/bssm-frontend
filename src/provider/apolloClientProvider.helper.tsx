@@ -8,8 +8,8 @@ import { onError } from "@apollo/client/link/error";
 import { setContext } from "@apollo/client/link/context";
 import { RetryLink } from "@apollo/client/link/retry";
 import { PropsWithChildren } from "react";
-import Storage from "@/apis/storage";
-import { TOKEN } from "@/constants";
+import Storage from "@/storage";
+import { TOKEN } from "@/storage/constants";
 import { refresh } from "@/apis/token";
 
 const authLink = setContext((_, { headers }) => {

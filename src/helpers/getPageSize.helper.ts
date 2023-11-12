@@ -1,8 +1,7 @@
-import Storage from "@/apis/storage";
-import { TOKEN } from "@/constants";
+import Storage from "@/storage";
 
 const getPageSize = () => {
-  return Storage.getItem(TOKEN.POST_RENDER_LIMIT) ?? 10;
+  return 20;
 };
 
 export default getPageSize;

@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Storage from "@/apis/storage";
+import Storage from "@/storage";
 import { flex } from "@/styles";
 import { Category } from "@/components/atoms";
 import useWindow from "@/hooks/useWindow";

@@ -1,40 +1,42 @@
-import { Row } from "@/components/Flex";
 import { Button } from "@/components/atoms";
-import { isAdmin } from "@/helpers";
 import useDate from "@/hooks/useDate";
-import useUser from "@/hooks/useUser";
-import { IBambooPost } from "@/interfaces";
 import { color, flex, font } from "@/styles";
-import React from "react";
+import { Row } from "@/components/Flex";
 import styled from "styled-components";
-import { useDeleteBambooMutation } from "../services/mutation.service";
+import { BambooPostListItemProps } from "../interfaces/@props";
+import { useBamboo } from "../hooks";
 
-interface IBambooPostListItemProps {
-  bamboo: IBambooPost;
-}
-
-const BambooPostListItem = ({ bamboo }: IBambooPostListItemProps) => {
-  const { user } = useUser();
+const BambooPostListItem = ({
+  allowedId,
+  createdAt,
+  content,
+  isAdmin,
+  isManageMode,
+}: BambooPostListItemProps) => {
   const { formatDate } = useDate();
-  const { mutate } = useDeleteBambooMutation();
-
-  const handleDeleteButtonClick = () => {
-    mutate(bamboo.allowedId);
-  };
+  const { handleAcceptButtonClick, handleDeleteButtonClick } = useBamboo();
 
   return (
     <Container>
       <InfomationBox>
-        <PostNumber>{bamboo.allowedId}</PostNumber>
-        <PostCreatedDate>{formatDate(bamboo.createdAt)}</PostCreatedDate>
-        <ResponsivePostCreatedDate>
-          {formatDate(bamboo.createdAt, { summary: true })}
-        </ResponsivePostCreatedDate>
+        <PostNumberText>{allowedId}</PostNumberText>
+        <PostDateText>{formatDate(createdAt)}</PostDateText>
       </InfomationBox>
-      <PostContents>{bamboo.content}</PostContents>
-      {isAdmin(user.authority) && (
-        <Row>
-          <Button onClick={handleDeleteButtonClick} color={color.primary_red}>
+      <PostContentText>{content}</PostContentText>
+      {isAdmin && (
+        <Row gap="8px">
+          {isManageMode && (
+            <Button
+              onClick={() => handleAcceptButtonClick(allowedId)}
+              color={color.primary_blue}
+            >
+              승인
+            </Button>
+          )}
+          <Button
+            onClick={() => handleDeleteButtonClick(allowedId)}
+            color={color.primary_red}
+          >
             삭제
           </Button>
         </Row>
@@ -59,7 +61,7 @@ const InfomationBox = styled.div`
   gap: 8px;
 `;
 
-const PostNumber = styled.span`
+const PostNumberText = styled.span`
   ${font.H6};
 
   &:before {
@@ -71,23 +73,12 @@ const PostNumber = styled.span`
   }
 `;
 
-const PostCreatedDate = styled.span`
+const PostDateText = styled.span`
   ${font.p3};
   color: ${color.gray};
-
-  @media screen and (max-width: 541px) {
-    display: none;
-  }
 `;
 
-const ResponsivePostCreatedDate = styled(PostCreatedDate)`
-  display: none;
-  @media screen and (max-width: 541px) {
-    display: block;
-  }
-`;
-
-const PostContents = styled.div`
+const PostContentText = styled.div`
   width: 100%;
   padding: 10px 0;
   word-break: break-all;

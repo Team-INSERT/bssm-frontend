@@ -3,11 +3,12 @@ import Image from "next/image";
 import { useQueryClient } from "@tanstack/react-query";
 import { useSearchParams } from "next/navigation";
 import { loading } from "@/assets/images";
-import Storage from "@/apis/storage";
+import Storage from "@/storage";
 import styled from "styled-components";
 import { color, font } from "@/styles";
 import { Column } from "@/components/Flex";
-import { KEY, TOKEN } from "@/constants";
+import { KEY } from "@/constants";
+import { TOKEN } from "@/storage/constants";
 import { useLoginMutation } from "./services/mutation.service";
 
 const OAuthPage = () => {

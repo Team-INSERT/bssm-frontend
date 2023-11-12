@@ -1,5 +1,5 @@
-import { TOKEN } from "@/constants";
-import Storage from "@/apis/storage";
+import { TOKEN } from "@/storage/constants";
+import Storage from "@/storage";
 import axios from "axios";
 
 const instance = axios.create({
