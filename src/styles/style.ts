@@ -1,6 +1,7 @@
 "use client";
 
 import { createGlobalStyle } from "styled-components";
+import color from "./color";
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -28,7 +29,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    background-color: #f9faff;
+    background-color: ${color.background};
   }
 
   ul,

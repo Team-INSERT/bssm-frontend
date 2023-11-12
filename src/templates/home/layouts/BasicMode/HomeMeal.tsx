@@ -18,14 +18,17 @@ const HomeMeal = ({ content, cal, name }: IHomeMealProps) => {
         <MealContent
           dangerouslySetInnerHTML={{
             __html:
-              content.split("<br/>").length > 7
+              content?.split("<br/>").length > 7
                 ? `${content.split("<br/>").slice(0, 7).join("<br/>")}...`
                 : content,
           }}
         />
-        <MealCalorie>
-          {name}, {cal}
-        </MealCalorie>
+        {content && (
+          <MealCalorie>
+            {name}, {cal}
+          </MealCalorie>
+        )}
+        {!content && <MealContent>등록된 급식이 없어요.</MealContent>}
       </MealBody>
     </Container>
   );

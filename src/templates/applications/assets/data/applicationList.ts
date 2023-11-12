@@ -1,4 +1,4 @@
-const applicaionList = [
+const applicationList = [
   {
     name: "BSM Deploy",
     href: "https://deploy.bssm.kro.kr",
@@ -40,4 +40,4 @@ const applicaionList = [
   },
 ];
 
-export default applicaionList;
+export default applicationList;

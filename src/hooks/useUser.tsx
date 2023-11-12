@@ -6,13 +6,13 @@ import httpClient, { HttpClient } from "@/apis/httpClient/httpClient";
 import KEY from "@/constants/key.constant";
 import { IUser } from "@/interfaces";
 import { emptyUser, userStore } from "@/store/user.store";
-import useWindow from "@/hooks/useWindow";
 import useModal from "@/hooks/useModal";
-import Storage from "@/apis/storage";
-import { ERROR, TOKEN } from "@/constants";
+import Storage from "@/storage";
+import { ERROR } from "@/constants";
 import { authorization, refresh } from "@/apis/token";
 import { isAxiosError } from "axios";
 import LoginModal from "@/components/common/Modal/LoginModal";
+import { TOKEN } from "@/storage/constants";
 
 interface UseUserOptions {
   authorizedPage?: boolean;

@@ -25,8 +25,8 @@ export const useAllowBambooMutation = () => {
   return useMutation((id: number) => updateBambooPost(id), {
     onSuccess: () => {
       toast.success("제보 승인을 완료했습니다!");
-      queryClient.invalidateQueries([KEY.BAMBOO_ADMIN]);
       queryClient.invalidateQueries([KEY.BAMBOO]);
+      queryClient.invalidateQueries([KEY.BAMBOO_ADMIN]);
     },
   });
 };

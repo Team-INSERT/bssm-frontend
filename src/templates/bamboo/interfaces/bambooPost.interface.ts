@@ -1,6 +1,5 @@
-export default interface IBambooPost {
+export default interface BambooPostType {
   allowedId: number;
   content: string;
   createdAt: string;
-  allowedAt: string;
 }

@@ -1,89 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 import { color, font } from "@/styles";
-import { Switch } from "@/components/atoms";
-import Storage from "@/apis/storage";
-import useModal from "@/hooks/useModal";
-
-const settingOptions = [
-  {
-    name: "디스플레이",
-    options: [
-      {
-        title: "다크 모드 켜기",
-        isHaveDescription: true,
-        description: "다크 모드를 켜요. 디자인 퀄리티가 낮아질 수 있어요.",
-        type: "bool",
-      },
-    ],
-  },
-  {
-    name: "커뮤니티",
-    options: [
-      {
-        title: "렌더당 렌더링할 게시글 개수",
-        isHaveDescription: true,
-        description:
-          "한 번의 렌더당 몇 개의 게시글을 렌더링할 지 정할 수 있어요.",
-        type: "input",
-      },
-    ],
-  },
-];
 
 const SettingBody = () => {
-  const { closeModal } = useModal();
-  const [darkMode, setDarkMode] = React.useState(!!Storage.getItem("theme"));
-  const [postLimit, setPostLimit] = React.useState(
-    Storage.getItem("post_render_limit") || 20,
-  );
-
-  const handleSaveButtonClick = () => {
-    if (darkMode) Storage.setItem("theme", "dark");
-    Storage.setItem("post_render_limit", `${postLimit}`);
-    closeModal();
-  };
-
   return (
     <Container>
-      {settingOptions.map(({ name, options }) => (
-        <SettingSection>
-          <SettingName>{name}</SettingName>
-          {options.map((option) => (
-            <SettingBox>
-              <SettingHandleHGroup>
-                <SettingHandleTitle>{option.title}</SettingHandleTitle>
-                {option.isHaveDescription && (
-                  <SettingHandleDescription>
-                    {option.description}
-                  </SettingHandleDescription>
-                )}
-              </SettingHandleHGroup>
-              {option.type === "bool" && (
-                <SwitchBox>
-                  <Switch
-                    isSwitch={darkMode}
-                    handleToggle={() => setDarkMode((prev) => !prev)}
-                  />
-                </SwitchBox>
-              )}
-              {option.type === "input" && (
-                <StyledInputBox>
-                  <StyledInput
-                    value={postLimit}
-                    onChange={(e) =>
-                      !Number.isNaN(+e.target.value) &&
-                      setPostLimit(e.target.value)
-                    }
-                  />
-                  <StyledSummary />
-                </StyledInputBox>
-              )}
-            </SettingBox>
-          ))}
-        </SettingSection>
-      ))}
-      <SaveButton onClick={handleSaveButtonClick} />
+      <SettingSection>
+        <SettingName>헤더</SettingName>
+      </SettingSection>
+      <SaveButton />
     </Container>
   );
 };

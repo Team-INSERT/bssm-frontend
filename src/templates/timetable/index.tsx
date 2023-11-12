@@ -5,8 +5,8 @@ import useModal from "@/hooks/useModal";
 import React from "react";
 import LoginModal from "@/components/common/Modal/LoginModal";
 import { useDidMountEffect } from "@/hooks/useDidMountEffect";
-import Storage from "@/apis/storage";
-import { TOKEN } from "@/constants";
+import Storage from "@/storage";
+import { TOKEN } from "@/storage/constants";
 import TimeTableBox from "./layouts/TimeTableBox";
 
 const TimeTablePage = () => {

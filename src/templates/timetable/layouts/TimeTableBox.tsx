@@ -3,7 +3,7 @@ import styled from "styled-components";
 import useDate from "@/hooks/useDate";
 import { useQueryClient } from "@tanstack/react-query";
 import { KEY } from "@/constants";
-import Storage from "@/apis/storage";
+import Storage from "@/storage";
 import { emptyTimetable } from "@/assets/data";
 import TimeTableBar from "./TimeTableBar";
 import { useTimetableListQuery } from "../services/query.service";

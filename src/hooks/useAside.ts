@@ -1,11 +1,11 @@
 import httpClient from "@/apis/httpClient";
-import Storage from "@/apis/storage";
-import { authorization } from "@/apis/token";
-import { KEY, TOKEN } from "@/constants";
+import Storage from "@/storage";
+import { KEY } from "@/constants";
 import { asideStore } from "@/store/aside.store";
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import { useRecoilState } from "recoil";
+import { TOKEN } from "@/storage/constants";
 
 const useAside = () => {
   const [asideInfo, setAsideInfo] = useRecoilState(asideStore);

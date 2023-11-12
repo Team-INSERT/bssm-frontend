@@ -1,8 +1,9 @@
 import throwAxiosError from "@/apis/error/throwAxiosError";
 import { useRouter } from "next/navigation";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import Storage from "@/apis/storage";
-import { KEY, ROUTER, TOKEN } from "@/constants";
+import Storage from "@/storage";
+import { KEY, ROUTER } from "@/constants";
+import { TOKEN } from "@/storage/constants";
 import { ILoginParams, login } from "./api.service";
 
 export const useLoginMutation = ({ authCode }: ILoginParams) => {
@@ -15,7 +16,7 @@ export const useLoginMutation = ({ authCode }: ILoginParams) => {
       Storage.setItem(TOKEN.REFRESH, refreshToken);
 
       queryClient.invalidateQueries([KEY.USER]);
-      router.push(Storage.getItem(TOKEN.PATH) ?? ROUTER.HOME);
+      router.push(ROUTER.HOME);
     },
     onError: (err) => {
       throwAxiosError(err);

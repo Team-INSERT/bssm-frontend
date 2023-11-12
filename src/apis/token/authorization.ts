@@ -1,5 +1,5 @@
-import Storage from "@/apis/storage";
-import { TOKEN } from "@/constants";
+import Storage from "@/storage";
+import { TOKEN } from "@/storage/constants";
 
 const authorization = () => ({
   headers: {
