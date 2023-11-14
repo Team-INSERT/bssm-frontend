@@ -1,12 +1,8 @@
 import httpClient from "@/apis/httpClient";
 
-export interface ILoginParams {
-  authCode: string | null;
-}
-
-export const login = async ({ authCode }: ILoginParams) => {
-  if (!authCode) return;
-
-  const { data } = await httpClient.oauth.login(authCode);
-  return data;
+export const login = async (authCode: string | null) => {
+  if (authCode) {
+    const { data } = await httpClient.oauth.login(authCode);
+    return data;
+  }
 };
