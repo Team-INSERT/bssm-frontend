@@ -1,6 +1,6 @@
 "use client";
 
-import OAuthPage from "@/templates/oauth";
+import OAuthPage from "@/templates/oauth/layouts";
 
 const OAuth = () => {
   return <OAuthPage />;
