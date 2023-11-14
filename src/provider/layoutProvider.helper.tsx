@@ -4,8 +4,13 @@ import React from "react";
 import { ToastContainer, toast } from "react-toastify";
 import styled from "styled-components";
 import "react-toastify/dist/ReactToastify.css";
+import useWindow from "@/hooks/useWindow";
+import { ROUTER } from "@/constants";
 
 const LayoutProvider = ({ children }: React.PropsWithChildren) => {
+  const { isWindow } = useWindow();
+  const routerName = isWindow ? window.location.pathname : "";
+
   return (
     <>
       <StyledToastify autoClose={1000} position={toast.POSITION.TOP_RIGHT} />
@@ -15,7 +20,7 @@ const LayoutProvider = ({ children }: React.PropsWithChildren) => {
         <Header />
         <Main>
           <Container>{children}</Container>
-          <Aside />
+          {routerName !== ROUTER.LOGIN && <Aside />}
         </Main>
         <Footer />
       </Layout>
