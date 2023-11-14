@@ -2,50 +2,29 @@ import React from "react";
 import styled from "styled-components";
 import { color, flex, font } from "@/styles";
 import { Row } from "@/components/Flex";
-import { getMealName } from "@/helpers";
 import BlinkerBox from "./BlinkerBox";
+import useMeal from "../hooks/useMeal";
+import { MealListItemProps } from "../interfaces";
 
-interface IMealListItemProps {
-  mealName: string;
-  meal: {
-    content: string;
-    cal: number;
-  };
-  keyLength: number;
-  handleChange: ({ op }: { op: "+" | "-" }) => void;
-}
-
-const MealListItem = ({
-  mealName,
-  meal,
-  handleChange,
-  keyLength,
-}: IMealListItemProps) => {
-  const handleMealChangeClick = () => {
-    if (mealName === "MORNING") handleChange({ op: "-" });
-    if (mealName === "DINNER") handleChange({ op: "+" });
-    if (keyLength === 2 && mealName === "LUNCH") handleChange({ op: "+" });
-  };
-
+const MealListItem = ({ mealName, meal }: MealListItemProps) => {
+  const { get식사명ByMealName, replaceBrToLine } = useMeal();
   return (
-    <Container onClick={handleMealChangeClick}>
-      <MealHeader>
+    <Layout>
+      <MealHeaderBox>
         <BlinkerBox />
         <Row gap="4px">
-          <MealTime>{getMealName(mealName)}</MealTime>
-          <MealCal>{meal?.cal}</MealCal>
+          <MealTimeText>{get식사명ByMealName(mealName)}</MealTimeText>
+          <MealCalText>{meal.cal}kcal</MealCalText>
         </Row>
-      </MealHeader>
-      <MealBody>
-        <MealContent>{meal?.content.replace(/<br\/>/gi, "\n")}</MealContent>
-      </MealBody>
-    </Container>
+      </MealHeaderBox>
+      <MealContentText>{replaceBrToLine(meal.content)}</MealContentText>
+    </Layout>
   );
 };
 
-const Container = styled.div`
-  width: 21vw;
-  height: 56vh;
+const Layout = styled.div`
+  width: 100%;
+  height: 100%;
   border-radius: 12px;
   background-color: ${color.white};
   box-shadow: 4px 4px 15px 0 rgba(0, 0, 0, 0.15);
@@ -56,8 +35,8 @@ const Container = styled.div`
   cursor: pointer;
 
   &:hover {
-    width: 22vw;
-    height: 58vh;
+    width: 104%;
+    height: 104%;
     transition: ease-in-out;
     transition-duration: 0.2s;
   }
@@ -71,27 +50,24 @@ const Container = styled.div`
   }
 `;
 
-const MealHeader = styled.div`
+const MealHeaderBox = styled.div`
   width: 100%;
   height: 32px;
   padding: 0 16px;
   border-radius: 12px 12px 0 0;
   background-color: ${color.meal_header};
-  ${flex.CENTER}
+  ${flex.CENTER};
+  justify-content: space-between;
   position: relative;
 `;
 
-const MealTime = styled.span`
+const MealTimeText = styled.span`
   ${font.p3};
 `;
 
-const MealCal = styled(MealTime)`
+const MealCalText = styled(MealTimeText)`
   &:before {
     content: "· ";
-  }
-
-  &:after {
-    content: "kcal";
   }
 
   @media screen and (max-width: 500px) {
@@ -99,18 +75,15 @@ const MealCal = styled(MealTime)`
   }
 `;
 
-const MealBody = styled.div`
+const MealContentText = styled.p`
   width: 100%;
   height: 100%;
-  ${flex.CENTER};
-`;
-
-const MealContent = styled.p`
+  ${flex.VERTICAL};
   ${font.p1};
   line-height: 180%;
   font-weight: 500;
   white-space: pre;
-  margin: 14px 0 auto 0;
+  padding: 20px 0;
 `;
 
 export default MealListItem;
