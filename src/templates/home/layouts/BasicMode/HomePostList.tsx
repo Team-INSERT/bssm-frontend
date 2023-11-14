@@ -1,5 +1,4 @@
 import { ROUTER } from "@/constants";
-import useDate from "@/hooks/useDate";
 import { color, flex, font } from "@/styles";
 import Link from "next/link";
 import React from "react";
@@ -14,14 +13,13 @@ interface IHomePostListProps {
 }
 
 const HomePostList = ({ posts }: IHomePostListProps) => {
-  const { formatDate } = useDate();
   return (
     <Container>
       {posts?.map((post) => (
         <PostListItem href={`${ROUTER.POST.LIST}/${post.id}`} key={post.id}>
           <StyledTitle>{post.title}</StyledTitle>
           <StyledDate>
-            {formatDate(post.createdAt, { summary: true })}
+            {/* {formatDate(post.createdAt, { summary: true })} */}
           </StyledDate>
         </PostListItem>
       ))}

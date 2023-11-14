@@ -4,18 +4,17 @@ import styled from "styled-components";
 
 const BlinkerBox = () => {
   return (
-    <Container>
+    <Layout>
       <Red />
       <Yellow />
       <Green />
-    </Container>
+    </Layout>
   );
 };
 
-const Container = styled.div`
+const Layout = styled.div`
   ${flex.VERTICAL};
   gap: 6px;
-  margin-right: auto;
 
   @media screen and (max-width: 670px) {
     display: none;

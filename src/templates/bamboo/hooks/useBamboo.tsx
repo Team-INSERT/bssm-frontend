@@ -1,6 +1,7 @@
 import { isAdmin } from "@/helpers";
 import useModal from "@/hooks/useModal";
 import useUser from "@/hooks/useUser";
+import dayjs from "dayjs";
 import BambooCreateModal from "../layouts/BambooCreateModal";
 import {
   useAllowBambooMutation,
@@ -15,6 +16,10 @@ const useBamboo = () => {
   const { mutate: createMutate } = useCreateBambooMutation();
   const { mutate: deleteMutate } = useDeleteBambooMutation();
   const { mutate: acceptMutate } = useAllowBambooMutation();
+
+  const formatCreatedDate = (date: string) => {
+    return dayjs(date).locale("ko").format("YYYY.MM.DD. A hh:mm");
+  };
 
   const handleOpenManageModalClick = () => {
     openModal({
@@ -42,6 +47,7 @@ const useBamboo = () => {
 
   return {
     isAdmin: isAdmin(user.authority),
+    formatCreatedDate,
     handleOpenManageModalClick,
     handleOpenCreateModalClick,
     handleCreateButtonClick,

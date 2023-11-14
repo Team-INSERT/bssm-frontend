@@ -9,14 +9,14 @@ const OAuthPage = () => {
   useOAuth();
 
   return (
-    <Container>
-      <Image src={loading} alt="loading..." width={50} height={50} />
+    <Layout>
+      <Image src={loading} alt="로딩 이미지" width={50} height={50} />
       <LoadingText>로그인 처리중...</LoadingText>
-    </Container>
+    </Layout>
   );
 };
 
-const Container = styled.div`
+const Layout = styled.div`
   width: 100%;
   height: 80vh;
   ${flex.COLUMN_CENTER};
