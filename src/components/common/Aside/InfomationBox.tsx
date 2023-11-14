@@ -56,14 +56,7 @@ const InfomationBox = ({ user, isLogined }: IInfomationBoxProps) => {
           </InfomationButton>
         </>
       )}
-      {!isLogined && (
-        <>
-          <LoginText>로그인이 필요해요</LoginText>
-          <InfomationButton onClick={handleLoginButtonClick}>
-            로그인
-          </InfomationButton>
-        </>
-      )}
+      {!isLogined && <LoginText>로그인이 필요해요</LoginText>}
     </Container>
   );
 };
