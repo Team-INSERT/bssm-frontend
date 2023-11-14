@@ -10,7 +10,7 @@ const OAuthPage = () => {
 
   return (
     <Layout>
-      <Image src={loading} alt="loading..." width={50} height={50} />
+      <Image src={loading} alt="로딩 이미지" width={50} height={50} />
       <LoadingText>로그인 처리중...</LoadingText>
     </Layout>
   );
