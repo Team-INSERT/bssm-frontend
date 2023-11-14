@@ -1,9 +1,8 @@
 import { Button } from "@/components/atoms";
-import useDate from "@/hooks/useDate";
 import { color, flex, font } from "@/styles";
 import { Row } from "@/components/Flex";
 import styled from "styled-components";
-import { BambooPostListItemProps } from "../interfaces/@props";
+import { BambooPostListItemProps } from "../interfaces";
 import { useBamboo } from "../hooks";
 
 const BambooPostListItem = ({
@@ -13,14 +12,17 @@ const BambooPostListItem = ({
   isAdmin,
   isManageMode,
 }: BambooPostListItemProps) => {
-  const { formatDate } = useDate();
-  const { handleAcceptButtonClick, handleDeleteButtonClick } = useBamboo();
+  const {
+    formatCreatedDate,
+    handleAcceptButtonClick,
+    handleDeleteButtonClick,
+  } = useBamboo();
 
   return (
     <Container>
       <InfomationBox>
         <PostNumberText>{allowedId}</PostNumberText>
-        <PostDateText>{formatDate(createdAt)}</PostDateText>
+        <PostDateText>{formatCreatedDate(createdAt)}</PostDateText>
       </InfomationBox>
       <PostContentText>{content}</PostContentText>
       {isAdmin && (

@@ -3,7 +3,6 @@ export { default as ERROR } from "./error.constant";
 export { default as FORUM } from "./forum.constant";
 export { default as KEY } from "./key.constant";
 export { default as LOSTFOUND } from "./lostfound.constant";
-export { default as MEAL } from "./meal.constant";
 export { default as ROUTER } from "./router.constant";
 export { default as SERVICE } from "./service.constant";
 export { default as USER } from "./user.constant";
