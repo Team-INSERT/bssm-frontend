@@ -3,14 +3,10 @@ const ROUTER = {
   MEISTER: "/meister",
   APPLICATIONS: "/applications",
   LOGIN: "/oauth",
-  LOSTFOUND: {
-    LIST: "/lostfound",
-    WRITE: "/lostfound/write",
-  },
   POST: {
     LIST: "/post",
     WRITE: "/post/write",
-    UPDATE: "/update",
+    UPDATE: "/post/edit",
   },
   TIMETABLE: "/timetable",
   MYPAGE: "/mypage",
