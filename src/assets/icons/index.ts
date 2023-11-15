@@ -1,14 +1,11 @@
 export { default as Arrow } from "./Arrow";
 export { default as CategoryArrow } from "./CategoryArrow";
 export { default as Check } from "./Check";
-export { default as CommentIcon } from "./CommentIcon";
 export { default as Emoji } from "./Emoji";
 export { default as Like } from "./Like";
-export { default as LikeIcon } from "./LikeIcon";
 export { default as LinkArrow } from "./LinkArrow";
 export { default as Logo } from "./Logo";
 export { default as Setting } from "./Setting";
-export { default as Time } from "./Time";
 export { default as View } from "./View";
 export { default as XIcon } from "./XIcon";
 export { default as Grinning } from "./emojis/Grinning";

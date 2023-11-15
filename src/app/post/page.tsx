@@ -1,9 +1,9 @@
 "use client";
 
-import ForumPage from "@/templates/forum";
+import PostPage from "@/templates/post/layouts";
 
 const Post = () => {
-  return <ForumPage />;
+  return <PostPage />;
 };
 
 export default Post;
