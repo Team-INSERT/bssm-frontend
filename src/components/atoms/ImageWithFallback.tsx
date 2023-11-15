@@ -3,7 +3,7 @@ import Image, { ImageProps, StaticImageData } from "next/image";
 import styled, { css } from "styled-components";
 
 interface ImageWithFallbackProps extends ImageProps {
-  src: string;
+  src?: string;
   fallbackSrc: StaticImageData | string;
   alt: string;
   sizes?: string;
