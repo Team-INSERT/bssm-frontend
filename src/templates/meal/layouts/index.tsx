@@ -5,7 +5,7 @@ import { emptyMealList } from "@/assets/data";
 import { color, flex, font } from "@/styles";
 import MealListItem from "./MealListItem";
 import { useMealQuery } from "../services/query.service";
-import useMeal from "../hooks/useMeal";
+import { useMeal } from "../hooks";
 import { DATE, DIRECTION } from "../constants";
 import { MealArrowIcon } from "../assets/data";
 import MealPageTitleBox from "./MealPageTitleBox";

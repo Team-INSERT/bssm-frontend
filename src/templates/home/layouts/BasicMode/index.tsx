@@ -3,7 +3,7 @@ import { getMealName } from "@/helpers";
 import { Column, Row } from "@/components/Flex";
 import { Aside } from "@/components/common";
 // import useMeal from "@/hooks/useMeal";
-// import useUser from "@/hooks/useUser";
+import useUser from "@/hooks/useUser";
 import { useMainQuery } from "../../services/query.service";
 import HomeMeal from "./HomeMeal";
 import HomeReserve from "./HomeReserve";
@@ -16,15 +16,15 @@ import HomeBamboo from "./HomeBamboo";
 const BasicMode = () => {
   const { isSuccess, data } = useMainQuery();
   const { isLogined } = useUser();
-  const { getMealTime } = useMeal();
+  // const { getMealTime } = useMeal();
 
   return isSuccess && isLogined ? (
     <>
       <Row gap="8px" width="100%">
-        <HomeMeal
+        {/* <HomeMeal
           {...data.meal.data[getMealTime()]}
           name={getMealName(getMealTime())}
-        />
+        /> */}
         <HomeReserve />
         <Aside />
       </Row>

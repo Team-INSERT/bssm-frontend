@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { color, flex, font } from "@/styles";
 import { Row } from "@/components/Flex";
 import BlinkerBox from "./BlinkerBox";
-import useMeal from "../hooks/useMeal";
+import { useMeal } from "../hooks";
 import { MealListItemProps } from "../interfaces";
 
 const MealListItem = ({ mealName, meal }: MealListItemProps) => {
