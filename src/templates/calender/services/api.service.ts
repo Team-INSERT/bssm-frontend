@@ -1,5 +1,5 @@
 import httpClient from "@/apis/httpClient";
-import { ICalender } from "@/interfaces";
+import { Calender } from "../interfaces";
 
 export const getCalenderList = async (month: number) => {
   const { data } = await httpClient.calender.get({
@@ -11,7 +11,7 @@ export const getCalenderList = async (month: number) => {
   return data;
 };
 
-export const createCalenderItem = async (calender: ICalender) => {
+export const createCalenderItem = async (calender: Calender) => {
   const { data } = await httpClient.calender.post(calender);
   return data;
 };
