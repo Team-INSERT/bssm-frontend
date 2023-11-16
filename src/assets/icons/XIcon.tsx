@@ -3,6 +3,7 @@ const XIcon = ({ ...props }: React.SVGAttributes<HTMLOrSVGElement>) => {
     <svg
       width="14"
       height="14"
+      cursor="pointer"
       {...props}
       viewBox="0 0 9 9"
       fill="none"
