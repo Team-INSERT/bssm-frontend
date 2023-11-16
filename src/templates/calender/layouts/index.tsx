@@ -11,10 +11,10 @@ import useCalender from "../hooks/useCalender";
 import WeekDayHeaderBox from "./WeekDayHeaderBox";
 import CalenderListItem from "./CalenderListItem";
 import { CalenderItem } from "../interfaces";
+import { getPaddingDayOfMonth } from "../helpers";
 
 const CalenderPage = () => {
-  const { currentMonth, firstDayOfMonth, handleCalenderMonthChange } =
-    useCalender();
+  const { currentMonth, handleCalenderMonthChange } = useCalender();
   const { calenderList, refetch } = useCalenderListQuery(currentMonth);
 
   React.useEffect(() => {
@@ -40,7 +40,7 @@ const CalenderPage = () => {
           </CurrentDateText>
           <CalenderList>
             <WeekDayHeaderBox />
-            {firstDayOfMonth().map((_, key) => (
+            {getPaddingDayOfMonth(currentMonth).map((_, key) => (
               <CalenderListItem key={key} isEmpty />
             ))}
             {calenderList?.map((calender: CalenderItem) => (

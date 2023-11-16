@@ -20,11 +20,6 @@ const useCalender = () => {
   const { mutate: deleteMutate } = useDeleteCalenderPlanMutation();
   const { mutate: addPlanMutate } = useAddCalenderPlanMutation();
 
-  const firstDayOfMonth = () => {
-    const dayOfWeek = dayjs().year(dayjs().year()).month(currentMonth).date(1);
-    return Array.from({ length: dayOfWeek.day() });
-  };
-
   const isPlanWriterIsUser = (id: number) => {
     return user.id === id;
   };
@@ -86,7 +81,6 @@ const useCalender = () => {
     handlePlanAddButtonClick,
     handleDeleteCalenderPlanClick,
     handleCalenderMonthChange,
-    firstDayOfMonth,
   };
 };
 
