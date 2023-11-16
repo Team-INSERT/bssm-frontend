@@ -11,8 +11,6 @@ export type { default as IComment } from "./comment.interface";
 export type { default as IInfiniteResult } from "./infiniteResult.interface";
 export type { default as IInputPost } from "./inputPost.interface";
 export type { default as IRecomment } from "./recomment.interface";
-export type { default as ICalender } from "./calender.interface";
-export type { default as IPlan } from "./plan.interface";
 export type { default as IReserve } from "./reserve.interface";
 export type { default as IReserveList } from "./reserveList.interface";
 export type { default as ICreateReserve } from "./createReserve.interface";
