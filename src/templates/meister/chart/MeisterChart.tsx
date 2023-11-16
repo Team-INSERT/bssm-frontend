@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import * as d3 from "d3";
 import { color } from "@/styles";
 import { IMeister } from "@/interfaces";
@@ -57,11 +57,13 @@ interface IMeisterChartProps {
 }
 
 const MeisterChart = ({ meisterData }: IMeisterChartProps) => {
-  const canvasRef = React.useRef(null);
+  // const canvasRef = React.useRef(null);
+  const [canvasRef, setCanvasRef] = useState<HTMLDivElement | null>(null);
 
   useDidMountEffect(() => {
+    if (!canvasRef) return;
     if (meisterData.avg.basicJobSkills === 0) return;
-    const canvas = d3.select(canvasRef.current);
+    const canvas = d3.select(canvasRef);
     const svg = canvas
       .append("svg")
       .attr("width", "100%")
@@ -137,9 +139,9 @@ const MeisterChart = ({ meisterData }: IMeisterChartProps) => {
         .style("font-weight", "600")
         .style("font-size", "12px");
     });
-  }, [meisterData]);
+  }, [meisterData, canvasRef]);
 
-  return <div ref={canvasRef} />;
+  return <div ref={setCanvasRef} />;
 };
 
 export default MeisterChart;
