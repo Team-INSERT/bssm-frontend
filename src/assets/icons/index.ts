@@ -7,7 +7,6 @@ export { default as LinkArrow } from "./LinkArrow";
 export { default as Logo } from "./Logo";
 export { default as Setting } from "./Setting";
 export { default as View } from "./View";
-export { default as XIcon } from "./XIcon";
 export { default as Grinning } from "./emojis/Grinning";
 export { default as HoldingBackTears } from "./emojis/HoldingBackTears";
 export { default as Kissing } from "./emojis/Kissing";
