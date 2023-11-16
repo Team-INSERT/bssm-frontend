@@ -1,4 +1,4 @@
-export default interface IMealListItemProps {
+export default interface MealListItemProps {
   mealName: string;
   meal: {
     content: string;

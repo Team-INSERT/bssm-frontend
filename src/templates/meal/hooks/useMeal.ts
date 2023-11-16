@@ -1,7 +1,8 @@
 import dayjs from "dayjs";
 import React from "react";
 import "dayjs/locale/ko";
-import { DATE, MEAL } from "../constants";
+import DATE from "@/constants/date.constant";
+import { MEAL } from "../constants";
 import { ChangeDateType } from "../types";
 
 const useMeal = () => {
@@ -34,7 +35,7 @@ const useMeal = () => {
     return dayjs(date, DATE.YYYYMMDD).locale("ko").format(DATE.DETAIL);
   };
 
-  const handleChangeCurrentDate = (operator: ChangeDateType) => {
+  const handleCurrentDateChange = (operator: ChangeDateType) => {
     setCurrentDate((prevDate) => {
       const increaseDay = getWeekday(prevDate) === DATE.FRI ? 3 : 1;
       const decreaseDay = getWeekday(prevDate) === DATE.MON ? -3 : -1;
@@ -45,16 +46,14 @@ const useMeal = () => {
     });
   };
 
-  const handleSetDateKeyDown = (e: KeyboardEvent) => {
-    if (e.key === "ArrowLeft") handleChangeCurrentDate(DATE.DECREASE);
-    if (e.key === "ArrowRight") handleChangeCurrentDate(DATE.INCREASE);
-  };
-
   React.useEffect(() => {
-    window.addEventListener("keydown", handleSetDateKeyDown);
-    return () => {
-      window.removeEventListener("keydown", handleSetDateKeyDown);
+    const handleMealDateKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "ArrowLeft") handleCurrentDateChange(DATE.DECREASE);
+      if (e.key === "ArrowRight") handleCurrentDateChange(DATE.INCREASE);
     };
+
+    window.addEventListener("keydown", handleMealDateKeyDown);
+    return () => window.removeEventListener("keydown", handleMealDateKeyDown);
     // eslint-disable-next-line
   }, []);
 
@@ -62,7 +61,7 @@ const useMeal = () => {
     currentDate,
     formatDate,
     get식사명ByMealName,
-    handleChangeCurrentDate,
+    handleCurrentDateChange,
     replaceBrToLine,
   };
 };
