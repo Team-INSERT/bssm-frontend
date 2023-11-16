@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Row } from "@/components/Flex";
 import { font } from "@/styles";
-import { CommentIcon, LikeIcon } from "@/assets/icons";
+// import { CommentIcon, LikeIcon } from "@/assets/icons";
 import { useUpdatePostLikeMutation } from "../../services/mutation.service";
 
 interface ICountBoxProps {
@@ -38,11 +38,11 @@ const CountBox = ({
   return (
     <Row gap="22px">
       <LikeBox onClick={handleLikeButtonClick}>
-        <LikeIcon width={18} isLiked={isLiked} />
+        {/* <LikeIcon width={18} isLiked={isLiked} /> */}
         <LikeText>{currentLikeCount}</LikeText>
       </LikeBox>
       <Row alignItems="center" gap="4px">
-        <CommentIcon width={18} height={18} />
+        {/* <CommentIcon width={18} height={18} /> */}
         <CommentText>{commentCount}</CommentText>
       </Row>
     </Row>

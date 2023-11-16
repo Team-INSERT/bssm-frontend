@@ -1,6 +1,6 @@
 import { Column } from "@/components/Flex";
 import { CustomViewer } from "@/components/atoms";
-import useDate from "@/hooks/useDate";
+// import useDate from "@/hooks/useDate";
 import { font } from "@/styles";
 import Image from "next/image";
 import Link from "next/link";
@@ -30,7 +30,7 @@ const SectionBox = ({
   isDefault,
   isImage,
 }: ISectionBoxProps) => {
-  const { formatDate } = useDate();
+  // const { formatDate } = useDate();
   return (
     <Column gap="4px">
       {isUrl && content ? (
@@ -42,9 +42,9 @@ const SectionBox = ({
       )}
       {isProjectDate && (
         <StyledDateBox>
-          <StyledSpan>{formatDate(startTime, { summary: true })}</StyledSpan>
+          {/* <StyledSpan>{formatDate(startTime, { summary: true })}</StyledSpan> */}
           <StyledSpan> ~ </StyledSpan>
-          <StyledSpan>{formatDate(endTime, { summary: true })}</StyledSpan>
+          {/* <StyledSpan>{formatDate(endTime, { summary: true })}</StyledSpan> */}
         </StyledDateBox>
       )}
       {isContent && (

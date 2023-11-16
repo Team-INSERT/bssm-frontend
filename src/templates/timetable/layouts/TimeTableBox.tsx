@@ -1,23 +1,25 @@
 import React from "react";
 import styled from "styled-components";
-import useDate from "@/hooks/useDate";
 import { useQueryClient } from "@tanstack/react-query";
 import { KEY } from "@/constants";
 import Storage from "@/storage";
 import { emptyTimetable } from "@/assets/data";
+// import useDate from "@/hooks/useDate";
+import { StorageKeyType } from "@/storage/types";
 import TimeTableBar from "./TimeTableBar";
 import { useTimetableListQuery } from "../services/query.service";
 import TimeTableCategory from "./TimeTableCategory";
 import TimeTableTable from "./TimeTableTable";
 
 const TimeTableBox = () => {
-  const { weekdaysKOR: weekdays, getNowWeekDay, translateDay } = useDate();
+  // const { weekdaysKOR: weekdays, getNowWeekDay, translateDay } = useDate();
   const queryClient = useQueryClient();
   const [selectedDay, setSelectedDay] = React.useState<string>(
-    getNowWeekDay({ type: "KOR" }),
+    /* getNowWeekDay({ type: "KOR" }), */ "월",
   );
   const [timetableType, setTimetableType] = React.useState<"bar" | "table">(
-    (Storage.getItem("timetable_type") as "bar" | "table") ?? "bar",
+    (Storage.getItem("timetable_type" as StorageKeyType) as "bar" | "table") ??
+      "bar",
   );
 
   const [dayTimeTable, setDayTimeTable] = React.useState(emptyTimetable);
@@ -35,19 +37,23 @@ const TimeTableBox = () => {
     <Container>
       <TimeTableLayoutBox>
         <TimeTableCategory
-          weekdays={weekdays}
+          weekdays={["일", "월", "화", "수", "목", "금", "토"]}
           checked={selectedDay}
           setChecked={setSelectedDay}
           timetableType={timetableType}
           setTimetableType={setTimetableType}
         />
       </TimeTableLayoutBox>
-      {!!dayTimeTable[translateDay(selectedDay, { to: "ENG_DETAIL" })] && (
+      {!!(
+        /* dayTimeTable[translateDay(selectedDay, { to: "ENG_DETAIL" })] */ 0
+      ) && (
         <>
           {timetableType === "bar" && (
             <TimeTableBar
               setSelectedDay={setSelectedDay}
-              weekday={translateDay(selectedDay, { to: "ENG_DETAIL" })}
+              weekday={
+                /* translateDay(selectedDay, { to: "ENG_DETAIL" }) */ "adf"
+              }
               dayTimeTable={dayTimeTable}
             />
           )}

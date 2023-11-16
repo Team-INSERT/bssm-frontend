@@ -1,9 +1,9 @@
 import { KEY, ROUTER } from "@/constants";
-import { DELETE_POST } from "@/graphql/post/queries";
-import {
-  useApolloClient,
-  useMutation as useApolloMutation,
-} from "@apollo/client";
+// import { DELETE_POST } from "@/graphql/post/queries";
+// import {
+//   useApolloClient,
+//   useMutation as useApolloMutation,
+// } from "@apollo/client";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
@@ -27,11 +27,11 @@ interface IUsePostCommentMutationProps {
 // like
 
 export const useUpdatePostLikeMutation = () => {
-  const apolloClient = useApolloClient();
+  // const apolloClient = useApolloClient();
 
   return useMutation((id: string) => updatePostLike(id), {
     onSuccess: () => {
-      apolloClient.cache.reset();
+      // apolloClient.cache.reset();
     },
   });
 };
@@ -46,24 +46,24 @@ export const useUpdateRecommentLikeMutation = () => {
 
 // post
 export const useDeletePostMutation = () => {
-  const apolloClient = useApolloClient();
+  // const apolloClient = useApolloClient();
   const router = useRouter();
 
-  const mutations = useApolloMutation(DELETE_POST, {
-    onCompleted: () => {
-      apolloClient.cache.reset();
-      toast.success("글이 삭제되었습니다!");
-      router.push(ROUTER.POST.LIST);
-    },
-  });
-  return mutations;
+  // const mutations = useApolloMutation(DELETE_POST, {
+  //   onCompleted: () => {
+  //     apolloClient.cache.reset();
+  //     toast.success("글이 삭제되었습니다!");
+  //     router.push(ROUTER.POST.LIST);
+  //   },
+  // });
+  // return mutations;
 };
 
 // comment
 
 export const useCreatePostCommentMutation = () => {
   const queryClient = useQueryClient();
-  const apolloClient = useApolloClient();
+  // const apolloClient = useApolloClient();
 
   return useMutation(
     (comment: IUsePostCommentMutationProps) => createPostComment(comment),
@@ -71,7 +71,7 @@ export const useCreatePostCommentMutation = () => {
       onSuccess: () => {
         toast.success("댓글을 작성했어요!");
         queryClient.invalidateQueries([KEY.COMMENT]);
-        apolloClient.cache.reset();
+        // apolloClient.cache.reset();
       },
     },
   );
@@ -93,13 +93,13 @@ export const useUpdatePostCommentMutation = () => {
 
 export const useDeletePostCommentMutation = () => {
   const queryClient = useQueryClient();
-  const apolloClient = useApolloClient();
+  // const apolloClient = useApolloClient();
 
   return useMutation((id: number) => deletePostComment(id), {
     onSuccess: () => {
       toast.success("댓글이 삭제되었어요.");
       queryClient.invalidateQueries([KEY.COMMENT]);
-      apolloClient.cache.reset();
+      // apolloClient.cache.reset();
     },
   });
 };
