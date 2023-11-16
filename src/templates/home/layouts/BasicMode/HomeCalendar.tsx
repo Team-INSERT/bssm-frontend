@@ -6,14 +6,14 @@ import styled from "styled-components";
 import HomeHead from "./HomeHead";
 
 interface IHomeCalendarProps {
-  calendars: Array<{
+  calenders: Array<{
     id: number;
     title: string;
     type: string;
   }>;
 }
 
-const HomeCalendar = ({ calendars }: IHomeCalendarProps) => {
+const HomeCalendar = ({ calenders: calendars }: IHomeCalendarProps) => {
   return (
     <Container>
       <HomeHead icon={<CalendarIcon />} title="오늘의 일정" href="/calendar" />

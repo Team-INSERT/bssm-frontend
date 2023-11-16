@@ -32,7 +32,7 @@ const BasicMode = () => {
         <Column gap="8px" width="100%">
           <HomeMainBanner href="/post" />
           <Row gap="8px" width="100%">
-            <HomeCalendar {...data.calendar} />
+            <HomeCalendar {...data.calender} />
             <HomePost notice={data.notice} common={data.common} />
           </Row>
         </Column>
