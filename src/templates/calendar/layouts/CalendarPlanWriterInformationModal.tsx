@@ -4,12 +4,12 @@ import { defaultProfile } from "@/assets/images";
 import { Row } from "@/components/Flex";
 import styled from "styled-components";
 import { color, font } from "@/styles";
-import { CalenderPlan } from "../interfaces";
-import useCalender from "../hooks/useCalender";
+import { CalendarPlan } from "../interfaces";
+import useCalendar from "../hooks/useCalendar";
 import { getPlanNameByPlanType } from "../helpers";
 
-const CalenderPlanWriterInformationModal = ({ user, type }: CalenderPlan) => {
-  const { isPlanWriterSameAsUser } = useCalender();
+const CalendarPlanWriterInformationModal = ({ user, type }: CalendarPlan) => {
+  const { isPlanWriterSameAsUser } = useCalendar();
 
   return (
     <PlanWriterBox>
@@ -53,4 +53,4 @@ const PlanWriterBox = styled.div`
   box-shadow: 4px 4px 20px 0 rgba(0, 0, 0, 0.15);
 `;
 
-export default CalenderPlanWriterInformationModal;
+export default CalendarPlanWriterInformationModal;

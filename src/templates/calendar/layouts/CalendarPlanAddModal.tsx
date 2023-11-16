@@ -6,23 +6,23 @@ import React from "react";
 import styled from "styled-components";
 import getPlanType from "@/helpers/getPlanType.helper";
 import PLAN from "../constants/plan.constant";
-import { CalenderPlanAddModalProps } from "../interfaces";
-import useCalender from "../hooks/useCalender";
+import { CalendarPlanAddModalProps } from "../interfaces";
+import useCalendar from "../hooks/useCalendar";
 import { PlanModalCloseIcon } from "../assets/icons";
 
-const CalenderPlanAddModal = ({ date }: CalenderPlanAddModalProps) => {
+const CalendarPlanAddModal = ({ date }: CalendarPlanAddModalProps) => {
   const { closeModal } = useModal();
-  const { handlePlanAddButtonClick } = useCalender();
+  const { handlePlanAddButtonClick } = useCalendar();
   const [planType, setPlanType] = React.useState<string>(PLAN.학급일정);
   const [title, setTitle] = React.useState("");
 
   return (
     <Layout>
-      <CalenderPlanHeader>
-        <CalenderTitleText>📆 일정 추가하기</CalenderTitleText>
+      <CalendarPlanHeader>
+        <CalendarTitleText>📆 일정 추가하기</CalendarTitleText>
         <PlanModalCloseIcon onClick={closeModal} />
-      </CalenderPlanHeader>
-      <CalenderPlanBody>
+      </CalendarPlanHeader>
+      <CalendarPlanBody>
         <Input
           label="일정 내용"
           placeholder="간략한 일정 내용을 입력해주세요."
@@ -30,7 +30,7 @@ const CalenderPlanAddModal = ({ date }: CalenderPlanAddModalProps) => {
           value={title}
         />
         <Column gap="6px">
-          <CalenderPlanClassifyText>일정 분류</CalenderPlanClassifyText>
+          <CalendarPlanClassifyText>일정 분류</CalendarPlanClassifyText>
           <Select
             label=""
             width="100px"
@@ -39,15 +39,15 @@ const CalenderPlanAddModal = ({ date }: CalenderPlanAddModalProps) => {
             handler={setPlanType}
           />
         </Column>
-        <CalenderPlanAddButtonBox>
+        <CalendarPlanAddButtonBox>
           <Button
             onClick={() => handlePlanAddButtonClick({ title, date, planType })}
             color={color.primary_blue}
           >
             추가하기
           </Button>
-        </CalenderPlanAddButtonBox>
-      </CalenderPlanBody>
+        </CalendarPlanAddButtonBox>
+      </CalendarPlanBody>
     </Layout>
   );
 };
@@ -62,7 +62,7 @@ const Layout = styled.div`
   ${flex.COLUMN};
 `;
 
-const CalenderPlanHeader = styled.header`
+const CalendarPlanHeader = styled.header`
   width: 100%;
   padding: 10px 18px;
   ${flex.HORIZONTAL};
@@ -70,23 +70,23 @@ const CalenderPlanHeader = styled.header`
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
 `;
 
-const CalenderTitleText = styled.div`
+const CalendarTitleText = styled.div`
   ${font.p2};
   font-weight: 500;
 `;
 
-const CalenderPlanBody = styled.div`
+const CalendarPlanBody = styled.div`
   padding: 16px 28px;
   ${flex.COLUMN};
   gap: 12px;
 `;
 
-const CalenderPlanClassifyText = styled.span`
+const CalendarPlanClassifyText = styled.span`
   ${font.p3};
 `;
 
-const CalenderPlanAddButtonBox = styled.div`
+const CalendarPlanAddButtonBox = styled.div`
   margin-left: auto;
 `;
 
-export default CalenderPlanAddModal;
+export default CalendarPlanAddModal;

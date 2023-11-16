@@ -5,17 +5,17 @@ import { color, flex, font } from "@/styles";
 import { Column, Row } from "@/components/Flex";
 import DATE from "@/constants/date.constant";
 import DIRECTION from "@/constants/direction.constant";
-import { CalenderArrowIcon } from "../assets/data";
-import { useCalenderListQuery } from "../services/query.service";
-import useCalender from "../hooks/useCalender";
+import { CalendarArrowIcon } from "../assets/data";
+import { useCalendarListQuery } from "../services/query.service";
+import useCalendar from "../hooks/useCalendar";
 import WeekDayHeaderBox from "./WeekDayHeaderBox";
-import CalenderListItem from "./CalenderListItem";
-import { CalenderItem } from "../interfaces";
+import { CalendarItem } from "../interfaces";
 import { getPaddingDayOfMonth } from "../helpers";
+import CalendarListItem from "./CalendarListItem";
 
-const CalenderPage = () => {
-  const { currentMonth, handleCalenderMonthChange } = useCalender();
-  const { calenderList, refetch } = useCalenderListQuery(currentMonth);
+const CalendarPage = () => {
+  const { currentMonth, handleCalendarMonthChange } = useCalendar();
+  const { calendarList, refetch } = useCalendarListQuery(currentMonth);
 
   React.useEffect(() => {
     refetch();
@@ -30,27 +30,27 @@ const CalenderPage = () => {
         </SubTitleText>
       </Column>
       <Row width="100%" gap="16px">
-        <CalenderArrowIcon
+        <CalendarArrowIcon
           direction={DIRECTION.LEFT}
-          onClick={() => handleCalenderMonthChange(DATE.DECREASE)}
+          onClick={() => handleCalendarMonthChange(DATE.DECREASE)}
         />
-        <CalenderBox>
+        <CalendarBox>
           <CurrentDateText>
             {dayjs().year()}년 {currentMonth}월
           </CurrentDateText>
-          <CalenderList>
+          <CalendarList>
             <WeekDayHeaderBox />
             {getPaddingDayOfMonth(currentMonth).map((_, key) => (
-              <CalenderListItem key={key} isEmpty />
+              <CalendarListItem key={key} isEmpty />
             ))}
-            {calenderList?.map((calender: CalenderItem) => (
-              <CalenderListItem key={calender.date} calender={calender} />
+            {calendarList?.map((calendar: CalendarItem) => (
+              <CalendarListItem key={calendar.date} calendar={calendar} />
             ))}
-          </CalenderList>
-        </CalenderBox>
-        <CalenderArrowIcon
+          </CalendarList>
+        </CalendarBox>
+        <CalendarArrowIcon
           direction={DIRECTION.RIGHT}
-          onClick={() => handleCalenderMonthChange(DATE.INCREASE)}
+          onClick={() => handleCalendarMonthChange(DATE.INCREASE)}
         />
       </Row>
     </Layout>
@@ -71,7 +71,7 @@ const SubTitleText = styled.span`
   color: ${color.gray};
 `;
 
-const CalenderBox = styled.main`
+const CalendarBox = styled.main`
   width: 100%;
   background-color: ${color.white};
   border-radius: 5px;
@@ -84,11 +84,11 @@ const CurrentDateText = styled.h1`
   ${font.H2};
 `;
 
-const CalenderList = styled.ul`
+const CalendarList = styled.ul`
   width: 100%;
   display: flex;
   flex-wrap: wrap;
   gap: 1.5%;
 `;
 
-export default CalenderPage;
+export default CalendarPage;

@@ -22,7 +22,7 @@ const navigationList = [
   {
     id: 5,
     name: "🗓️  캘린더",
-    href: "/calender",
+    href: "/calendar",
   },
   {
     id: 6,

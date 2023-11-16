@@ -1,4 +1,4 @@
-export default interface Calender {
+export default interface Calendar {
   title: string;
   priority: number;
   date: string;

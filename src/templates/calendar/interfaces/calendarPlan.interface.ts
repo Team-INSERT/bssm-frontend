@@ -1,6 +1,6 @@
-import Calender from "./calender.interface";
+import Calendar from "./calendar.interface";
 
-export default interface CalenderPlan extends Calender {
+export default interface CalendarPlan extends Calendar {
   id: number;
   type: string;
   user: {

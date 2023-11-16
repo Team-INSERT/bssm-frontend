@@ -1,33 +1,33 @@
 import { color, flex, font } from "@/styles";
 import dayjs from "dayjs";
 import styled from "styled-components";
-import { CalenderListItemProps } from "../interfaces";
-import useCalender from "../hooks/useCalender";
+import { CalendarListItemProps } from "../interfaces";
+import useCalendar from "../hooks/useCalendar";
 import { getColorByPlanType } from "../helpers";
-import CalenderPlanWriterInformationModal from "./CalenderPlanWriterInformationModal";
+import CalendarPlanWriterInformationModal from "./CalendarPlanWriterInformationModal";
 
-const CalenderListItem = ({ calender, isEmpty }: CalenderListItemProps) => {
-  const { handleOpenModalClick, handleDeleteCalenderPlanClick } = useCalender();
+const CalendarListItem = ({ calendar, isEmpty }: CalendarListItemProps) => {
+  const { handleOpenModalClick, handleDeleteCalendarPlanClick } = useCalendar();
 
   return (
     <Container isEmpty={isEmpty}>
-      <CalenderHead>{dayjs(calender?.date).format("DD")}</CalenderHead>
-      <CalenderBody>
-        {calender?.plans.map((plan) => (
-          <CalenderPlanBox
+      <CalendarHead>{dayjs(calendar?.date).format("DD")}</CalendarHead>
+      <CalendarBody>
+        {calendar?.plans.map((plan) => (
+          <CalendarPlanBox
             type={plan.type}
-            onClick={() => handleDeleteCalenderPlanClick(plan.id)}
+            onClick={() => handleDeleteCalendarPlanClick(plan.id)}
           >
             {plan.title}
-            <CalenderPlanWriterInformationModal {...plan} />
-          </CalenderPlanBox>
+            <CalendarPlanWriterInformationModal {...plan} />
+          </CalendarPlanBox>
         ))}
-        <CalenderPlanAddButton
-          onClick={() => handleOpenModalClick(calender?.date)}
+        <CalendarPlanAddButton
+          onClick={() => handleOpenModalClick(calendar?.date)}
         >
           +
-        </CalenderPlanAddButton>
-      </CalenderBody>
+        </CalendarPlanAddButton>
+      </CalendarBody>
     </Container>
   );
 };
@@ -38,14 +38,14 @@ const Container = styled.li<{ isEmpty?: boolean }>`
   opacity: ${({ isEmpty }) => (isEmpty ? 0 : 1)};
 `;
 
-const CalenderHead = styled.header`
+const CalendarHead = styled.header`
   ${font.H5};
   width: 100%;
   border-top: 1px solid ${color.black};
   padding: 10px 0;
 `;
 
-const CalenderBody = styled.section`
+const CalendarBody = styled.section`
   ${font.caption};
   width: 90%;
   min-height: 26vh;
@@ -55,7 +55,7 @@ const CalenderBody = styled.section`
   gap: 8px;
 `;
 
-const CalenderPlanBox = styled.div<{ type: string }>`
+const CalendarPlanBox = styled.div<{ type: string }>`
   width: 100%;
   padding: 6px 10px;
   ${font.caption};
@@ -71,11 +71,11 @@ const CalenderPlanBox = styled.div<{ type: string }>`
   }
 `;
 
-const CalenderPlanAddButton = styled.button`
+const CalendarPlanAddButton = styled.button`
   background-color: ${color.light_gray};
   color: ${color.black};
   width: 100%;
   padding: 6px 0;
 `;
 
-export default CalenderListItem;
+export default CalendarListItem;

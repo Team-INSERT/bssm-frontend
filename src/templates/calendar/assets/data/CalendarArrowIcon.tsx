@@ -1,5 +1,5 @@
 import React from "react";
-import { CalenderArrowDirectionType } from "../../types";
+import { CalendarArrowDirectionType } from "../../types";
 
 const PATH = {
   RIGHT:
@@ -8,7 +8,7 @@ const PATH = {
 };
 
 interface MealArrowIconProps extends React.SVGProps<SVGSVGElement> {
-  direction: CalenderArrowDirectionType;
+  direction: CalendarArrowDirectionType;
 }
 
 const MealArrowIcon = ({ direction, ...props }: MealArrowIconProps) => {

@@ -5,20 +5,20 @@ import useModal from "@/hooks/useModal";
 import useUser from "@/hooks/useUser";
 import { toast } from "react-toastify";
 import {
-  useAddCalenderPlanMutation,
-  useDeleteCalenderPlanMutation,
+  useAddCalendarPlanMutation,
+  useDeleteCalendarPlanMutation,
 } from "../services/mutation.service";
-import CalenderPlanAddModal from "../layouts/CalenderPlanAddModal";
 import { ChangeDateType } from "../types";
-import { CalenderPlanAddQuery } from "../interfaces";
+import { CalendarPlanAddQuery } from "../interfaces";
 import { getPlanTypeByPlanName } from "../helpers";
+import CalendarPlanAddModal from "../layouts/CalendarPlanAddModal";
 
-const useCalender = () => {
+const useCalendar = () => {
   const [currentMonth, setCurrentMonth] = React.useState(dayjs().month());
   const { openModal } = useModal();
   const { user } = useUser();
-  const { mutate: deleteMutate } = useDeleteCalenderPlanMutation();
-  const { mutate: addPlanMutate } = useAddCalenderPlanMutation();
+  const { mutate: deleteMutate } = useDeleteCalendarPlanMutation();
+  const { mutate: addPlanMutate } = useAddCalendarPlanMutation();
 
   const isPlanWriterSameAsUser = (id: number) => {
     return user.id === id;
@@ -27,7 +27,7 @@ const useCalender = () => {
   const handleOpenModalClick = (date?: string) => {
     if (date) {
       openModal({
-        component: <CalenderPlanAddModal date={date} />,
+        component: <CalendarPlanAddModal date={date} />,
       });
     }
   };
@@ -36,7 +36,7 @@ const useCalender = () => {
     title,
     date,
     planType,
-  }: CalenderPlanAddQuery) => {
+  }: CalendarPlanAddQuery) => {
     if (title.trim()) return toast.error("내용을 입력해주세요!");
     const { grade, classNum: classNumber } = user;
     const planQuery = {
@@ -51,11 +51,11 @@ const useCalender = () => {
     addPlanMutate(planQuery);
   };
 
-  const handleDeleteCalenderPlanClick = (id: number) => {
+  const handleDeleteCalendarPlanClick = (id: number) => {
     deleteMutate(id);
   };
 
-  const handleCalenderMonthChange = (month: ChangeDateType) => {
+  const handleCalendarMonthChange = (month: ChangeDateType) => {
     if (month === DATE.INCREASE) {
       setCurrentMonth((prevMon) => (prevMon !== 12 ? prevMon + 1 : prevMon));
     }
@@ -66,8 +66,8 @@ const useCalender = () => {
 
   React.useEffect(() => {
     const handleSetDateKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "ArrowLeft") handleCalenderMonthChange(DATE.DECREASE);
-      if (e.key === "ArrowRight") handleCalenderMonthChange(DATE.INCREASE);
+      if (e.key === "ArrowLeft") handleCalendarMonthChange(DATE.DECREASE);
+      if (e.key === "ArrowRight") handleCalendarMonthChange(DATE.INCREASE);
     };
 
     window.addEventListener("keydown", handleSetDateKeyDown);
@@ -79,9 +79,9 @@ const useCalender = () => {
     isPlanWriterSameAsUser,
     handleOpenModalClick,
     handlePlanAddButtonClick,
-    handleDeleteCalenderPlanClick,
-    handleCalenderMonthChange,
+    handleDeleteCalendarPlanClick,
+    handleCalendarMonthChange,
   };
 };
 
-export default useCalender;
+export default useCalendar;

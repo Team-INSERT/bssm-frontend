@@ -8,7 +8,7 @@ import { useMainQuery } from "../../services/query.service";
 import HomeMeal from "./HomeMeal";
 import HomeReserve from "./HomeReserve";
 import HomeMainBanner from "./HomeMainBanner";
-import HomeCalender from "./HomeCalender";
+import HomeCalendar from "./HomeCalendar";
 import HomePost from "./HomePost";
 import HomeMiniBanner from "./HomeMiniBanner";
 import HomeBamboo from "./HomeBamboo";
@@ -32,7 +32,7 @@ const BasicMode = () => {
         <Column gap="8px" width="100%">
           <HomeMainBanner href="/post" />
           <Row gap="8px" width="100%">
-            <HomeCalender {...data.calender} />
+            <HomeCalendar {...data.calendar} />
             <HomePost notice={data.notice} common={data.common} />
           </Row>
         </Column>

@@ -19,7 +19,7 @@ export { default as AddCommentIcon } from "./AddCommentIcon";
 export { default as DesktopIcon } from "./DesktopIcon";
 export { default as MealIcon } from "./MealIcon";
 export { default as BerIcon } from "./BerIcon";
-export { default as CalenderIcon } from "./CalenderIcon";
+export { default as CalendarIcon } from "./CalendarIcon";
 export { default as NoticeIcon } from "./NoticeIcon";
 export { default as ChatIcon } from "./ChatIcon";
 export { default as BambooIcon } from "./BambooIcon";

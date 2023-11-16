@@ -7,7 +7,7 @@ import { color, flex, font } from "@/styles";
 import Link from "next/link";
 import React from "react";
 import styled from "styled-components";
-import { BerIcon, CalenderIcon, MealIcon, NoticeIcon } from "@/assets/icons";
+import { BerIcon, CalendarIcon, MealIcon, NoticeIcon } from "@/assets/icons";
 import TimetableIcon from "@/assets/icons/TimetableIcon";
 import JoinCheckIcon from "@/assets/icons/JoinCheckIcon";
 import { useMainQuery } from "../../services/query.service";
@@ -19,7 +19,7 @@ const remoconList = [
     href: ROUTER.TIMETABLE,
     icon: <TimetableIcon width={40} />,
   },
-  { name: "캘린더", href: ROUTER.CALENDER, icon: <CalenderIcon width={40} /> },
+  { name: "캘린더", href: ROUTER.CALENDER, icon: <CalendarIcon width={40} /> },
   { name: "게시판", href: ROUTER.POST, icon: <NoticeIcon width={40} /> },
   { name: "베르실 예약", href: ROUTER.RESERVE, icon: <BerIcon width={40} /> },
   {

@@ -32,7 +32,7 @@
 
 - applications : 쉬움 ( done )
 - bamboo : 보통 ( done )
-- calender : 조금 어려움
+- calendar : 조금 어려움
 
 [ forum 도메인은 심신건강을 위해 웬만하면 시도해보지 말 것 추천 ]
 
