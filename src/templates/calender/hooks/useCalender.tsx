@@ -20,7 +20,7 @@ const useCalender = () => {
   const { mutate: deleteMutate } = useDeleteCalenderPlanMutation();
   const { mutate: addPlanMutate } = useAddCalenderPlanMutation();
 
-  const isPlanWriterIsUser = (id: number) => {
+  const isPlanWriterSameAsUser = (id: number) => {
     return user.id === id;
   };
 
@@ -76,7 +76,7 @@ const useCalender = () => {
 
   return {
     currentMonth,
-    isPlanWriterIsUser,
+    isPlanWriterSameAsUser,
     handleOpenModalClick,
     handlePlanAddButtonClick,
     handleDeleteCalenderPlanClick,

@@ -9,7 +9,7 @@ import useCalender from "../hooks/useCalender";
 import { getPlanNameByPlanType } from "../helpers";
 
 const CalenderPlanWriterInformationModal = ({ user, type }: CalenderPlan) => {
-  const { isPlanWriterIsUser } = useCalender();
+  const { isPlanWriterSameAsUser } = useCalender();
 
   return (
     <PlanWriterBox>
@@ -27,7 +27,7 @@ const CalenderPlanWriterInformationModal = ({ user, type }: CalenderPlan) => {
           · {getPlanNameByPlanType(type)}
         </PlanInformationText>
       </Row>
-      {isPlanWriterIsUser(user.id) && (
+      {isPlanWriterSameAsUser(user.id) && (
         <PlanWriterDeleteText>삭제하기</PlanWriterDeleteText>
       )}
     </PlanWriterBox>
