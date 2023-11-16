@@ -7,7 +7,7 @@ const KEY = {
   BAMBOO: "useBamboo",
   BAMBOO_ADMIN: "useBambooAdmin",
   MEAL: "useMeal",
-  CALENDER: "useCalender",
+  CALENDER: "useCalendar",
   RESERVE: "useReserve",
   MEISTER: "useMeister",
   MEISTER_DETAIL: "useMeisterDetail",

@@ -177,7 +177,7 @@ export default {
   like: new HttpClient("api/likes/update", axiosConfig),
   image: new HttpClient("api/image/save", axiosConfig),
   meal: new HttpClient("api/meal", axiosConfig),
-  calender: new HttpClient("api/calender", axiosConfig),
+  calendar: new HttpClient("api/calendar", axiosConfig),
   reserve: new HttpClient("api/ber", axiosConfig),
   meister: new HttpClient("api/meister", axiosConfig),
   ranking: new HttpClient("api/meister/ranking", axiosConfig),

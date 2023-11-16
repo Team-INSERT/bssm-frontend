@@ -1,8 +1,11 @@
-const XIcon = ({ ...props }: React.SVGAttributes<HTMLOrSVGElement>) => {
+const PlanModalCloseIcon = ({
+  ...props
+}: React.SVGAttributes<HTMLOrSVGElement>) => {
   return (
     <svg
       width="14"
       height="14"
+      cursor="pointer"
       {...props}
       viewBox="0 0 9 9"
       fill="none"
@@ -16,4 +19,4 @@ const XIcon = ({ ...props }: React.SVGAttributes<HTMLOrSVGElement>) => {
   );
 };
 
-export default XIcon;
+export default PlanModalCloseIcon;

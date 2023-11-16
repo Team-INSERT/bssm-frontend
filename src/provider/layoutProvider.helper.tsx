@@ -10,7 +10,7 @@ import { ROUTER } from "@/constants";
 const LayoutProvider = ({ children }: React.PropsWithChildren) => {
   const { isWindow } = useWindow();
   const routerName = isWindow ? window.location.pathname : "";
-  const dontNeedAsidePage: Array<string> = [ROUTER.LOGIN, ROUTER.MEAL];
+  const dontNeedAsidePage: Array<string> = [ROUTER.LOGIN, ROUTER.CALENDER];
   const isNeedAsidePage = !dontNeedAsidePage.includes(routerName);
 
   return (

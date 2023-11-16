@@ -1,6 +1,6 @@
-import ICalender from "./calender.interface";
+import Calendar from "./calendar.interface";
 
-export default interface IPlan extends ICalender {
+export default interface CalendarPlan extends Calendar {
   id: number;
   type: string;
   user: {

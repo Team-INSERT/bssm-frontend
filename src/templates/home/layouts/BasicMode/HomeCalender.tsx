@@ -1,34 +1,34 @@
 import { color, flex, font } from "@/styles";
-import { CalenderIcon } from "@/assets/icons";
+import { CalendarIcon } from "@/assets/icons";
 import getPlanType from "@/helpers/getPlanType.helper";
 import React from "react";
 import styled from "styled-components";
 import HomeHead from "./HomeHead";
 
-interface IHomeCalenderProps {
-  calenders: Array<{
+interface IHomeCalendarProps {
+  calendars: Array<{
     id: number;
     title: string;
     type: string;
   }>;
 }
 
-const HomeCalender = ({ calenders }: IHomeCalenderProps) => {
+const HomeCalendar = ({ calendars }: IHomeCalendarProps) => {
   return (
     <Container>
-      <HomeHead icon={<CalenderIcon />} title="오늘의 일정" href="/calender" />
-      <CalenderBody>
-        {calenders?.map((calender) => (
-          <CalenderContent>
-            - {calender.title} <span>{getPlanType(calender.type)}</span>
-          </CalenderContent>
+      <HomeHead icon={<CalendarIcon />} title="오늘의 일정" href="/calendar" />
+      <CalendarBody>
+        {calendars?.map((calendar) => (
+          <CalendarContent>
+            - {calendar.title} <span>{getPlanType(calendar.type)}</span>
+          </CalendarContent>
         ))}
-        {!calenders.length && (
-          <CalenderContent>
+        {!calendars.length && (
+          <CalendarContent>
             <span>등록된 일정이 없어요.</span>
-          </CalenderContent>
+          </CalendarContent>
         )}
-      </CalenderBody>
+      </CalendarBody>
     </Container>
   );
 };
@@ -41,14 +41,14 @@ const Container = styled.div`
   ${flex.COLUMN};
 `;
 
-const CalenderBody = styled.div`
+const CalendarBody = styled.div`
   width: 100%;
   height: 100%;
   padding: 6px 24px;
   ${flex.COLUMN};
 `;
 
-const CalenderContent = styled.p`
+const CalendarContent = styled.p`
   ${font.p2};
   padding-left: 6px;
   white-space: pre;
@@ -60,4 +60,4 @@ const CalenderContent = styled.p`
   }
 `;
 
-export default HomeCalender;
+export default HomeCalendar;

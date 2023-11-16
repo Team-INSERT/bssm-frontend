@@ -2,16 +2,17 @@ import React from "react";
 import styled from "styled-components";
 import dayjs from "dayjs";
 import { emptyMealList } from "@/assets/data";
+import DATE from "@/constants/date.constant";
+import DIRECTION from "@/constants/direction.constant";
 import { color, flex, font } from "@/styles";
 import MealListItem from "./MealListItem";
 import { useMealQuery } from "../services/query.service";
 import { useMeal } from "../hooks";
-import { DATE, DIRECTION } from "../constants";
 import { MealArrowIcon } from "../assets/data";
 import MealPageTitleBox from "./MealPageTitleBox";
 
 const MealPage = () => {
-  const { currentDate, formatDate, handleChangeCurrentDate } = useMeal();
+  const { currentDate, formatDate, handleCurrentDateChange } = useMeal();
   const [mealList, setMealList] = React.useState(emptyMealList);
   const { refetch } = useMealQuery({
     date: dayjs(currentDate).format(DATE.YYMMDD),
@@ -32,7 +33,7 @@ const MealPage = () => {
       <MealBox>
         <MealArrowIcon
           direction={DIRECTION.LEFT}
-          onClick={() => handleChangeCurrentDate(DATE.INCREASE)}
+          onClick={() => handleCurrentDateChange(DATE.INCREASE)}
         />
         <MealList>
           {mealList.keys.length ? (
@@ -51,7 +52,7 @@ const MealPage = () => {
         </MealList>
         <MealArrowIcon
           direction={DIRECTION.RIGHT}
-          onClick={() => handleChangeCurrentDate(DATE.DECREASE)}
+          onClick={() => handleCurrentDateChange(DATE.DECREASE)}
         />
       </MealBox>
     </Layout>
@@ -72,7 +73,7 @@ const MealBox = styled.div`
 
 const MealList = styled.div`
   width: 100%;
-  height: 60vh;
+  height: 54vh;
   ${flex.CENTER};
   gap: 2%;
 

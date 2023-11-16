@@ -14,7 +14,7 @@ const ROUTER = {
   MEAL: "/meal",
   RESERVE: "/reserve",
   JOIN_CHECK: "/join",
-  CALENDER: "/calender",
+  CALENDER: "/calendar",
 } as const;
 
 export default ROUTER;
