@@ -1,16 +1,15 @@
-import { IPostQuery } from "@/interfaces";
-import { GET_POST } from "@/graphql/post/queries";
-import { useQuery as useApolloQuery } from "@apollo/client";
+// import { IPostQuery } from "@/interfaces";
+// import { GET_POST } from "@/graphql/post/queries";
+// import { useQuery as useApolloQuery } from "@apollo/client";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { KEY } from "@/constants";
 import { getPostCommentList, getRecommentList } from "./api.service";
 
-export const usePostQuery = ({ id }: IPostQuery) => {
-  const { data, ...queryRest } = useApolloQuery(GET_POST({ id }), {
-    variables: { id },
-  });
-
-  return { post: data?.readOne, ...queryRest };
+export const usePostQuery = (/* { id }: IPostQuery */) => {
+  // const { data, ...queryRest } = useApolloQuery(GET_POST({ id }), {
+  //   variables: { id },
+  // });
+  // return { post: data?.readOne, ...queryRest };
 };
 
 interface IUseCommentListQueryProps {

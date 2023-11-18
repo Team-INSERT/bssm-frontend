@@ -2,15 +2,15 @@ import React from "react";
 import styled from "styled-components";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
-import { useApolloClient } from "@apollo/client";
+// import { useApolloClient } from "@apollo/client";
 import { CustomEditor, Input } from "@/components/atoms";
 import { Column, Row } from "@/components/Flex";
 import { emptyInputPost } from "@/assets/data";
 import { color, font } from "@/styles";
 import { POST, POST_INPUT, ROUTER } from "@/constants";
 import { filterInputPost, getImageUrl } from "@/helpers";
-import useDate from "@/hooks/useDate";
-import DragDrop from "@/components/atoms/DragDrop";
+// import DragDrop from "@/components/atoms/DragDrop";
+// import useDate from "@/hooks/useDate";
 import { useUpdatePostMutation } from "../services/mutation.service";
 import { useUpdatePostQuery } from "../services/query.service";
 
@@ -20,10 +20,10 @@ interface IInputBoxProps {
 
 const InputBox = ({ id }: IInputBoxProps) => {
   const router = useRouter();
-  const { unformatDate } = useDate();
-  const [mutate] = useUpdatePostMutation();
-  const apolloClient = useApolloClient();
-  const { post, loading } = useUpdatePostQuery({ id });
+  // const { unformatDate } = useDate();
+  // const [mutate] = useUpdatePostMutation();
+  // const apolloClient = useApolloClient();
+  // const { post, loading } = useUpdatePostQuery({ id });
   const [inputPost, setInputPost] = React.useState(emptyInputPost);
   const [editorContent, setEditorContent] = React.useState("");
   const [image, setImage] = React.useState("");
@@ -33,28 +33,28 @@ const InputBox = ({ id }: IInputBoxProps) => {
     setImage(imageUrl);
   };
 
-  React.useEffect(() => {
-    if (post && !loading) {
-      const {
-        __typename: typename,
-        createdAt,
-        likeCount,
-        commentCount,
-        user,
-        ...updatePost
-      } = post;
-      // 클린코드는 포기한지 오래다
-      setInputPost(updatePost);
-      setEditorContent(updatePost.content);
-    }
-  }, [post, loading]);
+  // React.useEffect(() => {
+  //   if (post && !loading) {
+  //     const {
+  //       __typename: typename,
+  //       createdAt,
+  //       likeCount,
+  //       commentCount,
+  //       user,
+  //       ...updatePost
+  //     } = post;
+  //     // 클린코드는 포기한지 오래다
+  //     setInputPost(updatePost);
+  //     setEditorContent(updatePost.content);
+  //   }
+  // }, [post, loading]);
 
   const handleInputPostChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type } = e.target;
 
     setInputPost({
       ...inputPost,
-      [name]: type === "date" ? unformatDate(value) : value,
+      // [name]: type === "date" ? unformatDate(value) : value,
     });
   };
 
@@ -63,10 +63,10 @@ const InputBox = ({ id }: IInputBoxProps) => {
     if (image) inputPost.lostThingImage = image;
 
     const updatePost = filterInputPost(inputPost);
-    const { data } = await mutate({ variables: { data: updatePost } });
-    apolloClient.cache.reset();
+    // const { data } = await mutate({ variables: { data: updatePost } });
+    // apolloClient.cache.reset();
     toast.success("게시글이 수정되었습니다!");
-    router.push(`${ROUTER.POST.LIST}/${data.update.id}`);
+    // router.push(`${ROUTER.POST.LIST}/${data.update.id}`);
   };
 
   const handleEditorContentChange = (text: string | undefined) => {
@@ -97,9 +97,9 @@ const InputBox = ({ id }: IInputBoxProps) => {
               <StyledInputDate
                 name={POST_INPUT.START_TIME}
                 onChange={handleInputPostChange}
-                value={unformatDate(String(inputPost.startTime), {
-                  summary: true,
-                })}
+                // value={unformatDate(String(inputPost.startTime), {
+                //   summary: true,
+                // })}
                 type="date"
               />
             </Column>
@@ -108,9 +108,9 @@ const InputBox = ({ id }: IInputBoxProps) => {
               <StyledInputDate
                 name={POST_INPUT.END_TIME}
                 onChange={handleInputPostChange}
-                value={unformatDate(String(inputPost.endTime), {
-                  summary: true,
-                })}
+                // value={unformatDate(String(inputPost.endTime), {
+                //   summary: true,
+                // })}
                 type="date"
               />
             </Column>
@@ -137,7 +137,7 @@ const InputBox = ({ id }: IInputBoxProps) => {
             value={inputPost.place}
           />
           <StyledTitle>물품의 이미지를 업로드해주세요.</StyledTitle>
-          <DragDrop handler={handleImageFileSelected} previewImage={image} />
+          {/* <DragDrop handler={handleImageFileSelected} previewImage={image} /> */}
         </>
       )}
       {inputPost.category === POST.FOUND && (

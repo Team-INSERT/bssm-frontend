@@ -1,5 +1,5 @@
 import { Column } from "@/components/Flex";
-import useDate from "@/hooks/useDate";
+// import useDate from "@/hooks/useDate";
 import { ITimetable } from "@/interfaces";
 import { color, flex, font } from "@/styles";
 import React from "react";
@@ -10,7 +10,7 @@ interface ITimeTableTableProps {
 }
 
 const TimeTableTable = ({ dayTimeTable }: ITimeTableTableProps) => {
-  const { weekdaysENGDetail: weekdays, translateDay } = useDate();
+  // const { weekdaysENGDetail: weekdays, translateDay } = useDate();
 
   return Object.entries(dayTimeTable).length ? (
     <Container>
@@ -21,7 +21,7 @@ const TimeTableTable = ({ dayTimeTable }: ITimeTableTableProps) => {
           </TableItem>
         ))}
       </Column>
-      {weekdays.map((weekday) => {
+      {/* {weekdays.map((weekday) => {
         if (!dayTimeTable[weekday]) return;
         return (
           <TableBox>
@@ -37,7 +37,7 @@ const TimeTableTable = ({ dayTimeTable }: ITimeTableTableProps) => {
             ))}
           </TableBox>
         );
-      })}
+      })} */}
     </Container>
   ) : (
     <> </>

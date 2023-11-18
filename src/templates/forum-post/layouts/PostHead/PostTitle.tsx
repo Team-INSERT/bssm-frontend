@@ -2,15 +2,15 @@ import styled from "styled-components";
 import { Column, Row } from "@/components/Flex";
 import color from "@/styles/color";
 import { flex, font } from "@/styles";
-import { Time } from "@/assets/icons";
-import { IPost } from "@/interfaces";
+// import { Time } from "@/assets/icons";
+// import { IPost } from "@/interfaces";
 import { ImageWithFallback } from "@/components/atoms";
 import { defaultProfile } from "@/assets/images";
-import useDate from "@/hooks/useDate";
-import React from "react";
+// import useDate from "@/hooks/useDate";
+// import React from "react";
 
-const PostTitle = ({ ...post }: IPost) => {
-  const { formatDate } = useDate();
+const PostTitle = ({ ...post } /* IPost */) => {
+  // const { formatDate } = useDate();
 
   return (
     <Column>
@@ -29,10 +29,10 @@ const PostTitle = ({ ...post }: IPost) => {
         <Column justifyContent="center">
           <Author>{post.user.nickName}</Author>
           <Row gap="4px" alignItems="center">
-            <Time width={12} height={12} />
-            <Date>{formatDate(post.createdAt)}</Date>
+            {/* <Time width={12} height={12} /> */}
+            {/* <Date>{formatDate(post.createdAt)}</Date> */}
             <ResponsiveDate>
-              {formatDate(post.createdAt, { summary: true })}
+              {/* {formatDate(post.createdAt, { summary: true })} */}
             </ResponsiveDate>
           </Row>
         </Column>

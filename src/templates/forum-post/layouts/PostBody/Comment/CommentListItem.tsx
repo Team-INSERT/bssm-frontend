@@ -1,8 +1,7 @@
-import { AddCommentIcon, Arrow, LikeIcon } from "@/assets/icons";
+import { AddCommentIcon, Arrow /* LikeIcon */ } from "@/assets/icons";
 import { defaultProfile } from "@/assets/images";
 import { Column, Row } from "@/components/Flex";
 import { ImageWithFallback } from "@/components/atoms";
-import useDate from "@/hooks/useDate";
 import useUser from "@/hooks/useUser";
 import { checkTextOverflow, getTextDepth } from "@/helpers";
 import { IComment } from "@/interfaces";
@@ -11,6 +10,8 @@ import React from "react";
 import { toast } from "react-toastify";
 import styled from "styled-components";
 import Swal from "sweetalert2";
+import dayjs from "dayjs";
+// import useDate from "@/hooks/useDate";
 import {
   useDeletePostCommentMutation,
   useUpdateCommentLikeMutation,
@@ -35,7 +36,7 @@ const CommentListItem = ({ comment }: ICommentListItemProps) => {
   const [currentLikeCount, setCurrentLikeCount] = React.useState(
     comment.likeCount,
   );
-  const { formatDate } = useDate();
+
   const { mutate: updateCommentMutate } = useUpdatePostCommentMutation();
   const { mutate: deleteCommentMutate } = useDeletePostCommentMutation();
   const { mutate: updateCommentLikeMutate } = useUpdateCommentLikeMutation();
@@ -84,7 +85,9 @@ const CommentListItem = ({ comment }: ICommentListItemProps) => {
           <Row gap="4px" width="100%">
             <CommentWriter>{comment.user.nickName}</CommentWriter>
             <CommentSeparator />
-            <CommentCreatedAt>{formatDate(comment.createdAt)}</CommentCreatedAt>
+            <CommentCreatedAt>
+              {dayjs(comment.createdAt).format("YYYY.MM.DD")}
+            </CommentCreatedAt>
             {comment.user.id === user.id && (
               <CommentButtonBox>
                 {isEditMode ? (
@@ -145,7 +148,7 @@ const CommentListItem = ({ comment }: ICommentListItemProps) => {
         </Column>
         <Row gap="6px">
           <StyledBox onClick={handleLikeButtonClick}>
-            <LikeIcon isLiked={isLiked} />
+            {/* <LikeIcon isLiked={isLiked} /> */}
             <StyledText>{currentLikeCount}</StyledText>
           </StyledBox>
           <StyledBox onClick={() => setIsRecommentMode(!isRecommentMode)}>

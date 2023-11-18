@@ -1,9 +1,9 @@
 import React from "react";
-import useDate from "@/hooks/useDate";
+// import useDate from "@/hooks/useDate";
 import useWindow from "./useWindow";
 
 const useTimetableBar = () => {
-  const date = useDate();
+  // const date = useDate();
   const [nowDate, setNowDate] = React.useState("");
   const [isScrollBox, setIsScrollBox] = React.useState(false);
   const { isWindow } = useWindow();
@@ -12,23 +12,23 @@ const useTimetableBar = () => {
   const intervalRef = React.useRef<number | null>(null);
 
   const 현재시간과동기화 = () => {
-    const HMSDate = date.getHMSDate();
-    setNowDate(HMSDate);
+    // const HMSDate = date.getHMSDate();
+    // setNowDate(HMSDate);
     if (scrollRef.current) {
       const { scrollWidth } = scrollRef.current;
-      const classProgress = date.getDiffTimeProgress() * scrollWidth;
-      scrollRef.current.scrollLeft = classProgress;
+      // const classProgress = date.getDiffTimeProgress() * scrollWidth;
+      // scrollRef.current.scrollLeft = classProgress;
     }
   };
 
   const handleTimetableBarScroll = () => {
     if (scrollRef.current) {
       const { scrollWidth } = scrollRef.current;
-      const classProgress = date.getDiffTimeProgress() * scrollWidth;
+      // const classProgress = date.getDiffTimeProgress() * scrollWidth;
 
-      const 사용자가스크롤했다면 =
-        Math.abs(classProgress - scrollRef.current.scrollLeft) > 1;
-      if (사용자가스크롤했다면) setIsScrollBox(true);
+      // const 사용자가스크롤했다면 =
+      //   Math.abs(classProgress - scrollRef.current.scrollLeft) > 1;
+      // if (사용자가스크롤했다면) setIsScrollBox(true);
     }
   };
 

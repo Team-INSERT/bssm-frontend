@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
-import { useApolloClient } from "@apollo/client";
+// import { useApolloClient } from "@apollo/client";
 import { Category, CustomEditor, Input } from "@/components/atoms";
 import { Column, Row } from "@/components/Flex";
 import { emptyCategories, emptyInputPost } from "@/assets/data";
@@ -15,18 +15,18 @@ import {
   isAdmin,
 } from "@/helpers";
 import useUser from "@/hooks/useUser";
-import useDate from "@/hooks/useDate";
-import DragDrop from "@/components/atoms/DragDrop";
-import { PostCategoryType } from "@/types";
+// import useDate from "@/hooks/useDate";
+// import DragDrop from "@/components/atoms/DragDrop";
+import { PostCategoryType } from "@/templates/post/types";
 import { useCreatePostMutation } from "../services/mutation.service";
 
 const InputBox = () => {
   const [checked, setChecked] = React.useState<PostCategoryType>(POST.COMMON);
   const router = useRouter();
-  const { unformatDate } = useDate();
-  const [mutate] = useCreatePostMutation();
+  // const { unformatDate } = useDate();
+  // const [mutate] = useCreatePostMutation();
   const { user } = useUser();
-  const apolloClient = useApolloClient();
+  // const apolloClient = useApolloClient();
   const [inputPost, setInputPost] = React.useState(emptyInputPost);
   const [editorContent, setEditorContent] = React.useState("");
   const [image, setImage] = React.useState("");
@@ -47,7 +47,7 @@ const InputBox = () => {
 
     setInputPost({
       ...inputPost,
-      [name]: type === "date" ? unformatDate(value) : value,
+      // [name]: type === "date" ? unformatDate(value) : value,
     });
   };
 
@@ -57,11 +57,11 @@ const InputBox = () => {
 
     // true or toast.error를 반환하기 때문에 명시해주지 않으면 무조건 true가 반환될 것
     if (checkPostValid(inputPost) === true) {
-      const { data } = await mutate({ variables: { data: inputPost } });
+      // const { data } = await mutate({ variables: { data: inputPost } });
 
-      apolloClient.cache.reset();
+      // apolloClient.cache.reset();
       toast.success("게시글이 등록되었습니다!");
-      router.push(`${ROUTER.POST.LIST}/${data.create.id}`);
+      // router.push(`${ROUTER.POST.LIST}/${data.create.id}`);
     }
   };
 
@@ -145,7 +145,7 @@ const InputBox = () => {
             value={inputPost.place}
           />
           <StyledTitle>물품의 이미지를 업로드해주세요.</StyledTitle>
-          <DragDrop handler={handleImageFileSelected} previewImage={image} />
+          {/* <DragDrop handler={handleImageFileSelected} previewImage={image} /> */}
         </>
       )}
       {checked === POST.FOUND && (

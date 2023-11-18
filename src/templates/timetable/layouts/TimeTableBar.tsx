@@ -2,7 +2,7 @@ import { color, font } from "@/styles";
 import styled from "styled-components";
 import { ITimetable } from "@/interfaces";
 import useTimetableBar from "@/hooks/useTimetableBar";
-import useDate from "@/hooks/useDate";
+// import useDate from "@/hooks/useDate";
 import React from "react";
 import dayjs from "dayjs";
 
@@ -24,10 +24,10 @@ const TimeTableBar = ({
     handleTimetableBarScroll,
     handleTimetableButtonClick,
   } = useTimetableBar();
-  const { weekdaysKOR, getDiffDayTime } = useDate();
+  // const { weekdaysKOR, getDiffDayTime } = useDate();
 
   const handleTimetable동기화ButtonClick = () => {
-    setSelectedDay(weekdaysKOR[dayjs().day()]);
+    // setSelectedDay(weekdaysKOR[dayjs().day()]);
     handleTimetableButtonClick();
   };
 
@@ -47,10 +47,10 @@ const TimeTableBar = ({
             const newStartTime = `${startTime.hour}:${startTime.minute}`;
             const newEndTime = `${endTime.hour}:${endTime.minute}`;
 
-            const time = getDiffDayTime(newEndTime, newStartTime) / 23400000;
+            // const time = getDiffDayTime(newEndTime, newStartTime) / 23400000;
 
             return (
-              <BarItem key={timetable.period} time={time}>
+              <BarItem key={timetable.period} time={/* time */ 0}>
                 <BarItemText>{timetable.subject}</BarItemText>
               </BarItem>
             );

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { CommentIcon, Like } from "@/assets/icons";
+import { /* CommentIcon */ Like } from "@/assets/icons";
 import { Row } from "@/components/Flex";
 import { color, font } from "@/styles";
 
@@ -16,7 +16,7 @@ const ReactBox = ({ commentCount, likeCount }: IPostReactBoxProps) => {
         <LikeText>{likeCount}</LikeText>
       </Row>
       <Row alignItems="center" gap="4px">
-        <CommentIcon width={14} height={14} />
+        {/* <CommentIcon width={14} height={14} /> */}
         <CommentText>{commentCount}</CommentText>
       </Row>
     </Container>

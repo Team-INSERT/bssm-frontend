@@ -1,8 +1,7 @@
-import { LikeIcon } from "@/assets/icons";
+// import { LikeIcon } from "@/assets/icons";
 import { defaultProfile } from "@/assets/images";
 import { Column, Row } from "@/components/Flex";
 import { ImageWithFallback } from "@/components/atoms";
-import useDate from "@/hooks/useDate";
 import useUser from "@/hooks/useUser";
 import { checkTextOverflow, getTextDepth } from "@/helpers";
 import { IRecomment } from "@/interfaces";
@@ -11,6 +10,8 @@ import React from "react";
 import { toast } from "react-toastify";
 import styled from "styled-components";
 import Swal from "sweetalert2";
+import dayjs from "dayjs";
+// import useDate from "@/hooks/useDate";
 import {
   useDeleteRecommentMutation,
   useUpdateRecommentLikeMutation,
@@ -31,7 +32,6 @@ const RecommentListItem = ({ recomment }: ICommentListItemProps) => {
   const [currentLikeCount, setCurrentLikeCount] = React.useState(
     recomment.likeCount,
   );
-  const { formatDate } = useDate();
   const { mutate: updateRecommentMutate } = useUpdateRecommentMutation();
   const { mutate: deleteRecommentMutate } = useDeleteRecommentMutation();
   const { mutate: updateRecommentLikeMutate } =
@@ -86,7 +86,7 @@ const RecommentListItem = ({ recomment }: ICommentListItemProps) => {
             <CommentWriter>{recomment.user.nickName}</CommentWriter>
             <CommentSeparator />
             <CommentCreatedAt>
-              {formatDate(recomment.createdAt)}
+              {dayjs(recomment.createdAt).format("YYYY.MM.DD.")}
             </CommentCreatedAt>
             {recomment.user.id === user.id && (
               <CommentButtonBox>
@@ -148,7 +148,7 @@ const RecommentListItem = ({ recomment }: ICommentListItemProps) => {
         </Column>
         <Row gap="6px">
           <StyledBox onClick={handleLikeButtonClick}>
-            <LikeIcon isLiked={isLiked} />
+            {/* <LikeIcon isLiked={isLiked} /> */}
             <StyledText>{currentLikeCount}</StyledText>
           </StyledBox>
         </Row>
