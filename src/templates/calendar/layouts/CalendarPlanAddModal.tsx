@@ -7,7 +7,7 @@ import styled from "styled-components";
 import getPlanType from "@/helpers/getPlanType.helper";
 import PLAN from "../constants/plan.constant";
 import { CalendarPlanAddModalProps } from "../interfaces";
-import useCalendar from "../hooks/useCalendar";
+import { useCalendar } from "../hooks";
 import { PlanModalCloseIcon } from "../assets/icons";
 
 const CalendarPlanAddModal = ({ date }: CalendarPlanAddModalProps) => {

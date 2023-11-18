@@ -5,7 +5,7 @@ import { Row } from "@/components/Flex";
 import styled from "styled-components";
 import { color, font } from "@/styles";
 import { CalendarPlan } from "../interfaces";
-import useCalendar from "../hooks/useCalendar";
+import { useCalendar } from "../hooks";
 import { getPlanNameByPlanType } from "../helpers";
 
 const CalendarPlanWriterInformationModal = ({ user, type }: CalendarPlan) => {

@@ -6,11 +6,12 @@ interface IInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   width?: string;
   label?: string;
   type?: string;
+  fontSize?: string;
 }
 
 const Input = ({
   type,
-  width = "100%",
+  width = "fit-content",
   children,
   label,
   id,

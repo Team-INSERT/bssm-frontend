@@ -2,13 +2,9 @@ import { KEY } from "@/constants";
 import { useQuery } from "@tanstack/react-query";
 import { getReserveList } from "./api.service";
 
-interface IUseReserveListQueryProps {
-  date: string;
-}
-
-export const useReserveListQuery = ({ date }: IUseReserveListQueryProps) => {
+export const useReserveListQuery = (date: string) => {
   const { data, ...queryRest } = useQuery([KEY.RESERVE], async () =>
     getReserveList(date),
   );
-  return { data, ...queryRest };
+  return { reserveList: data, ...queryRest };
 };
