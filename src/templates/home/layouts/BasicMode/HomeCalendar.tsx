@@ -6,24 +6,24 @@ import styled from "styled-components";
 import HomeHead from "./HomeHead";
 
 interface IHomeCalendarProps {
-  calendars: Array<{
+  calenders: Array<{
     id: number;
     title: string;
     type: string;
   }>;
 }
 
-const HomeCalendar = ({ calendars }: IHomeCalendarProps) => {
+const HomeCalendar = ({ calenders }: IHomeCalendarProps) => {
   return (
     <Container>
       <HomeHead icon={<CalendarIcon />} title="오늘의 일정" href="/calendar" />
       <CalendarBody>
-        {calendars?.map((calendar) => (
+        {calenders?.map((calendar) => (
           <CalendarContent>
             - {calendar.title} <span>{getPlanType(calendar.type)}</span>
           </CalendarContent>
         ))}
-        {!calendars.length && (
+        {!calenders.length && (
           <CalendarContent>
             <span>등록된 일정이 없어요.</span>
           </CalendarContent>

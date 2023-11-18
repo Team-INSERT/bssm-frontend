@@ -2,7 +2,7 @@ import { color, flex, font } from "@/styles";
 import dayjs from "dayjs";
 import styled from "styled-components";
 import { CalendarListItemProps } from "../interfaces";
-import useCalendar from "../hooks/useCalendar";
+import { useCalendar } from "../hooks";
 import { getColorByPlanType } from "../helpers";
 import CalendarPlanWriterInformationModal from "./CalendarPlanWriterInformationModal";
 

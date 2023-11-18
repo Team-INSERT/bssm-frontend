@@ -7,7 +7,7 @@ import DATE from "@/constants/date.constant";
 import DIRECTION from "@/constants/direction.constant";
 import { CalendarArrowIcon } from "../assets/data";
 import { useCalendarListQuery } from "../services/query.service";
-import useCalendar from "../hooks/useCalendar";
+import { useCalendar } from "../hooks";
 import WeekDayHeaderBox from "./WeekDayHeaderBox";
 import { CalendarItem } from "../interfaces";
 import { getPaddingDayOfMonth } from "../helpers";

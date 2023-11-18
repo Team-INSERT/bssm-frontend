@@ -1,4 +1,4 @@
-const emptyReserve = {
+const berReserveData = {
   reservedBerNumber: [],
   berResList: [
     {
@@ -19,4 +19,4 @@ const emptyReserve = {
   ],
 };
 
-export default emptyReserve;
+export default berReserveData;

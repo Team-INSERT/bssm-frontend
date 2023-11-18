@@ -1,4 +1,4 @@
-export default interface IReserve {
+export default interface BerReserve {
   id: number;
   berNumber: number;
   reservation: string;
