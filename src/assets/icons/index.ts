@@ -1,4 +1,3 @@
-export { default as Arrow } from "./Arrow";
 export { default as CategoryArrow } from "./CategoryArrow";
 export { default as Check } from "./Check";
 export { default as Emoji } from "./Emoji";
@@ -15,7 +14,6 @@ export { default as Relaxed } from "./emojis/Relaxed";
 export { default as Curve } from "./Curve";
 export { default as HistorySeparator } from "./HistorySeparator";
 export { default as UploadIcon } from "./UploadIcon";
-export { default as AddCommentIcon } from "./AddCommentIcon";
 export { default as DesktopIcon } from "./DesktopIcon";
 export { default as MealIcon } from "./MealIcon";
 export { default as BerIcon } from "./BerIcon";
