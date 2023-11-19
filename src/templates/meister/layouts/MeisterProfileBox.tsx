@@ -24,14 +24,16 @@ const MeisterProfileBox = ({ meister, name }: IMeisterProfileBoxProps) => {
             <Row alignItems="center" gap="5px">
               <Name>{name}</Name>
             </Row>
-            <MeisterPoint>{meister.score}</MeisterPoint>
+            <MeisterPoint>
+              마이스터역량인증제 점수 ㆍ {meister.score}점
+            </MeisterPoint>
             <Row alignItems="center" gap="8px">
-              <CreditPoint>{meister.positivePoint}</CreditPoint>
+              <CreditPoint>상점 ㆍ {meister.positivePoint}점</CreditPoint>
               <Separator />
-              <DemeritPoint>{meister.negativePoint}</DemeritPoint>
+              <DemeritPoint>벌점 ㆍ {meister.negativePoint}점</DemeritPoint>
             </Row>
           </Column>
-          <MyPageButton />
+          <MyPageButton>내 정보</MyPageButton>
         </>
       )}
     </Container>
@@ -58,23 +60,11 @@ const RewardPointText = styled.span`
   ${font.p3};
   line-height: 130%;
   color: ${color.gray};
-
-  &:after {
-    content: "점";
-  }
 `;
 
-const MeisterPoint = styled(RewardPointText)`
-  &:before {
-    content: "마이스터역량인증제 점수 ㆍ ";
-  }
-`;
+const MeisterPoint = styled(RewardPointText)``;
 
-const CreditPoint = styled(RewardPointText)`
-  &:before {
-    content: "상점 ㆍ ";
-  }
-`;
+const CreditPoint = styled(RewardPointText)``;
 
 const Separator = styled.div`
   width: 1.5px;
@@ -82,11 +72,7 @@ const Separator = styled.div`
   height: 12px;
 `;
 
-const DemeritPoint = styled(RewardPointText)`
-  &:before {
-    content: "벌점 ㆍ ";
-  }
-`;
+const DemeritPoint = styled(RewardPointText)``;
 
 const MyPageButton = styled.div`
   padding: 4px 10px;
@@ -96,10 +82,6 @@ const MyPageButton = styled.div`
   ${font.btn3};
   color: ${color.white};
   cursor: pointer;
-
-  &:after {
-    content: "내 정보";
-  }
 `;
 
 export default MeisterProfileBox;

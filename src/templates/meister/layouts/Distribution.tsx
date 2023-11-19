@@ -21,7 +21,7 @@ const Distribution = ({ meisterData }: IDistributionProps) => {
     <Container>
       <Row alignItems="center" gap="4px">
         <DistributionIcon />
-        <TitleText />
+        <TitleText>영역별 점수 분포도</TitleText>
       </Row>
       <RadarBox>
         <RadarChart meisterData={meisterData} />
@@ -50,10 +50,6 @@ const Container = styled.div`
 const TitleText = styled.span`
   ${font.H6};
   color: ${color.black};
-
-  &:after {
-    content: "영역별 점수 분포도";
-  }
 `;
 
 const RadarBox = styled.div`

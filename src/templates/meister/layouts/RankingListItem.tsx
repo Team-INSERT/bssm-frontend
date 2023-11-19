@@ -33,17 +33,18 @@ const RankingListItem = ({
             ) : (
               "통합"
             )}
+            개발과
           </Department>
-          <Grade>{student.grade}</Grade>
-          <ClassNo>{student.classNo}</ClassNo>
-          <StudentNo>{student.studentNo}</StudentNo>
+          <Grade>{student.grade}학년</Grade>
+          <ClassNo>{student.classNo}반</ClassNo>
+          <StudentNo>{student.studentNo}번</StudentNo>
           <Name>{student.name}</Name>
         </Row>
-        <MeisterPoint>{score}</MeisterPoint>
+        <MeisterPoint>마이스터역량인증제 점수 ㆍ {score}점</MeisterPoint>
         <Row alignItems="center" gap="8px">
-          <CreditPoint>{positivePoint}</CreditPoint>
+          <CreditPoint>상점 ㆍ {positivePoint}점</CreditPoint>
           <Separator />
-          <DemeritPoint>{negativePoint}</DemeritPoint>
+          <DemeritPoint>벌점 ㆍ {negativePoint}점</DemeritPoint>
         </Row>
       </Column>
     </Container>
@@ -64,29 +65,13 @@ const InfomationText = styled.span`
   color: ${color.black};
 `;
 
-const Department = styled(InfomationText)`
-  &:after {
-    content: "개발과";
-  }
-`;
+const Department = styled(InfomationText)``;
 
-const Grade = styled(InfomationText)`
-  &:after {
-    content: "학년";
-  }
-`;
+const Grade = styled(InfomationText)``;
 
-const ClassNo = styled(InfomationText)`
-  &:after {
-    content: "반";
-  }
-`;
+const ClassNo = styled(InfomationText)``;
 
-const StudentNo = styled(InfomationText)`
-  &:after {
-    content: "번";
-  }
-`;
+const StudentNo = styled(InfomationText)``;
 
 const Name = styled(InfomationText)``;
 
@@ -94,23 +79,11 @@ const RewardPointText = styled.span`
   ${font.p3};
   line-height: 130%;
   color: ${color.gray};
-
-  &:after {
-    content: "점";
-  }
 `;
 
-const MeisterPoint = styled(RewardPointText)`
-  &:before {
-    content: "마이스터역량인증제 점수 ㆍ ";
-  }
-`;
+const MeisterPoint = styled(RewardPointText)``;
 
-const CreditPoint = styled(RewardPointText)`
-  &:before {
-    content: "상점 ㆍ ";
-  }
-`;
+const CreditPoint = styled(RewardPointText)``;
 
 const Separator = styled.div`
   width: 1.5px;
@@ -118,10 +91,6 @@ const Separator = styled.div`
   height: 12px;
 `;
 
-const DemeritPoint = styled(RewardPointText)`
-  &:before {
-    content: "벌점 ㆍ ";
-  }
-`;
+const DemeritPoint = styled(RewardPointText)``;
 
 export default RankingListItem;

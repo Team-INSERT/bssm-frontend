@@ -19,7 +19,7 @@ const Ranking = () => {
 
   return (
     <Container>
-      <RankingTitle />
+      <RankingTitle>📊 마이스터역량인증제 순위</RankingTitle>
       <CategoryBox>
         {[1, 2, 3].map((grade) => (
           <Category
@@ -66,10 +66,6 @@ const CategoryBox = styled.div`
 
 const RankingTitle = styled.span`
   ${font.H2};
-
-  &:after {
-    content: "📊 마이스터역량인증제 순위";
-  }
 `;
 
 const RankingList = styled.div`

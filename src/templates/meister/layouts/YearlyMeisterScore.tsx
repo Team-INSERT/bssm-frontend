@@ -16,7 +16,7 @@ const YearlyMeisterScore = ({ meisterData }: IYearlyMeisterScroeProps) => {
     <Container>
       <Row alignItems="center" gap="8px">
         <GraphIcon />
-        <TitleText />
+        <TitleText>연도별 점수 그래프</TitleText>
       </Row>
       <MeisterChart meisterData={meisterData} />
       <StatusBox>
@@ -45,10 +45,6 @@ const Container = styled.div`
 const TitleText = styled.span`
   ${font.H6};
   color: ${color.black};
-
-  &:after {
-    content: "연도별 점수 그래프";
-  }
 `;
 
 const StatusBox = styled.div`
