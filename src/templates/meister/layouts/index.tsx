@@ -20,6 +20,8 @@ import {
 } from "../services/query.service";
 import Ranking from "./Ranking";
 import CircularProgressBox from "./CircularProgressBox";
+import PointHTMLContent from "./PointHTMLContent";
+import ScoreHTMLContent from "./ScoreHTMLContent";
 
 interface MeisterData {
   name: "professionalTech" | "workEthic" | "humanities" | "foreignScore";
@@ -50,9 +52,9 @@ const MeisterPage = () => {
   const [studentInfo, setStudentInfo] = React.useState("");
   const router = useRouter();
 
-  const handleStudentNumberChange = (
-    e: React.ChangeEvent<HTMLInputElement>,
-  ) => {
+  const handleStudentNumberChange: React.ChangeEventHandler<
+    HTMLInputElement
+  > = (e) => {
     const { value } = e.target;
     if (value.length > 4) return;
     if (Number.isNaN(+value)) return;
@@ -111,20 +113,25 @@ const MeisterPage = () => {
         <Container>
           <StyledTitle>조회 형식</StyledTitle>
           <CategoryBox>
-            {["분석", "랭킹"].map((title) => (
+            {["분석", "랭킹"].map((category) => (
               <Category
-                id={title}
+                id={category}
                 name="meister"
-                label={title}
-                checked={checked === title}
-                onChange={(e) => setChecked(e.target.id)}
+                label={category}
+                checked={checked === category}
+                onChange={() => setChecked(category)}
               />
             ))}
           </CategoryBox>
           <InputWrap>
             <Column gap="4px">
               <InputTitle>학번 입력</InputTitle>
-              <Form onSubmit={(e) => e.preventDefault()}>
+              <Row
+                as="form"
+                alignItems="center"
+                gap="12px"
+                onSubmit={(e) => e.preventDefault()}
+              >
                 <StyledInput
                   value={studentNumber}
                   onChange={handleStudentNumberChange}
@@ -132,7 +139,7 @@ const MeisterPage = () => {
                 <StyledButton onClick={handleStudentSearchClick} type="submit">
                   조회
                 </StyledButton>
-              </Form>
+              </Row>
             </Column>
           </InputWrap>
           {checked === "분석" && meisterDetail.isSuccess && (
@@ -186,14 +193,10 @@ const MeisterPage = () => {
               {meisterDetail.isSuccess && (
                 <>
                   <ScoreHTMLContent
-                    dangerouslySetInnerHTML={{
-                      __html: scoreParser(meisterDetail.data.scoreHtmlContent),
-                    }}
+                    scoreHTML={scoreParser(meisterDetail.data.scoreHtmlContent)}
                   />
                   <PointHTMLContent
-                    dangerouslySetInnerHTML={{
-                      __html: pointParser(meisterDetail.data.pointHtmlContent),
-                    }}
+                    pointHTML={pointParser(meisterDetail.data.pointHtmlContent)}
                   />
                 </>
               )}
@@ -252,148 +255,6 @@ const CategoryBox = styled.div`
   margin-right: auto;
 `;
 
-const ScoreHTMLContent = styled.div`
-  width: 100%;
-  white-space: pre-wrap;
-  & > div {
-    display: none;
-  }
-
-  .item-score {
-    ${font.p3};
-    color: ${color.gray};
-  }
-
-  .total-score-item {
-    ${font.H6};
-  }
-
-  .list-item {
-    ${font.p2};
-    font-weight: 600;
-    padding: 20px;
-    margin: 10px 0;
-    border-radius: 4px;
-    box-shadow: 4px 4px 20px 0 rgba(0, 0, 0, 0.05);
-  }
-
-  .section-date {
-    margin: 0;
-    padding: 0;
-    text-align: left;
-    ${font.p3};
-    color: ${color.gray};
-    font-weight: 500;
-  }
-
-  & > .titleBarA {
-    ${font.H5};
-
-    &:nth-child(2),
-    &:nth-child(3),
-    &:nth-child(4) {
-      display: none;
-    }
-  }
-
-  & > table {
-    &:nth-child(3),
-    &:nth-child(4),
-    &:nth-child(5) {
-      display: none;
-    }
-    background-color: ${color.white};
-    width: 100%;
-    padding: 16px 20px;
-    border-radius: 4px;
-
-    tbody {
-      tr {
-        &:first-child,
-        &:last-child {
-          display: none;
-        }
-
-        td {
-          &:nth-child(1),
-          &:nth-child(2),
-          &:nth-child(3) {
-            display: none;
-          }
-        }
-      }
-    }
-  }
-`;
-
-const PointHTMLContent = styled.div`
-  margin-top: 2.5rem;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
-
-  div {
-    flex: 100% !important;
-    font-size: 18px !important;
-    font-weight: bold !important;
-  }
-
-  li {
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: center !important;
-    align-items: center !important;
-    width: calc(50% - 0.5rem) !important;
-    height: 12.5rem !important;
-    background-color: #ccffd8 !important;
-    border-radius: 1rem !important;
-    transition: var(--hover-transition) !important;
-  }
-
-  li:hover {
-    background-color: #9effb5 !important;
-  }
-
-  .bad {
-    color: black !important;
-    background-color: #ffd7d5 !important;
-  }
-
-  .bad:hover {
-    background-color: #ffc9c6 !important;
-  }
-
-  li > div {
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: center !important;
-    align-items: center !important;
-    border: none !important;
-    box-shadow: none !important;
-    padding: 1rem 2rem !important;
-  }
-
-  li:not(.bad) > div {
-    font-weight: normal !important;
-  }
-
-  li > div > div {
-    font-size: 16px !important;
-    font-weight: 500 !important;
-    text-align: center !important;
-    white-space: pre-wrap !important;
-    color: ${color.gray};
-    padding-top: 10px !important;
-  }
-
-  li > div > div:first-child > div {
-    font-size: 18px !important;
-    font-weight: 500 !important;
-    color: black !important;
-  }
-`;
-
 const InputWrap = styled.div`
   width: 100%;
   display: flex;
@@ -418,12 +279,6 @@ const StyledButton = styled.button`
   background-color: ${color.primary_blue};
   border-radius: 6px;
   color: white;
-`;
-
-const Form = styled.form`
-  display: flex;
-  align-items: center;
-  gap: 12px;
 `;
 
 export default MeisterPage;
