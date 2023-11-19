@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   getS3ImageUrl,
   getFilteredPostDataByCategory,
@@ -7,15 +7,15 @@ import {
 import {
   useCreatePostMutation,
   useUpdatePostMutation,
-} from "../services/mutation.service";
+} from "../services/post/mutation.service";
 import { Post, PostData } from "../interfaces";
 import { defaultPostData } from "../assets/data";
 import { PostCategoryType } from "../types";
 
 // edit과 write를 동시에 처리하는 훅
 const usePostWritable = (defaultPostDataState?: Post) => {
-  const [postData, setPostData] = useState<Post>(defaultPostData);
-  const [lostImageUrl, setLostImageUrl] = useState();
+  const [postData, setPostData] = React.useState<Post>(defaultPostData);
+  const [lostImageUrl, setLostImageUrl] = React.useState();
   const { mutate: updatePostMutate } = useUpdatePostMutation();
   const { mutate: createPostMutate } = useCreatePostMutation();
 
