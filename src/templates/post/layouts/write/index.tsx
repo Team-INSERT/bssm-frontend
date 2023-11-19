@@ -1,8 +1,7 @@
 import styled from "styled-components";
 import { color, flex } from "@/styles";
 import { Button } from "@/components/atoms";
-import { PostPageParams } from "../../interfaces";
-import { usePostQuery } from "../../services/query.service";
+import { usePostQuery } from "../../services/post/query.service";
 import {
   TitleInputBox,
   ProjectInputBox,
@@ -15,8 +14,9 @@ import { CATEGORY } from "../../constants";
 import { usePostWritable } from "../../hooks";
 import PostCategoryBox from "./CategoryBox";
 import WriteTitleBox from "./WriteTitleBox";
+import { PostDetailParamsProps } from "../../interfaces";
 
-const PostWritePage = ({ id }: PostPageParams) => {
+const PostWritePage = ({ id }: PostDetailParamsProps) => {
   const { post } = usePostQuery(id);
   const {
     postData,
