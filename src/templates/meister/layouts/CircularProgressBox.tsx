@@ -1,21 +1,19 @@
 import { Column, Row } from "@/components/Flex";
-import { color, font } from "@/styles";
-import flex from "@/styles/flex";
-import React from "react";
+import { styled } from "styled-components";
+import { getMeisterChapter } from "@/helpers";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
-import styled from "styled-components";
+import { color, flex, font } from "@/styles";
+import type { CircularProgressBoxProps } from "../interfaces";
 
 import "react-circular-progressbar/dist/styles.css";
-import { getMeisterChapter } from "@/helpers";
 
-interface IStatusCard {
-  chapter: string;
-  score: number;
-  maxScore: number;
-  statusColor: string;
-}
-
-const StatusCard = ({ chapter, score, statusColor, maxScore }: IStatusCard) => {
+const CircularProgressBox = ({
+  chapter,
+  score,
+  statusColor,
+  value,
+  text,
+}: CircularProgressBoxProps) => {
   return (
     <Container>
       <Row width="100%" alignItems="center" justifyContent="space-between">
@@ -23,10 +21,10 @@ const StatusCard = ({ chapter, score, statusColor, maxScore }: IStatusCard) => {
           <ChapterTitle>{getMeisterChapter(chapter)}</ChapterTitle>
           <ScoreBox statusColor={statusColor}>{score}</ScoreBox>
         </Column>
-        <CircularProgressBox>
+        <StyledCircularProgressBox>
           <CircularProgressbar
-            value={(score / maxScore) * 100}
-            text={`${Math.round((score / maxScore) * 100)}%`}
+            value={value}
+            text={text}
             styles={buildStyles({
               textSize: "24px",
               pathColor: statusColor,
@@ -34,11 +32,13 @@ const StatusCard = ({ chapter, score, statusColor, maxScore }: IStatusCard) => {
               trailColor: color.on_tertiary,
             })}
           />
-        </CircularProgressBox>
+        </StyledCircularProgressBox>
       </Row>
     </Container>
   );
 };
+
+export default CircularProgressBox;
 
 const Container = styled.div`
   width: 100%;
@@ -61,14 +61,8 @@ const ScoreBox = styled.div<{ statusColor: string }>`
   ${flex.HORIZONTAL}
   padding-left: 10px;
   border-left: ${({ statusColor }) => `4px solid ${statusColor}`};
-
-  &:after {
-    content: "점";
-  }
 `;
 
-const CircularProgressBox = styled.div`
+const StyledCircularProgressBox = styled.div`
   width: 80px;
 `;
-
-export default StatusCard;

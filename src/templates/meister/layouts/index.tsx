@@ -11,28 +11,31 @@ import { useMeisterHTML } from "@/hooks/useMeisterHTML";
 import React from "react";
 import styled from "styled-components";
 import useUser from "@/hooks/useUser";
-import MeisterProfileBox from "./layouts/MeisterProfileBox";
-import YearlyMeisterScore from "./layouts/YearlyMeisterScore";
-import Distribution from "./layouts/Distribution";
-import StatusCard from "./layouts/StatusCard";
+import MeisterProfileBox from "./MeisterProfileBox";
+import YearlyMeisterScore from "./YearlyMeisterScore";
+import Distribution from "./Distribution";
 import {
   useMeisterDetailQuery,
   useMeisterQuery,
-} from "./services/query.service";
-import Ranking from "./layouts/Ranking";
-import BasicJobSkillCard from "./layouts/BasicJobSkillCard";
+} from "../services/query.service";
+import Ranking from "./Ranking";
+import CircularProgressBox from "./CircularProgressBox";
 
-interface IMeisterData {
+interface MeisterData {
   name: "professionalTech" | "workEthic" | "humanities" | "foreignScore";
   color: string;
 }
 
-const meisterList: Array<IMeisterData> = [
+const meisterList: Array<MeisterData> = [
   { name: "professionalTech", color: color.primary_mint },
   { name: "workEthic", color: color.primary_red },
   { name: "humanities", color: color.primary_yellow },
   { name: "foreignScore", color: color.primary_blue },
 ];
+
+const rankList = ["A", "B", "C", "D"];
+
+const scoreList = [100, 75, 50, 25];
 
 const MeisterPage = () => {
   const meisterData = useMeisterQuery();
@@ -70,8 +73,7 @@ const MeisterPage = () => {
       setStudentInfo(
         A.substring(
           A.indexOf(
-            // eslint-disable-next-line
-            `<div style=\"padding-top:10px; padding-bottom:10px; text-align:right;\">`,
+            `<div style="padding-top:10px; padding-bottom:10px; text-align:right;">`,
           ),
           A.indexOf(`</div>`),
         ).replace(
@@ -142,15 +144,20 @@ const MeisterPage = () => {
               {studentInfo.includes(user.name) && (
                 <>
                   <StatusCardBox>
-                    {meisterList.map(({ name, color: status }) => (
-                      <StatusCard
-                        key={name}
-                        chapter={name}
-                        score={meister.meister[name]}
-                        maxScore={meister.max[name]}
-                        statusColor={status}
-                      />
-                    ))}
+                    {meisterList.map(({ name, color: status }) => {
+                      const rate =
+                        (meister.meister[name] / meister.max[name]) * 100;
+                      return (
+                        <CircularProgressBox
+                          key={name}
+                          chapter={name}
+                          score={`${meister.meister[name]}점`}
+                          statusColor={status}
+                          value={rate}
+                          text={`${Math.round(rate)}%`}
+                        />
+                      );
+                    })}
                   </StatusCardBox>
                   <Row width="100%" justifyContent="space-between">
                     {meisterData.isSuccess && (
@@ -165,10 +172,13 @@ const MeisterPage = () => {
                 {meisterDetail.isSuccess &&
                   getBasicJobSkills(meisterDetail.data.scoreHtmlContent).map(
                     (item) => (
-                      <BasicJobSkillCard
+                      <CircularProgressBox
+                        key={item.title}
                         chapter={item.title}
-                        score={item.value}
+                        score={`${item.value}등급`}
                         statusColor={item.status}
+                        value={scoreList[item.value - 1]}
+                        text={`${rankList[item.value - 1]}`}
                       />
                     ),
                   )}
