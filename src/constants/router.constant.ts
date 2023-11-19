@@ -4,6 +4,7 @@ const ROUTER = {
   APPLICATIONS: "/applications",
   LOGIN: "/oauth",
   POST: {
+    DETAIL: "/post",
     LIST: "/post",
     WRITE: "/post/write",
     UPDATE: "/post/edit",
