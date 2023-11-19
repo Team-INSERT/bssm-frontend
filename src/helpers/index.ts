@@ -1,14 +1,12 @@
-export { default as getUserRole } from "./getUserRole.helper";
 export { default as getStatusColor } from "./getStatusColor.helper";
 export { default as getToken } from "./getToken.helper";
 export { default as getImageUrl } from "./getImageUrl.helper";
 export { default as isAdmin } from "./isAdmin.helper";
 export { default as getWriteContentLabel } from "./getWriteContentLabel.helper";
-export { default as checkTextOverflow } from "./checkTextOverflow.helper";
-export { default as getTextDepth } from "./getTextDepth.helper";
 export { default as getMealName } from "./getMealName.helper";
 export { default as getTimetableType } from "./getTimetableType.helper";
 export { default as getDay } from "./getDay.helper";
 export { default as getClassName } from "./getClassName.helper";
 export { default as getMeisterChapter } from "./getMeisterChapter.helper";
 export { default as getXSSContent } from "./getXSSContent.helper";
+export { default as getUserRole } from "./getUserRole.helper";
