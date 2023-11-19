@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { Aside } from "@/components/common";
-import UpdateBox from "./layouts/UpdateBox";
 
 interface IPostPageParams {
   id: number;
@@ -10,7 +9,7 @@ const UpdatePage = (params: IPostPageParams) => {
   return (
     <Layout>
       <Container>
-        <UpdateBox {...params} />
+        {/* <UpdateBox {...params} /> */}
         <Aside />
       </Container>
     </Layout>
