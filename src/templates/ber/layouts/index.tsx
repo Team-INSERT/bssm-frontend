@@ -40,6 +40,7 @@ const BerPage = () => {
         onChange={handleSetDateChange}
         value={date}
         label="조회할 날짜를 입력하세요"
+        width="fit-content"
       />
       {berViewType === BER.신청하기 && (
         <ReservationBox>
