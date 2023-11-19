@@ -1,6 +1,6 @@
 "use client";
 
-import PostPage from "@/templates/forum-post";
+import PostDetailPage from "@/templates/post/layouts/detail";
 
 interface IPostAppPageParams {
   params: {
@@ -9,7 +9,7 @@ interface IPostAppPageParams {
 }
 
 const Post = ({ params }: IPostAppPageParams) => {
-  return <PostPage {...params} />;
+  return <PostDetailPage {...params} />;
 };
 
 export default Post;
