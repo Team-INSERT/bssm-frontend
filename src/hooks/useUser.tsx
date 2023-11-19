@@ -13,6 +13,7 @@ import { authorization, refresh } from "@/apis/token";
 import { isAxiosError } from "axios";
 import LoginModal from "@/components/common/Modal/LoginModal";
 import { TOKEN } from "@/storage/constants";
+import ROLE from "@/constants/role.constant";
 
 interface UseUserOptions {
   authorizedPage?: boolean;
@@ -48,7 +49,7 @@ const useUser = (options?: UseUserOptions) => {
     if (!Storage.getItem(TOKEN.ACCESS)) {
       openModal({ component: <LoginModal /> });
     }
-  }, [Storage]);
+  }, [openModal]);
 
   React.useEffect(() => {
     if (isAxiosError(error) && error.response) {
@@ -70,7 +71,12 @@ const useUser = (options?: UseUserOptions) => {
     }
   }, [options, userInfo, isLoading, router, visible, openModal]);
 
-  return { user, isLogined: !!userInfo, logout };
+  return {
+    user,
+    isLogined: !!userInfo,
+    isAdmin: userInfo?.authority === ROLE.ADMIN,
+    logout,
+  };
 };
 
 export default useUser;
