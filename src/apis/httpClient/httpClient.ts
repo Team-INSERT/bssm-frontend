@@ -1,7 +1,7 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from "axios";
 import { requestInterceptors, responseInterceptors } from "@/apis/interceptor";
-import { ERROR } from "@/constants";
-import { TOKEN } from "@/storage/constants";
+import ERROR from "@/constants/error.constant";
+import { TOKEN } from "@/storage/constants/";
 import Storage from "../../storage";
 import { refresh } from "../token";
 
