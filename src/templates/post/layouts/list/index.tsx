@@ -4,7 +4,7 @@ import { Button, Category } from "@/components/atoms";
 import React from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Loading from "@/components/atoms/Loading";
-import { usePostListQuery } from "../../services/query.service";
+import { usePostListQuery } from "../../services/post/query.service";
 import { usePost } from "../../hooks";
 import { get카테고리명ByCategory } from "../../helpers";
 import PostListItem from "./PostListItem";
