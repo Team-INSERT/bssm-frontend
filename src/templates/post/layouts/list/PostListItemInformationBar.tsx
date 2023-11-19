@@ -15,7 +15,7 @@ const PostListItemInformationBar = ({
   return (
     <Row gap="12px">
       <InfomationBox>
-        <CommentIcon />
+        <CommentIcon width={12} height={12} />
         <InfomationText>{commentCount}</InfomationText>
       </InfomationBox>
       <InfomationBox>
