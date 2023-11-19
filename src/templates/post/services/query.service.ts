@@ -1,6 +1,6 @@
 import { KEY } from "@/constants";
-import { useInfiniteQuery } from "@tanstack/react-query";
-import { getPostList } from "./api.service";
+import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
+import { getPostList, getPost } from "./api.service";
 import { PostCategoryType } from "../types";
 
 export const usePostListQuery = (category: PostCategoryType) => {
@@ -16,4 +16,9 @@ export const usePostListQuery = (category: PostCategoryType) => {
   const hasMore = hasNextPage || false;
 
   return { postList: data?.pages, dataLength, hasMore, ...queryRest };
+};
+
+export const usePostQuery = (id: number) => {
+  const { data, ...queryRest } = useQuery([KEY.POST, id], () => getPost(id));
+  return { post: data, ...queryRest };
 };
