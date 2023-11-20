@@ -1,7 +1,7 @@
 const navigationList = [
   {
     id: 1,
-    name: "👩🏻‍🎓  인증제",
+    name: "👩🏻‍🎓  마이스터",
     href: "/meister",
   },
   {

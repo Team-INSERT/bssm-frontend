@@ -1,5 +1,7 @@
-export default interface IMeister {
+export default interface MeisterDetail {
   meister: {
+    scoreHtmlContent: string;
+    pointHtmlContent: string;
     score: number;
     positivePoint: number;
     negativePoint: number;

@@ -1,6 +1,6 @@
-import IMeister from "@/interfaces/meister.interface";
+import { Meister } from "../../interfaces";
 
-const emptyMeister: IMeister = {
+const meisterDefaultData: Meister = {
   meister: {
     score: 0,
     positivePoint: 0,
@@ -35,4 +35,4 @@ const emptyMeister: IMeister = {
   },
 };
 
-export default emptyMeister;
+export default meisterDefaultData;

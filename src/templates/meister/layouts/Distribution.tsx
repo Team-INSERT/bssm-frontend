@@ -1,30 +1,26 @@
 import DistributionIcon from "@/assets/icons/DistributionIcon";
 import { Row } from "@/components/Flex";
-import { IMeister } from "@/interfaces";
 import { color, font } from "@/styles";
 import flex from "@/styles/flex";
 import React from "react";
 import styled from "styled-components";
 import RadarChart from "../chart/RadarChart";
+import { Meister } from "../interfaces";
 
 const spiderChartValue = [
   { name: "내 점수", color: color.spider_first },
   { name: "학년 평균", color: color.spider_second },
 ];
 
-interface IDistributionProps {
-  meisterData: IMeister;
-}
-
-const Distribution = ({ meisterData }: IDistributionProps) => {
+const Distribution = ({ ...meisterData }: Meister) => {
   return (
     <Container>
       <Row alignItems="center" gap="4px">
         <DistributionIcon />
-        <TitleText />
+        <TitleText>영역별 점수 분포도</TitleText>
       </Row>
       <RadarBox>
-        <RadarChart meisterData={meisterData} />
+        <RadarChart {...meisterData} />
       </RadarBox>
       <StatusBox>
         {spiderChartValue.map((chart) => (
@@ -50,10 +46,6 @@ const Container = styled.div`
 const TitleText = styled.span`
   ${font.H6};
   color: ${color.black};
-
-  &:after {
-    content: "영역별 점수 분포도";
-  }
 `;
 
 const RadarBox = styled.div`

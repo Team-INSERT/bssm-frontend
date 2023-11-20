@@ -7,9 +7,15 @@ const Row = ({
   justifyContent = "none",
   alignItems = "none",
   width,
+  as,
+  ...props
 }: FlexPropsType) => {
   return (
-    <StyledRow style={{ gap, justifyContent, alignItems, width }}>
+    <StyledRow
+      as={as}
+      {...props}
+      style={{ gap, justifyContent, alignItems, width }}
+    >
       {children}
     </StyledRow>
   );
