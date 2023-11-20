@@ -2,6 +2,7 @@ import React from "react";
 
 const useTextarea = (defaultContent?: string) => {
   const [content, setContent] = React.useState(defaultContent || "");
+  const textareaRef = React.useRef<HTMLTextAreaElement>(null);
   const [textareaHeight, setTextareaHeight] = React.useState({
     row: 2,
     lineBreak: [] as Array<boolean>,
@@ -35,7 +36,12 @@ const useTextarea = (defaultContent?: string) => {
     }
   };
 
+  React.useEffect(() => {
+    if (textareaRef.current) textareaRef.current.focus();
+  }, [textareaRef]);
+
   return {
+    textareaRef,
     content,
     setContent,
     row: textareaHeight.row,

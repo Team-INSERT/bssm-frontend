@@ -2,7 +2,7 @@
 
 import { PageNotFound } from "@/assets/images";
 import { Button } from "@/components/atoms";
-import { ROUTER } from "@/constants";
+import ROUTER from "@/constants/router.constant";
 import { color, flex } from "@/styles";
 import Image from "next/image";
 import { useRouter } from "next/navigation";

@@ -23,7 +23,7 @@ interface ICustomEditorProps extends CustomEditorPropsType {
 const CustomEditor = ({ ...props }: ICustomEditorProps) => {
   const { openModal, closeModal } = useModal();
 
-  const handleImageSelected = async (file: File | undefined) => {
+  const handleImageSelected = async (file?: File) => {
     closeModal();
     const imageUrl = await getImageUrl(file);
 

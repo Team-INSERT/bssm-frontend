@@ -5,7 +5,7 @@ import styled, { css } from "styled-components";
 import { Column, Row } from "../Flex";
 
 interface DragDropFunctionPropsType {
-  handler: (file: File | undefined) => void;
+  handler: (file?: File) => void;
   previewImage?: string;
   width?: string;
   height?: string;
