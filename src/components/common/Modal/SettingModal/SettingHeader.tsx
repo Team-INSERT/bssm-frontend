@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import { font } from "@/styles";
-import { XIcon, Setting } from "@/assets/icons";
+import { Setting } from "@/assets/icons";
 import useModal from "@/hooks/useModal";
+import { ModalCloseIcon } from "@/templates/bamboo/assets/icons";
 
 const SettingHeader = () => {
   const { closeModal } = useModal();
@@ -13,7 +14,7 @@ const SettingHeader = () => {
         <SettingTitle />
       </HGroup>
       <CloseButton>
-        <XIcon onClick={closeModal} />
+        <ModalCloseIcon onClick={closeModal} />
       </CloseButton>
     </Header>
   );
