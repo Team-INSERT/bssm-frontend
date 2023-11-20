@@ -1,7 +1,7 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from "axios";
 import { requestInterceptors, responseInterceptors } from "@/apis/interceptor";
-import { ERROR } from "@/constants";
-import { TOKEN } from "@/storage/constants";
+import ERROR from "@/constants/error.constant";
+import { TOKEN } from "@/storage/constants/";
 import Storage from "../../storage";
 import { refresh } from "../token";
 
@@ -165,21 +165,21 @@ export const axiosConfig: HttpClientConfig = {
 };
 
 export default {
-  oauth: new HttpClient("api/auth/oauth/bsm", axiosConfig),
-  user: new HttpClient("api/user", axiosConfig),
-  timetable: new HttpClient("api/timeTable", axiosConfig),
-  post: new HttpClient("api/post/", axiosConfig),
-  recomment: new HttpClient("api/recomment", axiosConfig),
-  comment: new HttpClient("api/comment", axiosConfig),
-  auth: new HttpClient("api/auth/", axiosConfig),
-  bamboo: new HttpClient("api/bamboo", axiosConfig),
-  admin: new HttpClient("api/bamboo/admin", axiosConfig),
-  like: new HttpClient("api/likes/update", axiosConfig),
-  image: new HttpClient("api/image/save", axiosConfig),
-  meal: new HttpClient("api/meal", axiosConfig),
-  calendar: new HttpClient("api/calender", axiosConfig),
-  ber: new HttpClient("api/ber", axiosConfig),
-  meister: new HttpClient("api/meister", axiosConfig),
-  ranking: new HttpClient("api/meister/ranking", axiosConfig),
-  main: new HttpClient("api/main", axiosConfig),
+  oauth: new HttpClient("/api/auth/oauth/bsm", axiosConfig),
+  user: new HttpClient("/api/user", axiosConfig),
+  timetable: new HttpClient("/api/timeTable", axiosConfig),
+  post: new HttpClient("/api/post/", axiosConfig),
+  recomment: new HttpClient("/api/recomment", axiosConfig),
+  comment: new HttpClient("/api/comment", axiosConfig),
+  auth: new HttpClient("/api/auth/", axiosConfig),
+  bamboo: new HttpClient("/api/bamboo", axiosConfig),
+  admin: new HttpClient("/api/bamboo/admin", axiosConfig),
+  like: new HttpClient("/api/likes/update", axiosConfig),
+  image: new HttpClient("/api/image/save", axiosConfig),
+  meal: new HttpClient("/api/meal", axiosConfig),
+  calendar: new HttpClient("/api/calender", axiosConfig),
+  ber: new HttpClient("/api/ber", axiosConfig),
+  meister: new HttpClient("/api/meister", axiosConfig),
+  ranking: new HttpClient("/api/meister/ranking", axiosConfig),
+  main: new HttpClient("/api/main", axiosConfig),
 };

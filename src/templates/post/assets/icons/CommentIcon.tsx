@@ -1,8 +1,9 @@
-const CommentIcon = () => {
+import React from "react";
+
+const CommentIcon = ({ ...props }: React.SVGProps<SVGSVGElement>) => {
   return (
     <svg
-      width="12"
-      height="12"
+      {...props}
       cursor="pointer"
       viewBox="0 0 22 21"
       fill="none"

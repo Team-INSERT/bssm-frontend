@@ -1,9 +1,9 @@
 "use client";
 
-import WritePage from "@/templates/forum-write";
+import PostWritePage from "@/templates/post/layouts/write";
 
 const Write = () => {
-  return <WritePage />;
+  return <PostWritePage />;
 };
 
 export default Write;
