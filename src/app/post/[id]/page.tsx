@@ -8,8 +8,8 @@ interface IPostAppPageParams {
   };
 }
 
-const Post = ({ params }: IPostAppPageParams) => {
+const PostDetail = ({ params }: IPostAppPageParams) => {
   return <PostDetailPage {...params} />;
 };
 
-export default Post;
+export default PostDetail;

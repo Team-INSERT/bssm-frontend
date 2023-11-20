@@ -1,13 +1,13 @@
 import styled, { css } from "styled-components";
 import { color, font } from "@/styles";
 
-interface IButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   color: string;
   align?: "TOP" | "RIGHT" | "BOTTOM" | "LEFT";
   isSmall?: boolean;
 }
 
-const Button = ({ ...props }: IButtonProps) => {
+const Button = ({ ...props }: ButtonProps) => {
   return <StyledButton {...props} />;
 };
 
