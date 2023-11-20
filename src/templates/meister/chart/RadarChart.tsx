@@ -1,69 +1,59 @@
-import { IMeister } from "@/interfaces";
 import React, { useState } from "react";
 import Radar from "react-d3-radar";
-
-interface Variable {
-  key: string;
-  label: string;
-}
-
-interface ValueSet {
-  [key: string]: number;
-}
+import radarChartVariables from "../assets/data/radarChartVariables";
+import { MEISTER } from "../constants";
+import Meister from "../interfaces/meister.interface";
 
 interface DataSet {
   key: string;
   label: string;
-  values: ValueSet;
+  values: { [key: string]: number };
 }
 
 interface ChartData {
-  variables: Variable[];
+  variables: Array<{ key: string; label: string }>;
   sets: DataSet[];
 }
 
-interface IRadarChartProps {
-  meisterData: IMeister;
-}
-
-const RadarChart = ({ meisterData }: IRadarChartProps) => {
+const RadarChart = ({ ...meisterData }: Meister) => {
   const chartData: ChartData = {
-    variables: [
-      { key: "a", label: "직업기초능력" },
-      { key: "b", label: "전문기술역량" },
-      { key: "c", label: "인성/직업의식" },
-      { key: "d", label: "인문학적 소양" },
-      { key: "e", label: "외국어 능력" },
-    ],
+    variables: radarChartVariables,
     sets: [
       {
         key: "avg",
         label: "학년 평균",
         values: {
-          a: meisterData.avg.basicJobSkills,
-          b: meisterData.avg.professionalTech,
-          c: meisterData.avg.workEthic,
-          d: meisterData.avg.humanities,
-          e: meisterData.avg.foreignScore,
+          [MEISTER.직업기초능력]: meisterData.avg[MEISTER.직업기초능력],
+          [MEISTER.전문기술역량]: meisterData.avg[MEISTER.전문기술역량],
+          [MEISTER.인성직업의식]: meisterData.avg[MEISTER.인성직업의식],
+          [MEISTER.인문학적소양]: meisterData.avg[MEISTER.인문학적소양],
+          [MEISTER.외국어능력]: meisterData.avg[MEISTER.외국어능력],
         },
       },
       {
         key: "my",
         label: "내 점수",
         values: {
-          a: meisterData.meister.basicJobSkills,
-          b: meisterData.meister.professionalTech,
-          c: meisterData.meister.workEthic,
-          d: meisterData.meister.humanities,
-          e: meisterData.meister.foreignScore,
+          [MEISTER.직업기초능력]: meisterData.meister[MEISTER.직업기초능력],
+          [MEISTER.전문기술역량]: meisterData.meister[MEISTER.전문기술역량],
+          [MEISTER.인성직업의식]: meisterData.meister[MEISTER.인성직업의식],
+          [MEISTER.인문학적소양]: meisterData.meister[MEISTER.인문학적소양],
+          [MEISTER.외국어능력]: meisterData.meister[MEISTER.외국어능력],
         },
       },
     ],
   };
+  const [highlighted, setHighlighted] = useState<{
+    key: string;
+    label: string;
+  } | null>(null);
 
-  const [highlighted, setHighlighted] = useState<Variable | null>(null);
-
-  const onHover = (hovered: Variable | null) => {
+  const onHover = (
+    hovered: {
+      key: string;
+      label: string;
+    } | null,
+  ) => {
     if (!highlighted && !hovered) return;
     if (highlighted && hovered && hovered.key === highlighted.key) return;
     setHighlighted(hovered);
