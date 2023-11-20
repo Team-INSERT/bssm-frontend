@@ -1,6 +1,6 @@
 import { MeisterDetail } from "../../interfaces";
 
-const meisterDefaultDetailData: MeisterDetail = {
+const meisterDetailDefaultData: MeisterDetail = {
   meister: {
     score: 0,
     pointHtmlContent: "",
@@ -37,4 +37,4 @@ const meisterDefaultDetailData: MeisterDetail = {
   },
 };
 
-export default meisterDefaultDetailData;
+export default meisterDetailDefaultData;
