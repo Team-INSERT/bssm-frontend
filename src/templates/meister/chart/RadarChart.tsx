@@ -7,7 +7,7 @@ import Meister from "../interfaces/meister.interface";
 interface DataSet {
   key: string;
   label: string;
-  values: { [key: string]: number };
+  values: Record<string, number>;
 }
 
 interface ChartData {
