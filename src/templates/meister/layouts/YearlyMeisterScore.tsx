@@ -4,21 +4,17 @@ import { color, font } from "@/styles";
 import React from "react";
 import styled from "styled-components";
 import { getStatusColor } from "@/helpers";
-import { IMeister } from "@/interfaces";
 import MeisterChart from "../chart/MeisterChart";
+import { Meister } from "../interfaces";
 
-interface IYearlyMeisterScroeProps {
-  meisterData: IMeister;
-}
-
-const YearlyMeisterScore = ({ meisterData }: IYearlyMeisterScroeProps) => {
+const YearlyMeisterScore = ({ ...meisterData }: Meister) => {
   return (
     <Container>
       <Row alignItems="center" gap="8px">
         <GraphIcon />
         <TitleText>연도별 점수 그래프</TitleText>
       </Row>
-      <MeisterChart meisterData={meisterData} />
+      <MeisterChart {...meisterData} />
       <StatusBox>
         {["학년 평균", "내 점수", "최고 점수"].map((year, index) => (
           <Row key={year} alignItems="center" gap="4px">

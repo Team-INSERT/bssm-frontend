@@ -1,227 +1,130 @@
 import flex from "@/styles/flex";
-import emptyMeister from "@/assets/data/emptyMeister";
 import { Column, Row } from "@/components/Flex";
 import { color, font } from "@/styles";
-import { Button, Category } from "@/components/atoms";
-import { useRouter } from "next/navigation";
-import { ROUTER } from "@/constants";
-import { useRecoilState } from "recoil";
-import { searchStudentNumberStore } from "@/store/searchStudentNumber.store";
+import { Category } from "@/components/atoms";
+import Loading from "@/components/atoms/Loading";
 import { useMeisterHTML } from "@/hooks/useMeisterHTML";
 import React from "react";
 import styled from "styled-components";
-import useUser from "@/hooks/useUser";
 import MeisterProfileBox from "./MeisterProfileBox";
 import YearlyMeisterScore from "./YearlyMeisterScore";
 import Distribution from "./Distribution";
-import {
-  useMeisterDetailQuery,
-  useMeisterQuery,
-} from "../services/query.service";
 import Ranking from "./Ranking";
 import CircularProgressBox from "./CircularProgressBox";
 import PointHTMLContent from "./PointHTMLContent";
 import ScoreHTMLContent from "./ScoreHTMLContent";
-
-interface MeisterData {
-  name: "professionalTech" | "workEthic" | "humanities" | "foreignScore";
-  color: string;
-}
-
-const meisterList: Array<MeisterData> = [
-  { name: "professionalTech", color: color.primary_mint },
-  { name: "workEthic", color: color.primary_red },
-  { name: "humanities", color: color.primary_yellow },
-  { name: "foreignScore", color: color.primary_blue },
-];
-
-const rankList = ["A", "B", "C", "D"];
-
-const scoreList = [100, 75, 50, 25];
+import { meisterListData } from "../assets/data";
+import { useMeister } from "../hooks";
 
 const MeisterPage = () => {
-  const meisterData = useMeisterQuery();
-  const meisterDetail = useMeisterDetailQuery();
+  const [viewType, setViewType] = React.useState("분석");
+  const {
+    isLoading,
+    isSuccess,
+    meister,
+    meisterDetail,
+    studentInfo,
+    studentNum,
+    handleStudentNumChange,
+    handleStudentSearchClick,
+  } = useMeister();
   const { scoreParser, pointParser, getBasicJobSkills } = useMeisterHTML();
-  const [meister, setMeister] = React.useState(emptyMeister);
-  const { user } = useUser();
-  const [checked, setChecked] = React.useState("분석");
-  const [studentNumber, setStudentNumber] = useRecoilState(
-    searchStudentNumberStore,
-  );
-  const [studentInfo, setStudentInfo] = React.useState("");
-  const router = useRouter();
-
-  const handleStudentNumberChange: React.ChangeEventHandler<
-    HTMLInputElement
-  > = (e) => {
-    const { value } = e.target;
-    if (value.length > 4) return;
-    if (Number.isNaN(+value)) return;
-    if (+value[0] > 3 || +value[0] === 0) return;
-    if (+value[1] > 4 || +value[1] === 0) return;
-    if (+value[2] > 1) return;
-    if (+(value[2] + value[3]) > 16 || +(value[2] + value[3]) === 0) return;
-    setStudentNumber(value);
-  };
-
-  const handleStudentSearchClick = () => {
-    meisterDetail.refetch();
-  };
-
-  React.useEffect(() => {
-    if (meisterDetail.isSuccess) {
-      const A = meisterDetail.data.scoreHtmlContent as string;
-      setStudentInfo(
-        A.substring(
-          A.indexOf(
-            `<div style="padding-top:10px; padding-bottom:10px; text-align:right;">`,
-          ),
-          A.indexOf(`</div>`),
-        ).replace(
-          '<div style="padding-top:10px; padding-bottom:10px; text-align:right;">',
-          "",
-        ),
-      );
-    }
-  }, [meisterDetail]);
-
-  const meisterPointPostProcessing = () => {
-    document.querySelectorAll(".fas.fa-sad-cry").forEach((item) => {
-      item?.parentElement?.parentElement?.parentElement?.parentElement?.classList.add(
-        "bad",
-      );
-    });
-    document.querySelectorAll("li").forEach((item) => {
-      item?.parentElement?.parentElement?.parentElement?.parentElement?.classList.add(
-        "ssyan",
-      );
-    });
-  };
-
-  React.useEffect(meisterPointPostProcessing, [meisterDetail]);
-
-  React.useEffect(() => {
-    if (meisterData.isSuccess) {
-      setMeister(meisterData.data);
-    }
-  }, [meisterData]);
 
   return (
     <Layout>
-      {meisterData.isSuccess && (
-        <Container>
-          <StyledTitle>조회 형식</StyledTitle>
-          <CategoryBox>
-            {["분석", "랭킹"].map((category) => (
-              <Category
-                id={category}
-                name="meister"
-                label={category}
-                checked={checked === category}
-                onChange={() => setChecked(category)}
+      <Container>
+        <StyledTitle>조회 형식</StyledTitle>
+        <CategoryBox>
+          {["분석", "랭킹"].map((category) => (
+            <Category
+              id={category}
+              name="meister"
+              label={category}
+              checked={viewType === category}
+              onChange={() => setViewType(category)}
+            />
+          ))}
+        </CategoryBox>
+        <InputWrap>
+          <Column gap="4px">
+            <InputTitle>학번 입력</InputTitle>
+            <Row
+              as="form"
+              alignItems="center"
+              gap="12px"
+              onSubmit={(e) => e.preventDefault()}
+            >
+              <StyledInput
+                value={studentNum}
+                onChange={handleStudentNumChange}
               />
-            ))}
-          </CategoryBox>
-          <InputWrap>
-            <Column gap="4px">
-              <InputTitle>학번 입력</InputTitle>
-              <Row
-                as="form"
-                alignItems="center"
-                gap="12px"
-                onSubmit={(e) => e.preventDefault()}
-              >
-                <StyledInput
-                  value={studentNumber}
-                  onChange={handleStudentNumberChange}
+              <StyledButton onClick={handleStudentSearchClick} type="submit">
+                조회
+              </StyledButton>
+            </Row>
+          </Column>
+        </InputWrap>
+        {isLoading ? (
+          <Loading />
+        ) : (
+          <>
+            {isSuccess && viewType === "분석" && (
+              <>
+                <MeisterProfileBox
+                  meister={meisterDetail.meister}
+                  name={studentInfo}
                 />
-                <StyledButton onClick={handleStudentSearchClick} type="submit">
-                  조회
-                </StyledButton>
-              </Row>
-            </Column>
-          </InputWrap>
-          {checked === "분석" && meisterDetail.isSuccess && (
-            <>
-              <MeisterProfileBox
-                meister={meisterDetail.data}
-                name={studentInfo}
-              />
-              {studentInfo.includes(user.name) && (
-                <>
-                  <StatusCardBox>
-                    {meisterList.map(({ name, color: status }) => {
-                      const rate =
-                        (meister.meister[name] / meister.max[name]) * 100;
-                      return (
-                        <CircularProgressBox
-                          key={name}
-                          chapter={name}
-                          score={`${meister.meister[name]}점`}
-                          statusColor={status}
-                          value={rate}
-                          text={`${Math.round(rate)}%`}
-                        />
-                      );
-                    })}
-                  </StatusCardBox>
-                  <Row width="100%" justifyContent="space-between">
-                    {meisterData.isSuccess && (
-                      <YearlyMeisterScore meisterData={meisterData.data} />
-                    )}
-                    <Distribution meisterData={meister} />
-                  </Row>
-                </>
-              )}
-              <StyledTitle>💼 직업 기초 능력</StyledTitle>
-              <StatusCardBox>
-                {meisterDetail.isSuccess &&
-                  getBasicJobSkills(meisterDetail.data.scoreHtmlContent).map(
-                    (item) => (
+                <StatusCardBox>
+                  {meisterListData.map(({ name, color: status }) => {
+                    const rate =
+                      (meister.meister[name] / meister.max[name]) * 100;
+                    return (
                       <CircularProgressBox
-                        key={item.title}
-                        chapter={item.title}
-                        score={`${item.value}등급`}
-                        statusColor={item.status}
-                        value={scoreList[item.value - 1]}
-                        text={`${rankList[item.value - 1]}`}
+                        key={name}
+                        chapter={name}
+                        score={`${meister.meister[name]}점`}
+                        statusColor={status}
+                        value={rate}
+                        text={`${Math.round(rate)}%`}
                       />
-                    ),
+                    );
+                  })}
+                </StatusCardBox>
+                <Row width="100%" justifyContent="space-between">
+                  <YearlyMeisterScore {...meisterDetail} />
+                  <Distribution {...meisterDetail} />
+                </Row>
+                <StyledTitle>💼 직업 기초 능력</StyledTitle>
+                <StatusCardBox>
+                  {getBasicJobSkills(
+                    meisterDetail.meister.scoreHtmlContent,
+                  ).map((item) => (
+                    <CircularProgressBox
+                      key={item.title}
+                      chapter={item.title}
+                      score={`${item.value}등급`}
+                      statusColor={item.status}
+                      value={[100, 75, 50, 25][item.value - 1]}
+                      text={`${["A", "B", "C", "D"][item.value - 1]}`}
+                    />
+                  ))}
+                </StatusCardBox>
+                <ScoreHTMLContent
+                  scoreHTML={scoreParser(
+                    meisterDetail.meister.scoreHtmlContent,
                   )}
-              </StatusCardBox>
-              {meisterDetail.isSuccess && (
-                <>
-                  <ScoreHTMLContent
-                    scoreHTML={scoreParser(meisterDetail.data.scoreHtmlContent)}
-                  />
-                  <PointHTMLContent
-                    pointHTML={pointParser(meisterDetail.data.pointHtmlContent)}
-                  />
-                </>
-              )}
-            </>
-          )}
-          {checked === "랭킹" && <Ranking />}
-        </Container>
-      )}
-      {meisterData.isError && (
-        <Column
-          alignItems="center"
-          justifyContent="center"
-          width="100%"
-          height="70vh"
-        >
-          <Button
-            color={color.primary_blue}
-            onClick={() =>
-              router.push(process.env.NEXT_PUBLIC_OAUTH_URL || ROUTER.HOME)
-            }
-          >
-            로그인하세요
-          </Button>
-        </Column>
-      )}
+                />
+                <PointHTMLContent
+                  pointHTML={pointParser(
+                    meisterDetail.meister.pointHtmlContent,
+                  )}
+                />
+              </>
+            )}
+            {isSuccess && viewType === "랭킹" && <Ranking />}
+          </>
+        )}
+      </Container>
     </Layout>
   );
 };
@@ -232,7 +135,7 @@ const Layout = styled.div`
 `;
 
 const Container = styled.div`
-  width: 76%;
+  width: 100%;
   ${flex.COLUMN_CENTER};
   gap: 12px;
 `;

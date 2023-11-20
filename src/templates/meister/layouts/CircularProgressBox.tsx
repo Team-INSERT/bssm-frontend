@@ -3,8 +3,7 @@ import { styled } from "styled-components";
 import { getMeisterChapter } from "@/helpers";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import { color, flex, font } from "@/styles";
-import type { CircularProgressBoxProps } from "../interfaces";
-
+import { CircularProgressBoxProps } from "../interfaces";
 import "react-circular-progressbar/dist/styles.css";
 
 const CircularProgressBox = ({
