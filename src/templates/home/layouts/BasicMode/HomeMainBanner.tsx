@@ -1,14 +1,14 @@
-import { TestBanner } from "@/assets/images";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React from "react";
 import styled from "styled-components";
+import { TestBanner } from "@/assets/images";
 
-interface IHomeMainBannerProps {
+interface HomeMainBannerProps {
   href?: string;
 }
 
-const HomeMainBanner = ({ href }: IHomeMainBannerProps) => {
+const HomeMainBanner = ({ href }: HomeMainBannerProps) => {
   const router = useRouter();
 
   return (

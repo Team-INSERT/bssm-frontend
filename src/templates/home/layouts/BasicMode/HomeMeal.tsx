@@ -1,16 +1,16 @@
-import { color, flex, font } from "@/styles";
-import { MealIcon } from "@/assets/icons";
-import React from "react";
 import styled from "styled-components";
+import { theme, flex, font } from "@/styles";
+import { MealIcon } from "@/assets/icons";
 import HomeHead from "./HomeHead";
+import { get식사명ByMealName } from "../../helpers";
 
-interface IHomeMealProps {
+interface HomeMealProps {
   content: string;
   cal: string;
-  name: string;
+  mealName: string;
 }
 
-const HomeMeal = ({ content, cal, name }: IHomeMealProps) => {
+const HomeMeal = ({ mealName, content, cal }: HomeMealProps) => {
   return (
     <Container>
       <HomeHead icon={<MealIcon />} title="오늘의 급식" href="/meal" />
@@ -25,7 +25,7 @@ const HomeMeal = ({ content, cal, name }: IHomeMealProps) => {
         />
         {content && (
           <MealCalorie>
-            {name}, {cal}
+            {get식사명ByMealName(mealName)}, {cal}kcal
           </MealCalorie>
         )}
         {!content && <MealContent>등록된 급식이 없어요.</MealContent>}
@@ -38,15 +38,15 @@ const Container = styled.div`
   width: 46%;
   height: 30vh;
   border-radius: 4px;
-  background-color: ${color.white};
-  ${flex.COLUMN};
+  background-color: ${theme.white};
+  ${flex.COLUMN_FLEX};
 `;
 
 const MealBody = styled.div`
   width: 100%;
   height: 100%;
   padding: 6px 24px;
-  display: flex;
+  ${flex.FLEX};
 `;
 
 const MealContent = styled.p`
@@ -59,12 +59,8 @@ const MealContent = styled.p`
 const MealCalorie = styled.span`
   ${font.caption};
   font-size: 10px;
-  color: ${color.gray};
+  color: ${theme.gray};
   margin-left: auto;
-
-  &:after {
-    content: "kcal";
-  }
 `;
 
 export default HomeMeal;

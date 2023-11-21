@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Storage from "@/storage";
 import { flex } from "@/styles";
+import { SETTING } from "@/storage/constants";
 import { Category } from "@/components/atoms";
 import useWindow from "@/hooks/useWindow";
 import BasicMode from "./layouts/BasicMode";
@@ -12,12 +13,12 @@ const HomePage = () => {
   const { isWindow } = useWindow();
 
   React.useEffect(() => {
-    setViewMode(Storage.getItem("SETTING:홈페이지조회형식") || "기본 모드");
+    setViewMode(Storage.getItem(SETTING.홈페이지조회형식) || "기본 모드");
   }, [isWindow]);
 
   const handleChangeClick = (modeName: string) => {
     setViewMode(modeName);
-    Storage.setItem("SETTING:홈페이지조회형식", modeName);
+    Storage.setItem(SETTING.홈페이지조회형식, modeName);
   };
 
   return (
@@ -30,7 +31,7 @@ const HomePage = () => {
             name="viewMode"
             onChange={() => handleChangeClick(modeName)}
             label={modeName}
-            checked={modeName === viewMode}
+            selected={modeName === viewMode}
           />
         ))}
       </ModeBox>
@@ -42,13 +43,13 @@ const HomePage = () => {
 
 const Layout = styled.div`
   width: 100%;
-  ${flex.COLUMN};
+  ${flex.COLUMN_FLEX};
   gap: 20px;
 `;
 
 const ModeBox = styled.div`
   width: fit-content;
-  ${flex.VERTICAL};
+  ${flex.HORIZONTAL};
   flex-wrap: wrap;
   gap: 12px;
 `;

@@ -1,16 +1,17 @@
-import Arrow from "@/assets/icons/Arrow";
-import { color, flex, font } from "@/styles";
+import ArrowIcon from "@/assets/icons/ArrowIcon";
+import { DIRECTION } from "@/constants";
+import { theme, flex, font } from "@/styles";
 import Link from "next/link";
 import React from "react";
 import styled from "styled-components";
 
-interface IHomeHeadProps {
+interface HomeHeadProps {
   icon: React.JSX.Element;
   title: string;
   href?: string;
 }
 
-const HomeHead = ({ icon, title, href }: IHomeHeadProps) => {
+const HomeHead = ({ icon, title, href }: HomeHeadProps) => {
   return (
     <Container>
       {icon}
@@ -18,7 +19,7 @@ const HomeHead = ({ icon, title, href }: IHomeHeadProps) => {
       {href && (
         <StyledLink href={href} target="_blank">
           <StyledLinkHref />
-          <Arrow direction="right" width={8} />
+          <ArrowIcon direction={DIRECTION.RIGHT} width={8} />
         </StyledLink>
       )}
     </Container>
@@ -30,7 +31,7 @@ const Container = styled.div`
   ${flex.HORIZONTAL};
   gap: 8px;
   padding: 6px 8px;
-  border-bottom: 1px solid ${color.on_tertiary};
+  border-bottom: 1px solid ${theme.on_tertiary};
 `;
 
 const StyledTitle = styled.span`
@@ -39,14 +40,14 @@ const StyledTitle = styled.span`
 `;
 
 const StyledLink = styled(Link)`
-  ${flex.HORIZONTAL};
+  ${flex.VERTICAL};
   margin-left: auto;
   gap: 4px;
 `;
 
 const StyledLinkHref = styled.span`
   ${font.p4};
-  color: ${color.gray};
+  color: ${theme.gray};
 
   &:after {
     content: "자세히 보기";

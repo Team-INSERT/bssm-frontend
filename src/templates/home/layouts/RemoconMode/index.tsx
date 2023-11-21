@@ -1,15 +1,14 @@
+import Link from "next/link";
+import styled from "styled-components";
 import { defaultProfile } from "@/assets/images";
 import { Column, Row } from "@/components/Flex";
-import { ImageWithFallback } from "@/components/atoms";
-import useUser from "@/hooks/useUser";
+import { FallbackImage } from "@/components/atoms";
 import { ROUTER } from "@/constants";
-import { color, flex, font } from "@/styles";
-import Link from "next/link";
-import React from "react";
-import styled from "styled-components";
+import { theme, flex, font } from "@/styles";
 import { BerIcon, CalendarIcon, MealIcon, NoticeIcon } from "@/assets/icons";
 import TimetableIcon from "@/assets/icons/TimetableIcon";
 import JoinCheckIcon from "@/assets/icons/JoinCheckIcon";
+import { useUser } from "@/@user/hooks";
 import { useMainQuery } from "../../services/query.service";
 
 const remoconList = [
@@ -33,57 +32,55 @@ const RemoconMode = () => {
   const { user } = useUser();
   const { data, isSuccess } = useMainQuery();
 
-  return (
-    isSuccess && (
-      <Container>
-        <RemoconBox href="https://auth.bssm.kro.kr/user" target="_blank">
-          <ImageWithFallback
-            src={user.profile_image}
-            fallbackSrc={defaultProfile}
-            alt="profile"
-            width={50}
-            height={50}
-            rounded
-          />
-          <Column>
-            <StudentInfomation>
-              {user.grade}학년 {user.classNum}반 {user.studentNumber}번{" "}
-              {user.name}
-            </StudentInfomation>
-            <Nickname>{user.nickname}</Nickname>
-          </Column>
+  return isSuccess ? (
+    <Container>
+      <RemoconBox href="https://auth.bssm.kro.kr/user" target="_blank">
+        <FallbackImage
+          src={user.profile_image}
+          fallbackSrc={defaultProfile}
+          alt="profile"
+          width={50}
+          height={50}
+          rounded
+        />
+        <Column>
+          <StudentInfomation>
+            {user.grade}학년 {user.classNum}반 {user.studentNumber}번{" "}
+            {user.name}
+          </StudentInfomation>
+          <Nickname>{user.nickname}</Nickname>
+        </Column>
+      </RemoconBox>
+      <RemoconBox href={ROUTER.MEISTER}>
+        <Column width="100%">
+          <ScoreName>인증제 점수</ScoreName>
+          <Row gap="4px">
+            <Score>{data.meister.meister.score}</Score>
+            <SubText>{data.ranking}위</SubText>
+          </Row>
+        </Column>
+        <Column width="100%">
+          <ScoreName>상점</ScoreName>
+          <PositivePoint>{data.meister.meister.positivePoint}</PositivePoint>
+        </Column>
+        <Column width="100%">
+          <ScoreName>벌점</ScoreName>
+          <NegativePoint>{data.meister.meister.negativePoint}</NegativePoint>
+        </Column>
+      </RemoconBox>
+      {remoconList.map((remocon) => (
+        <RemoconBox href={remocon.href as string}>
+          {remocon.icon}
+          <RemoconText>{remocon.name}</RemoconText>
         </RemoconBox>
-        <RemoconBox href={ROUTER.MEISTER}>
-          <Column width="100%">
-            <ScoreName>인증제 점수</ScoreName>
-            <Row gap="4px">
-              <Score>{data.meister.meister.score}</Score>
-              <SubText>{data.ranking}위</SubText>
-            </Row>
-          </Column>
-          <Column width="100%">
-            <ScoreName>상점</ScoreName>
-            <PositivePoint>{data.meister.meister.positivePoint}</PositivePoint>
-          </Column>
-          <Column width="100%">
-            <ScoreName>벌점</ScoreName>
-            <NegativePoint>{data.meister.meister.negativePoint}</NegativePoint>
-          </Column>
-        </RemoconBox>
-        {remoconList.map((remocon) => (
-          <RemoconBox href={remocon.href as string}>
-            {remocon.icon}
-            <RemoconText>{remocon.name}</RemoconText>
-          </RemoconBox>
-        ))}
-      </Container>
-    )
-  );
+      ))}
+    </Container>
+  ) : null;
 };
 
 const Container = styled.div`
   width: 100%;
-  ${flex.VERTICAL};
+  ${flex.HORIZONTAL};
   flex-wrap: wrap;
   justify-content: space-between;
   gap: 12px;
@@ -92,7 +89,7 @@ const Container = styled.div`
 const RemoconBox = styled(Link)`
   width: 49.5%;
   height: 14vh;
-  background-color: ${color.white};
+  background-color: ${theme.white};
   display: flex;
   align-items: center;
   padding: 0px 30px;
@@ -110,7 +107,7 @@ const Nickname = styled.span`
 
 const ScoreName = styled.span`
   ${font.H6};
-  color: ${color.gray};
+  color: ${theme.gray};
 `;
 
 const Score = styled.span`
@@ -122,16 +119,16 @@ const Score = styled.span`
 `;
 
 const PositivePoint = styled(Score)`
-  color: ${color.green};
+  color: ${theme.green};
 `;
 
 const NegativePoint = styled(Score)`
-  color: ${color.red};
+  color: ${theme.red};
 `;
 
 const SubText = styled.span`
   ${font.p3};
-  color: ${color.gray};
+  color: ${theme.gray};
   margin-top: auto;
 `;
 
