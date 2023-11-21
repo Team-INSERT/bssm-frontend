@@ -1,13 +1,13 @@
-import { useRef, useEffect } from "react";
+import React from "react";
 
-export const useDidMountEffect = (
-  func: () => void,
-  deps: React.DependencyList,
-) => {
-  const didMount = useRef(false);
+const useDidMountEffect = (func: () => void, deps: React.DependencyList) => {
+  const didMount = React.useRef(false);
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (didMount.current) func();
     else didMount.current = true;
+    // eslint-disable-next-line
   }, deps);
 };
+
+export default useDidMountEffect;
