@@ -1,7 +1,7 @@
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
-import KEY from "@/constants/key.constant";
-import IBambooPendingPost from "@/interfaces/bambooPendingPost.interface";
+import { KEY } from "@/constants";
 import { getBambooPendingPostList, getBambooPostList } from "./api.service";
+import { BambooPendingPost } from "../types";
 
 export const useBambooListQuery = () => {
   const { data, hasNextPage, ...queryRest } = useInfiniteQuery({
@@ -12,19 +12,15 @@ export const useBambooListQuery = () => {
       return undefined;
     },
   });
-  const dataLength = data?.pages.flatMap((item) => item.data).length || 0;
-  const hasMore = hasNextPage || false;
 
   return {
     bambooList: data?.pages,
-    dataLength,
-    hasMore,
     ...queryRest,
   };
 };
 
 export const useBambooPendingListQuery = () => {
-  const { data, ...queryRest } = useQuery<Array<IBambooPendingPost>>({
+  const { data, ...queryRest } = useQuery<Array<BambooPendingPost>>({
     queryKey: [KEY.BAMBOO_ADMIN],
     queryFn: getBambooPendingPostList,
   });

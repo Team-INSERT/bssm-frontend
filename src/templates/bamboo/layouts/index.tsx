@@ -1,20 +1,21 @@
 import React from "react";
 import styled from "styled-components";
 import { Button } from "@/components/atoms";
-import InfiniteScroll from "react-infinite-scroll-component";
-import Loading from "@/components/atoms/Loading";
-import { color, flex, font } from "@/styles";
+import { theme, flex, font } from "@/styles";
 import { Aside } from "@/components/common";
+import { useUser } from "@/@user/hooks";
+import { useInfiniteScroll } from "@/hooks";
 import BambooPostListItem from "./BambooPostListItem";
 import { useBambooListQuery } from "../services/query.service";
 import { useBamboo } from "../hooks";
-import { BambooPostType } from "../interfaces";
+import { BambooPost } from "../types";
 
 const BambooPage = () => {
-  const { isAdmin, handleOpenCreateModalClick, handleOpenManageModalClick } =
+  const { isAdmin } = useUser();
+  const { handleOpenCreateModalClick, handleOpenManageModalClick } =
     useBamboo();
-  const { bambooList, fetchNextPage, dataLength, hasMore } =
-    useBambooListQuery();
+  const { bambooList, fetchNextPage } = useBambooListQuery();
+  useInfiniteScroll(fetchNextPage);
 
   return (
     <>
@@ -23,35 +24,28 @@ const BambooPage = () => {
         <SubTitleText>
           말 못할 고민이나 사연들을 익명으로 편하게 이야기해봐요.
         </SubTitleText>
-        <Button color={color.primary_blue} onClick={handleOpenCreateModalClick}>
+        <Button color={theme.primary_blue} onClick={handleOpenCreateModalClick}>
           제보하기
         </Button>
         {isAdmin && (
           <Button
-            color={color.primary_blue}
+            color={theme.primary_blue}
             onClick={handleOpenManageModalClick}
           >
             글 관리하기
           </Button>
         )}
-        <InfiniteScroll
-          dataLength={dataLength}
-          next={fetchNextPage}
-          hasMore={hasMore}
-          loader={<Loading />}
-        >
-          {bambooList?.map((bamboos) => (
-            <BambooPostListBox>
-              {bamboos.content.map((bamboo: BambooPostType) => (
-                <BambooPostListItem
-                  key={bamboo.allowedId}
-                  {...bamboo}
-                  isAdmin={isAdmin}
-                />
-              ))}
-            </BambooPostListBox>
-          ))}
-        </InfiniteScroll>
+        {bambooList?.map((bamboos) => (
+          <BambooPostListBox>
+            {bamboos.content.map((bamboo: BambooPost) => (
+              <BambooPostListItem
+                key={bamboo.allowedId}
+                {...bamboo}
+                isAdmin={isAdmin}
+              />
+            ))}
+          </BambooPostListBox>
+        ))}
       </Layout>
       <Aside />
     </>
@@ -60,7 +54,7 @@ const BambooPage = () => {
 
 const Layout = styled.div`
   width: 100%;
-  ${flex.COLUMN};
+  ${flex.COLUMN_FLEX};
   gap: 14px;
 `;
 
@@ -70,11 +64,11 @@ const TitleText = styled.h1`
 
 const SubTitleText = styled.span`
   ${font.context};
-  color: ${color.gray};
+  color: ${theme.gray};
 `;
 
 const BambooPostListBox = styled.div`
-  ${flex.COLUMN};
+  ${flex.COLUMN_FLEX};
   gap: 14px;
 `;
 

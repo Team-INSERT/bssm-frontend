@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
+import { useModal } from "@/@modal/hooks";
 import { KEY } from "@/constants";
-import useModal from "@/hooks/useModal";
 import {
   createBambooPost,
   deleteBambooPost,
@@ -37,7 +37,8 @@ export const useDeleteBambooMutation = () => {
   return useMutation((id: number) => deleteBambooPost(id), {
     onSuccess: () => {
       toast.success("삭제가 완료되었습니다!");
-      return queryClient.invalidateQueries([KEY.BAMBOO]);
+      queryClient.invalidateQueries([KEY.BAMBOO]);
+      queryClient.invalidateQueries([KEY.BAMBOO_ADMIN]);
     },
   });
 };

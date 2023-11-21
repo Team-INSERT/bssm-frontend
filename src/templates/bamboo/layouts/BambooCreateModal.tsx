@@ -1,10 +1,10 @@
-import { Button } from "@/components/atoms";
-import useModal from "@/hooks/useModal";
-import { color, flex, font } from "@/styles";
 import React from "react";
 import styled from "styled-components";
+import { XIcon } from "@/assets/icons";
+import { Button } from "@/components/atoms";
+import { theme, flex, font } from "@/styles";
+import { useModal } from "@/@modal/hooks";
 import { useBamboo } from "../hooks";
-import { ModalCloseIcon } from "../assets/icons";
 
 const BambooCreateModal = () => {
   const { closeModal } = useModal();
@@ -20,7 +20,7 @@ const BambooCreateModal = () => {
     <Container>
       <BambooModalHeader>
         <TitleText>🎋 대나무숲 제보하기</TitleText>
-        <ModalCloseIcon onClick={closeModal} />
+        <XIcon onClick={closeModal} />
       </BambooModalHeader>
       <BambooTextArea
         ref={textareaRef}
@@ -30,7 +30,7 @@ const BambooCreateModal = () => {
       <BambooButtonBox>
         <Button
           onClick={() => handleCreateButtonClick(content)}
-          color={color.primary_blue}
+          color={theme.primary_blue}
         >
           제보하기
         </Button>
@@ -43,10 +43,10 @@ const Container = styled.div`
   width: 40vw;
   height: 50vh;
   overflow-y: scroll;
-  background-color: ${color.white};
+  background-color: ${theme.white};
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
   border-radius: 8px;
-  ${flex.COLUMN};
+  ${flex.COLUMN_FLEX};
 `;
 
 const BambooModalHeader = styled.header`
@@ -64,7 +64,7 @@ const TitleText = styled.div`
 
 const BambooTextArea = styled.textarea`
   resize: none;
-  border: 1px solid ${color.on_tertiary};
+  border: 1px solid ${theme.on_tertiary};
   border-radius: 4px;
   height: 100%;
   margin: 16px 16px 0 16px;
