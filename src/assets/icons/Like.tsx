@@ -1,11 +1,10 @@
-import { SVGAttribute } from "@/interfaces";
+import React from "react";
 
-const Like = ({ width = 50, height = 50, isPointable }: SVGAttribute) => {
+const Like = ({ ...props }: React.SVGProps<SVGSVGElement>) => {
   return (
     <svg
-      width={width}
-      height={height}
-      cursor={isPointable ? "pointer" : ""}
+      {...props}
+      cursor="pointer"
       viewBox="0 0 233 201"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
