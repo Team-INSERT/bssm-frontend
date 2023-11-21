@@ -1,7 +1,7 @@
 import React from "react";
 import { toast } from "react-toastify";
 import { useCreateReserveMutation } from "../services/mutation.service";
-import { BerReserveJoinHookProps } from "../interfaces";
+import { BerReserveJoinHookProps } from "../types/@props";
 
 const useBerReserve = ({
   date,

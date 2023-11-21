@@ -1,12 +1,12 @@
 import httpClient from "@/apis/httpClient";
-import { ICreateReserve } from "@/interfaces";
+import { BerCreateReserveQuery } from "../types";
 
 export const getReserveList = async (date: string) => {
   const { data } = await httpClient.ber.get({ params: { date } });
   return data;
 };
 
-export const createReserve = async (berReserve: ICreateReserve) => {
+export const createReserve = async (berReserve: BerCreateReserveQuery) => {
   const { data } = await httpClient.ber.post(berReserve);
   return data;
 };

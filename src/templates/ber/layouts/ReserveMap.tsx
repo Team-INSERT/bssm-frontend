@@ -1,8 +1,7 @@
-import { Column, Row } from "@/components/Flex";
-import { color, flex, font } from "@/styles";
-import React from "react";
 import styled from "styled-components";
-import { BerReserveMapProps } from "../interfaces";
+import { Column, Row } from "@/components/Flex";
+import { theme, flex, font } from "@/styles";
+import { BerReserveMapProps } from "../types/@props";
 import { getIfReservedRoomCSS, getIfSelectedRoomCSS } from "../helpers";
 
 const ReserveMap = ({
@@ -52,8 +51,8 @@ const CommonRoom = styled.div<{ isClicked?: boolean; isReserved?: boolean }>`
   width: 100%;
   height: 8vh;
   cursor: pointer;
-  background-color: ${color.white};
-  color: ${color.green};
+  background-color: ${theme.white};
+  color: ${theme.green};
   box-shadow: 4px 4px 15px 0 rgba(0, 0, 0, 0.05);
 
   ${({ isReserved }) => getIfReservedRoomCSS(isReserved)};
@@ -68,7 +67,7 @@ const LongRoom = styled(CommonRoom)`
 const Wall = styled.div`
   width: 100%;
   height: 8vh;
-  background-color: ${color.light_gray};
+  background-color: ${theme.light_gray};
   box-shadow: 4px 4px 15px 0 rgba(0, 0, 0, 0.05);
   ${flex.CENTER};
   ${font.p3};
@@ -77,7 +76,7 @@ const Wall = styled.div`
 const CommunityHall = styled.div`
   width: 100%;
   height: 12vw;
-  background-color: ${color.light_gray};
+  background-color: ${theme.light_gray};
   box-shadow: 4px 4px 15px 0 rgba(0, 0, 0, 0.03);
   ${flex.CENTER};
   ${font.H6};

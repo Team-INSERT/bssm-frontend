@@ -1,9 +1,8 @@
+import styled from "styled-components";
 import { Column } from "@/components/Flex";
 import { Input } from "@/components/atoms";
-import { color, font } from "@/styles";
-import React from "react";
-import styled from "styled-components";
-import { BerReserveJoinBoxProps } from "../interfaces";
+import { theme, font } from "@/styles";
+import { BerReserveJoinBoxProps } from "../types/@props";
 import { useBerReserve } from "../hooks";
 import ReserveNoticeRuleList from "./ReserveNoticeRuleList";
 import ReserveStudentList from "./ReserveStudentList";
@@ -66,20 +65,20 @@ const Container = styled.div`
   padding: 16px 20px;
   display: flex;
   flex-direction: column;
-  background-color: ${color.white};
+  background-color: ${theme.white};
   gap: 8px;
 `;
 
 const InfomationText = styled.span`
   ${font.p3};
-  color: ${color.gray};
+  color: ${theme.gray};
 `;
 
 const SubmitButton = styled.button`
   width: fit-content;
   padding: 6px 14px;
-  background-color: ${color.primary_blue};
-  color: ${color.white};
+  background-color: ${theme.primary_blue};
+  color: ${theme.white};
   border-radius: 4px;
 `;
 

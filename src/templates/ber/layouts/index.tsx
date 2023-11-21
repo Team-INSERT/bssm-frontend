@@ -31,7 +31,7 @@ const BerPage = () => {
               key={filter}
               id={filter}
               name={BER.RESERVE}
-              checked={berViewType === filter}
+              selected={berViewType === filter}
               onClick={() => setBerViewType(filter)}
               label={filter}
             />
@@ -69,7 +69,7 @@ const BerPage = () => {
 
 const Layout = styled.div`
   width: 100%;
-  ${flex.COLUMN_VERTICAL};
+  ${flex.COLUMN_HORIZONTAL};
   gap: 20px;
 `;
 
@@ -87,7 +87,7 @@ const ReservationBox = styled.div`
   width: 100%;
   height: fit-content;
   padding: 0px 20px;
-  ${flex.COLUMN};
+  ${flex.COLUMN_FLEX};
   gap: 12px;
 `;
 
