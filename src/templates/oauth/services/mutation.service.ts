@@ -1,4 +1,3 @@
-import throwAxiosError from "@/apis/error/throwAxiosError";
 import { useMutation } from "@tanstack/react-query";
 import Storage from "@/storage";
 import { TOKEN } from "@/storage/constants";
@@ -9,9 +8,6 @@ export const useLoginMutation = (authCode: string | null) => {
     onSuccess: ({ accessToken, refreshToken }) => {
       Storage.setItem(TOKEN.ACCESS, accessToken);
       Storage.setItem(TOKEN.REFRESH, refreshToken);
-    },
-    onError: (err) => {
-      throwAxiosError(err);
     },
   });
 };
