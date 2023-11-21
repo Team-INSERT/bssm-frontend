@@ -1,18 +1,22 @@
 import styled from "styled-components";
 import { flex, font } from "@/styles";
+import { Aside } from "@/components/common";
 import ApplicationListItem from "./ApplicationListItem";
 import { applicationList } from "../assets/data";
 
 const ApplicationsPage = () => {
   return (
-    <Layout>
-      <PageTitleText>외부 서비스</PageTitleText>
-      <ApplicationList>
-        {applicationList.map((application) => (
-          <ApplicationListItem key={application.href} {...application} />
-        ))}
-      </ApplicationList>
-    </Layout>
+    <>
+      <Layout>
+        <PageTitleText>외부 서비스</PageTitleText>
+        <ApplicationList>
+          {applicationList.map((application) => (
+            <ApplicationListItem key={application.href} {...application} />
+          ))}
+        </ApplicationList>
+      </Layout>
+      <Aside />
+    </>
   );
 };
 

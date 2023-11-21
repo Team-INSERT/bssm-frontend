@@ -1,4 +1,4 @@
-import { Arrow } from "@/assets/icons";
+import Arrow from "@/assets/icons/Arrow";
 import { color, flex, font } from "@/styles";
 import Link from "next/link";
 import React from "react";

@@ -1,5 +1,4 @@
 import React from "react";
-import { useRouter } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import { useRecoilState } from "recoil";
 import httpClient, { HttpClient } from "@/apis/httpClient/httpClient";
@@ -14,21 +13,17 @@ import { isAxiosError } from "axios";
 import LoginModal from "@/components/common/Modal/LoginModal";
 import { TOKEN } from "@/storage/constants";
 import ROLE from "@/constants/role.constant";
+import { useDidMountEffect } from "./useDidMountEffect";
 
-interface UseUserOptions {
-  authorizedPage?: boolean;
-}
-
-const useUser = (options?: UseUserOptions) => {
+const useUser = () => {
   const [user, setUser] = useRecoilState(userStore);
-  const router = useRouter();
-  const { openModal, visible } = useModal();
+  const { openModal } = useModal();
 
   const {
     data: userInfo,
     remove,
-    isLoading,
     error,
+    isSuccess,
     refetch,
   } = useQuery<IUser>(
     [KEY.USER],
@@ -63,13 +58,13 @@ const useUser = (options?: UseUserOptions) => {
     if (userInfo) setUser(userInfo);
   }, [setUser, userInfo]);
 
-  React.useEffect(() => {
-    if (!isLoading && !userInfo && !visible) {
-      openModal({
+  useDidMountEffect(() => {
+    if (isSuccess && !userInfo) {
+      return openModal({
         component: <LoginModal />,
       });
     }
-  }, [options, userInfo, isLoading, router, visible, openModal]);
+  }, [isSuccess]);
 
   return {
     user,

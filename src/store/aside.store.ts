@@ -16,6 +16,6 @@ export const asideStore = atom<IAside>({
       },
       dormitoryType: "",
     },
-    isCheckIn: false,
+    isCheckin: false,
   },
 });

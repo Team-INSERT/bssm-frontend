@@ -15,6 +15,7 @@ const CalendarListItem = ({ calendar, isEmpty }: CalendarListItemProps) => {
       <CalendarBody>
         {calendar?.plans.map((plan) => (
           <CalendarPlanBox
+            key={plan.id}
             type={plan.type}
             onClick={() => handleDeleteCalendarPlanClick(plan.id)}
           >
@@ -23,7 +24,9 @@ const CalendarListItem = ({ calendar, isEmpty }: CalendarListItemProps) => {
           </CalendarPlanBox>
         ))}
         <CalendarPlanAddButton
-          onClick={() => handleOpenModalClick(calendar?.date)}
+          onClick={() => {
+            handleOpenModalClick(calendar?.date);
+          }}
         >
           +
         </CalendarPlanAddButton>

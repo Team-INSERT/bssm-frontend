@@ -37,7 +37,7 @@ const useCalendar = () => {
     date,
     planType,
   }: CalendarPlanAddQuery) => {
-    if (title.trim()) return toast.error("내용을 입력해주세요!");
+    if (!title.trim()) return toast.error("내용을 입력해주세요!");
     const { grade, classNum: classNumber } = user;
     const planQuery = {
       title,

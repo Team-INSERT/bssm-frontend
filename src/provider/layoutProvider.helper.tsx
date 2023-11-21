@@ -1,22 +1,11 @@
-import { Aside, Footer, Header, Modal } from "@/components/common";
+import { Footer, Header, Modal } from "@/components/common";
 import { GlobalStyle, flex } from "@/styles";
 import React from "react";
 import { ToastContainer, toast } from "react-toastify";
 import styled from "styled-components";
 import "react-toastify/dist/ReactToastify.css";
-import useWindow from "@/hooks/useWindow";
-import { ROUTER } from "@/constants";
 
 const LayoutProvider = ({ children }: React.PropsWithChildren) => {
-  const { isWindow } = useWindow();
-  const routerName = isWindow ? window.location.pathname : "";
-  const dontNeedAsidePage: Array<string> = [
-    ROUTER.LOGIN,
-    ROUTER.CALENDER,
-    ROUTER.MEISTER,
-  ];
-  const isNeedAsidePage = !dontNeedAsidePage.includes(routerName);
-
   return (
     <>
       <StyledToastify autoClose={1000} position={toast.POSITION.TOP_RIGHT} />
@@ -24,10 +13,7 @@ const LayoutProvider = ({ children }: React.PropsWithChildren) => {
       <Modal />
       <Layout>
         <Header />
-        <Main>
-          <Container>{children}</Container>
-          {isNeedAsidePage && <Aside />}
-        </Main>
+        <Main>{children}</Main>
         <Footer />
       </Layout>
     </>
@@ -46,14 +32,9 @@ const Layout = styled.div`
   gap: 6vh;
 `;
 
-const Container = styled.div`
-  width: 100%;
-  min-height: 80vh;
-`;
-
 const Main = styled.main`
-  ${flex.VERTICAL};
-  gap: 12px;
+  display: flex;
+  gap: 14px;
   width: 100%;
   padding: 0 8vw;
 `;

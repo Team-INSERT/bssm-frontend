@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { color, flex } from "@/styles";
 import { Button } from "@/components/atoms";
+import { Aside } from "@/components/common";
 import { usePostQuery } from "../../services/post/query.service";
 import {
   TitleInputBox,
@@ -27,57 +28,60 @@ const PostWritePage = ({ id }: PostDetailParamsProps) => {
     handleInputPostDataChange,
   } = usePostWritable(post);
   return (
-    <Layout>
-      <WriteTitleBox />
-      <PostCategoryBox
-        handleChangeCategory={handleCategoryChangeClick}
-        currentCategory={postData.category}
-      />
-      <InputBox>
-        <TitleInputBox
-          handleChange={handleInputPostDataChange}
-          postData={postData}
+    <>
+      <Layout>
+        <WriteTitleBox />
+        <PostCategoryBox
+          handleChangeCategory={handleCategoryChangeClick}
+          currentCategory={postData.category}
         />
-        {postData.category === CATEGORY.PROJECT && (
-          <ProjectInputBox
+        <InputBox>
+          <TitleInputBox
             handleChange={handleInputPostDataChange}
             postData={postData}
           />
-        )}
-        {postData.category === CATEGORY.CODE_REVIEW && (
-          <CodeReviewInputBox
+          {postData.category === CATEGORY.PROJECT && (
+            <ProjectInputBox
+              handleChange={handleInputPostDataChange}
+              postData={postData}
+            />
+          )}
+          {postData.category === CATEGORY.CODE_REVIEW && (
+            <CodeReviewInputBox
+              handleChange={handleInputPostDataChange}
+              postData={postData}
+            />
+          )}
+          {(postData.category === CATEGORY.LOST ||
+            postData.category === CATEGORY.FOUND) && (
+            <LostFoundInputBox
+              handleChange={handleInputPostDataChange}
+              handleFileSelect={handleImageFileSelect}
+              postData={postData}
+              lostImageUrl={lostImageUrl}
+            />
+          )}
+          {postData.category === CATEGORY.FOUND && (
+            <FoundInputBox
+              handleChange={handleInputPostDataChange}
+              postData={postData}
+            />
+          )}
+          <ContentInputBox
             handleChange={handleInputPostDataChange}
             postData={postData}
           />
-        )}
-        {(postData.category === CATEGORY.LOST ||
-          postData.category === CATEGORY.FOUND) && (
-          <LostFoundInputBox
-            handleChange={handleInputPostDataChange}
-            handleFileSelect={handleImageFileSelect}
-            postData={postData}
-            lostImageUrl={lostImageUrl}
-          />
-        )}
-        {postData.category === CATEGORY.FOUND && (
-          <FoundInputBox
-            handleChange={handleInputPostDataChange}
-            postData={postData}
-          />
-        )}
-        <ContentInputBox
-          handleChange={handleInputPostDataChange}
-          postData={postData}
-        />
-        <Button
-          align="RIGHT"
-          color={color.primary_blue}
-          onClick={handlePostWriteButtonClick}
-        >
-          작성
-        </Button>
-      </InputBox>
-    </Layout>
+          <Button
+            align="RIGHT"
+            color={color.primary_blue}
+            onClick={handlePostWriteButtonClick}
+          >
+            작성
+          </Button>
+        </InputBox>
+      </Layout>
+      <Aside />
+    </>
   );
 };
 

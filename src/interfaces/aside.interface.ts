@@ -11,5 +11,5 @@ export default interface IAside {
     };
     dormitoryType: string;
   };
-  isCheckIn: false;
+  isCheckin: false;
 }
