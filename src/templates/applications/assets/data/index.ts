@@ -1,1 +1,1 @@
-export { default as applicationList } from "./applicationList";
+export { default as applicationListData } from "./applicationList.data";

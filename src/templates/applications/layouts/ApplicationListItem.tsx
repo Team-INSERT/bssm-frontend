@@ -1,23 +1,30 @@
 import Link from "next/link";
 import styled from "styled-components";
 import { Row } from "@/components/Flex";
-import { color, flex, font } from "@/styles";
-import { ArrowIcon } from "../assets/icons";
+import { theme, flex, font } from "@/styles";
+import { ArrowIcon } from "@/assets/icons";
+import { DIRECTION } from "@/constants";
 
-interface IAppListItemProps {
+interface ApplicationListItemProps {
   name: string;
   href: string;
   content: string;
 }
 
-const ApplicationListItem = ({ name, href, content }: IAppListItemProps) => {
+const ApplicationListItem = ({
+  name,
+  href,
+  content,
+}: ApplicationListItemProps) => {
   return (
     <Container>
       <Row>
         <ApplicationNameText>{name}</ApplicationNameText>
         <LinkBox>
-          <LinkText href={href} target="_blank" />
-          <ArrowIcon />
+          <LinkText href={href} target="_blank">
+            서비스 보기
+          </LinkText>
+          <ArrowIcon direction={DIRECTION.RIGHT} />
         </LinkBox>
       </Row>
       <AppDescriptionText>{content}</AppDescriptionText>
@@ -26,12 +33,12 @@ const ApplicationListItem = ({ name, href, content }: IAppListItemProps) => {
 };
 
 const Container = styled.article`
+  ${flex.COLUMN_HORIZONTAL};
   width: 100%;
   height: fit-content;
-  ${flex.COLUMN_VERTICAL};
   gap: 4px;
   padding: 16px 32px;
-  background-color: ${color.white};
+  background-color: ${theme.white};
   box-shadow: 0 0 10px 0 rgba(144, 144, 144, 0.1);
   border-radius: 4px;
 
@@ -51,19 +58,15 @@ const AppDescriptionText = styled.p`
 `;
 
 const LinkBox = styled.div`
-  ${flex.VERTICAL};
+  ${flex.HORIZONTAL};
   gap: 8px;
   margin-left: auto;
 `;
 
 const LinkText = styled(Link)`
   ${font.p3};
-  color: ${color.gray};
+  color: ${theme.gray};
   text-decoration: none;
-
-  &:after {
-    content: "서비스 보기";
-  }
 `;
 
 export default ApplicationListItem;
