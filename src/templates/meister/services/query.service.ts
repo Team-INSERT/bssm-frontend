@@ -1,5 +1,5 @@
-import { KEY } from "@/constants";
 import { useQuery } from "@tanstack/react-query";
+import { KEY } from "@/constants";
 import { getMeister, getMeisterDetail, getMeisterRanking } from "./api.service";
 
 export const useMeisterQuery = () => {
@@ -9,13 +9,7 @@ export const useMeisterQuery = () => {
   return { data, ...queryRest };
 };
 
-interface IUseMeisterRankingQueryProps {
-  grade: number;
-}
-
-export const useMeisterRankingQuery = ({
-  grade,
-}: IUseMeisterRankingQueryProps) => {
+export const useMeisterRankingQuery = (grade: number) => {
   const { data, ...queryRest } = useQuery([KEY.RANKING], async () =>
     getMeisterRanking(grade),
   );
@@ -26,7 +20,7 @@ export const useMeisterDetailQuery = (studentNumber: string) => {
   const { data, ...queryRest } = useQuery(
     [KEY.MEISTER_DETAIL],
     async () => getMeisterDetail(studentNumber),
-    { enabled: !!studentNumber },
+    // { enabled: studentNumber.length === 4 },
   );
   return { data, ...queryRest };
 };

@@ -1,17 +1,20 @@
-import { Category } from "@/components/atoms";
-import { flex, font } from "@/styles";
 import React from "react";
 import styled from "styled-components";
-import useUser from "@/hooks/useUser";
+import { Category } from "@/components/atoms";
+import { flex, font } from "@/styles";
+import { useUser } from "@/@user/hooks";
 import { useMeisterRankingQuery } from "../services/query.service";
 import RankingListItem from "./RankingListItem";
+import { MeisterRankingItem } from "../types";
 
 const Ranking = () => {
   const { user } = useUser();
-  const [currentGrade, setCurrentGrade] = React.useState(user.grade);
-  const { data, isSuccess, refetch } = useMeisterRankingQuery({
-    grade: currentGrade,
-  });
+  const [currentGrade, setCurrentGrade] = React.useState(2);
+  const { data, isSuccess, refetch } = useMeisterRankingQuery(currentGrade);
+
+  React.useEffect(() => {
+    setCurrentGrade(user.grade);
+  }, [user]);
 
   React.useEffect(() => {
     refetch();
@@ -26,26 +29,16 @@ const Ranking = () => {
             id={`${grade}`}
             name="meisterRanking"
             onChange={(e) => setCurrentGrade(+e.target.id)}
-            checked={currentGrade === grade}
+            selected={currentGrade === grade}
             label={`${grade}학년`}
           />
         ))}
       </CategoryBox>
       <RankingList>
         {isSuccess &&
-          data.map(
-            (rankingItem: {
-              score: number;
-              positivePoint: number;
-              negativePoint: number;
-              student: {
-                grade: number;
-                classNo: number;
-                studentNo: number;
-                name: string;
-              };
-            }) => <RankingListItem {...rankingItem} />,
-          )}
+          data.map((rankingItem: MeisterRankingItem, index: number) => (
+            <RankingListItem {...rankingItem} index={index + 1} />
+          ))}
       </RankingList>
     </Container>
   );
@@ -54,7 +47,7 @@ const Ranking = () => {
 const Container = styled.div`
   width: 100%;
   height: 100%;
-  ${flex.COLUMN};
+  ${flex.COLUMN_FLEX};
   gap: 12px;
 `;
 
@@ -70,7 +63,7 @@ const RankingTitle = styled.span`
 
 const RankingList = styled.div`
   width: 100%;
-  ${flex.COLUMN};
+  ${flex.COLUMN_FLEX};
   gap: 12px;
 `;
 

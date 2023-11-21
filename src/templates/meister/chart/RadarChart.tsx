@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import Radar from "react-d3-radar";
-import radarChartVariables from "../assets/data/radarChartVariables";
+import { radarChartVariableData } from "../assets/data";
 import { MEISTER } from "../constants";
-import Meister from "../interfaces/meister.interface";
+import Meister from "../types/Meister.type";
 
 interface DataSet {
   key: string;
@@ -17,7 +17,7 @@ interface ChartData {
 
 const RadarChart = ({ ...meisterData }: Meister) => {
   const chartData: ChartData = {
-    variables: radarChartVariables,
+    variables: radarChartVariableData,
     sets: [
       {
         key: "avg",
@@ -43,7 +43,7 @@ const RadarChart = ({ ...meisterData }: Meister) => {
       },
     ],
   };
-  const [highlighted, setHighlighted] = useState<{
+  const [highlighted, setHighlighted] = React.useState<{
     key: string;
     label: string;
   } | null>(null);

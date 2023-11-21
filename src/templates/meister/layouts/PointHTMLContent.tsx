@@ -1,4 +1,4 @@
-import { color } from "@/styles";
+import { theme } from "@/styles";
 import { styled } from "styled-components";
 
 const PointHTMLContent = ({ pointHTML }: { pointHTML: string }) => {
@@ -70,7 +70,7 @@ const StyledPointHTMLContent = styled.div`
     font-weight: 500 !important;
     text-align: center !important;
     white-space: pre-wrap !important;
-    color: ${color.gray};
+    color: ${theme.gray};
     padding-top: 10px !important;
   }
 
