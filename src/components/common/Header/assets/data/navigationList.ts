@@ -11,23 +11,23 @@ const navigationList = [
   },
   {
     id: 3,
+    name: "🎋  대나무숲",
+    href: "/bamboo",
+  },
+  {
+    id: 4,
     name: "🕐  시간표",
     href: "/timetable",
   },
   {
-    id: 4,
+    id: 5,
     name: "🍚  급식",
     href: "/meal",
   },
   {
-    id: 5,
+    id: 6,
     name: "🗓️  캘린더",
     href: "/calendar",
-  },
-  {
-    id: 6,
-    name: "🚪 입사 체크",
-    href: "/checkin",
   },
   {
     id: 7,

@@ -23,6 +23,7 @@ const NavigationList = styled.ul`
 
 const NavigationListItem = styled(Link)`
   font-size: ${font.H6};
+  font-weight: 600;
   color: ${color.black};
   cursor: pointer;
   white-space: pre-wrap;

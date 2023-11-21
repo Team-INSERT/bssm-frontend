@@ -3,7 +3,8 @@ import { color, font } from "@/styles";
 import useAside from "@/hooks/useAside";
 
 const JoinCheckBox = () => {
-  const { asideInfo } = useAside();
+  const { asideInfo, handlePopupOpenClick } = useAside();
+
   return (
     <Container>
       {asideInfo.room && (
@@ -13,11 +14,16 @@ const JoinCheckBox = () => {
             {asideInfo.room.yearSemester.semester}학기
           </Date>
           <RoomNumber>
-            {asideInfo.room.dormitoryType}동 {asideInfo.room.roomNumber}
+            {asideInfo.room.dormitoryType}동 {asideInfo.room.roomNumber}호
           </RoomNumber>
         </HGroup>
       )}
-      <CheckButton disabled={asideInfo.isCheckIn} />
+      <CheckButton
+        onClick={handlePopupOpenClick}
+        disabled={asideInfo.room && asideInfo.isCheckin}
+      >
+        {asideInfo.room && asideInfo.isCheckin ? "입사 완료" : "입사 체크"}
+      </CheckButton>
     </Container>
   );
 };
@@ -56,10 +62,6 @@ const Date = styled.span`
 
 const RoomNumber = styled.span`
   ${font.H5};
-
-  &:after {
-    content: "호";
-  }
 `;
 
 const CheckButton = styled.button`
@@ -70,16 +72,8 @@ const CheckButton = styled.button`
   color: ${color.white};
   ${font.btn3};
 
-  &:after {
-    content: "입사 체크";
-  }
-
   &:disabled {
     background-color: ${color.content};
-
-    &:after {
-      content: "입사 완료";
-    }
   }
 `;
 
