@@ -1,6 +1,5 @@
-import { color, flex } from "@/styles";
-import React from "react";
 import styled from "styled-components";
+import { theme, flex } from "@/styles";
 
 const BlinkerBox = () => {
   return (
@@ -13,7 +12,7 @@ const BlinkerBox = () => {
 };
 
 const Layout = styled.div`
-  ${flex.VERTICAL};
+  ${flex.HORIZONTAL};
   gap: 6px;
 
   @media screen and (max-width: 670px) {
@@ -28,15 +27,15 @@ const Circle = styled.div`
 `;
 
 const Red = styled(Circle)`
-  background-color: ${color.primary_red};
+  background-color: ${theme.primary_red};
 `;
 
 const Yellow = styled(Circle)`
-  background-color: ${color.primary_yellow};
+  background-color: ${theme.primary_yellow};
 `;
 
 const Green = styled(Circle)`
-  background-color: ${color.primary_mint};
+  background-color: ${theme.primary_mint};
 `;
 
 export default BlinkerBox;

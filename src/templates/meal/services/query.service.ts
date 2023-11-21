@@ -1,12 +1,8 @@
-import { KEY } from "@/constants";
 import { useQuery } from "@tanstack/react-query";
+import { KEY } from "@/constants";
 import { getMealList } from "./api.service";
 
-interface IUseMealQueryProps {
-  date: string;
-}
-
-export const useMealQuery = ({ date }: IUseMealQueryProps) => {
+export const useMealQuery = (date: string) => {
   const { data, ...queryRest } = useQuery([KEY.MEAL], () => getMealList(date));
   return { data, ...queryRest };
 };

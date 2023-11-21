@@ -1,1 +1,1 @@
-export { default as MealArrowIcon } from "./MealArrowIcon";
+export { default as defaultMealListData } from "./defaultMealList.data";

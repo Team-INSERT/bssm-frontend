@@ -1,7 +1,6 @@
-import { Column } from "@/components/Flex";
-import { color, font } from "@/styles";
-import React from "react";
 import styled from "styled-components";
+import { Column } from "@/components/Flex";
+import { theme, font } from "@/styles";
 
 const MealPageTitleBox = () => {
   return (
@@ -19,7 +18,7 @@ const TitleText = styled.span`
 `;
 
 const Description = styled.span`
-  color: ${color.gray};
+  color: ${theme.gray};
 `;
 
 export default MealPageTitleBox;

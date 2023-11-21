@@ -3,7 +3,6 @@ import React from "react";
 import "dayjs/locale/ko";
 import DATE from "@/constants/date.constant";
 import { MEAL } from "../constants";
-import { ChangeDateType } from "../types";
 
 const useMeal = () => {
   const nowDate = dayjs().format(DATE.YYYYMMDD);
@@ -35,7 +34,7 @@ const useMeal = () => {
     return dayjs(date, DATE.YYYYMMDD).locale("ko").format(DATE.DETAIL);
   };
 
-  const handleCurrentDateChange = (operator: ChangeDateType) => {
+  const handleCurrentDateChange = (operator: "INCREASE" | "DECREASE") => {
     setCurrentDate((prevDate) => {
       const increaseDay = getWeekday(prevDate) === DATE.FRI ? 3 : 1;
       const decreaseDay = getWeekday(prevDate) === DATE.MON ? -3 : -1;
