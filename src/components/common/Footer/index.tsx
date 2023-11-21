@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { color } from "@/styles";
+import { flex, theme } from "@/styles";
 import Info from "./Info";
 
 const Footer = () => {
@@ -13,13 +13,11 @@ const Footer = () => {
 };
 
 const Layout = styled.div`
+  ${flex.CENTER};
   width: 100%;
   height: 400px;
-  color: ${color.content};
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: ${color.tertiary};
+  color: ${theme.content};
+  background-color: ${theme.tertiary};
 `;
 
 const Container = styled.div`

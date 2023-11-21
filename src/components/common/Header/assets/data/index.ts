@@ -1,1 +1,1 @@
-export { default as navigationList } from "./navigationList";
+export { default as navigationListData } from "./navigationList.data";

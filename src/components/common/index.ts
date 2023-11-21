@@ -1,6 +1,6 @@
 export { default as Aside } from "./Aside";
+export { default as ContentEditor } from "./ContentEditor";
+export { default as ContentViewer } from "./ContentViewer";
+export { default as DragDrop } from "./DragDrop";
 export { default as Footer } from "./Footer";
 export { default as Header } from "./Header";
-export { default as Modal } from "./Modal";
-export { default as SettingModal } from "./Modal/SettingModal";
-export { default as EmojiModal } from "./Modal/EmojiModal";

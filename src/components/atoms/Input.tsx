@@ -1,22 +1,14 @@
-import React from "react";
 import styled, { css } from "styled-components";
-import { color, font } from "@/styles";
+import { theme, font, flex } from "@/styles";
 
-interface IInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   width?: string;
   label?: string;
   type?: string;
   fontSize?: string;
 }
 
-const Input = ({
-  type,
-  width = "100%",
-  children,
-  label,
-  id,
-  ...props
-}: IInputProps) => {
+const Input = ({ type, width = "100%", label, id, ...props }: InputProps) => {
   return (
     <StyledContainer type={type}>
       <StyledLabel type={type} htmlFor={id}>
@@ -28,8 +20,7 @@ const Input = ({
 };
 
 const StyledContainer = styled.div<{ type?: string }>`
-  display: flex;
-  flex-direction: column;
+  ${flex.COLUMN_FLEX};
   gap: 6px;
 
   ${({ type }) =>
@@ -37,7 +28,7 @@ const StyledContainer = styled.div<{ type?: string }>`
     css`
       flex-direction: row;
       align-items: center;
-      background-color: ${color.white};
+      background-color: ${theme.white};
       height: 50px;
       padding-left: 8px;
     `}
@@ -56,8 +47,8 @@ const StyledLabel = styled.label<{ type?: string }>`
       width: fit-content;
       padding: 0 12px;
       border-radius: 4px;
-      color: ${color.white};
-      background-color: ${color.primary_blue};
+      color: ${theme.white};
+      background-color: ${theme.primary_blue};
       cursor: pointer;
       height: 30px;
       margin-left: 10px;

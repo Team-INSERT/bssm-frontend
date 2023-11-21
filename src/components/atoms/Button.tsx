@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { color, font } from "@/styles";
+import { theme, font } from "@/styles";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   color: string;
@@ -19,7 +19,7 @@ const StyledButton = styled.button<{
   width: fit-content;
   border-radius: 4px;
   background-color: ${(props) => props.color};
-  color: ${color.white};
+  color: ${theme.white};
   ${({ isSmall }) =>
     isSmall
       ? css`
