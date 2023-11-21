@@ -40,7 +40,7 @@ const BasicMode = () => {
             </Row>
           </Column>
           <Column gap="8px">
-            <HomeMiniBanner href="https://buma.wiki" />
+            <HomeMiniBanner />
             <HomeBamboo {...data.bamboo} />
           </Column>
         </Row>

@@ -5,13 +5,13 @@ import { color, flex, font } from "@/styles";
 import { Column, Row } from "@/components/Flex";
 import DATE from "@/constants/date.constant";
 import DIRECTION from "@/constants/direction.constant";
-import { CalendarArrowIcon } from "../assets/data";
 import { useCalendarListQuery } from "../services/query.service";
 import { useCalendar } from "../hooks";
 import WeekDayHeaderBox from "./WeekDayHeaderBox";
 import { CalendarItem } from "../interfaces";
 import { getPaddingDayOfMonth } from "../helpers";
 import CalendarListItem from "./CalendarListItem";
+import { CalendarArrowIcon } from "../assets/icons";
 
 const CalendarPage = () => {
   const { currentMonth, handleCalendarMonthChange } = useCalendar();
