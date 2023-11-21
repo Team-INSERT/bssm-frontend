@@ -1,7 +1,7 @@
 import React from "react";
 import { toast } from "react-toastify";
-import useUser from "@/hooks/useUser";
 import Swal from "sweetalert2";
+import { useUser } from "@/@user/hooks";
 import {
   useCreateCommentMutation,
   useDeleteCommentMutation,

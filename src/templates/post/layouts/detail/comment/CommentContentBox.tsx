@@ -1,7 +1,7 @@
 import { Column } from "@/components/Flex";
-import { color, font } from "@/styles";
+import { theme, font } from "@/styles";
 import { getTextDepthCount, getTextIsOverflow } from "@/templates/post/helpers";
-import { CommentContentBoxProps } from "@/templates/post/interfaces";
+import { CommentContentBoxProps } from "@/templates/post/types/@props";
 import React from "react";
 import styled from "styled-components";
 
@@ -28,7 +28,7 @@ const CommentContentBox = ({
 const DetailViewButton = styled.button`
   border: none;
   width: fit-content;
-  color: ${color.gray};
+  color: ${theme.gray};
   ${font.caption};
   border-radius: 999px;
 

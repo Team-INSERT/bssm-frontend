@@ -1,8 +1,8 @@
-import { color, flex, font } from "@/styles";
-import { PostArrowIcon } from "@/templates/post/assets/icons";
-import { RecommentViewButtonProps } from "@/templates/post/interfaces";
-import React from "react";
 import styled from "styled-components";
+import { theme, flex, font } from "@/styles";
+import { RecommentViewButtonProps } from "@/templates/post/types/@props";
+import { ArrowIcon } from "@/assets/icons";
+import { DIRECTION } from "@/constants";
 
 const RecommentViewButton = ({
   handleViewRecommentModeChange,
@@ -11,11 +11,11 @@ const RecommentViewButton = ({
 }: RecommentViewButtonProps) => {
   return (
     <Container onClick={handleViewRecommentModeChange}>
-      <PostArrowIcon
-        direction={isViewRecommentMode ? "top" : "bottom"}
+      <ArrowIcon
+        direction={isViewRecommentMode ? DIRECTION.TOP : DIRECTION.BOTTOM}
         width={12}
         height={12}
-        color={color.primary_blue}
+        color={theme.primary_blue}
       />
       <RecommentViewCountText>답글 {recommentCount}개</RecommentViewCountText>
     </Container>
@@ -31,12 +31,12 @@ const Container = styled.button`
   border-radius: 999px;
 
   &:hover {
-    background-color: ${color.on_tertiary};
+    background-color: ${theme.on_tertiary};
   }
 `;
 
 const RecommentViewCountText = styled.span`
-  color: ${color.primary_blue};
+  color: ${theme.primary_blue};
   ${font.caption};
   font-weight: 600;
   margin-top: -4px;

@@ -1,13 +1,12 @@
 import { defaultProfile } from "@/assets/images";
 import { Column, Row } from "@/components/Flex";
-import { Button, ImageWithFallback } from "@/components/atoms";
-import useTextarea from "@/hooks/useTextarea";
-import useUser from "@/hooks/useUser";
-import { color, font } from "@/styles";
+import { Button, FallbackImage } from "@/components/atoms";
+import { theme, font } from "@/styles";
 import React from "react";
 import styled from "styled-components";
-import { useRecomment } from "@/templates/post/hooks";
-import { CreateRecommentBoxProps } from "@/templates/post/interfaces";
+import { useRecomment, useTextarea } from "@/templates/post/hooks";
+import { CreateRecommentBoxProps } from "@/templates/post/types/@props";
+import { useUser } from "@/@user/hooks";
 
 const CreateRecommentBox = ({
   handleModeCancelClick,
@@ -22,11 +21,12 @@ const CreateRecommentBox = ({
     handleResizeTextareaKeyEnter,
   } = useTextarea("");
   const { user } = useUser();
-  const { handleCreateRecommentClick } = useRecomment(id);
+  const { handleRecommentInputChange, handleCreateRecommentClick } =
+    useRecomment(id);
 
   return (
     <Container>
-      <ImageWithFallback
+      <FallbackImage
         src={user.profile_image}
         fallbackSrc={defaultProfile}
         alt="프로필"
@@ -37,7 +37,10 @@ const CreateRecommentBox = ({
       <Column width="100%" gap="10px">
         <RecommentTextArea
           ref={textareaRef}
-          onChange={(e) => setContent(e.target.value)}
+          onChange={(e) => {
+            handleRecommentInputChange(e);
+            setContent(e.target.value);
+          }}
           value={detail}
           onInput={handleResizeTextAreaOnInput}
           onKeyDown={handleResizeTextareaKeyEnter}
@@ -45,14 +48,14 @@ const CreateRecommentBox = ({
         />
         <Row gap="6px">
           <Button
-            color={color.primary_red}
+            color={theme.primary_red}
             onClick={handleModeCancelClick}
             isSmall
           >
             취소
           </Button>
           <Button
-            color={color.primary_blue}
+            color={theme.primary_blue}
             onClick={() => {
               handleCreateRecommentClick();
               handleModeCancelClick();
@@ -75,7 +78,7 @@ const Container = styled.div`
 `;
 
 const RecommentTextArea = styled.textarea<{ row: number }>`
-  border-bottom: 2px solid ${color.on_tertiary};
+  border-bottom: 2px solid ${theme.on_tertiary};
   width: 100%;
   height: ${({ row }) => `${(row || 1) * 14}px`};
   padding-left: 8px;

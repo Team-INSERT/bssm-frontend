@@ -1,5 +1,5 @@
-import { KEY } from "@/constants";
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
+import { KEY } from "@/constants";
 import { getPostList, getPost } from "./api.service";
 import { PostCategoryType } from "../../types";
 
@@ -12,10 +12,7 @@ export const usePostListQuery = (category: PostCategoryType) => {
         currentPage !== totalPage ? currentPage + 1 : undefined,
     },
   );
-  const dataLength = data?.pages.flatMap((item) => item.entity).length || 0;
-  const hasMore = hasNextPage || false;
-
-  return { postList: data?.pages, dataLength, hasMore, ...queryRest };
+  return { postList: data?.pages, ...queryRest };
 };
 
 export const usePostQuery = (id: number) => {

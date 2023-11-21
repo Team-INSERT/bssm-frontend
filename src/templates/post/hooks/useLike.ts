@@ -1,5 +1,5 @@
 import React from "react";
-import { UseLikeProps } from "../interfaces";
+import { UseLikeProps } from "../types/@props";
 import {
   useUpdateCommentLikeMutation,
   useUpdatePostLikeMutation,

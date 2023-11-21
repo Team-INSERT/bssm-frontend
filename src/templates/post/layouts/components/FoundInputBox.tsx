@@ -1,7 +1,6 @@
-import React from "react";
 import { Input } from "@/components/atoms";
-import { PostCategoryInputBoxProps } from "../../interfaces";
-import POST_INPUT from "../../constants/postInput.constant";
+import { PostCategoryInputBoxProps } from "../../types/@props";
+import { POST_INPUT } from "../../constants";
 
 const FoundInputBox = ({
   handleChange,
@@ -13,7 +12,7 @@ const FoundInputBox = ({
       placeholder="물품을 보관 중인 장소를 입력해주세요"
       name={POST_INPUT.KEEPING_PLACE}
       onChange={handleChange}
-      value={postData.place}
+      value={postData.keepingPlace}
     />
   );
 };

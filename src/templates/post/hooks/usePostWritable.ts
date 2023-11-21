@@ -1,16 +1,12 @@
 import React from "react";
-import {
-  getS3ImageUrl,
-  getFilteredPostDataByCategory,
-  getPostIsValid,
-} from "../helpers";
+import { useImageUpload } from "@/hooks";
+import { getFilteredPostDataByCategory, getPostIsValid } from "../helpers";
 import {
   useCreatePostMutation,
   useUpdatePostMutation,
 } from "../services/post/mutation.service";
-import { Post, PostData } from "../interfaces";
+import { Post, PostCategoryType, PostData } from "../types";
 import { defaultPostData } from "../assets/data";
-import { PostCategoryType } from "../types";
 
 // edit과 write를 동시에 처리하는 훅
 const usePostWritable = (defaultPostDataState?: Post) => {
@@ -18,6 +14,7 @@ const usePostWritable = (defaultPostDataState?: Post) => {
   const [lostImageUrl, setLostImageUrl] = React.useState();
   const { mutate: updatePostMutate } = useUpdatePostMutation();
   const { mutate: createPostMutate } = useCreatePostMutation();
+  const { uploadImage } = useImageUpload();
 
   const handleCategoryChangeClick = (
     e: React.ChangeEvent<HTMLInputElement>,
@@ -27,7 +24,12 @@ const usePostWritable = (defaultPostDataState?: Post) => {
   };
 
   const handleImageFileSelect = async (file?: File) => {
-    setLostImageUrl(await getS3ImageUrl(file));
+    const files = await uploadImage(file);
+    setLostImageUrl(files);
+    setPostData({
+      ...postData,
+      lostThingImage: files,
+    });
   };
 
   const handlePostWriteButtonClick = () => {
@@ -37,10 +39,10 @@ const usePostWritable = (defaultPostDataState?: Post) => {
     }
   };
 
-  const handlePostEditButtonClick = () => {
+  const handlePostEditButtonClick = (id: number) => {
+    const updatePost = getFilteredPostDataByCategory(postData);
     if (getPostIsValid(postData)) {
-      const updatePost = getFilteredPostDataByCategory(postData);
-      updatePostMutate(updatePost as PostData);
+      updatePostMutate({ ...updatePost, id: `${id}` } as PostData);
     }
   };
 

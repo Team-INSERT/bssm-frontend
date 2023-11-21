@@ -1,9 +1,8 @@
-import React from "react";
-import { Input } from "@/components/atoms";
-import DragDrop from "@/components/atoms/DragDrop";
 import styled from "styled-components";
+import { DragDrop } from "@/components/common";
+import { Input } from "@/components/atoms";
 import { font } from "@/styles";
-import { PostCategoryInputBoxProps } from "../../interfaces";
+import { PostCategoryInputBoxProps } from "../../types/@props";
 import { CATEGORY } from "../../constants";
 import POST_INPUT from "../../constants/postInput.constant";
 

@@ -1,15 +1,15 @@
 import { graphQLClient } from "@/graphql";
 import { gql } from "graphql-request";
 import {
-  GetPostListProps,
   PostCreateQuery,
   PostData,
   PostListQuery,
   PostQuery,
   PostUpdateQuery,
-} from "../../interfaces";
+} from "../../types";
 import { posts } from "../graphql/data.graphql";
 import { get회당불러올게시글개수 } from "../../helpers";
+import { GetPostListProps } from "../../types/@props";
 
 export const getGraphQLPostList = async ({
   category,

@@ -1,17 +1,13 @@
 import React from "react";
 import styled from "styled-components";
-import { color, flex, font } from "@/styles";
-import { Emoji } from "@/assets/icons";
-import useEmoji from "@/hooks/useEmoji";
-import { EmojiModal } from "@/components/common";
+import { theme, flex, font } from "@/styles";
 import { Button } from "@/components/atoms";
 import { useComment } from "@/templates/post/hooks";
-import { PostDetailParamsProps } from "@/templates/post/interfaces";
+import { PostDetailParamsProps } from "@/templates/post/types/@props";
 
 const CreateCommentBox = ({ id }: PostDetailParamsProps) => {
   const { commentInput, handleCommentInputChange, handleCreateCommentClick } =
     useComment(id);
-  const { openEmoji, closeEmoji, visible } = useEmoji();
 
   return (
     <Container>
@@ -20,9 +16,7 @@ const CreateCommentBox = ({ id }: PostDetailParamsProps) => {
         value={commentInput}
       />
       <CommentToolBox>
-        {visible && <EmojiModal onClose={closeEmoji} top="-24%" right="84%" />}
-        <Emoji onClick={openEmoji} />
-        <Button color={color.primary_blue} onClick={handleCreateCommentClick}>
+        <Button color={theme.primary_blue} onClick={handleCreateCommentClick}>
           작성
         </Button>
       </CommentToolBox>
@@ -31,7 +25,7 @@ const CreateCommentBox = ({ id }: PostDetailParamsProps) => {
 };
 
 const Container = styled.div`
-  ${flex.COLUMN};
+  ${flex.COLUMN_FLEX};
   width: 100%;
   gap: 8px;
 `;
@@ -39,13 +33,13 @@ const Container = styled.div`
 const CommentTextArea = styled.textarea`
   width: 100%;
   height: 100px;
-  border: 2px solid ${color.on_tertiary};
+  border: 2px solid ${theme.on_tertiary};
   padding: 12px;
   ${font.p3};
 `;
 
 const CommentToolBox = styled.div`
-  ${flex.VERTICAL};
+  ${flex.HORIZONTAL};
   gap: 16px;
   margin-left: auto;
   position: relative;

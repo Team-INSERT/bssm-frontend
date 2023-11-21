@@ -1,10 +1,10 @@
 import React from "react";
 import { Row } from "@/components/Flex";
 import styled from "styled-components";
-import { color, font } from "@/styles";
-import { PostListItemInformationBarProps } from "../../interfaces";
+import { theme, font } from "@/styles";
 import { CommentIcon, LikeIcon, TimeIcon } from "../../assets/icons";
 import { usePost } from "../../hooks";
+import { PostListItemInformationBarProps } from "../../types/@props";
 
 const PostListItemInformationBar = ({
   likeCount,
@@ -42,7 +42,7 @@ const InfomationBox = styled.div`
 
 const InfomationText = styled.span`
   ${font.p3};
-  color: ${color.gray};
+  color: ${theme.gray};
 `;
 
 export default PostListItemInformationBar;

@@ -1,6 +1,6 @@
 import dayjs from "dayjs";
 import { CATEGORY } from "../constants";
-import { Post } from "../interfaces";
+import { Post } from "../types";
 
 const getFilteredPostDataByCategory = (post: Post) => {
   const {

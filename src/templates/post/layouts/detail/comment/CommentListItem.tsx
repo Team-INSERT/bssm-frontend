@@ -1,11 +1,11 @@
 import { defaultProfile } from "@/assets/images";
 import { Column } from "@/components/Flex";
-import { ImageWithFallback } from "@/components/atoms";
+import { FallbackImage } from "@/components/atoms";
 import { flex } from "@/styles";
-import { CommentListItemProps } from "@/templates/post/interfaces";
 import React from "react";
 import styled from "styled-components";
 import { useComment } from "@/templates/post/hooks";
+import { CommentListItemProps } from "@/templates/post/types/@props";
 import CreateRecommentBox from "../recomment/CreateRecommentBox";
 import RecommentList from "../recomment/RecommentList";
 import CommentWritableBox from "./CommentWritableBox";
@@ -23,7 +23,7 @@ const CommentListItem = ({ comment }: CommentListItemProps) => {
   return (
     <Container>
       <ProfileImage>
-        <ImageWithFallback
+        <FallbackImage
           src={comment.user.profileImage}
           fallbackSrc={defaultProfile}
           alt="프로필"

@@ -1,6 +1,5 @@
 import { refresh } from "@/apis/token";
-import ERROR from "@/constants/error.constant";
-import { GetPostListProps, PostData } from "../../interfaces";
+import { ERROR } from "@/apis/constants";
 import {
   createGraphQLPost,
   deleteGraphQLPost,
@@ -8,6 +7,8 @@ import {
   getGraphQLPostList,
   updateGraphQLPost,
 } from "./graphql.service";
+import { GetPostListProps } from "../../types/@props";
+import { PostData } from "../../types";
 
 export const getPostList = async (params: GetPostListProps) => {
   const data = await getGraphQLPostList(params);

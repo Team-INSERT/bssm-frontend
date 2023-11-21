@@ -1,12 +1,12 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import KEY from "@/constants/key.constant";
-import { PostCommentProps } from "../../interfaces";
 import {
   createRecomment,
   deleteRecomment,
   updateRecomment,
 } from "./api.service";
+import { PostCommentProps } from "../../types/@props";
 
 export const useCreateRecommentMutation = () => {
   const queryClient = useQueryClient();
@@ -39,7 +39,6 @@ export const useDeleteRecommentMutation = () => {
     onSuccess: () => {
       toast.success("답글이 삭제되었어요.");
       queryClient.invalidateQueries([KEY.RECOMMENT]);
-      queryClient.invalidateQueries([KEY.COMMENT]);
     },
   });
 };

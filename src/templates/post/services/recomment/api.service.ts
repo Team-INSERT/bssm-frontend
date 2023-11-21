@@ -1,5 +1,5 @@
 import httpClient from "@/apis/httpClient";
-import { GetCommentListProps, PostCommentProps } from "../../interfaces";
+import { GetCommentListProps, PostCommentProps } from "../../types/@props";
 
 export const getRecommentList = async ({
   id,

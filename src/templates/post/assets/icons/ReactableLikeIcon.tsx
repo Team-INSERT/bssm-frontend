@@ -1,5 +1,5 @@
 import React from "react";
-import { LikeIconProps } from "../../interfaces";
+import { LikeIconProps } from "../../types/@props";
 
 const ReactableLikeIcon = ({ isLiked, ...props }: LikeIconProps) => {
   return isLiked ? (

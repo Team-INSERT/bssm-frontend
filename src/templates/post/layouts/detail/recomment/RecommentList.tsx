@@ -1,33 +1,25 @@
-import Loading from "@/components/atoms/Loading";
-import { color, flex } from "@/styles";
+import { theme, flex } from "@/styles";
 import React from "react";
-import InfiniteScroll from "react-infinite-scroll-component";
 import styled from "styled-components";
-import Recomment from "@/templates/post/interfaces/recomment.interface";
-import { PostDetailParamsProps } from "@/templates/post/interfaces";
+import Recomment from "@/templates/post/types/Recomment.type";
+import { useInfiniteScroll } from "@/hooks";
+import { PostDetailParamsProps } from "@/templates/post/types/@props";
 import { useRecommentListQuery } from "@/templates/post/services/recomment/query.service";
 import RecommentListItem from "./RecommentListItem";
 
 const RecommentList = ({ id }: PostDetailParamsProps) => {
-  const { recommentList, fetchNextPage, hasMore, dataLength } =
-    useRecommentListQuery(id);
+  const { recommentList, fetchNextPage } = useRecommentListQuery(id);
+  useInfiniteScroll(fetchNextPage);
 
   return (
     <Container>
-      <InfiniteScroll
-        dataLength={dataLength}
-        next={fetchNextPage}
-        hasMore={hasMore}
-        loader={<Loading />}
-      >
-        {recommentList?.map((recomments) => (
-          <RecommentListBox key={recomments.currentPage}>
-            {recomments.entity.map((recomment: Recomment) => (
-              <RecommentListItem key={recomment.id} {...recomment} />
-            ))}
-          </RecommentListBox>
-        ))}
-      </InfiniteScroll>
+      {recommentList?.map((recomments) => (
+        <RecommentListBox key={recomments.currentPage}>
+          {recomments.entity.map((recomment: Recomment) => (
+            <RecommentListItem key={recomment.id} {...recomment} />
+          ))}
+        </RecommentListBox>
+      ))}
     </Container>
   );
 };
@@ -35,13 +27,13 @@ const RecommentList = ({ id }: PostDetailParamsProps) => {
 const Container = styled.div`
   width: 100%;
   height: 100%;
-  background-color: ${color.white};
+  background-color: ${theme.white};
 `;
 
 const RecommentListBox = styled.div`
   width: 100%;
   height: 100%;
-  ${flex.COLUMN};
+  ${flex.COLUMN_FLEX};
 `;
 
 export default RecommentList;

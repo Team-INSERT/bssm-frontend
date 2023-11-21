@@ -1,8 +1,8 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
-import KEY from "@/constants/key.constant";
-import { PostCommentProps } from "../../interfaces";
+import { KEY } from "@/constants";
 import { createComment, deleteComment, updateComment } from "./api.service";
+import { PostCommentProps } from "../../types/@props";
 
 export const useCreateCommentMutation = () => {
   const queryClient = useQueryClient();

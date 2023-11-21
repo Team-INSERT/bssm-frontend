@@ -1,11 +1,10 @@
 import { Input } from "@/components/atoms";
-import React from "react";
 import { Column, Row } from "@/components/Flex";
 import styled from "styled-components";
-import { color, font } from "@/styles";
+import { theme, font } from "@/styles";
 import POST_INPUT from "../../constants/postInput.constant";
-import { PostCategoryInputBoxProps } from "../../interfaces";
-import { dateTime } from "../../assets/data";
+import { PostCategoryInputBoxProps } from "../../types/@props";
+import { dateTimeData } from "../../assets/data";
 
 const ProjectInputBox = ({
   handleChange,
@@ -21,7 +20,7 @@ const ProjectInputBox = ({
         value={postData.field}
       />
       <Row gap="12px">
-        {dateTime.map(({ name, dataName, label }) => (
+        {dateTimeData.map(({ name, dataName, label }) => (
           <Column gap="4px">
             <TitleInputLabelText>{label}</TitleInputLabelText>
             <DateInput
@@ -43,7 +42,7 @@ const TitleInputLabelText = styled.h1`
 
 const DateInput = styled.input`
   padding: 10px 14px;
-  background-color: ${color.white};
+  background-color: ${theme.white};
   ${font.caption};
 `;
 

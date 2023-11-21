@@ -1,11 +1,10 @@
 import styled from "styled-components";
 import { Column, Row } from "@/components/Flex";
-import color from "@/styles/color";
-import { flex, font } from "@/styles";
-import { ImageWithFallback } from "@/components/atoms";
+import { flex, font, theme } from "@/styles";
+import { FallbackImage } from "@/components/atoms";
 import { defaultProfile } from "@/assets/images";
 import { CommentIcon, LikeIcon, TimeIcon } from "@/templates/post/assets/icons";
-import { Post } from "@/templates/post/interfaces";
+import { Post } from "@/templates/post/types";
 import dayjs from "dayjs";
 import DATE from "@/constants/date.constant";
 import "dayjs/locale/ko";
@@ -16,7 +15,7 @@ const PostMainlyInformationBox = ({ ...post }: Post) => {
       <TitleText>{post.title}</TitleText>
       <ProfileBox>
         <Profile>
-          <ImageWithFallback
+          <FallbackImage
             src={post.user.profileImage}
             alt="profile"
             width={38}
@@ -57,7 +56,7 @@ const TitleText = styled.h1`
 `;
 
 const ProfileBox = styled.div`
-  ${flex.VERTICAL};
+  ${flex.HORIZONTAL};
   gap: 12px;
   cursor: pointer;
   width: fit-content;
@@ -67,7 +66,7 @@ const ProfileBox = styled.div`
 const Profile = styled.div`
   width: 42px;
   height: 42px;
-  border: 2px solid ${color.on_tertiary};
+  border: 2px solid ${theme.on_tertiary};
   border-radius: 50%;
   ${flex.CENTER};
 `;
@@ -78,7 +77,7 @@ const Author = styled.h2`
 
 const Date = styled.span`
   ${font.p3};
-  color: ${color.gray};
+  color: ${theme.gray};
 
   @media screen and (max-width: 541px) {
     display: none;
@@ -94,7 +93,7 @@ const ResponsiveDate = styled(Date)`
 
 const PostText = styled.span`
   ${font.p3};
-  color: ${color.gray};
+  color: ${theme.gray};
 `;
 
 export default PostMainlyInformationBox;

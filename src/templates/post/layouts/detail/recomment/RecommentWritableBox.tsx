@@ -1,10 +1,10 @@
+import React from "react";
+import dayjs from "dayjs";
 import { Column, Row } from "@/components/Flex";
 import { Button } from "@/components/atoms";
-import { color } from "@/styles";
+import { theme } from "@/styles";
 import { useRecomment } from "@/templates/post/hooks";
-import Recomment from "@/templates/post/interfaces/recomment.interface";
-import dayjs from "dayjs";
-import React from "react";
+import { Recomment } from "@/templates/post/types";
 import RecommentContentBox from "./RecommentContentBox";
 import {
   CommentCreatedAt,
@@ -42,14 +42,14 @@ const RecommentWritableBox = ({ ...recomment }: Recomment) => {
           <>
             <Button
               align="RIGHT"
-              color={isEditMode ? color.primary_red : color.primary_blue}
+              color={isEditMode ? theme.primary_red : theme.primary_blue}
               onClick={handleEditModeChange}
               isSmall
             >
               {isEditMode ? "취소" : "수정"}
             </Button>
             <Button
-              color={isEditMode ? color.primary_blue : color.primary_red}
+              color={isEditMode ? theme.primary_blue : theme.primary_red}
               onClick={
                 isEditMode
                   ? handleUpdateRecommentDetailClick
