@@ -2,13 +2,13 @@
 
 import PostDetailPage from "@/templates/post/layouts/detail";
 
-interface IPostAppPageParams {
+interface PostDetailPageParams {
   params: {
     id: number;
   };
 }
 
-const PostDetail = ({ params }: IPostAppPageParams) => {
+const PostDetail = ({ params }: PostDetailPageParams) => {
   return <PostDetailPage {...params} />;
 };
 

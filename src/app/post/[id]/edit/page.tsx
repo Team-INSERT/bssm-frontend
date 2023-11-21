@@ -2,13 +2,13 @@
 
 import PostEditPage from "@/templates/post/layouts/edit";
 
-interface IPostUpdateAppPageParams {
+interface PostUpdatePageParams {
   params: {
     id: number;
   };
 }
 
-const Update = ({ params }: IPostUpdateAppPageParams) => {
+const Update = ({ params }: PostUpdatePageParams) => {
   return <PostEditPage {...params} />;
 };
 

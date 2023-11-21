@@ -1,9 +1,9 @@
 "use client";
 
-import PostPage from "@/templates/post/layouts/list";
+import PostListPage from "@/templates/post/layouts/list";
 
 const Post = () => {
-  return <PostPage />;
+  return <PostListPage />;
 };
 
 export default Post;
