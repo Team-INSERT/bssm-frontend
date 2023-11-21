@@ -1,17 +1,16 @@
 import styled from "styled-components";
 import React from "react";
 import dayjs from "dayjs";
-import { color, flex, font } from "@/styles";
+import { theme, flex, font } from "@/styles";
+import { ArrowIcon } from "@/assets/icons";
 import { Column, Row } from "@/components/Flex";
-import DATE from "@/constants/date.constant";
-import DIRECTION from "@/constants/direction.constant";
+import { DATE, DIRECTION } from "@/constants";
 import { useCalendarListQuery } from "../services/query.service";
 import { useCalendar } from "../hooks";
 import WeekDayHeaderBox from "./WeekDayHeaderBox";
-import { CalendarItem } from "../interfaces";
+import { CalendarItem } from "../types";
 import { getPaddingDayOfMonth } from "../helpers";
 import CalendarListItem from "./CalendarListItem";
-import { CalendarArrowIcon } from "../assets/icons";
 
 const CalendarPage = () => {
   const { currentMonth, handleCalendarMonthChange } = useCalendar();
@@ -30,7 +29,9 @@ const CalendarPage = () => {
         </SubTitleText>
       </Column>
       <Row width="100%" gap="16px">
-        <CalendarArrowIcon
+        <ArrowIcon
+          width={40}
+          height={40}
           direction={DIRECTION.LEFT}
           onClick={() => handleCalendarMonthChange(DATE.DECREASE)}
         />
@@ -48,7 +49,9 @@ const CalendarPage = () => {
             ))}
           </CalendarList>
         </CalendarBox>
-        <CalendarArrowIcon
+        <ArrowIcon
+          width={40}
+          height={40}
           direction={DIRECTION.RIGHT}
           onClick={() => handleCalendarMonthChange(DATE.INCREASE)}
         />
@@ -68,14 +71,14 @@ const TitleText = styled.span`
 `;
 
 const SubTitleText = styled.span`
-  color: ${color.gray};
+  color: ${theme.gray};
 `;
 
 const CalendarBox = styled.main`
   width: 100%;
-  background-color: ${color.white};
+  background-color: ${theme.white};
   border-radius: 5px;
-  ${flex.COLUMN};
+  ${flex.COLUMN_FLEX};
   padding: 24px 32px;
   gap: 36px;
 `;

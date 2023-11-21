@@ -1,4 +1,4 @@
-import PLAN from "../constants/plan.constant";
+import { PLAN } from "../constants";
 
 const getPlanNameByPlanType = (planType: string) => {
   switch (planType) {

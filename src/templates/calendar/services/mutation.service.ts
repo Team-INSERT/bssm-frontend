@@ -1,9 +1,9 @@
 import { toast } from "react-toastify";
-import useModal from "@/hooks/useModal";
-import { KEY } from "@/constants";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { KEY } from "@/constants";
+import { useModal } from "@/@modal/hooks";
 import { createCalendarItem, deleteCalendarItem } from "./api.service";
-import { Calendar } from "../interfaces";
+import { Calendar } from "../types";
 
 export const useAddCalendarPlanMutation = () => {
   const { closeModal } = useModal();

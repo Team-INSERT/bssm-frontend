@@ -1,13 +1,13 @@
-import { color } from "@/styles";
+import { theme } from "@/styles";
 
 const getColorByDayName = (weekday: string) => {
   switch (weekday) {
     case "토":
-      return color.primary_blue;
+      return theme.primary_blue;
     case "일":
-      return color.primary_red;
+      return theme.primary_red;
     default:
-      return color.gray;
+      return theme.gray;
   }
 };
 
