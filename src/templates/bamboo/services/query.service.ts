@@ -15,7 +15,12 @@ export const useBambooListQuery = () => {
   const dataLength = data?.pages.flatMap((item) => item.data).length || 0;
   const hasMore = hasNextPage || false;
 
-  return { bambooList: data?.pages, dataLength, hasMore, ...queryRest };
+  return {
+    bambooList: data?.pages,
+    dataLength,
+    hasMore,
+    ...queryRest,
+  };
 };
 
 export const useBambooPendingListQuery = () => {

@@ -1,16 +1,13 @@
 import React from "react";
-import useModal from "@/hooks/useModal";
-import LoginModal from "@/components/common/Modal/LoginModal";
 import {
   useMeisterDetailQuery,
   useMeisterQuery,
 } from "../services/query.service";
 import meisterDefaultData from "../assets/data/meisterDefaultData";
-import { getStudentInformationHTML } from "../helpers";
+import { getStudentInformationHTML, setMeisterPointNaming } from "../helpers";
 import meisterDefaultDetailData from "../assets/data/meisterDetailDefaultData";
 
 const useMeister = () => {
-  const { openModal } = useModal();
   const meisterQuery = useMeisterQuery();
   const [studentNum, setStudentNum] = React.useState("");
   const meisterDetailQuery = useMeisterDetailQuery(studentNum);
@@ -54,8 +51,11 @@ const useMeister = () => {
 
   React.useEffect(() => {
     if (meisterQuery.isSuccess) setMeister(meisterQuery.data);
-    if (meisterQuery.isError) openModal({ component: <>asd</> });
   }, [meisterQuery]);
+
+  React.useEffect(() => {
+    setMeisterPointNaming();
+  }, [meisterDetailQuery.isSuccess]);
 
   return {
     isLoading,

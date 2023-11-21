@@ -1,7 +1,7 @@
 import React from "react";
 import styled, { css } from "styled-components";
 import { color, font } from "@/styles";
-import { Arrow } from "@/assets/icons";
+import Arrow from "@/assets/icons/Arrow";
 
 interface ISelectProps {
   options: string[];

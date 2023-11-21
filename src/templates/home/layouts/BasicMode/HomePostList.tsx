@@ -1,5 +1,7 @@
 import { ROUTER } from "@/constants";
+import DATE from "@/constants/date.constant";
 import { color, flex, font } from "@/styles";
+import dayjs from "dayjs";
 import Link from "next/link";
 import React from "react";
 import styled from "styled-components";
@@ -19,7 +21,7 @@ const HomePostList = ({ posts }: IHomePostListProps) => {
         <PostListItem href={`${ROUTER.POST.LIST}/${post.id}`} key={post.id}>
           <StyledTitle>{post.title}</StyledTitle>
           <StyledDate>
-            {/* {formatDate(post.createdAt, { summary: true })} */}
+            {dayjs(post.createdAt).format(DATE.YYYYMMDDAHHMM)}
           </StyledDate>
         </PostListItem>
       ))}

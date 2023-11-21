@@ -12,46 +12,38 @@ const HomePage = () => {
   const { isWindow } = useWindow();
 
   React.useEffect(() => {
-    setViewMode(Storage.getItem("home_view_mode") || "기본 모드");
+    setViewMode(Storage.getItem("SETTING:홈페이지조회형식") || "기본 모드");
   }, [isWindow]);
 
   const handleChangeClick = (modeName: string) => {
     setViewMode(modeName);
-    Storage.setItem("home_view_mode", modeName);
+    Storage.setItem("SETTING:홈페이지조회형식", modeName);
   };
 
   return (
     <Layout>
-      <Container>
-        <ModeBox>
-          {["기본 모드", "리모콘 모드"].map((modeName) => (
-            <Category
-              key={modeName}
-              id={modeName}
-              name="viewMode"
-              onChange={() => handleChangeClick(modeName)}
-              label={modeName}
-              checked={modeName === viewMode}
-            />
-          ))}
-        </ModeBox>
-        {viewMode === "기본 모드" && <BasicMode />}
-        {viewMode === "리모콘 모드" && <RemoconMode />}
-      </Container>
+      <ModeBox>
+        {["기본 모드", "리모콘 모드"].map((modeName) => (
+          <Category
+            key={modeName}
+            id={modeName}
+            name="viewMode"
+            onChange={() => handleChangeClick(modeName)}
+            label={modeName}
+            checked={modeName === viewMode}
+          />
+        ))}
+      </ModeBox>
+      {viewMode === "기본 모드" && <BasicMode />}
+      {viewMode === "리모콘 모드" && <RemoconMode />}
     </Layout>
   );
 };
 
 const Layout = styled.div`
   width: 100%;
-  display: flex;
-  justify-content: center;
-`;
-
-const Container = styled.div`
-  width: 76%;
   ${flex.COLUMN};
-  gap: 8px;
+  gap: 20px;
 `;
 
 const ModeBox = styled.div`

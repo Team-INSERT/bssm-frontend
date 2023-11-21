@@ -56,7 +56,6 @@ const InfomationBox = ({ user, isLogined }: IInfomationBoxProps) => {
           </InfomationButton>
         </>
       )}
-      {!isLogined && <LoginText>로그인이 필요해요</LoginText>}
     </Container>
   );
 };
@@ -138,10 +137,6 @@ const InfomationButton = styled.button`
   @media screen and (max-width: 900px) {
     display: none;
   }
-`;
-
-const LoginText = styled.span`
-  ${font.context};
 `;
 
 export default InfomationBox;

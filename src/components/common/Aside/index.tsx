@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import useUser from "@/hooks/useUser";
 import { Row } from "@/components/Flex";
+import { font } from "@/styles";
 import InfomationBox from "./InfomationBox";
 import MeisterBox from "./MeisterBox";
 import JoinCheckBox from "./JoinCheckBox";
@@ -10,15 +11,15 @@ const Aside = () => {
 
   return (
     <Layout>
-      <Container>
-        <InfomationBox user={user} isLogined={isLogined} />
-        {isLogined && (
+      {isLogined && (
+        <Container>
+          <InfomationBox user={user} isLogined={isLogined} />
           <Row gap="6px" height="100%">
             <MeisterBox />
             <JoinCheckBox />
           </Row>
-        )}
-      </Container>
+        </Container>
+      )}
     </Layout>
   );
 };

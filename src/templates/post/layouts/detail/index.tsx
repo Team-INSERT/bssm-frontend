@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { color, flex } from "@/styles";
 import { Row } from "@/components/Flex";
 import { Button } from "@/components/atoms";
+import { Aside } from "@/components/common";
 import { usePostQuery } from "../../services/post/query.service";
 import { usePost } from "../../hooks";
 import { PostDetailParamsProps } from "../../interfaces";
@@ -20,36 +21,39 @@ const PostDetailPage = ({ id }: PostDetailParamsProps) => {
   } = usePost(post);
 
   return (
-    <Container>
-      <PostHeadBox>
-        <Row gap="8px">
-          <PostCategoryInformationBox postType={postData.category} />
-          {isPostWriterSameAsUser && (
-            <>
-              <Button
-                align="RIGHT"
-                color={color.primary_blue}
-                onClick={handleUpdateButtonClick}
-              >
-                수정
-              </Button>
-              <Button
-                color={color.primary_red}
-                onClick={handleDeleteButtonClick}
-              >
-                삭제
-              </Button>
-            </>
-          )}
-        </Row>
-        <PostTitle {...postData} />
-      </PostHeadBox>
-      <PostMainBox post={postData} />
-    </Container>
+    <>
+      <Layout>
+        <PostHeadBox>
+          <Row gap="8px">
+            <PostCategoryInformationBox postType={postData.category} />
+            {isPostWriterSameAsUser && (
+              <>
+                <Button
+                  align="RIGHT"
+                  color={color.primary_blue}
+                  onClick={handleUpdateButtonClick}
+                >
+                  수정
+                </Button>
+                <Button
+                  color={color.primary_red}
+                  onClick={handleDeleteButtonClick}
+                >
+                  삭제
+                </Button>
+              </>
+            )}
+          </Row>
+          <PostTitle {...postData} />
+        </PostHeadBox>
+        <PostMainBox post={postData} />
+      </Layout>
+      <Aside />
+    </>
   );
 };
 
-const Container = styled.div`
+const Layout = styled.div`
   width: 100%;
   ${flex.COLUMN};
   border-radius: 4px;

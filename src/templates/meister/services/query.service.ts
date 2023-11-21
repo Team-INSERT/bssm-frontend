@@ -23,8 +23,10 @@ export const useMeisterRankingQuery = ({
 };
 
 export const useMeisterDetailQuery = (studentNumber: string) => {
-  const { data, ...queryRest } = useQuery([KEY.MEISTER_DETAIL], async () =>
-    getMeisterDetail(studentNumber),
+  const { data, ...queryRest } = useQuery(
+    [KEY.MEISTER_DETAIL],
+    async () => getMeisterDetail(studentNumber),
+    { enabled: !!studentNumber },
   );
   return { data, ...queryRest };
 };

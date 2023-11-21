@@ -4,6 +4,7 @@ import { Button } from "@/components/atoms";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Loading from "@/components/atoms/Loading";
 import { color, flex, font } from "@/styles";
+import { Aside } from "@/components/common";
 import BambooPostListItem from "./BambooPostListItem";
 import { useBambooListQuery } from "../services/query.service";
 import { useBamboo } from "../hooks";
@@ -16,38 +17,44 @@ const BambooPage = () => {
     useBambooListQuery();
 
   return (
-    <Layout>
-      <TitleText>🎋 학생 대나무숲</TitleText>
-      <SubTitleText>
-        말 못할 고민이나 사연들을 익명으로 편하게 이야기해봐요.
-      </SubTitleText>
-      <Button color={color.primary_blue} onClick={handleOpenCreateModalClick}>
-        제보하기
-      </Button>
-      {isAdmin && (
-        <Button color={color.primary_blue} onClick={handleOpenManageModalClick}>
-          글 관리하기
+    <>
+      <Layout>
+        <TitleText>🎋 학생 대나무숲</TitleText>
+        <SubTitleText>
+          말 못할 고민이나 사연들을 익명으로 편하게 이야기해봐요.
+        </SubTitleText>
+        <Button color={color.primary_blue} onClick={handleOpenCreateModalClick}>
+          제보하기
         </Button>
-      )}
-      <InfiniteScroll
-        dataLength={dataLength}
-        next={fetchNextPage}
-        hasMore={hasMore}
-        loader={<Loading />}
-      >
-        {bambooList?.map((bamboos) => (
-          <BambooPostListBox>
-            {bamboos.content.map((bamboo: BambooPostType) => (
-              <BambooPostListItem
-                key={bamboo.allowedId}
-                {...bamboo}
-                isAdmin={isAdmin}
-              />
-            ))}
-          </BambooPostListBox>
-        ))}
-      </InfiniteScroll>
-    </Layout>
+        {isAdmin && (
+          <Button
+            color={color.primary_blue}
+            onClick={handleOpenManageModalClick}
+          >
+            글 관리하기
+          </Button>
+        )}
+        <InfiniteScroll
+          dataLength={dataLength}
+          next={fetchNextPage}
+          hasMore={hasMore}
+          loader={<Loading />}
+        >
+          {bambooList?.map((bamboos) => (
+            <BambooPostListBox>
+              {bamboos.content.map((bamboo: BambooPostType) => (
+                <BambooPostListItem
+                  key={bamboo.allowedId}
+                  {...bamboo}
+                  isAdmin={isAdmin}
+                />
+              ))}
+            </BambooPostListBox>
+          ))}
+        </InfiniteScroll>
+      </Layout>
+      <Aside />
+    </>
   );
 };
 

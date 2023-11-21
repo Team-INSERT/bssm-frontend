@@ -33,63 +33,64 @@ const RemoconMode = () => {
   const { user } = useUser();
   const { data, isSuccess } = useMainQuery();
 
-  return isSuccess ? (
-    <Container>
-      <RemoconBox href="https://auth.bssm.kro.kr/user" target="_blank">
-        <ImageWithFallback
-          src={user.profile_image}
-          fallbackSrc={defaultProfile}
-          alt="profile"
-          width={50}
-          height={50}
-          rounded
-        />
-        <Column>
-          <StudentInfomation>
-            {user.grade}학년 {user.classNum}반 {user.studentNumber}번{" "}
-            {user.name}
-          </StudentInfomation>
-          <Nickname>{user.nickname}</Nickname>
-        </Column>
-      </RemoconBox>
-      <RemoconBox href={ROUTER.MEISTER}>
-        <Column width="100%">
-          <ScoreName>인증제 점수</ScoreName>
-          <Row gap="4px">
-            <Score>{data.meister.meister.score}</Score>
-            <SubText>{data.ranking}위</SubText>
-          </Row>
-        </Column>
-        <Column width="100%">
-          <ScoreName>상점</ScoreName>
-          <PositivePoint>{data.meister.meister.positivePoint}</PositivePoint>
-        </Column>
-        <Column width="100%">
-          <ScoreName>벌점</ScoreName>
-          <NegativePoint>{data.meister.meister.negativePoint}</NegativePoint>
-        </Column>
-      </RemoconBox>
-      {remoconList.map((remocon) => (
-        <RemoconBox href={remocon.href as string}>
-          {remocon.icon}
-          <RemoconText>{remocon.name}</RemoconText>
+  return (
+    isSuccess && (
+      <Container>
+        <RemoconBox href="https://auth.bssm.kro.kr/user" target="_blank">
+          <ImageWithFallback
+            src={user.profile_image}
+            fallbackSrc={defaultProfile}
+            alt="profile"
+            width={50}
+            height={50}
+            rounded
+          />
+          <Column>
+            <StudentInfomation>
+              {user.grade}학년 {user.classNum}반 {user.studentNumber}번{" "}
+              {user.name}
+            </StudentInfomation>
+            <Nickname>{user.nickname}</Nickname>
+          </Column>
         </RemoconBox>
-      ))}
-    </Container>
-  ) : null;
+        <RemoconBox href={ROUTER.MEISTER}>
+          <Column width="100%">
+            <ScoreName>인증제 점수</ScoreName>
+            <Row gap="4px">
+              <Score>{data.meister.meister.score}</Score>
+              <SubText>{data.ranking}위</SubText>
+            </Row>
+          </Column>
+          <Column width="100%">
+            <ScoreName>상점</ScoreName>
+            <PositivePoint>{data.meister.meister.positivePoint}</PositivePoint>
+          </Column>
+          <Column width="100%">
+            <ScoreName>벌점</ScoreName>
+            <NegativePoint>{data.meister.meister.negativePoint}</NegativePoint>
+          </Column>
+        </RemoconBox>
+        {remoconList.map((remocon) => (
+          <RemoconBox href={remocon.href as string}>
+            {remocon.icon}
+            <RemoconText>{remocon.name}</RemoconText>
+          </RemoconBox>
+        ))}
+      </Container>
+    )
+  );
 };
 
 const Container = styled.div`
-  margin: 20px 0;
   width: 100%;
   ${flex.VERTICAL};
   flex-wrap: wrap;
   justify-content: space-between;
-  gap: 20px;
+  gap: 12px;
 `;
 
 const RemoconBox = styled(Link)`
-  width: 49%;
+  width: 49.5%;
   height: 14vh;
   background-color: ${color.white};
   display: flex;

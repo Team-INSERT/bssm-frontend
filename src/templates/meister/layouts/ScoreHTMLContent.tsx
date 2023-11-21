@@ -1,7 +1,12 @@
 import { color, font } from "@/styles";
+import React from "react";
 import styled from "styled-components";
+import { setMeisterPointNaming } from "../helpers";
 
 const ScoreHTMLContent = ({ scoreHTML }: { scoreHTML: string }) => {
+  React.useEffect(() => {
+    setMeisterPointNaming();
+  }, []);
   return (
     <StyledScoreHTMLContent
       dangerouslySetInnerHTML={{
