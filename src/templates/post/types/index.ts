@@ -8,4 +8,4 @@ export type { default as PostUpdateQuery } from "./PostUpdateQuery.type";
 export type { default as PostCreateQuery } from "./PostCreateQuery.type";
 export type { default as Comment } from "./Comment.type";
 export type { default as Recomment } from "./Recomment.type";
-export type { default as PostCategoryType } from "./PoSSSstCategory.type";
+export type { default as PostCategoryType } from "./PostCategory.type";
