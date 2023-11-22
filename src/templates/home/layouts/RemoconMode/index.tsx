@@ -19,7 +19,7 @@ const remoconList = [
     icon: <TimetableIcon width={40} />,
   },
   { name: "캘린더", href: ROUTER.CALENDER, icon: <CalendarIcon width={40} /> },
-  { name: "게시판", href: ROUTER.POST, icon: <NoticeIcon width={40} /> },
+  { name: "게시판", href: ROUTER.POST.LIST, icon: <NoticeIcon width={40} /> },
   { name: "베르실 예약", href: ROUTER.RESERVE, icon: <BerIcon width={40} /> },
   {
     name: "기숙사 입사 체크",
