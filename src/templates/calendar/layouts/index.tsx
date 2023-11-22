@@ -37,7 +37,7 @@ const CalendarPage = () => {
         />
         <CalendarBox>
           <CurrentDateText>
-            {dayjs().year()}년 {currentMonth}월
+            {dayjs().year()}년 {currentMonth + 1}월
           </CurrentDateText>
           <CalendarList>
             <WeekDayHeaderBox />
