@@ -32,7 +32,7 @@ const MealPage = () => {
           width={40}
           height={40}
           direction={DIRECTION.LEFT}
-          onClick={() => handleCurrentDateChange(DATE.INCREASE)}
+          onClick={() => handleCurrentDateChange(DATE.DECREASE)}
         />
         <MealList>
           {mealList.keys.length ? (
@@ -53,7 +53,7 @@ const MealPage = () => {
           width={40}
           height={40}
           direction={DIRECTION.RIGHT}
-          onClick={() => handleCurrentDateChange(DATE.DECREASE)}
+          onClick={() => handleCurrentDateChange(DATE.INCREASE)}
         />
       </MealBox>
     </Layout>
