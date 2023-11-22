@@ -18,11 +18,11 @@ const Navigation = () => {
 const NavigationList = styled.ul`
   ${flex.VERTICAL};
   width: 100%;
-  gap: 7%;
+  gap: 6.5%;
 `;
 
 const NavigationListItem = styled(Link)`
-  font-size: ${font.H6};
+  font-size: ${font.p2};
   font-weight: 600;
   color: ${theme.black};
   cursor: pointer;
