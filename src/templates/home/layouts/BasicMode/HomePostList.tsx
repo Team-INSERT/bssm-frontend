@@ -18,9 +18,7 @@ const HomePostList = ({ posts }: HomePostListProps) => {
       {posts?.map((post) => (
         <PostListItem href={`${ROUTER.POST.LIST}/${post.id}`} key={post.id}>
           <StyledTitle>{post.title}</StyledTitle>
-          <StyledDate>
-            {dayjs(post.createdAt).format("YYYY년 M월 D일")}
-          </StyledDate>
+          <StyledDate>{dayjs(post.createdAt).format("M월 D일")}</StyledDate>
         </PostListItem>
       ))}
     </Container>
@@ -31,7 +29,7 @@ const Container = styled.div`
   width: 100%;
   padding: 8px 0;
   ${flex.COLUMN_FLEX};
-  gap: 8px;
+  gap: 4px;
 `;
 
 const PostListItem = styled(Link)`
@@ -44,6 +42,11 @@ const PostListItem = styled(Link)`
 const StyledTitle = styled.span`
   ${font.p3};
   font-weight: 600;
+
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  word-break: break-all;
 `;
 
 const StyledDate = styled.span`

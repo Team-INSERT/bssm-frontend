@@ -18,7 +18,7 @@ const TimeTablePage = () => {
             {dayjs().locale("ko").format("YYYY년 M월 D일")}
           </SubTitleText>
         </Row>
-        {!Object.entries(dayTimeTable).length && (
+        {Object.entries(dayTimeTable).length && (
           <TimeTableBox>
             <Column>
               {Array.from({ length: 8 }).map((_, i) => (

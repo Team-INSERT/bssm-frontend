@@ -17,7 +17,7 @@ const HomeMiniBanner = () => {
 
 const Layout = styled.div`
   width: 20vw;
-  height: 210px;
+  height: 180px;
 `;
 
 const Container = styled(Link)`
