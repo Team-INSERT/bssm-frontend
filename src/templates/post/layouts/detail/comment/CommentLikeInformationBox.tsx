@@ -1,9 +1,9 @@
 import { Row } from "@/components/Flex";
-import { color, flex, font } from "@/styles";
+import { theme, flex, font } from "@/styles";
 import { AddCommentIcon } from "@/templates/post/assets/icons";
 import ReactableLikeIcon from "@/templates/post/assets/icons/ReactableLikeIcon";
 import { useLike } from "@/templates/post/hooks";
-import { CommentLikeInformationBoxProps } from "@/templates/post/interfaces";
+import { CommentLikeInformationBoxProps } from "@/templates/post/types/@props";
 import React from "react";
 import styled from "styled-components";
 
@@ -28,20 +28,20 @@ const CommentLikeInformationBox = ({
 };
 
 const StyledBox = styled.div`
-  ${flex.HORIZONTAL};
+  ${flex.VERTICAL};
   gap: 4px;
   cursor: pointer;
   padding: 2px 6px;
 
   &:hover {
-    background-color: ${color.on_tertiary};
+    background-color: ${theme.on_tertiary};
     border-radius: 999px;
   }
 `;
 
 const StyledText = styled.span`
   ${font.p3};
-  color: ${color.gray};
+  color: ${theme.gray};
 `;
 
 const StyledCommentText = styled(StyledText)`

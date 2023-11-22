@@ -1,5 +1,5 @@
-import { KEY } from "@/constants";
 import { useQuery } from "@tanstack/react-query";
+import { KEY } from "@/constants";
 import { getMain } from "./api.service";
 
 export const useMainQuery = () => {

@@ -1,11 +1,11 @@
 import styled from "styled-components";
 import { Column, Row } from "@/components/Flex";
-import { color, font } from "@/styles";
+import { theme, font } from "@/styles";
 import { defaultProfile } from "@/assets/images";
-import { ImageWithFallback } from "@/components/atoms";
+import { FallbackImage } from "@/components/atoms";
 import Link from "next/link";
 import { ROUTER } from "@/constants";
-import { PostListProperty } from "../../interfaces";
+import { PostListProperty } from "../../types";
 import PostListItemInformationBar from "./PostListItemInformationBar";
 import { EmptyImage } from "../../assets/images";
 import { CATEGORY } from "../../constants";
@@ -26,8 +26,8 @@ const PostListItem = ({
   return (
     <Layout href={`${ROUTER.POST.LIST}/${id}`}>
       {is카테고리가분실물찾기라면 && (
-        <ImageWithFallback
-          src={lostThingImage}
+        <FallbackImage
+          src={lostThingImage || "/"}
           alt="분실물 이미지"
           fallbackSrc={EmptyImage}
           width={50}
@@ -37,7 +37,7 @@ const PostListItem = ({
       <Column gap="4px">
         <PostTitleText>{title}</PostTitleText>
         <Row alignItems="center" gap="12px">
-          <ImageWithFallback
+          <FallbackImage
             src={user.profileImage}
             alt="profile"
             width={18}
@@ -61,7 +61,7 @@ const PostListItem = ({
 const Layout = styled(Link)`
   width: 100%;
   height: 80px;
-  background-color: ${color.white};
+  background-color: ${theme.white};
   display: flex;
   align-items: center;
   padding: 0px 24px;
@@ -81,7 +81,7 @@ const PostWriterNameText = styled.span`
 const Separator = styled.div`
   width: 1px;
   height: 16px;
-  background-color: ${color.on_tertiary};
+  background-color: ${theme.on_tertiary};
 `;
 
 export default PostListItem;

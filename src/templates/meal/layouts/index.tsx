@@ -1,28 +1,25 @@
 import React from "react";
 import styled from "styled-components";
 import dayjs from "dayjs";
-import { emptyMealList } from "@/assets/data";
-import DATE from "@/constants/date.constant";
-import DIRECTION from "@/constants/direction.constant";
-import { color, flex, font } from "@/styles";
-import MealListItem from "./MealListItem";
+import { ArrowIcon } from "@/assets/icons";
+import { DATE, DIRECTION } from "@/constants";
+import { theme, flex, font } from "@/styles";
 import { useMealQuery } from "../services/query.service";
+import { defaultMealListData } from "../assets/data";
 import { useMeal } from "../hooks";
-import { MealArrowIcon } from "../assets/data";
+import MealListItem from "./MealListItem";
 import MealPageTitleBox from "./MealPageTitleBox";
 
 const MealPage = () => {
   const { currentDate, formatDate, handleCurrentDateChange } = useMeal();
-  const [mealList, setMealList] = React.useState(emptyMealList);
-  const { refetch } = useMealQuery({
-    date: dayjs(currentDate).format(DATE.YYMMDD),
-  });
+  const [mealList, setMealList] = React.useState(defaultMealListData);
+  const { refetch } = useMealQuery(dayjs(currentDate).format(DATE.YYMMDD));
 
   React.useEffect(() => {
     (async () => {
       const { data } = await refetch();
       if (data.keys) return setMealList(data);
-      return setMealList(emptyMealList);
+      return setMealList(defaultMealListData);
     })();
   }, [currentDate, refetch]);
 
@@ -31,7 +28,9 @@ const MealPage = () => {
       <MealPageTitleBox />
       <MealDateText>{formatDate(currentDate)}</MealDateText>
       <MealBox>
-        <MealArrowIcon
+        <ArrowIcon
+          width={40}
+          height={40}
           direction={DIRECTION.LEFT}
           onClick={() => handleCurrentDateChange(DATE.INCREASE)}
         />
@@ -50,7 +49,9 @@ const MealPage = () => {
             </NoMealText>
           )}
         </MealList>
-        <MealArrowIcon
+        <ArrowIcon
+          width={40}
+          height={40}
           direction={DIRECTION.RIGHT}
           onClick={() => handleCurrentDateChange(DATE.DECREASE)}
         />
@@ -61,7 +62,7 @@ const MealPage = () => {
 
 const Layout = styled.div`
   width: 100%;
-  ${flex.COLUMN_VERTICAL};
+  ${flex.COLUMN_HORIZONTAL};
   gap: 14px;
 `;
 
@@ -92,7 +93,7 @@ const NoMealText = styled.span`
   width: 100%;
   ${flex.CENTER};
   ${font.p2};
-  color: ${color.gray};
+  color: ${theme.gray};
 `;
 
 export default MealPage;

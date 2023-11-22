@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Image from "next/image";
-import { color, font } from "@/styles";
+import { theme, font, flex } from "@/styles";
 import { QR } from "@/assets/images";
 import { Row, Column } from "@/components/Flex";
 
@@ -41,8 +41,7 @@ const Info = () => {
 };
 
 const Container = styled.footer`
-  display: flex;
-  flex-direction: column;
+  ${flex.COLUMN_FLEX};
 `;
 
 const Title = styled.span`
@@ -50,7 +49,7 @@ const Title = styled.span`
 `;
 
 const HGroup = styled.hgroup`
-  border-bottom: 1px solid ${color.content};
+  border-bottom: 1px solid ${theme.content};
   padding-bottom: 2%;
   margin-bottom: 2%;
 `;
@@ -64,13 +63,13 @@ const SubTitle = styled.span`
 
 const PolicyText = styled.span`
   ${font.p4};
-  color: ${color.content};
+  color: ${theme.content};
 `;
 
 const Copyright = styled.span`
   margin-top: 4%;
   ${font.p4};
-  color: ${color.content};
+  color: ${theme.content};
 `;
 
 const QRCode = styled(Image)`

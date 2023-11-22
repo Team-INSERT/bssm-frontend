@@ -1,19 +1,17 @@
-import { Column, Row } from "@/components/Flex";
-import { roomStore } from "@/store/room.store";
-import { color, flex, font } from "@/styles";
+import React from "react";
 import dayjs from "dayjs";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
-import { useRecoilState } from "recoil";
 import styled, { css } from "styled-components";
+import { Column, Row } from "@/components/Flex";
+import { theme, flex, font } from "@/styles";
 
 interface IReserveMapProps {
   reservedList: Array<number>;
 }
 
 const HomeReserveMap = ({ reservedList }: IReserveMapProps) => {
-  const [room, setRoom] = useRecoilState(roomStore);
-  const [date, setDate] = useState(dayjs().format("YYYY-MM-DD"));
+  const [room, setRoom] = React.useState(0);
+  const [date, setDate] = React.useState(dayjs().format("YYYY-MM-DD"));
   const router = useRouter();
 
   const handleRoomButtonClick = (roomNumber: number) => {
@@ -22,7 +20,7 @@ const HomeReserveMap = ({ reservedList }: IReserveMapProps) => {
   };
 
   const handleReserveButtonClick = () => {
-    router.push(`/reserve?date=${date}`);
+    router.push(`/ber?date=${date}`);
   };
 
   return (
@@ -91,15 +89,15 @@ const CommonRoom = styled.div<{ isClicked?: boolean; isReserved?: boolean }>`
   ${({ isReserved }) =>
     isReserved
       ? css`
-          background-color: ${color.on_tertiary};
+          background-color: ${theme.on_tertiary};
           cursor: default;
           &:after {
             content: "예약중";
           }
         `
       : css`
-          background-color: ${color.white};
-          color: ${color.green};
+          background-color: ${theme.white};
+          color: ${theme.green};
           &:after {
             content: "예약 가능";
           }
@@ -107,8 +105,8 @@ const CommonRoom = styled.div<{ isClicked?: boolean; isReserved?: boolean }>`
   ${({ isClicked }) =>
     isClicked &&
     css`
-      background-color: ${color.primary_blue};
-      color: ${color.white};
+      background-color: ${theme.primary_blue};
+      color: ${theme.white};
       &:after {
         content: "선택중";
       }
@@ -126,7 +124,7 @@ const LongRoom = styled(CommonRoom)`
 const InputContainer = styled.div`
   width: 100%;
   height: 13vh;
-  background-color: ${color.white};
+  background-color: ${theme.white};
   box-shadow: 4px 4px 15px 0 rgba(0, 0, 0, 0.05);
   padding: 14px;
   display: ${flex.CENTER};
@@ -134,7 +132,7 @@ const InputContainer = styled.div`
 `;
 
 const StyledInputWrap = styled.div`
-  ${flex.COLUMN};
+  ${flex.COLUMN_FLEX};
   gap: 6px;
   margin-top: auto;
 `;
@@ -147,7 +145,7 @@ const StyledInput = styled.input`
   width: 120px;
   padding: 6px 10px;
   height: 30px;
-  background-color: ${color.white};
+  background-color: ${theme.white};
   ${font.caption};
   box-shadow: 4px 4px 15px 0 rgba(0, 0, 0, 0.05);
 `;
@@ -155,13 +153,13 @@ const StyledInput = styled.input`
 const StyledButton = styled.button`
   margin-top: auto;
   border: none;
-  background-color: ${color.primary_blue};
+  background-color: ${theme.primary_blue};
   padding: 6px 14px;
   border-radius: 4px;
   width: fit-content;
   height: fit-content;
   ${font.caption};
-  color: ${color.white};
+  color: ${theme.white};
   &:after {
     content: "예약하기";
   }
@@ -173,7 +171,7 @@ const StyledButton = styled.button`
   }
 
   &:disabled {
-    background-color: ${color.on_tertiary};
+    background-color: ${theme.on_tertiary};
   }
 `;
 

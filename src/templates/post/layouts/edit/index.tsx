@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { color, flex, font } from "@/styles";
+import { theme, flex, font } from "@/styles";
 import { Button } from "@/components/atoms";
 import { Aside } from "@/components/common";
 import { usePostQuery } from "../../services/post/query.service";
@@ -13,7 +13,7 @@ import {
 } from "../components";
 import { CATEGORY } from "../../constants";
 import { usePostWritable } from "../../hooks";
-import { PostDetailParamsProps } from "../../interfaces";
+import { PostDetailParamsProps } from "../../types/@props";
 
 const PostEditPage = ({ id }: PostDetailParamsProps) => {
   const { post } = usePostQuery(id);
@@ -67,8 +67,8 @@ const PostEditPage = ({ id }: PostDetailParamsProps) => {
           />
           <Button
             align="RIGHT"
-            color={color.primary_blue}
-            onClick={handlePostEditButtonClick}
+            color={theme.primary_blue}
+            onClick={() => handlePostEditButtonClick(id)}
           >
             작성
           </Button>
@@ -81,7 +81,7 @@ const PostEditPage = ({ id }: PostDetailParamsProps) => {
 
 const Layout = styled.div`
   width: 100%;
-  ${flex.COLUMN};
+  ${flex.COLUMN_FLEX};
   gap: 16px;
 `;
 
@@ -91,11 +91,11 @@ const TitleText = styled.h1`
 
 const SubTitleText = styled.p`
   ${font.context};
-  color: ${color.gray};
+  color: ${theme.gray};
 `;
 
 const InputBox = styled.div`
-  ${flex.COLUMN};
+  ${flex.COLUMN_FLEX};
   gap: 18px;
 `;
 

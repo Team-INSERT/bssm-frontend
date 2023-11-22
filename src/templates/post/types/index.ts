@@ -1,1 +1,11 @@
-export type { default as PostCategoryType } from "./postCategory.type";
+export type { default as PostListProperty } from "./PostListProperty.type";
+export type { default as PostListQuery } from "./PostListQuery.type";
+export type { default as PostListQueryProperty } from "./PostListQueryProperty.type";
+export type { default as Post } from "./Post.type";
+export type { default as PostQuery } from "./PostQuery.type";
+export type { default as PostData } from "./PostData.type";
+export type { default as PostUpdateQuery } from "./PostUpdateQuery.type";
+export type { default as PostCreateQuery } from "./PostCreateQuery.type";
+export type { default as Comment } from "./Comment.type";
+export type { default as Recomment } from "./Recomment.type";
+export type { default as PostCategoryType } from "./PostCategory.type";

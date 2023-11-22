@@ -1,8 +1,7 @@
-import { color, flex, font } from "@/styles";
-import React from "react";
 import styled from "styled-components";
+import { theme, flex, font } from "@/styles";
 import { useBer } from "../hooks";
-import { BerReserveListProps } from "../interfaces";
+import { BerReserveListProps } from "../types/@props";
 
 const ReserveList = ({ reserveList }: BerReserveListProps) => {
   const { isBerReserverSameAsUser, handleBerReserveDeleteClick } = useBer();
@@ -36,7 +35,7 @@ const ReserveList = ({ reserveList }: BerReserveListProps) => {
 const Container = styled.div`
   width: 100%;
   height: 100%;
-  ${flex.COLUMN};
+  ${flex.COLUMN_FLEX};
   gap: 12px;
 `;
 
@@ -44,7 +43,7 @@ const BerReserveListItem = styled.div`
   width: 100%;
   height: fit-content;
   padding: 20px 30px;
-  background-color: ${color.white};
+  background-color: ${theme.white};
   display: flex;
   gap: 4px;
 `;
@@ -58,8 +57,8 @@ const ReserveCancelButton = styled.button`
   width: fit-content;
   padding: 6px 10px;
   border-radius: 4px;
-  background-color: ${color.primary_red};
-  color: ${color.white};
+  background-color: ${theme.primary_red};
+  color: ${theme.white};
 `;
 
 export default ReserveList;

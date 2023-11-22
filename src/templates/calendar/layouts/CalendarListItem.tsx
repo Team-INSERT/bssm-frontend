@@ -1,10 +1,11 @@
-import { color, flex, font } from "@/styles";
 import dayjs from "dayjs";
 import styled from "styled-components";
-import { CalendarListItemProps } from "../interfaces";
+import { theme, flex, font } from "@/styles";
 import { useCalendar } from "../hooks";
 import { getColorByPlanType } from "../helpers";
 import CalendarPlanWriterInformationModal from "./CalendarPlanWriterInformationModal";
+import { CalendarListItemProps } from "../types/@props";
+import { CalendarPlan } from "../types";
 
 const CalendarListItem = ({ calendar, isEmpty }: CalendarListItemProps) => {
   const { handleOpenModalClick, handleDeleteCalendarPlanClick } = useCalendar();
@@ -13,7 +14,7 @@ const CalendarListItem = ({ calendar, isEmpty }: CalendarListItemProps) => {
     <Container isEmpty={isEmpty}>
       <CalendarHead>{dayjs(calendar?.date).format("DD")}</CalendarHead>
       <CalendarBody>
-        {calendar?.plans.map((plan) => (
+        {calendar?.plans.map((plan: CalendarPlan) => (
           <CalendarPlanBox
             key={plan.id}
             type={plan.type}
@@ -37,14 +38,14 @@ const CalendarListItem = ({ calendar, isEmpty }: CalendarListItemProps) => {
 
 const Container = styled.li<{ isEmpty?: boolean }>`
   width: 13%;
-  ${flex.COLUMN};
+  ${flex.COLUMN_FLEX};
   opacity: ${({ isEmpty }) => (isEmpty ? 0 : 1)};
 `;
 
 const CalendarHead = styled.header`
   ${font.H5};
   width: 100%;
-  border-top: 1px solid ${color.black};
+  border-top: 1px solid ${theme.black};
   padding: 10px 0;
 `;
 
@@ -54,7 +55,7 @@ const CalendarBody = styled.section`
   min-height: 26vh;
   word-break: break-all;
   height: fit-content;
-  ${flex.COLUMN};
+  ${flex.COLUMN_FLEX};
   gap: 8px;
 `;
 
@@ -62,7 +63,7 @@ const CalendarPlanBox = styled.div<{ type: string }>`
   width: 100%;
   padding: 6px 10px;
   ${font.caption};
-  color: ${color.white};
+  color: ${theme.white};
   cursor: pointer;
   position: relative;
 
@@ -75,8 +76,8 @@ const CalendarPlanBox = styled.div<{ type: string }>`
 `;
 
 const CalendarPlanAddButton = styled.button`
-  background-color: ${color.light_gray};
-  color: ${color.black};
+  background-color: ${theme.light_gray};
+  color: ${theme.black};
   width: 100%;
   padding: 6px 0;
 `;

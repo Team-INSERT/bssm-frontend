@@ -1,11 +1,10 @@
-import { color } from "@/styles";
-import { ChatIcon, NoticeIcon } from "@/assets/icons";
-import React from "react";
 import styled from "styled-components";
+import { theme } from "@/styles";
+import { ChatIcon, NoticeIcon } from "@/assets/icons";
 import HomeHead from "./HomeHead";
 import HomePostList from "./HomePostList";
 
-interface IHomePostProps {
+interface HomePostProps {
   notice: Array<{
     id: number;
     title: string;
@@ -18,7 +17,7 @@ interface IHomePostProps {
   }>;
 }
 
-const HomePost = ({ notice, common }: IHomePostProps) => {
+const HomePost = ({ notice, common }: HomePostProps) => {
   return (
     <Container>
       <PostBox>
@@ -36,7 +35,7 @@ const HomePost = ({ notice, common }: IHomePostProps) => {
 const Container = styled.div`
   width: 100%;
   height: 30vh;
-  background-color: ${color.white};
+  background-color: ${theme.white};
   border-radius: 4px;
   display: flex;
 `;

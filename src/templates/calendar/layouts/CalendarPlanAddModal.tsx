@@ -1,14 +1,13 @@
-import { Column } from "@/components/Flex";
-import { Button, Input, Select } from "@/components/atoms";
-import useModal from "@/hooks/useModal";
-import { color, flex, font } from "@/styles";
 import React from "react";
 import styled from "styled-components";
-import getPlanType from "@/helpers/getPlanType.helper";
+import { Column } from "@/components/Flex";
+import { Button, Input, DropDown } from "@/components/atoms";
+import { theme, flex, font } from "@/styles";
+import { useModal } from "@/@modal/hooks";
+import { XIcon } from "@/assets/icons";
 import PLAN from "../constants/plan.constant";
-import { CalendarPlanAddModalProps } from "../interfaces";
+import { CalendarPlanAddModalProps } from "../types/@props";
 import { useCalendar } from "../hooks";
-import { PlanModalCloseIcon } from "../assets/icons";
 
 const CalendarPlanAddModal = ({ date }: CalendarPlanAddModalProps) => {
   const { closeModal } = useModal();
@@ -20,7 +19,7 @@ const CalendarPlanAddModal = ({ date }: CalendarPlanAddModalProps) => {
     <Layout>
       <CalendarPlanHeader>
         <CalendarTitleText>📆 일정 추가하기</CalendarTitleText>
-        <PlanModalCloseIcon onClick={closeModal} />
+        <XIcon onClick={closeModal} />
       </CalendarPlanHeader>
       <CalendarPlanBody>
         <Input
@@ -31,18 +30,18 @@ const CalendarPlanAddModal = ({ date }: CalendarPlanAddModalProps) => {
         />
         <Column gap="6px">
           <CalendarPlanClassifyText>일정 분류</CalendarPlanClassifyText>
-          <Select
+          <DropDown
             label=""
             width="100px"
-            options={[PLAN.학급일정, PLAN.학년일정, PLAN.학교일정]}
-            defaultOption={getPlanType(planType)}
+            optionList={[PLAN.학급일정, PLAN.학년일정, PLAN.학교일정]}
+            selected={planType}
             handler={setPlanType}
           />
         </Column>
         <CalendarPlanAddButtonBox>
           <Button
             onClick={() => handlePlanAddButtonClick({ title, date, planType })}
-            color={color.primary_blue}
+            color={theme.primary_blue}
           >
             추가하기
           </Button>
@@ -56,10 +55,10 @@ const Layout = styled.div`
   width: 40vw;
   height: fit-content;
   overflow-y: scroll;
-  background-color: ${color.white};
+  background-color: ${theme.white};
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
   border-radius: 8px;
-  ${flex.COLUMN};
+  ${flex.COLUMN_FLEX};
 `;
 
 const CalendarPlanHeader = styled.header`
@@ -77,7 +76,7 @@ const CalendarTitleText = styled.div`
 
 const CalendarPlanBody = styled.div`
   padding: 16px 28px;
-  ${flex.COLUMN};
+  ${flex.COLUMN_FLEX};
   gap: 12px;
 `;
 

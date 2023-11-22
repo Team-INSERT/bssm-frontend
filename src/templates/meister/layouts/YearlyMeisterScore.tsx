@@ -1,11 +1,10 @@
-import GraphIcon from "@/assets/icons/GraphIcon";
-import { Row } from "@/components/Flex";
-import { color, font } from "@/styles";
-import React from "react";
 import styled from "styled-components";
-import { getStatusColor } from "@/helpers";
+import { GraphIcon } from "@/assets/icons";
+import { Row } from "@/components/Flex";
+import { theme, font } from "@/styles";
 import MeisterChart from "../chart/MeisterChart";
-import { Meister } from "../interfaces";
+import { Meister } from "../types";
+import { getStatusColor } from "../helpers";
 
 const YearlyMeisterScore = ({ ...meisterData }: Meister) => {
   return (
@@ -18,7 +17,7 @@ const YearlyMeisterScore = ({ ...meisterData }: Meister) => {
       <StatusBox>
         {["학년 평균", "내 점수", "최고 점수"].map((year, index) => (
           <Row key={year} alignItems="center" gap="4px">
-            <StatusCircle statuscolor={getStatusColor(index)} />
+            <StatusCircle statusColor={getStatusColor(index)} />
             <StatusText>{year}</StatusText>
           </Row>
         ))}
@@ -30,7 +29,7 @@ const YearlyMeisterScore = ({ ...meisterData }: Meister) => {
 const Container = styled.div`
   width: 70%;
   height: 46vh;
-  background-color: ${color.white};
+  background-color: ${theme.white};
   padding: 12px 16px;
   display: flex;
   justify-content: space-between;
@@ -40,7 +39,7 @@ const Container = styled.div`
 
 const TitleText = styled.span`
   ${font.H6};
-  color: ${color.black};
+  color: ${theme.black};
 `;
 
 const StatusBox = styled.div`
@@ -49,16 +48,16 @@ const StatusBox = styled.div`
   gap: 16px;
 `;
 
-const StatusCircle = styled.div<{ statuscolor: string }>`
+const StatusCircle = styled.div<{ statusColor: string }>`
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background-color: ${({ statuscolor }) => statuscolor};
+  background-color: ${({ statusColor }) => statusColor};
 `;
 
 const StatusText = styled.span`
   ${font.p3};
-  color: ${color.gray};
+  color: ${theme.gray};
 `;
 
 export default YearlyMeisterScore;

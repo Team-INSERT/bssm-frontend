@@ -1,10 +1,10 @@
-import { Column, Row } from "@/components/Flex";
-import useUser from "@/hooks/useUser";
-import { color, font } from "@/styles";
-import React from "react";
 import styled from "styled-components";
+import { Column, Row } from "@/components/Flex";
+import { theme, font } from "@/styles";
+import { useUser } from "@/@user/hooks";
+import { useRouter } from "next/navigation";
 
-interface IMeisterProfileBoxProps {
+interface MeisterProfileBoxProps {
   meister: {
     score: number;
     positivePoint: number;
@@ -13,8 +13,9 @@ interface IMeisterProfileBoxProps {
   name: string;
 }
 
-const MeisterProfileBox = ({ meister, name }: IMeisterProfileBoxProps) => {
-  const { isLogined } = useUser();
+const MeisterProfileBox = ({ meister, name }: MeisterProfileBoxProps) => {
+  const { user, isLogined } = useUser();
+  const router = useRouter();
 
   return (
     <Container>
@@ -33,7 +34,9 @@ const MeisterProfileBox = ({ meister, name }: IMeisterProfileBoxProps) => {
               <DemeritPoint>벌점 ㆍ {meister.negativePoint}점</DemeritPoint>
             </Row>
           </Column>
-          <MyPageButton>내 정보</MyPageButton>
+          <MyPageButton onClick={() => router.push(user.profile_url)}>
+            내 정보
+          </MyPageButton>
         </>
       )}
     </Container>
@@ -43,7 +46,7 @@ const MeisterProfileBox = ({ meister, name }: IMeisterProfileBoxProps) => {
 const Container = styled.div`
   width: 100%;
   padding: 14px 24px;
-  background-color: ${color.white};
+  background-color: ${theme.white};
   display: flex;
   align-items: center;
   gap: 18px;
@@ -51,7 +54,7 @@ const Container = styled.div`
 
 const InfomationText = styled.span`
   ${font.H6};
-  color: ${color.black};
+  color: ${theme.black};
 `;
 
 const Name = styled(InfomationText)``;
@@ -59,7 +62,7 @@ const Name = styled(InfomationText)``;
 const RewardPointText = styled.span`
   ${font.p3};
   line-height: 130%;
-  color: ${color.gray};
+  color: ${theme.gray};
 `;
 
 const MeisterPoint = styled(RewardPointText)``;
@@ -68,7 +71,7 @@ const CreditPoint = styled(RewardPointText)``;
 
 const Separator = styled.div`
   width: 1.5px;
-  background-color: ${color.on_tertiary};
+  background-color: ${theme.on_tertiary};
   height: 12px;
 `;
 
@@ -78,9 +81,9 @@ const MyPageButton = styled.div`
   padding: 4px 10px;
   border-radius: 4px;
   margin-left: auto;
-  background-color: ${color.primary_blue};
+  background-color: ${theme.primary_blue};
   ${font.btn3};
-  color: ${color.white};
+  color: ${theme.white};
   cursor: pointer;
 `;
 

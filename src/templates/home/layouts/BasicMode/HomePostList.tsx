@@ -1,12 +1,10 @@
-import { ROUTER } from "@/constants";
-import DATE from "@/constants/date.constant";
-import { color, flex, font } from "@/styles";
 import dayjs from "dayjs";
 import Link from "next/link";
-import React from "react";
 import styled from "styled-components";
+import { ROUTER } from "@/constants";
+import { theme, flex, font } from "@/styles";
 
-interface IHomePostListProps {
+interface HomePostListProps {
   posts: Array<{
     id: number;
     title: string;
@@ -14,15 +12,13 @@ interface IHomePostListProps {
   }>;
 }
 
-const HomePostList = ({ posts }: IHomePostListProps) => {
+const HomePostList = ({ posts }: HomePostListProps) => {
   return (
     <Container>
       {posts?.map((post) => (
         <PostListItem href={`${ROUTER.POST.LIST}/${post.id}`} key={post.id}>
           <StyledTitle>{post.title}</StyledTitle>
-          <StyledDate>
-            {dayjs(post.createdAt).format(DATE.YYYYMMDDAHHMM)}
-          </StyledDate>
+          <StyledDate>{dayjs(post.createdAt).format("M월 D일")}</StyledDate>
         </PostListItem>
       ))}
     </Container>
@@ -32,8 +28,8 @@ const HomePostList = ({ posts }: IHomePostListProps) => {
 const Container = styled.div`
   width: 100%;
   padding: 8px 0;
-  ${flex.COLUMN};
-  gap: 8px;
+  ${flex.COLUMN_FLEX};
+  gap: 4px;
 `;
 
 const PostListItem = styled(Link)`
@@ -46,12 +42,17 @@ const PostListItem = styled(Link)`
 const StyledTitle = styled.span`
   ${font.p3};
   font-weight: 600;
+
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  word-break: break-all;
 `;
 
 const StyledDate = styled.span`
   ${font.p4};
   margin-left: auto;
-  color: ${color.gray};
+  color: ${theme.gray};
 `;
 
 export default HomePostList;

@@ -1,12 +1,11 @@
-import { Column } from "@/components/Flex";
-import { CustomViewer } from "@/components/atoms";
-import { font } from "@/styles";
 import dayjs from "dayjs";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
 import styled from "styled-components";
-import { PostSectionBoxProps } from "../../interfaces";
+import { Column } from "@/components/Flex";
+import { font } from "@/styles";
+import { ContentViewer } from "@/components/common";
+import { PostSectionBoxProps } from "../../types/@props";
 
 const SectionBox = ({
   title,
@@ -37,7 +36,7 @@ const SectionBox = ({
       )}
       {isContent && (
         <StyledViewerBox>
-          <CustomViewer content={content} />
+          <ContentViewer content={content} />
         </StyledViewerBox>
       )}
       {isDefault && <StyledContent>{content}</StyledContent>}

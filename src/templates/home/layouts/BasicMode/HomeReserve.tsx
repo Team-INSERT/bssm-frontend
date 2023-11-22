@@ -1,14 +1,14 @@
-import { color } from "@/styles";
-import { BerIcon } from "@/assets/icons";
-import React from "react";
 import styled from "styled-components";
+import { theme } from "@/styles";
+import { ROUTER } from "@/constants";
+import { BerIcon } from "@/assets/icons";
 import HomeHead from "./HomeHead";
 import HomeReserveMap from "./HomeReserveMap";
 
 const HomeReserve = () => {
   return (
     <Container>
-      <HomeHead icon={<BerIcon />} title="베르실 예약" href="/reserve" />
+      <HomeHead icon={<BerIcon />} title="베르실 예약" href={ROUTER.RESERVE} />
       <ReserveBox>
         <HomeReserveMap reservedList={[]} />
       </ReserveBox>
@@ -19,7 +19,7 @@ const HomeReserve = () => {
 const Container = styled.div`
   width: 100%;
   height: 30vh;
-  background-color: ${color.white};
+  background-color: ${theme.white};
   border-radius: 4px;
 
   @media screen and (max-width: 1024px) {

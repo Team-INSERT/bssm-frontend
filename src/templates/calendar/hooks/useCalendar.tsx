@@ -1,17 +1,16 @@
-import DATE from "@/constants/date.constant";
 import dayjs from "dayjs";
 import React from "react";
-import useModal from "@/hooks/useModal";
-import useUser from "@/hooks/useUser";
 import { toast } from "react-toastify";
+import { useModal } from "@/@modal/hooks";
+import { useUser } from "@/@user/hooks";
+import { DATE } from "@/constants";
 import {
   useAddCalendarPlanMutation,
   useDeleteCalendarPlanMutation,
 } from "../services/mutation.service";
-import { ChangeDateType } from "../types";
-import { CalendarPlanAddQuery } from "../interfaces";
 import { getPlanTypeByPlanName } from "../helpers";
 import CalendarPlanAddModal from "../layouts/CalendarPlanAddModal";
+import { CalendarPlanAddQuery } from "../types/@props";
 
 const useCalendar = () => {
   const [currentMonth, setCurrentMonth] = React.useState(dayjs().month());
@@ -19,10 +18,6 @@ const useCalendar = () => {
   const { user } = useUser();
   const { mutate: deleteMutate } = useDeleteCalendarPlanMutation();
   const { mutate: addPlanMutate } = useAddCalendarPlanMutation();
-
-  const isPlanWriterSameAsUser = (id: number) => {
-    return user.id === id;
-  };
 
   const handleOpenModalClick = (date?: string) => {
     if (date) {
@@ -55,7 +50,7 @@ const useCalendar = () => {
     deleteMutate(id);
   };
 
-  const handleCalendarMonthChange = (month: ChangeDateType) => {
+  const handleCalendarMonthChange = (month: "INCREASE" | "DECREASE") => {
     if (month === DATE.INCREASE) {
       setCurrentMonth((prevMon) => (prevMon !== 12 ? prevMon + 1 : prevMon));
     }
@@ -76,7 +71,6 @@ const useCalendar = () => {
 
   return {
     currentMonth,
-    isPlanWriterSameAsUser,
     handleOpenModalClick,
     handlePlanAddButtonClick,
     handleDeleteCalendarPlanClick,

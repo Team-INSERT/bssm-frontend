@@ -1,15 +1,15 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { KEY } from "@/constants";
-import { ICreateReserve } from "@/interfaces";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { KEY } from "@/constants";
 import { createReserve, deleteReserve } from "./api.service";
+import { BerCreateReserveQuery } from "../types";
 
 export const useCreateReserveMutation = () => {
   const queryClient = useQueryClient();
 
   return useMutation(
-    async (reserve: ICreateReserve) => createReserve(reserve),
+    async (reserve: BerCreateReserveQuery) => createReserve(reserve),
     {
       onSuccess: () => {
         queryClient.invalidateQueries([KEY.RESERVE]);

@@ -1,15 +1,14 @@
-import { color, font } from "@/styles";
-import React from "react";
 import styled from "styled-components";
+import { theme, font } from "@/styles";
 import { BambooIcon } from "@/assets/icons";
 import HomeHead from "./HomeHead";
 
-interface IHomeBambooProps {
+interface HomeBambooProps {
   allowedId: number;
   content: string;
 }
 
-const HomeBamboo = ({ allowedId, content }: IHomeBambooProps) => {
+const HomeBamboo = ({ allowedId, content }: HomeBambooProps) => {
   return (
     <Container>
       <HomeHead
@@ -27,7 +26,7 @@ const HomeBamboo = ({ allowedId, content }: IHomeBambooProps) => {
 const Container = styled.div`
   width: 20vw;
   height: 100%;
-  background-color: ${color.white};
+  background-color: ${theme.white};
   border-radius: 4px;
 `;
 

@@ -1,6 +1,5 @@
-import { color } from "@/styles";
-import React from "react";
 import styled from "styled-components";
+import { theme } from "@/styles";
 import DistributionIcon from "@/assets/icons/DistributionIcon";
 import HomeHead from "./HomeHead";
 
@@ -19,7 +18,7 @@ const HomeRadarChart = () => {
 const Container = styled.div`
   width: 31.2vw;
   border-radius: 4px;
-  background-color: ${color.white};
+  background-color: ${theme.white};
 `;
 
 export default HomeRadarChart;

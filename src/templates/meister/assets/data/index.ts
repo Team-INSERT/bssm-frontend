@@ -1,7 +1,7 @@
-export { default as radarChartData } from "./radarChartVariables";
-export { default as graphColorData } from "./graphColorData";
-export { default as meisterChartData } from "./meisterChartData";
-export { default as meisterVariables } from "./meisterVariables";
-export { default as meisterListData } from "./meisterListData";
-export { default as meisterDetailDefaultData } from "./meisterDetailDefaultData";
-export { default as timetableDefaultData } from "./timetableDefaultData";
+export { default as defaultMeisterData } from "./defaultMeister.data";
+export { default as defaultMeisterDetailData } from "./defaultMeisterDetail.data";
+export { default as graphColorData } from "./graphColor.data";
+export { default as meisterChartData } from "./meisterChart.data";
+export { default as meisterListData } from "./meisterList.data";
+export { default as meisterVariableData } from "./meisterVariable.data";
+export { default as radarChartVariableData } from "./radarChartVariable.data";

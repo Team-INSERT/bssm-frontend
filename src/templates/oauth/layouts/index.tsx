@@ -1,8 +1,7 @@
-import React from "react";
 import Image from "next/image";
-import { loading } from "@/assets/images";
 import styled from "styled-components";
-import { color, flex, font } from "@/styles";
+import { loading } from "@/assets/images";
+import { theme, flex, font } from "@/styles";
 import { useOAuth } from "../hooks";
 
 const OAuthPage = () => {
@@ -25,7 +24,7 @@ const Layout = styled.div`
 
 const LoadingText = styled.span`
   ${font.H6};
-  color: ${color.black};
+  color: ${theme.black};
 `;
 
 export default OAuthPage;

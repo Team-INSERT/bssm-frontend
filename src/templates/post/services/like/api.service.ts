@@ -9,7 +9,7 @@ export const updatePostLike = async (id: string) => {
   return data;
 };
 
-export const updateCommentLike = async (id: number) => {
+export const updateCommentLike = async (id: string) => {
   const { data } = await httpClient.like.put({
     type: LIKE.COMMENT,
     partyId: id,
@@ -17,7 +17,7 @@ export const updateCommentLike = async (id: number) => {
   return data;
 };
 
-export const updateRecommentLike = async (id: number) => {
+export const updateRecommentLike = async (id: string) => {
   const { data } = await httpClient.like.put({
     type: LIKE.RECOMMENT,
     partyId: id,

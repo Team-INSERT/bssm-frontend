@@ -1,19 +1,17 @@
-import React from "react";
-import { ImageWithFallback } from "@/components/atoms";
+import styled from "styled-components";
+import { FallbackImage } from "@/components/atoms";
 import { defaultProfile } from "@/assets/images";
 import { Row } from "@/components/Flex";
-import styled from "styled-components";
-import { color, font } from "@/styles";
-import { CalendarPlan } from "../interfaces";
-import { useCalendar } from "../hooks";
+import { useUser } from "@/@user/hooks";
+import { theme, font } from "@/styles";
+import { CalendarPlan } from "../types";
 import { getPlanNameByPlanType } from "../helpers";
 
 const CalendarPlanWriterInformationModal = ({ user, type }: CalendarPlan) => {
-  const { isPlanWriterSameAsUser } = useCalendar();
-
+  const { isSameUser } = useUser();
   return (
     <PlanWriterBox>
-      <ImageWithFallback
+      <FallbackImage
         width={20}
         height={20}
         src={user.profileImage}
@@ -27,7 +25,7 @@ const CalendarPlanWriterInformationModal = ({ user, type }: CalendarPlan) => {
           · {getPlanNameByPlanType(type)}
         </PlanInformationText>
       </Row>
-      {isPlanWriterSameAsUser(user.id) && (
+      {isSameUser(user.id) && (
         <PlanWriterDeleteText>삭제하기</PlanWriterDeleteText>
       )}
     </PlanWriterBox>
@@ -36,18 +34,18 @@ const CalendarPlanWriterInformationModal = ({ user, type }: CalendarPlan) => {
 
 const PlanInformationText = styled.span`
   ${font.p3};
-  color: ${color.black};
+  color: ${theme.black};
 `;
 
 const PlanWriterDeleteText = styled(PlanInformationText)`
-  color: ${color.primary_red};
+  color: ${theme.primary_red};
 `;
 
 const PlanWriterBox = styled.div`
   display: none;
   width: fit-content;
   padding: 2px;
-  background-color: ${color.white};
+  background-color: ${theme.white};
   position: absolute;
   margin-top: -14vh;
   box-shadow: 4px 4px 20px 0 rgba(0, 0, 0, 0.15);

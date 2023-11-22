@@ -1,11 +1,10 @@
-import React from "react";
 import styled from "styled-components";
 import { Row } from "@/components/Flex";
 import { flex, font } from "@/styles";
 import { CommentIcon } from "../../assets/icons";
 import ReactableLikeIcon from "../../assets/icons/ReactableLikeIcon";
-import { PostCountBoxProps } from "../../interfaces";
 import { useLike } from "../../hooks";
+import { PostCountBoxProps } from "../../types/@props";
 
 const PostLikeCountBox = ({
   likeCount,
@@ -35,7 +34,7 @@ const PostLikeCountBox = ({
 };
 
 const LikeBox = styled.div`
-  ${flex.VERTICAL};
+  ${flex.HORIZONTAL};
   gap: 4px;
   cursor: pointer;
 `;

@@ -1,11 +1,9 @@
-import { SVGAttribute } from "@/interfaces";
+import React from "react";
 
-const View = ({ width = 31, height = 23, isPointable }: SVGAttribute) => {
+const View = ({ ...props }: React.SVGProps<SVGSVGElement>) => {
   return (
     <svg
-      width={width}
-      height={height}
-      cursor={isPointable ? "pointer" : ""}
+      {...props}
       viewBox="0 0 31 23"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

@@ -1,16 +1,16 @@
-import { StorageKeyType } from "./types";
+import { StorageKey } from "./types";
 
 export default class Storage {
-  static getItem(key: StorageKeyType) {
+  static getItem(key: StorageKey) {
     return typeof window !== "undefined" ? localStorage.getItem(key) : null;
   }
 
-  static setItem(key: StorageKeyType, value: string) {
+  static setItem(key: StorageKey, value: string) {
     if (typeof window === "undefined") return;
     localStorage.setItem(key, value);
   }
 
-  static delItem(key: StorageKeyType) {
+  static delItem(key: StorageKey) {
     if (typeof window === "undefined") return;
     localStorage.removeItem(key);
   }

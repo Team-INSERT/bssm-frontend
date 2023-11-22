@@ -1,12 +1,11 @@
+import styled from "styled-components";
 import { defaultProfile } from "@/assets/images";
 import { Column, Row } from "@/components/Flex";
-import { ImageWithFallback } from "@/components/atoms";
-import { color, flex, font } from "@/styles";
-import React from "react";
-import styled from "styled-components";
+import { FallbackImage } from "@/components/atoms";
+import { theme, flex, font } from "@/styles";
 import { useLike } from "@/templates/post/hooks";
 import ReactableLikeIcon from "@/templates/post/assets/icons/ReactableLikeIcon";
-import Recomment from "@/templates/post/interfaces/recomment.interface";
+import { Recomment } from "@/templates/post/types";
 import RecommentWritableBox from "./RecommentWritableBox";
 
 const RecommentListItem = ({ ...recomment }: Recomment) => {
@@ -18,7 +17,7 @@ const RecommentListItem = ({ ...recomment }: Recomment) => {
   return (
     <Container>
       <ProfileImage>
-        <ImageWithFallback
+        <FallbackImage
           src={recomment.user.profileImage}
           fallbackSrc={defaultProfile}
           alt="프로필"
@@ -63,14 +62,14 @@ const StyledBox = styled.div`
   padding: 2px 6px;
 
   &:hover {
-    background-color: ${color.on_tertiary};
+    background-color: ${theme.on_tertiary};
     border-radius: 999px;
   }
 `;
 
 const StyledText = styled.span`
   ${font.p3};
-  color: ${color.gray};
+  color: ${theme.gray};
 `;
 
 export default RecommentListItem;

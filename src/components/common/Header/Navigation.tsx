@@ -1,12 +1,12 @@
 import Link from "next/link";
 import styled from "styled-components";
-import { color, flex, font } from "@/styles";
-import { navigationList } from "./assets/data";
+import { theme, flex, font } from "@/styles";
+import { navigationListData } from "./assets/data";
 
 const Navigation = () => {
   return (
     <NavigationList>
-      {navigationList.map(({ id, href, name }) => (
+      {navigationListData.map(({ id, href, name }) => (
         <NavigationListItem key={id} href={href}>
           {name}
         </NavigationListItem>
@@ -16,15 +16,15 @@ const Navigation = () => {
 };
 
 const NavigationList = styled.ul`
+  ${flex.VERTICAL};
   width: 100%;
-  ${flex.HORIZONTAL};
   gap: 7%;
 `;
 
 const NavigationListItem = styled(Link)`
   font-size: ${font.H6};
   font-weight: 600;
-  color: ${color.black};
+  color: ${theme.black};
   cursor: pointer;
   white-space: pre-wrap;
 `;

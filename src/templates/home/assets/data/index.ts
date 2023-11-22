@@ -1,1 +1,1 @@
-export { default as defaultBannerData } from "./defaultBannerData";
+export { default as defaultBannerData } from "./defaultBanner.data";

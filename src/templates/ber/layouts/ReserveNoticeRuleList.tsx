@@ -1,15 +1,14 @@
-import { Column } from "@/components/Flex";
-import { color, flex, font } from "@/styles";
-import React from "react";
 import styled from "styled-components";
-import { noticeRuleList } from "../assets/data";
+import { Column } from "@/components/Flex";
+import { theme, flex, font } from "@/styles";
+import { noticeRuleListData } from "../assets/data";
 
 const ReserveNoticeRuleList = () => {
   return (
     <Column gap="6px">
       <NoticeTitleText>숙지 사항</NoticeTitleText>
       <NoticeTextList>
-        {noticeRuleList.map((notice) => (
+        {noticeRuleListData.map((notice) => (
           <NoticeTextListItem key={notice}>{notice}</NoticeTextListItem>
         ))}
       </NoticeTextList>
@@ -19,18 +18,18 @@ const ReserveNoticeRuleList = () => {
 
 const NoticeTitleText = styled.span`
   ${font.p3};
-  color: ${color.gray};
+  color: ${theme.gray};
 `;
 
 const NoticeTextList = styled.ul`
-  ${flex.COLUMN};
+  ${flex.COLUMN_FLEX};
   gap: 4px;
   list-style: decimal;
 `;
 
 const NoticeTextListItem = styled.li`
   ${font.p2};
-  color: ${color.gray};
+  color: ${theme.gray};
   font-weight: 500;
 `;
 

@@ -1,5 +1,5 @@
 import httpClient from "@/apis/httpClient";
-import { Calendar } from "../interfaces";
+import { Calendar } from "../types";
 
 export const getCalendarList = async (month: number) => {
   const { data } = await httpClient.calendar.get({

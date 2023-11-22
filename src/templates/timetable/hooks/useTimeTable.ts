@@ -1,9 +1,9 @@
 import React from "react";
-import { timetableDefaultData } from "@/templates/meister/assets/data";
 import { useTimetableListQuery } from "../services/query.service";
+import { defaultTimeTableData } from "../assets/data";
 
 const useTimeTable = () => {
-  const [dayTimeTable, setDayTimeTable] = React.useState(timetableDefaultData);
+  const [dayTimeTable, setDayTimeTable] = React.useState(defaultTimeTableData);
   const { data, isSuccess } = useTimetableListQuery();
 
   React.useEffect(() => {

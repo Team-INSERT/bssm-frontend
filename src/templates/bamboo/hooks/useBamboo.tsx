@@ -1,17 +1,14 @@
-import { isAdmin } from "@/helpers";
-import useModal from "@/hooks/useModal";
-import useUser from "@/hooks/useUser";
 import dayjs from "dayjs";
+import { useModal } from "@/@modal/hooks";
 import BambooCreateModal from "../layouts/BambooCreateModal";
+import BambooManageModal from "../layouts/BambooManageModal";
 import {
   useAllowBambooMutation,
   useCreateBambooMutation,
   useDeleteBambooMutation,
 } from "../services/mutation.service";
-import BambooManageModal from "../layouts/BambooManageModal";
 
 const useBamboo = () => {
-  const { user } = useUser();
   const { openModal } = useModal();
   const { mutate: createMutate } = useCreateBambooMutation();
   const { mutate: deleteMutate } = useDeleteBambooMutation();
@@ -46,7 +43,6 @@ const useBamboo = () => {
   };
 
   return {
-    isAdmin: isAdmin(user.authority),
     formatCreatedDate,
     handleOpenManageModalClick,
     handleOpenCreateModalClick,

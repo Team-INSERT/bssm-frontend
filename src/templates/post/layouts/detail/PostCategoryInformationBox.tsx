@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import { font } from "@/styles";
-import { CategoryArrow } from "@/assets/icons";
-import getCategory from "@/helpers/getCategory.helper";
-import { PostCategoryType } from "@/templates/post/types";
+import { PostCategoryType } from "../../types";
+import CategoryArrow from "../../assets/icons/CategoryArrow";
+import { get카테고리명ByCategory } from "../../helpers";
 
 interface IPostCategoryProps {
   postType: PostCategoryType;
@@ -13,7 +13,7 @@ const PostCategoryInformationBox = ({ postType }: IPostCategoryProps) => {
     <Container>
       <PostType>커뮤니티</PostType>
       <CategoryArrow width={12} height={12} />
-      <CategoryType>{getCategory(postType)}</CategoryType>
+      <CategoryType>{get카테고리명ByCategory(postType)}</CategoryType>
     </Container>
   );
 };

@@ -1,10 +1,10 @@
-import { color } from "@/styles";
+import { theme } from "@/styles";
 import { css } from "styled-components";
 
 const getIfReservedRoomCSS = (isReserved?: boolean) => {
   if (isReserved) {
     return css`
-      background-color: ${color.on_tertiary};
+      background-color: ${theme.on_tertiary};
       cursor: default;
       &:after {
         content: "예약중";
@@ -12,8 +12,8 @@ const getIfReservedRoomCSS = (isReserved?: boolean) => {
     `;
   }
   return css`
-    background-color: ${color.white};
-    color: ${color.green};
+    background-color: ${theme.white};
+    color: ${theme.green};
     &:after {
       content: "예약 가능";
     }

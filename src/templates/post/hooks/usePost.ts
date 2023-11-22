@@ -1,15 +1,14 @@
-import { KEY, ROUTER } from "@/constants";
 import { useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import dayjs from "dayjs";
 import React from "react";
 import Swal from "sweetalert2";
-import useUser from "@/hooks/useUser";
+import { useUser } from "@/@user/hooks";
+import { KEY, ROUTER } from "@/constants";
 import { CATEGORY } from "../constants";
-import { PostCategoryType } from "../types";
-import { Post } from "../interfaces";
 import { defaultPostData } from "../assets/data";
 import { useDeletePostMutation } from "../services/post/mutation.service";
+import { Post, PostCategoryType } from "../types";
 
 const usePost = (defaultPostDataState?: Post) => {
   const [postData, setPostData] = React.useState<Post>(defaultPostData);

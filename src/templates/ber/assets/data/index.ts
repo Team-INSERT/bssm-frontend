@@ -1,2 +1,2 @@
-export { default as berReserveData } from "./berReserveData";
-export { default as noticeRuleList } from "./noticeRuleList";
+export { default as defaultBerReserveData } from "./defaultBerReserve.data";
+export { default as noticeRuleListData } from "./noticeRuleList.data";

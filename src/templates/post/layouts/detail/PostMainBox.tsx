@@ -1,13 +1,13 @@
 import styled from "styled-components";
 import { Column } from "@/components/Flex";
-import { CustomViewer } from "@/components/atoms";
-import { PostProps } from "@/templates/post/interfaces";
 import { CATEGORY } from "@/templates/post/constants";
-import { color, flex, font } from "@/styles";
+import { theme, flex, font } from "@/styles";
+import { ContentViewer } from "@/components/common";
 import PostLikeCountBox from "./PostLikeCountBox";
 import SectionBox from "./SectionBox";
 import CommentList from "./comment/CommentList";
 import CreateCommentBox from "./comment/CreateCommentBox";
+import { PostProps } from "../../types/@props";
 
 const PostMainBox = ({ post }: PostProps) => {
   const is분실물찾기카테고리라면 =
@@ -34,7 +34,7 @@ const PostMainBox = ({ post }: PostProps) => {
       {post.category === CATEGORY.CODE_REVIEW && (
         <Column gap="20px">
           <SectionBox title="🔗 코드리뷰 링크" content={post.prUrl} isUrl />
-          <CustomViewer content={post.content} />
+          <ContentViewer content={post.content} />
         </Column>
       )}
       {is분실물찾기카테고리라면 && (
@@ -55,7 +55,7 @@ const PostMainBox = ({ post }: PostProps) => {
         </Column>
       )}
       {is일반이나공지사항카테고리라면 && (
-        <CustomViewer content={post.content} />
+        <ContentViewer content={post.content} />
       )}
       <PostLikeCountBox {...post} />
       {post.id && (
@@ -71,13 +71,14 @@ const PostMainBox = ({ post }: PostProps) => {
 
 const Container = styled.div`
   padding: 18px 8px;
-  ${flex.COLUMN};
+  ${flex.COLUMN_FLEX};
   gap: 20px;
 `;
 
 const CommentWrap = styled.div`
-  ${flex.COLUMN};
-  border-top: 1.5px solid ${color.on_tertiary};
+  ${flex.COLUMN_FLEX};
+  height: 100%;
+  border-top: 1.5px solid ${theme.on_tertiary};
   padding-top: 10px;
   gap: 10px;
 `;

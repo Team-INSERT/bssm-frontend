@@ -1,10 +1,10 @@
-import { color, flex, font } from "@/styles";
+import { theme, flex, font } from "@/styles";
 import React from "react";
 import styled from "styled-components";
+import { useModal } from "@/@modal/hooks";
+import { XIcon } from "@/assets/icons";
 import { useBambooPendingListQuery } from "@/templates/bamboo/services/query.service";
-import useModal from "@/hooks/useModal";
 import BambooPostListItem from "./BambooPostListItem";
-import { ModalCloseIcon } from "../assets/icons";
 
 const BambooManageModal = () => {
   const { closeModal } = useModal();
@@ -14,13 +14,14 @@ const BambooManageModal = () => {
     <Container>
       <BambooHeader>
         <BambooTitle>🎋 대나무숲 글 관리</BambooTitle>
-        <ModalCloseIcon onClick={closeModal} />
+        <XIcon onClick={closeModal} />
       </BambooHeader>
       <BambooBody>
         {isSuccess &&
           bambooList?.map((bamboo) => (
             <BambooPostListItem
               key={bamboo.id}
+              bambooId={bamboo.id}
               allowedId={bamboo.id}
               {...bamboo}
               isAdmin
@@ -39,7 +40,7 @@ const Container = styled.div`
   width: 60vw;
   height: 90vh;
   overflow-y: scroll;
-  background-color: ${color.white};
+  background-color: ${theme.white};
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
   border-radius: 8px;
 `;
@@ -61,7 +62,7 @@ const BambooBody = styled.div`
   width: 100%;
   height: 100%;
   padding: 12px;
-  ${flex.COLUMN};
+  ${flex.COLUMN_FLEX};
   gap: 14px;
 `;
 

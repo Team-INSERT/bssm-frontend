@@ -3,7 +3,7 @@
 import { PageNotFound } from "@/assets/images";
 import { Button } from "@/components/atoms";
 import ROUTER from "@/constants/router.constant";
-import { color, flex } from "@/styles";
+import { theme, flex } from "@/styles";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React from "react";
@@ -15,7 +15,7 @@ const NotFound = () => {
     <Container>
       <StyledImage width={999} height={999} src={PageNotFound} alt="404" />
       <Button
-        color={color.primary_blue}
+        color={theme.primary_blue}
         onClick={() => router.push(ROUTER.HOME)}
       >
         홈으로 돌아가기

@@ -1,9 +1,8 @@
-import React from "react";
-import { CustomEditor } from "@/components/atoms";
-import { Column } from "@/components/Flex";
 import styled from "styled-components";
+import { Column } from "@/components/Flex";
 import { font } from "@/styles";
-import { PostCategoryInputBoxProps } from "../../interfaces";
+import { ContentEditor } from "@/components/common";
+import { PostCategoryInputBoxProps } from "../../types/@props";
 
 const ContentInputBox = ({
   handleChange,
@@ -12,7 +11,7 @@ const ContentInputBox = ({
   return (
     <Column gap="6px">
       <TitleInputLabelText>글 내용</TitleInputLabelText>
-      <CustomEditor value={postData.content} onChange={handleChange} />
+      <ContentEditor value={postData.content} onChange={handleChange} />
     </Column>
   );
 };

@@ -1,24 +1,24 @@
 import { css } from "styled-components";
-import { color } from "@/styles";
-import PLAN from "../constants/plan.constant";
+import { theme } from "@/styles";
+import { PLAN } from "../constants";
 
 const getColorByPlanType = (planType: string) => {
   switch (planType) {
     case PLAN.CLASS:
       return css`
-        background-color: ${color.primary_blue};
+        background-color: ${theme.primary_blue};
       `;
     case PLAN.GRADE:
       return css`
-        background-color: ${color.primary_yellow};
+        background-color: ${theme.primary_yellow};
       `;
     case PLAN.SCHOOL:
       return css`
-        background-color: ${color.primary_red};
+        background-color: ${theme.primary_red};
       `;
     default:
       return css`
-        background-color: ${color.primary_mint};
+        background-color: ${theme.primary_mint};
       `;
   }
 };

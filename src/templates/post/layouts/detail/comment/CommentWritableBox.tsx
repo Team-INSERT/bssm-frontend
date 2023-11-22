@@ -1,10 +1,10 @@
-import { Column, Row } from "@/components/Flex";
-import { Button } from "@/components/atoms";
-import { color } from "@/styles";
-import { useComment } from "@/templates/post/hooks";
-import { Comment } from "@/templates/post/interfaces";
 import dayjs from "dayjs";
 import React from "react";
+import { Column, Row } from "@/components/Flex";
+import { Button } from "@/components/atoms";
+import { theme } from "@/styles";
+import { useComment } from "@/templates/post/hooks";
+import { Comment } from "@/templates/post/types";
 import CommentContentBox from "./CommentContentBox";
 import {
   CommentCreatedAt,
@@ -42,13 +42,13 @@ const CommentWritableBox = ({ ...comment }: Comment) => {
           <>
             <Button
               align="RIGHT"
-              color={isEditMode ? color.primary_red : color.primary_blue}
+              color={isEditMode ? theme.primary_red : theme.primary_blue}
               onClick={handleEditModeChange}
             >
               {isEditMode ? "취소" : "수정"}
             </Button>
             <Button
-              color={isEditMode ? color.primary_blue : color.primary_red}
+              color={isEditMode ? theme.primary_blue : theme.primary_red}
               onClick={
                 isEditMode
                   ? handleUpdateCommentDetailClick

@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { flex, font } from "@/styles";
 import { Aside } from "@/components/common";
 import ApplicationListItem from "./ApplicationListItem";
-import { applicationList } from "../assets/data";
+import { applicationListData } from "../assets/data";
 
 const ApplicationsPage = () => {
   return (
@@ -10,7 +10,7 @@ const ApplicationsPage = () => {
       <Layout>
         <PageTitleText>외부 서비스</PageTitleText>
         <ApplicationList>
-          {applicationList.map((application) => (
+          {applicationListData.map((application) => (
             <ApplicationListItem key={application.href} {...application} />
           ))}
         </ApplicationList>
@@ -31,7 +31,7 @@ const PageTitleText = styled.span`
 `;
 
 const ApplicationList = styled.div`
-  ${flex.COLUMN};
+  ${flex.COLUMN_FLEX};
   gap: 8px;
 `;
 

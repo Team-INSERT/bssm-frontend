@@ -1,10 +1,14 @@
-import { Column, Row } from "@/components/Flex";
-import { styled } from "styled-components";
-import { getMeisterChapter } from "@/helpers";
-import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
-import { color, flex, font } from "@/styles";
-import { CircularProgressBoxProps } from "../interfaces";
 import "react-circular-progressbar/dist/styles.css";
+import { styled } from "styled-components";
+import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
+import { Column, Row } from "@/components/Flex";
+import { theme, flex, font } from "@/styles";
+import { CircularProgressBoxProps } from "../types/@props";
+import { getMeisterChapter } from "../helpers";
+
+const CircularProgressbarComponent =
+  // eslint-disable-next-line
+  CircularProgressbar as unknown as React.FC<any>;
 
 const CircularProgressBox = ({
   chapter,
@@ -21,14 +25,14 @@ const CircularProgressBox = ({
           <ScoreBox statusColor={statusColor}>{score}</ScoreBox>
         </Column>
         <StyledCircularProgressBox>
-          <CircularProgressbar
+          <CircularProgressbarComponent
             value={value}
             text={text}
             styles={buildStyles({
               textSize: "24px",
               pathColor: statusColor,
               textColor: statusColor,
-              trailColor: color.on_tertiary,
+              trailColor: theme.on_tertiary,
             })}
           />
         </StyledCircularProgressBox>
@@ -43,7 +47,7 @@ const Container = styled.div`
   width: 100%;
   height: 120px;
   padding: 16px 30px;
-  background-color: ${color.white};
+  background-color: ${theme.white};
   display: flex;
   flex-direction: column;
   align-items: center;

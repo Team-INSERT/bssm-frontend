@@ -1,8 +1,7 @@
 import styled from "styled-components";
-import { color, flex } from "@/styles";
+import { theme, flex, font } from "@/styles";
 import { Button } from "@/components/atoms";
 import { Aside } from "@/components/common";
-import { usePostQuery } from "../../services/post/query.service";
 import {
   TitleInputBox,
   ProjectInputBox,
@@ -14,11 +13,8 @@ import {
 import { CATEGORY } from "../../constants";
 import { usePostWritable } from "../../hooks";
 import PostCategoryBox from "./CategoryBox";
-import WriteTitleBox from "./WriteTitleBox";
-import { PostDetailParamsProps } from "../../interfaces";
 
-const PostWritePage = ({ id }: PostDetailParamsProps) => {
-  const { post } = usePostQuery(id);
+const PostWritePage = () => {
   const {
     postData,
     lostImageUrl,
@@ -26,11 +22,12 @@ const PostWritePage = ({ id }: PostDetailParamsProps) => {
     handleImageFileSelect,
     handlePostWriteButtonClick,
     handleInputPostDataChange,
-  } = usePostWritable(post);
+  } = usePostWritable();
   return (
     <>
       <Layout>
-        <WriteTitleBox />
+        <TitleText>📕 글 쓰기</TitleText>
+        <SubTitleText>어떤 생각을 하고 계신가요?</SubTitleText>
         <PostCategoryBox
           handleChangeCategory={handleCategoryChangeClick}
           currentCategory={postData.category}
@@ -73,7 +70,7 @@ const PostWritePage = ({ id }: PostDetailParamsProps) => {
           />
           <Button
             align="RIGHT"
-            color={color.primary_blue}
+            color={theme.primary_blue}
             onClick={handlePostWriteButtonClick}
           >
             작성
@@ -87,13 +84,22 @@ const PostWritePage = ({ id }: PostDetailParamsProps) => {
 
 const Layout = styled.div`
   width: 100%;
-  ${flex.COLUMN};
+  ${flex.COLUMN_FLEX};
   gap: 16px;
 `;
 
 const InputBox = styled.div`
-  ${flex.COLUMN};
+  ${flex.COLUMN_FLEX};
   gap: 18px;
+`;
+
+const TitleText = styled.h1`
+  ${font.H2};
+`;
+
+const SubTitleText = styled.p`
+  ${font.context};
+  color: ${theme.gray};
 `;
 
 export default PostWritePage;

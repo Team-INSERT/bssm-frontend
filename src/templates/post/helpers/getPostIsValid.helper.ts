@@ -1,5 +1,5 @@
 import { toast } from "react-toastify";
-import { Post } from "../interfaces";
+import { Post } from "../types";
 import { CATEGORY } from "../constants";
 
 const errorReturner = (message: string) => {

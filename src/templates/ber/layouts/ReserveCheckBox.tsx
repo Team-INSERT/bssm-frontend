@@ -1,8 +1,7 @@
-import React from "react";
-import CheckIcon from "@/assets/icons/CheckIcon";
 import styled, { css } from "styled-components";
-import { color, flex, font } from "@/styles";
-import { BerReserveCheckBoxProps } from "../interfaces";
+import { CheckIcon } from "@/assets/icons";
+import { theme, flex, font } from "@/styles";
+import { BerReserveCheckBoxProps } from "../types/@props";
 
 const ReserveCheckBox = ({
   isAgreeRule,
@@ -38,11 +37,11 @@ const CheckButton = styled.button<{ isChecked: boolean }>`
   ${({ isChecked }) =>
     isChecked
       ? css`
-          background-color: ${color.primary_blue};
+          background-color: ${theme.primary_blue};
           border: none;
         `
       : css`
-          border: 1.5px solid ${color.black};
+          border: 1.5px solid ${theme.black};
         `};
 `;
 

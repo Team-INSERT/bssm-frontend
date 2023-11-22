@@ -3,20 +3,21 @@ import {
   useMeisterDetailQuery,
   useMeisterQuery,
 } from "../services/query.service";
-import meisterDefaultData from "../assets/data/meisterDefaultData";
+import meisterDefaultData from "../assets/data/defaultMeister.data";
 import { getStudentInformationHTML, setMeisterPointNaming } from "../helpers";
-import meisterDefaultDetailData from "../assets/data/meisterDetailDefaultData";
+import meisterDefaultDetailData from "../assets/data/defaultMeisterDetail.data";
 
 const useMeister = () => {
-  const meisterQuery = useMeisterQuery();
   const [studentNum, setStudentNum] = React.useState("");
-  const meisterDetailQuery = useMeisterDetailQuery(studentNum);
   const [meister, setMeister] = React.useState(meisterDefaultData);
   const [meisterDetail, setMeisterDetail] = React.useState(
     meisterDefaultDetailData,
   );
   const [isLoading, setIsLoading] = React.useState(false);
   const [studentInfo, setStudentInfo] = React.useState("");
+
+  const meisterQuery = useMeisterQuery();
+  const meisterDetailQuery = useMeisterDetailQuery(studentNum);
 
   const handleStudentSearchClick = () => {
     setIsLoading(true);

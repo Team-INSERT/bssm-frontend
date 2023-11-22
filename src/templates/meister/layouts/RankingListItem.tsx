@@ -1,12 +1,12 @@
-import { Column, Row } from "@/components/Flex";
-import { color, font } from "@/styles";
-import React from "react";
 import styled from "styled-components";
+import { Column, Row } from "@/components/Flex";
+import { theme, font, flex } from "@/styles";
 
-interface IMeisterProfileBoxProps {
+interface MeisterProfileBoxProps {
   score: number;
   positivePoint: number;
   negativePoint: number;
+  index: number;
   student: {
     grade: number;
     classNo: number;
@@ -20,9 +20,11 @@ const RankingListItem = ({
   student,
   positivePoint,
   negativePoint,
-}: IMeisterProfileBoxProps) => {
+  index,
+}: MeisterProfileBoxProps) => {
   return (
     <Container>
+      <RankText>{index}</RankText>
       <Column>
         <Row alignItems="center" gap="5px">
           <Department>
@@ -54,15 +56,21 @@ const RankingListItem = ({
 const Container = styled.div`
   width: 100%;
   padding: 14px 24px;
-  background-color: ${color.white};
+  background-color: ${theme.white};
   display: flex;
   align-items: center;
   gap: 18px;
 `;
 
+const RankText = styled.div`
+  width: 50px;
+  ${flex.CENTER};
+  ${font.H2};
+`;
+
 const InfomationText = styled.span`
   ${font.H6};
-  color: ${color.black};
+  color: ${theme.black};
 `;
 
 const Department = styled(InfomationText)``;
@@ -78,7 +86,7 @@ const Name = styled(InfomationText)``;
 const RewardPointText = styled.span`
   ${font.p3};
   line-height: 130%;
-  color: ${color.gray};
+  color: ${theme.gray};
 `;
 
 const MeisterPoint = styled(RewardPointText)``;
@@ -87,7 +95,7 @@ const CreditPoint = styled(RewardPointText)``;
 
 const Separator = styled.div`
   width: 1.5px;
-  background-color: ${color.on_tertiary};
+  background-color: ${theme.on_tertiary};
   height: 12px;
 `;
 

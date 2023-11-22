@@ -1,4 +1,4 @@
-import { color, flex } from "@/styles";
+import { theme, flex } from "@/styles";
 import React from "react";
 import styled from "styled-components";
 
@@ -28,7 +28,7 @@ const StyledButton = styled.button`
   ${flex.CENTER};
 
   &:hover {
-    background-color: ${color.gray};
+    background-color: ${theme.gray};
     svg {
       path {
         fill: #0066cc;

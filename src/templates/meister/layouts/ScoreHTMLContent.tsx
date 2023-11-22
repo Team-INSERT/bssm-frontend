@@ -1,6 +1,6 @@
-import { color, font } from "@/styles";
 import React from "react";
 import styled from "styled-components";
+import { theme, font } from "@/styles";
 import { setMeisterPointNaming } from "../helpers";
 
 const ScoreHTMLContent = ({ scoreHTML }: { scoreHTML: string }) => {
@@ -27,7 +27,7 @@ const StyledScoreHTMLContent = styled.div`
 
   .item-score {
     ${font.p3};
-    color: ${color.gray};
+    color: ${theme.gray};
   }
 
   .total-score-item {
@@ -48,7 +48,7 @@ const StyledScoreHTMLContent = styled.div`
     padding: 0;
     text-align: left;
     ${font.p3};
-    color: ${color.gray};
+    color: ${theme.gray};
     font-weight: 500;
   }
 
@@ -68,7 +68,7 @@ const StyledScoreHTMLContent = styled.div`
     &:nth-child(5) {
       display: none;
     }
-    background-color: ${color.white};
+    background-color: ${theme.white};
     width: 100%;
     padding: 16px 20px;
     border-radius: 4px;

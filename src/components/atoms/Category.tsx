@@ -1,18 +1,18 @@
 import styled, { css } from "styled-components";
-import { color, font } from "@/styles";
+import { theme, font } from "@/styles";
 import { Row } from "@/components/Flex";
 
-interface ICategoryProps extends React.InputHTMLAttributes<HTMLInputElement> {
+interface CategoryProps extends React.InputHTMLAttributes<HTMLInputElement> {
   id?: string;
   label?: string;
-  checked: boolean;
+  selected: boolean;
 }
 
-const Category = ({ id, label, checked, ...props }: ICategoryProps) => {
+const Category = ({ id, label, selected, ...props }: CategoryProps) => {
   return (
     <Row>
       <StyledCategory id={id} type="radio" {...props} />
-      <StyledLabel htmlFor={id} checked={checked}>
+      <StyledLabel htmlFor={id} selected={selected}>
         {label}
       </StyledLabel>
     </Row>
@@ -23,7 +23,7 @@ const StyledCategory = styled.input`
   display: none;
 `;
 
-const StyledLabel = styled.label<{ checked: boolean }>`
+const StyledLabel = styled.label<{ selected: boolean }>`
   border: none;
   padding: 6px 16px;
   border-radius: 999px;
@@ -32,18 +32,18 @@ const StyledLabel = styled.label<{ checked: boolean }>`
   align-items: center;
   box-shadow: 0 0 10px 0 rgba(144, 144, 144, 0.1);
   ${font.btn3};
-  ${({ checked }) =>
-    checked
+  ${({ selected }) =>
+    selected
       ? css`
-          background-color: ${color.primary_blue};
-          color: ${color.white};
+          background-color: ${theme.primary_blue};
+          color: ${theme.white};
         `
       : css`
-          background-color: ${color.white};
-          color: ${color.gray};
+          background-color: ${theme.white};
+          color: ${theme.gray};
 
           &:hover {
-            background-color: ${color.on_tertiary};
+            background-color: ${theme.on_tertiary};
           }
         `}
 `;

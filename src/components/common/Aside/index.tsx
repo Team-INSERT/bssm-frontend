@@ -1,40 +1,35 @@
 import styled from "styled-components";
-import useUser from "@/hooks/useUser";
 import { Row } from "@/components/Flex";
-import { font } from "@/styles";
-import InfomationBox from "./InfomationBox";
-import MeisterBox from "./MeisterBox";
-import JoinCheckBox from "./JoinCheckBox";
+import { flex } from "@/styles";
+import { useUser } from "@/@user/hooks";
+import InfomationBox from "./StudentInfoBox";
+import MeisterBox from "./MeisterInfoBox";
+import JoinCheckBox from "./CheckInBox";
 
 const Aside = () => {
-  const { user, isLogined } = useUser();
+  const { isLogined } = useUser();
 
   return (
-    <Layout>
+    <Row>
       {isLogined && (
         <Container>
-          <InfomationBox user={user} isLogined={isLogined} />
+          <InfomationBox />
           <Row gap="6px" height="100%">
             <MeisterBox />
             <JoinCheckBox />
           </Row>
         </Container>
       )}
-    </Layout>
+    </Row>
   );
 };
 
-const Layout = styled.div`
-  display: flex;
-`;
-
 const Container = styled.aside`
+  ${flex.COLUMN_FLEX};
   width: 22vw;
   height: 30vh;
-  display: flex;
   gap: 6px;
   margin-left: auto;
-  flex-direction: column;
 
   @media screen and (max-width: 900px) {
     width: 28vw;

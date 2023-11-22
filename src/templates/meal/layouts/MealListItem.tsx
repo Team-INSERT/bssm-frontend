@@ -1,10 +1,9 @@
-import React from "react";
 import styled from "styled-components";
-import { color, flex, font } from "@/styles";
+import { theme, flex, font } from "@/styles";
 import { Row } from "@/components/Flex";
 import BlinkerBox from "./BlinkerBox";
 import { useMeal } from "../hooks";
-import { MealListItemProps } from "../interfaces";
+import { MealListItemProps } from "../types/@props";
 
 const MealListItem = ({ mealName, meal }: MealListItemProps) => {
   const { get식사명ByMealName, replaceBrToLine } = useMeal();
@@ -26,7 +25,7 @@ const Layout = styled.div`
   width: 100%;
   height: 100%;
   border-radius: 12px;
-  background-color: ${color.white};
+  background-color: ${theme.white};
   box-shadow: 4px 4px 15px 0 rgba(0, 0, 0, 0.15);
   margin: 16px 0;
   transition: ease-in-out;
@@ -55,7 +54,7 @@ const MealHeaderBox = styled.div`
   height: 32px;
   padding: 0 16px;
   border-radius: 12px 12px 0 0;
-  background-color: ${color.meal_header};
+  background-color: ${theme.meal_header};
   ${flex.CENTER};
   justify-content: space-between;
   position: relative;
@@ -78,7 +77,7 @@ const MealCalText = styled(MealTimeText)`
 const MealContentText = styled.p`
   width: 100%;
   height: 100%;
-  ${flex.VERTICAL};
+  ${flex.HORIZONTAL};
   ${font.p1};
   line-height: 180%;
   font-weight: 500;

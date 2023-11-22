@@ -1,10 +1,9 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
-import KEY from "@/constants/key.constant";
-import ROUTER from "@/constants/router.constant";
+import { KEY, ROUTER } from "@/constants";
 import { createPost, deletePost, updatePost } from "./api.service";
-import { PostData } from "../../interfaces";
+import { PostData } from "../../types";
 
 export const useUpdatePostMutation = () => {
   const queryClient = useQueryClient();

@@ -1,18 +1,17 @@
-import { color, flex } from "@/styles";
-import React from "react";
+import { theme, flex } from "@/styles";
 import { PuffLoader } from "react-spinners";
 import styled from "styled-components";
 
 const Loading = () => {
   return (
     <Container>
-      <PuffLoader color={color.primary_blue} size={40} />
+      <PuffLoader color={theme.primary_blue} size={40} />
     </Container>
   );
 };
 
 const Container = styled.div`
-  margin-top: 20px;
+  margin: 20px 0;
   width: 100%;
   ${flex.CENTER};
 `;

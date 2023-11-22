@@ -1,13 +1,12 @@
-import React from "react";
 import styled, { keyframes } from "styled-components";
-import { color } from "@/styles";
+import { theme } from "@/styles";
 
-interface ISwitchProps {
+interface SwitchProps {
   isSwitch: boolean;
   handleToggle: () => void;
 }
 
-const Switch = ({ isSwitch, handleToggle }: ISwitchProps) => {
+const Switch = ({ isSwitch, handleToggle }: SwitchProps) => {
   return (
     <ToggleButton isSwitch={isSwitch} onClick={handleToggle}>
       <ToggleCircle isSwitch={isSwitch} />
@@ -39,7 +38,7 @@ const ToggleButton = styled.div<{ isSwitch: boolean }>`
   height: 22px;
   border-radius: 15px;
   background-color: ${({ isSwitch }) =>
-    isSwitch ? color.primary_blue : color.content};
+    isSwitch ? theme.primary_blue : theme.content};
   cursor: pointer;
   transition: background-color 0.2s ease;
   display: flex;
@@ -51,7 +50,7 @@ const ToggleCircle = styled.div<{ isSwitch: boolean }>`
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  background-color: ${color.white};
+  background-color: ${theme.white};
   transition: transform 0.3s ease;
   animation-fill-mode: forwards;
   transform: ${({ isSwitch }) =>

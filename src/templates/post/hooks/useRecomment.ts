@@ -1,7 +1,7 @@
+import React from "react";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
-import React from "react";
-import useUser from "@/hooks/useUser";
+import { useUser } from "@/@user/hooks";
 import {
   useCreateRecommentMutation,
   useDeleteRecommentMutation,
@@ -42,7 +42,7 @@ const useRecomment = (id: number) => {
   };
 
   const handleUpdateRecommentDetailClick = () => {
-    if (!recommentInput.trim()) return toast.error("내용을 입력해주세요.");
+    if (!recommentInput.trim()) return toast.error("내용을 입력해주세요!");
     updateRecommentMutate({ id, detail: recommentInput });
     setIsEditMode(false);
   };

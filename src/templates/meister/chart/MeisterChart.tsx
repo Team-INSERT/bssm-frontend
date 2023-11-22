@@ -1,16 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import * as d3 from "d3";
-import { color } from "@/styles";
-import { useDidMountEffect } from "@/hooks/useDidMountEffect";
-import { Meister } from "../interfaces";
+import { theme } from "@/styles";
+import { useDidMountEffect } from "@/hooks";
+import { Meister } from "../types";
 import {
   graphColorData,
   meisterChartData,
-  meisterVariables,
+  meisterVariableData,
 } from "../assets/data";
 
 const MeisterChart = ({ ...meisterData }: Meister) => {
-  const [canvasRef, setCanvasRef] = useState<HTMLDivElement | null>(null);
+  const [canvasRef, setCanvasRef] = React.useState<HTMLDivElement | null>(null);
 
   useDidMountEffect(() => {
     if (!canvasRef) return;
@@ -54,16 +54,16 @@ const MeisterChart = ({ ...meisterData }: Meister) => {
         .duration(1000)
         .attr("y", `${108 - meisterData[item.scoreType][item.group]}%`)
         .text(Math.round(meisterData[item.scoreType][item.group]))
-        .style("fill", color.gray);
+        .style("fill", theme.gray);
     });
 
-    meisterVariables.forEach((groupText, index) => {
+    meisterVariableData.forEach((groupText, index) => {
       svg
         .append("text")
         .attr("x", `${(index + 1) * 19.5 - 12}%`)
         .attr("y", "20%")
         .text(groupText)
-        .style("fill", color.gray)
+        .style("fill", theme.gray)
         .style("font-weight", "600")
         .style("font-size", "12px");
     });
@@ -77,14 +77,14 @@ const MeisterChart = ({ ...meisterData }: Meister) => {
         .attr("y2", `${100 - item}%`)
         .attr("stroke-width", 1)
         .style("stroke-dasharray", "8, 3")
-        .attr("stroke", color.on_tertiary);
+        .attr("stroke", theme.on_tertiary);
 
       svg
         .append("text")
         .attr("x", 20)
         .attr("y", `${99 - item}%`)
         .text(item)
-        .style("fill", color.on_tertiary)
+        .style("fill", theme.on_tertiary)
         .style("font-weight", "600")
         .style("font-size", "12px");
     });
