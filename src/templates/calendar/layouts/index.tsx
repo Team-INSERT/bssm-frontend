@@ -14,7 +14,7 @@ import CalendarListItem from "./CalendarListItem";
 
 const CalendarPage = () => {
   const { currentMonth, handleCalendarMonthChange } = useCalendar();
-  const { calendarList, refetch } = useCalendarListQuery(currentMonth);
+  const { calendarList, refetch } = useCalendarListQuery(currentMonth + 1);
 
   React.useEffect(() => {
     refetch();
