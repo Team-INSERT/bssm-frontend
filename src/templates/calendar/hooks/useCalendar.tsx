@@ -52,10 +52,10 @@ const useCalendar = () => {
 
   const handleCalendarMonthChange = (month: "INCREASE" | "DECREASE") => {
     if (month === DATE.INCREASE) {
-      setCurrentMonth((prevMon) => (prevMon !== 12 ? prevMon + 1 : prevMon));
+      setCurrentMonth((prevMon) => (prevMon !== 11 ? prevMon + 1 : prevMon));
     }
     if (month === DATE.DECREASE) {
-      setCurrentMonth((prevMon) => (prevMon !== 1 ? prevMon - 1 : prevMon));
+      setCurrentMonth((prevMon) => (prevMon !== 0 ? prevMon - 1 : prevMon));
     }
   };
 
