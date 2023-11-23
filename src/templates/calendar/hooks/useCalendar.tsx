@@ -11,6 +11,7 @@ import {
 import { getPlanTypeByPlanName } from "../helpers";
 import CalendarPlanAddModal from "../layouts/CalendarPlanAddModal";
 import { CalendarPlanAddQuery } from "../types/@props";
+import Swal from "sweetalert2";
 
 const useCalendar = () => {
   const [currentMonth, setCurrentMonth] = React.useState(dayjs().month());
@@ -46,8 +47,16 @@ const useCalendar = () => {
     addPlanMutate(planQuery);
   };
 
-  const handleDeleteCalendarPlanClick = (id: number) => {
-    deleteMutate(id);
+  const handleDeleteCalendarPlanClick = async (id: number) => {
+    const { isConfirmed } = await Swal.fire({
+      title: "일정 삭제",
+      text: "해당 일정을 삭제할까요?",
+      icon: "question",
+      showCancelButton: true,
+      confirmButtonText: "확인",
+      cancelButtonText: "취소",
+    });
+    if (isConfirmed) deleteMutate(id);
   };
 
   const handleCalendarMonthChange = (month: "INCREASE" | "DECREASE") => {
