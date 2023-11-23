@@ -18,7 +18,7 @@ const Navigation = () => {
 const NavigationList = styled.ul`
   ${flex.VERTICAL};
   width: 100%;
-  gap: 6.5%;
+  gap: 6.2%;
 `;
 
 const NavigationListItem = styled(Link)`
