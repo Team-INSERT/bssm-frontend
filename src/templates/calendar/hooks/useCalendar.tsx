@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import { useModal } from "@/@modal/hooks";
 import { useUser } from "@/@user/hooks";
 import { DATE } from "@/constants";
+import Swal from "sweetalert2";
 import {
   useAddCalendarPlanMutation,
   useDeleteCalendarPlanMutation,
@@ -11,7 +12,6 @@ import {
 import { getPlanTypeByPlanName } from "../helpers";
 import CalendarPlanAddModal from "../layouts/CalendarPlanAddModal";
 import { CalendarPlanAddQuery } from "../types/@props";
-import Swal from "sweetalert2";
 
 const useCalendar = () => {
   const [currentMonth, setCurrentMonth] = React.useState(dayjs().month());

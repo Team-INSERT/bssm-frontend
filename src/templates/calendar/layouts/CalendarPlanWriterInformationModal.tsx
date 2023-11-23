@@ -32,6 +32,17 @@ const CalendarPlanWriterInformationModal = ({ user, type }: CalendarPlan) => {
   );
 };
 
+const PlanWriterBox = styled.div`
+  display: none;
+  width: 180px;
+  height: 100px;
+  padding: 2px;
+  background-color: ${theme.white};
+  position: absolute;
+  margin-top: -14vh;
+  box-shadow: 4px 4px 20px 0 rgba(0, 0, 0, 0.15);
+`;
+
 const PlanInformationText = styled.span`
   ${font.p3};
   color: ${theme.black};
@@ -39,16 +50,6 @@ const PlanInformationText = styled.span`
 
 const PlanWriterDeleteText = styled(PlanInformationText)`
   color: ${theme.primary_red};
-`;
-
-const PlanWriterBox = styled.div`
-  display: none;
-  width: fit-content;
-  padding: 2px;
-  background-color: ${theme.white};
-  position: absolute;
-  margin-top: -14vh;
-  box-shadow: 4px 4px 20px 0 rgba(0, 0, 0, 0.15);
 `;
 
 export default CalendarPlanWriterInformationModal;
