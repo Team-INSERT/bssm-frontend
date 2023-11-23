@@ -1,12 +1,12 @@
 const navigationListData = [
   {
     id: 1,
-    name: "👩🏻‍🎓  마이스터",
+    name: "👩🏻‍🎓  인증제",
     href: "/meister",
   },
   {
     id: 2,
-    name: "📬  커뮤니티",
+    name: "📬  게시판",
     href: "/post",
   },
   {
@@ -31,7 +31,7 @@ const navigationListData = [
   },
   {
     id: 7,
-    name: "☕️  베르실 예약",
+    name: "☕️  베르실",
     href: "/ber",
   },
 ];
