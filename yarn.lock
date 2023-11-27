@@ -1669,9 +1669,9 @@
     pretty-format "^29.0.0"
 
 "@types/jquery@*":
-  version "3.5.28"
-  resolved "https://registry.yarnpkg.com/@types/jquery/-/jquery-3.5.28.tgz#ce70ef8360ece723e7a40b887d1c373cdc979530"
-  integrity sha512-2o/vlzaDXiGWFrHz/PhX88cy68UDc8NBBT9i1nU+EtRkKgRxMWLTlUkEJb+MRfhIw6wKK8RDmfoEXClH2PsIyA==
+  version "3.5.29"
+  resolved "https://registry.yarnpkg.com/@types/jquery/-/jquery-3.5.29.tgz#3c06a1f519cd5fc3a7a108971436c00685b5dcea"
+  integrity sha512-oXQQC9X9MOPRrMhPHHOsXqeQDnWeCDT3PelUIg/Oy8FAbzSZtFHRjc7IpbfFVmpLtJ+UOoywpRsuO5Jxjybyeg==
   dependencies:
     "@types/sizzle" "*"
 
@@ -1829,9 +1829,9 @@
     "@types/node" "*"
 
 "@types/sizzle@*":
-  version "2.3.7"
-  resolved "https://registry.yarnpkg.com/@types/sizzle/-/sizzle-2.3.7.tgz#ab5744eceb30daea3e0c6a9c2d9e1a3817ef7656"
-  integrity sha512-sU5MNKvSFdbT97qLSabU6jxceY9BfYQe9uF+b8E1rdTecpq9ROkkKoiHlblUlhgfaz9bdCByWjAI40Y3mHf1iQ==
+  version "2.3.8"
+  resolved "https://registry.yarnpkg.com/@types/sizzle/-/sizzle-2.3.8.tgz#518609aefb797da19bf222feb199e8f653ff7627"
+  integrity sha512-0vWLNK2D5MT9dg0iOo8GlKguPAU02QjmZitPEsXRuJXU/OGIOt9vT9Fc26wtYuavLxtO45v9PGleoL9Z0k1LHg==
 
 "@types/stack-utils@^2.0.0":
   version "2.0.3"
@@ -1853,9 +1853,9 @@
   integrity sha512-86XLCVEmWagiUEbr2AjSbeY4qHN9jMm3pgM3PuBYfLIbT0MpDSnA3GA/4W7KoH/C/eeK77kNaeIxZzjhKYIBgw==
 
 "@types/tinymce@^4.6.5":
-  version "4.6.8"
-  resolved "https://registry.yarnpkg.com/@types/tinymce/-/tinymce-4.6.8.tgz#471abbd371e8591df5015d3bd2d4c6cd26e0a50a"
-  integrity sha512-KnZWujp0xm0g8+TGH5Y/aLXYoBWm3LbvpX8uvJV1Vdmv/JYbnCxls5rLPxvz5WQYcEKqKD+WJXvKyvczXa3sCA==
+  version "4.6.9"
+  resolved "https://registry.yarnpkg.com/@types/tinymce/-/tinymce-4.6.9.tgz#4d347b3831b35d59514fab2ab90c5d500e844ee2"
+  integrity sha512-pDxBUlV4v1jgJ97SlnVOSyf3KUy3OQ3s5Ddpfh1L9M5lXlBmX7TJ2OLSozx1WBxp91acHvYPWDwz2U/kMM1oxQ==
   dependencies:
     "@types/jquery" "*"
 
