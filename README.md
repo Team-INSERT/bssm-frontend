@@ -1,26 +1,22 @@
-## BSM
+# 학생 스마트 정보 관리 시스템 [BSM](https://newbsm.team-insert.com) &middot; [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/toss/slash/blob/main/LICENSE) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/toss/slash/blob/main/.github/CONTRIBUTING.md)
 
-## commit convention
+BSM은 [인서트](https://team-insert.com)에서 개발한 부산소마고 교내 학생 정보 관리 시스템입니다.  
+학생들은 한 서비스 내에서 마이스터 역량 인증제와 급식, 학사 일정 등 여러가지 학교와 관련된 정보들을 확인할 수 있습니다.
 
-feat : 새로운 기능 추가  
-fix : 버그 수정  
-docs : 문서 관련  
-style : 스타일 변경 (포매팅 수정, 들여쓰기 추가, …)  
-refactor : 코드 리팩토링  
-test : 테스트 관련 코드  
-build : 빌드 관련 파일 수정  
-ci : CI 설정 파일 수정  
-perf : 성능 개선  
-chore : 그 외 자잘한 수정
+## 기여하기
 
-## import convention
+BSM에는 인서트 팀의 멤버, 혹은 부산소마고 학생이 아니더라도 누구나 기여할 수 있습니다.  
+BSM에 기여하고 싶다고 생각하셨다면 아래 문서를 참고해주세요.
 
-1. React
-2. style
-3. asset
-4. constant
-5. hook
-6. store
-7. type
-8. interface
-9. components
+[CONTRIBUTING](./.github/CONTRIBUTING.md)
+
+## 라이선스
+
+MIT © Team. INSERT. [LICENSE](./LICENSE) 파일을 참고하세요.
+
+<a title="인서트" href="https://team-insert.com">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://team-insert.com/static/media/logo.fd2f3e70586278ea0e49f7a138595482.svg">
+    <img alt="인서트" src="https://team-insert.com/static/media/logo.fd2f3e70586278ea0e49f7a138595482.svg" width="50">
+  </picture>
+</a>

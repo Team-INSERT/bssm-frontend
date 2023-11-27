@@ -1,13 +1,13 @@
-name: "Todo"
-description: "할일이 있으신가요? 📗"
+name: "Feature"
+description: "추가할 일이 있으신가요? 📗"
 body:
   - type: textarea
     attributes:
       label: Describe
       description: |
-        할일에 관한 설명
+        추가할 일에 관한 설명
       placeholder: |
-        그거 제작
+        요구사항을 작성해주세요
 
   - type: textarea
     attributes:
@@ -15,10 +15,10 @@ body:
       description: |
         [작업내용] 무슨 작업을 하셨나요?
       placeholder: |
-        그거
+        ~~이런 작업을 했습니다.
 
   - type: textarea
     attributes:
       label: Additional
       description: |
-        추가로 할말?
+        추가로 해주실 말씀이 있나요?
