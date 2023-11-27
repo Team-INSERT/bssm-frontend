@@ -1,4 +1,4 @@
-# 학생 스마트 정보 관리 시스템 [BSM](https://newbsm.team-insert.com) &middot; [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/toss/slash/blob/main/LICENSE) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/toss/slash/blob/main/.github/CONTRIBUTING.md)
+# 학생 스마트 정보 관리 시스템 [BSM](https://newbsm.team-insert.com) &middot; [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](./.github/CONTRIBUTING.md)
 
 BSM은 [인서트](https://team-insert.com)에서 개발한 부산소마고 교내 학생 정보 관리 시스템입니다.  
 학생들은 한 서비스 내에서 마이스터 역량 인증제와 급식, 학사 일정 등 여러가지 학교와 관련된 정보들을 확인할 수 있습니다.
