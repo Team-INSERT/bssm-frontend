@@ -2,6 +2,7 @@
   "compilerOptions": {
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
+    "types": ["jest", "jest-dom"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -30,7 +31,9 @@
     "**/*.tsx",
     "tailwind.config.js",
     ".eslintrc.js",
-    ".next/types/**/*.ts"
-, "public/mockServiceWorker.js"  ],
+    ".next/types/**/*.ts",
+    "public/mockServiceWorker.js",
+    "jest.setup.js"
+  ],
   "exclude": ["node_modules"]
 }
