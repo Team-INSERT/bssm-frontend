@@ -9,12 +9,8 @@ import { MeisterRankingItem } from "../types";
 
 const Ranking = () => {
   const { user } = useUser();
-  const [currentGrade, setCurrentGrade] = React.useState(2);
+  const [currentGrade, setCurrentGrade] = React.useState(user.grade);
   const { data, isSuccess, refetch } = useMeisterRankingQuery(currentGrade);
-
-  React.useEffect(() => {
-    setCurrentGrade(user.grade);
-  }, [user]);
 
   React.useEffect(() => {
     refetch();
