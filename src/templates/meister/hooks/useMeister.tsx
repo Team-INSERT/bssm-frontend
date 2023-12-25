@@ -1,4 +1,5 @@
 import React from "react";
+import { useUser } from "@/@user/hooks";
 import {
   useMeisterDetailQuery,
   useMeisterQuery,
@@ -8,7 +9,11 @@ import { getStudentInformationHTML, setMeisterPointNaming } from "../helpers";
 import meisterDefaultDetailData from "../assets/data/defaultMeisterDetail.data";
 
 const useMeister = () => {
-  const [studentNum, setStudentNum] = React.useState("");
+  const { user } = useUser();
+
+  const [studentNum, setStudentNum] = React.useState(
+    String(user.grade * 1000 + user.classNum * 100 + user.studentNumber || ""),
+  );
   const [meister, setMeister] = React.useState(meisterDefaultData);
   const [meisterDetail, setMeisterDetail] = React.useState(
     meisterDefaultDetailData,
@@ -41,6 +46,11 @@ const useMeister = () => {
     if (+studentNumber > 16 || +studentNumber === 0) return;
     setStudentNum(value);
   };
+
+  React.useEffect(() => {
+    handleStudentSearchClick();
+    // eslint-disable-next-line
+  }, []);
 
   React.useEffect(() => {
     if (meisterDetailQuery.isSuccess) {
