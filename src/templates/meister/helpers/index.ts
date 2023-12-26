@@ -3,3 +3,4 @@ export { default as getMeisterChapter } from "./getMeisterChapter.helper";
 export { default as getStatusColor } from "./getStatusColor.helper";
 export { default as getStudentInformationHTML } from "./getStudentInformationHTML.helper";
 export { default as setMeisterPointNaming } from "./setMeisterPointNaming.helper";
+export { default as getStudentId } from "./getStudentId.helper";
