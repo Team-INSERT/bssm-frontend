@@ -37,12 +37,9 @@ const useMeister = () => {
 
   const handleStudentNumChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
-    const [inputGrade, inputClassNum, studentNum1, studentNum2] = [
-      +value[0],
-      +value[1],
-      +value[2],
-      +value[3],
-    ];
+    const [inputGrade, inputClassNum, studentNum1, studentNum2] = value
+      .split("")
+      .map((item) => +item);
     const inputStudentNum = `${studentNum1}${studentNum2}`;
     if (value.length > 4) return;
     if (Number.isNaN(+value)) return;
