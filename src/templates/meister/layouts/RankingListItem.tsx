@@ -1,6 +1,9 @@
 import styled from "styled-components";
 import { Column, Row } from "@/components/Flex";
 import { theme, font, flex } from "@/styles";
+import { useSetAtom } from "jotai";
+import { studentNumberContext, buttonSwitchContext } from "../context";
+import { getStudentId } from "../helpers";
 
 interface MeisterProfileBoxProps {
   score: number;
@@ -22,24 +25,31 @@ const RankingListItem = ({
   negativePoint,
   index,
 }: MeisterProfileBoxProps) => {
+  const { grade, classNo, studentNo } = student;
+  const setStudentNum = useSetAtom(studentNumberContext);
+  const setSwitch = useSetAtom(buttonSwitchContext);
+
+  const handleContainerButtonClick = () => {
+    setStudentNum(getStudentId(grade, classNo, studentNo));
+    setSwitch(true);
+  };
+
   return (
-    <Container>
+    <Container onClick={handleContainerButtonClick}>
       <RankText>{index}</RankText>
       <Column>
         <Row alignItems="center" gap="5px">
           <Department>
-            {student.grade >= 2 ? (
-              <span>
-                {student.classNo <= 2 ? "소프트웨어" : "임베디드소프트웨어"}
-              </span>
+            {grade >= 2 ? (
+              <span>{classNo <= 2 ? "소프트웨어" : "임베디드소프트웨어"}</span>
             ) : (
               "통합"
             )}
             개발과
           </Department>
-          <Grade>{student.grade}학년</Grade>
-          <ClassNo>{student.classNo}반</ClassNo>
-          <StudentNo>{student.studentNo}번</StudentNo>
+          <Grade>{grade}학년</Grade>
+          <ClassNo>{classNo}반</ClassNo>
+          <StudentNo>{studentNo}번</StudentNo>
           <Name>{student.name}</Name>
         </Row>
         <MeisterPoint>마이스터역량인증제 점수 ㆍ {score}점</MeisterPoint>
@@ -60,6 +70,7 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   gap: 18px;
+  cursor: pointer;
 `;
 
 const RankText = styled.div`
