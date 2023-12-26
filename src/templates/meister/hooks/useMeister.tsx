@@ -1,14 +1,25 @@
 import React from "react";
+import { useUser } from "@/@user/hooks";
 import {
   useMeisterDetailQuery,
   useMeisterQuery,
 } from "../services/query.service";
 import meisterDefaultData from "../assets/data/defaultMeister.data";
-import { getStudentInformationHTML, setMeisterPointNaming } from "../helpers";
+import {
+  getStudentId,
+  getStudentInformationHTML,
+  setMeisterPointNaming,
+} from "../helpers";
 import meisterDefaultDetailData from "../assets/data/defaultMeisterDetail.data";
 
 const useMeister = () => {
-  const [studentNum, setStudentNum] = React.useState("");
+  const {
+    user: { grade, classNum, studentNumber },
+  } = useUser();
+
+  const [studentNum, setStudentNum] = React.useState(
+    getStudentId(grade, classNum, studentNumber),
+  );
   const [meister, setMeister] = React.useState(meisterDefaultData);
   const [meisterDetail, setMeisterDetail] = React.useState(
     meisterDefaultDetailData,
@@ -26,21 +37,23 @@ const useMeister = () => {
 
   const handleStudentNumChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
-    const [grade, classNum, studentNum1, studentNum2] = [
-      +value[0],
-      +value[1],
-      +value[2],
-      +value[3],
-    ];
-    const studentNumber = `${studentNum1}${studentNum2}`;
+    const [inputGrade, inputClassNum, studentNum1, studentNum2] = value
+      .split("")
+      .map((item) => +item);
+    const inputStudentNum = `${studentNum1}${studentNum2}`;
     if (value.length > 4) return;
     if (Number.isNaN(+value)) return;
-    if (grade > 3 || grade === 0) return;
-    if (classNum > 4 || classNum === 0) return;
+    if (inputGrade > 3 || inputGrade === 0) return;
+    if (inputClassNum > 4 || inputClassNum === 0) return;
     if (studentNum1 > 1) return;
-    if (+studentNumber > 16 || +studentNumber === 0) return;
+    if (+inputStudentNum > 16 || +inputStudentNum === 0) return;
     setStudentNum(value);
   };
+
+  React.useEffect(() => {
+    handleStudentSearchClick();
+    // eslint-disable-next-line
+  }, []);
 
   React.useEffect(() => {
     if (meisterDetailQuery.isSuccess) {
