@@ -1,5 +1,6 @@
 import React from "react";
 import { useUser } from "@/@user/hooks";
+import { useAtom } from "jotai";
 import {
   useMeisterDetailQuery,
   useMeisterQuery,
@@ -11,15 +12,17 @@ import {
   setMeisterPointNaming,
 } from "../helpers";
 import meisterDefaultDetailData from "../assets/data/defaultMeisterDetail.data";
+import { studentNumberContext, buttonSwitchContext } from "../context";
 
 const useMeister = () => {
   const {
     user: { grade, classNum, studentNumber },
   } = useUser();
 
-  const [studentNum, setStudentNum] = React.useState(
-    getStudentId(grade, classNum, studentNumber),
-  );
+  const [viewType, setViewType] = React.useState("분석");
+  const [studentNum, setStudentNum] = useAtom(studentNumberContext);
+  const [buttonSwitch, setButtonSwitch] = useAtom(buttonSwitchContext);
+
   const [meister, setMeister] = React.useState(meisterDefaultData);
   const [meisterDetail, setMeisterDetail] = React.useState(
     meisterDefaultDetailData,
@@ -51,7 +54,16 @@ const useMeister = () => {
   };
 
   React.useEffect(() => {
+    if (buttonSwitch) {
+      setViewType("분석");
+      meisterDetailQuery.refetch().then(() => setButtonSwitch(false));
+    }
+    // eslint-disable-next-line
+  }, [buttonSwitch]);
+
+  React.useEffect(() => {
     handleStudentSearchClick();
+    setStudentNum(getStudentId(grade, classNum, studentNumber));
     // eslint-disable-next-line
   }, []);
 
@@ -78,6 +90,8 @@ const useMeister = () => {
     meisterDetail,
     studentInfo,
     studentNum,
+    viewType,
+    setViewType,
     handleStudentNumChange,
     handleStudentSearchClick,
   };
