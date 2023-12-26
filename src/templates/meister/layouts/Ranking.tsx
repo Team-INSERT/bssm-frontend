@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Category } from "@/components/atoms";
+import { useDidMountEffect } from "@/hooks";
 import { flex, font } from "@/styles";
 import { useUser } from "@/@user/hooks";
 import { useMeisterRankingQuery } from "../services/query.service";
@@ -12,9 +13,10 @@ const Ranking = () => {
   const [currentGrade, setCurrentGrade] = React.useState(user.grade);
   const { data, isSuccess, refetch } = useMeisterRankingQuery(currentGrade);
 
-  React.useEffect(() => {
+  useDidMountEffect(() => {
     refetch();
-  }, [currentGrade, refetch]);
+    // eslint-disable-next-line
+  }, [currentGrade]);
 
   return (
     <Container>

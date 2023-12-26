@@ -1,10 +1,9 @@
 import flex from "@/styles/flex";
 import { Column, Row } from "@/components/Flex";
 import { theme, font } from "@/styles";
-import { Category } from "@/components/atoms";
 import Loading from "@/components/atoms/Loading";
 import React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import MeisterProfileBox from "./MeisterProfileBox";
 import YearlyMeisterScore from "./YearlyMeisterScore";
 import Distribution from "./Distribution";
@@ -16,13 +15,14 @@ import { meisterListData } from "../assets/data";
 import { useMeister, useMeisterHTML } from "../hooks";
 
 const MeisterPage = () => {
-  const [viewType, setViewType] = React.useState("분석");
   const {
+    viewType,
     isLoading,
     isSuccess,
     meisterDetail,
     studentInfo,
     studentNum,
+    setViewType,
     handleStudentNumChange,
     handleStudentSearchClick,
   } = useMeister();
@@ -32,15 +32,18 @@ const MeisterPage = () => {
     <Layout>
       <StyledTitle>조회 형식</StyledTitle>
       <CategoryBox>
-        {["분석", "랭킹"].map((category) => (
-          <Category
-            id={category}
-            name="meister"
-            label={category}
-            selected={viewType === category}
-            onChange={() => setViewType(category)}
-          />
-        ))}
+        <StyledCategory
+          selected={viewType === "분석"}
+          onClick={() => setViewType("분석")}
+        >
+          분석
+        </StyledCategory>
+        <StyledCategory
+          selected={viewType === "랭킹"}
+          onClick={() => setViewType("랭킹")}
+        >
+          랭킹
+        </StyledCategory>
       </CategoryBox>
       {viewType === "분석" && (
         <InputWrap>
@@ -172,6 +175,31 @@ const StyledButton = styled.button`
   background-color: ${theme.primary_blue};
   border-radius: 6px;
   color: white;
+`;
+
+const StyledCategory = styled.label<{ selected: boolean }>`
+  border: none;
+  padding: 6px 16px;
+  border-radius: 999px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 10px 0 rgba(144, 144, 144, 0.1);
+  ${font.btn3};
+  ${({ selected }) =>
+    selected
+      ? css`
+          background-color: ${theme.primary_blue};
+          color: ${theme.white};
+        `
+      : css`
+          background-color: ${theme.white};
+          color: ${theme.gray};
+
+          &:hover {
+            background-color: ${theme.on_tertiary};
+          }
+        `}
 `;
 
 export default MeisterPage;
