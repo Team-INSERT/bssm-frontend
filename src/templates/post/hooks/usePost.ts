@@ -9,7 +9,7 @@ import { KEY, ROUTER } from "@/constants";
 import { defaultPostData } from "../assets/data";
 import { useDeletePostMutation } from "../services/post/mutation.service";
 import { Post, PostCategoryType } from "../types";
-import currentCategoryContext from "../context/currentCategory.context";
+import { currentCategoryContext } from "../context";
 
 const usePost = (defaultPostDataState?: Post) => {
   const [postData, setPostData] = React.useState<Post>(defaultPostData);

@@ -1,1 +1,1 @@
-export { default as currentCategory } from "./currentCategory.context";
+export { default as currentCategoryContext } from "./currentCategory.context";

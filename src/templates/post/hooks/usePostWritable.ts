@@ -9,7 +9,7 @@ import {
 } from "../services/post/mutation.service";
 import { Post, PostCategoryType, PostData } from "../types";
 import { defaultPostData } from "../assets/data";
-import currentCategoryContext from "../context/currentCategory.context";
+import { currentCategoryContext } from "../context";
 
 // edit과 write를 동시에 처리하는 훅
 const usePostWritable = (defaultPostDataState?: Post) => {
