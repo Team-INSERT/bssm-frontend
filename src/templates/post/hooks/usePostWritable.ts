@@ -1,5 +1,7 @@
 import React from "react";
+import { useAtom } from "jotai";
 import { useImageUpload } from "@/hooks";
+import { useUser } from "@/@user/hooks";
 import { getFilteredPostDataByCategory, getPostIsValid } from "../helpers";
 import {
   useCreatePostMutation,
@@ -7,10 +9,19 @@ import {
 } from "../services/post/mutation.service";
 import { Post, PostCategoryType, PostData } from "../types";
 import { defaultPostData } from "../assets/data";
+import { currentCategoryContext } from "../context";
 
 // edit과 write를 동시에 처리하는 훅
 const usePostWritable = (defaultPostDataState?: Post) => {
-  const [postData, setPostData] = React.useState<Post>(defaultPostData);
+  const { isAdmin } = useUser();
+  const [currentCategory] = useAtom(currentCategoryContext);
+
+  const is유저가공지사항접근 = !isAdmin && currentCategory === "NOTICE";
+
+  const [postData, setPostData] = React.useState<Post>({
+    ...defaultPostData,
+    category: is유저가공지사항접근 ? "COMMON" : currentCategory,
+  });
   const [lostImageUrl, setLostImageUrl] = React.useState();
   const { mutate: updatePostMutate } = useUpdatePostMutation();
   const { mutate: createPostMutate } = useCreatePostMutation();
