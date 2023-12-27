@@ -3,17 +3,17 @@ import { useRouter } from "next/navigation";
 import dayjs from "dayjs";
 import React from "react";
 import Swal from "sweetalert2";
+import { useAtom } from "jotai";
 import { useUser } from "@/@user/hooks";
 import { KEY, ROUTER } from "@/constants";
-import { CATEGORY } from "../constants";
 import { defaultPostData } from "../assets/data";
 import { useDeletePostMutation } from "../services/post/mutation.service";
 import { Post, PostCategoryType } from "../types";
+import currentCategoryContext from "../context/currentCategory.context";
 
 const usePost = (defaultPostDataState?: Post) => {
   const [postData, setPostData] = React.useState<Post>(defaultPostData);
-  const [currentCategory, setCurrentCategory] =
-    React.useState<PostCategoryType>(CATEGORY.COMMON);
+  const [currentCategory, setCurrentCategory] = useAtom(currentCategoryContext);
   const { mutate: deletePostMutate } = useDeletePostMutation();
   const { user } = useUser();
 
