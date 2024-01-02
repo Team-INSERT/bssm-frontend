@@ -1,15 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { theme, flex } from "@/styles";
 import { Logo, Setting } from "@/assets/icons";
 import Navigation from "./Navigation";
+import SettingModal from "./@setting/setting";
 
 const Header = () => {
+  const [isSettingModalOpen, setSettingModalOpen] = useState(false);
+
+  const openSettingModal = () => {
+    setSettingModalOpen(true);
+  };
+
+  const closeSettingModal = () => {
+    setSettingModalOpen(false);
+  };
+
   return (
     <Layout>
       <Logo width={42} />
       <Navigation />
-      <Setting />
+      <Setting onClick={openSettingModal} />
+      {isSettingModalOpen && <SettingModal onClose={closeSettingModal} />}
     </Layout>
   );
 };
