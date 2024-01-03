@@ -1,5 +1,5 @@
 import Provider from "@/provider/MainProvider";
-import React, { useEffect } from "react";
+import React from "react";
 
 export const metadata = {
   title: "BSM",
@@ -11,8 +11,6 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  useEffect(() => {}, []);
-
   return (
     <html lang="en">
       <body>
