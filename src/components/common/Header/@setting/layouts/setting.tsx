@@ -29,7 +29,7 @@ const Modal = styled.div`
   ${flex.CENTER};
   width: 100%;
   height: 100%;
-  background: #00000080;
+  background-color: rgba(0, 0, 0, 0.5);
 `;
 
 const ModalContent = styled.div`
@@ -53,10 +53,10 @@ const ExitButton = styled.div`
 
 const LogoutBox = styled.div`
   ${flex.CENTER};
-  margin: 7% 0 0 0;
+  margin-top: 7%;
   padding: 2%;
   border-radius: 5%;
-  background-color: #f1f3f5;
+  background-color: ${theme.btn_background};
   color: ${theme.black};
   ${font.H4};
   cursor: pointer;
