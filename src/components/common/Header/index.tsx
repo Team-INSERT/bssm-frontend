@@ -1,20 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { theme, flex } from "@/styles";
 import { Logo, Setting } from "@/assets/icons";
 import Navigation from "./Navigation";
 import SettingModal from "./@setting/layouts/setting";
+import { useSettingModal } from "./@setting/hooks";
 
 const Header = () => {
-  const [isSettingModalOpen, setSettingModalOpen] = useState(false);
-
-  const openSettingModal = () => {
-    setSettingModalOpen(true);
-  };
-
-  const closeSettingModal = () => {
-    setSettingModalOpen(false);
-  };
+  const { isSettingModalOpen, openSettingModal, closeSettingModal } =
+    useSettingModal();
 
   return (
     <Layout>
