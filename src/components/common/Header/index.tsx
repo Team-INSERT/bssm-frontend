@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { theme, flex } from "@/styles";
 import { Logo, Setting } from "@/assets/icons";
 import Navigation from "./Navigation";
-import SettingModal from "./@setting/setting";
+import SettingModal from "./@setting/layouts/setting";
 
 const Header = () => {
   const [isSettingModalOpen, setSettingModalOpen] = useState(false);
