@@ -19,7 +19,6 @@ const Header = () => {
     </Layout>
   );
 };
-
 const Layout = styled.div`
   ${flex.VERTICAL};
   width: 100%;
