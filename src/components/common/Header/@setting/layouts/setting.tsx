@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Image from "next/image";
-import { Back } from "@/assets/images";
+import { XIcon } from "@/assets/icons";
 import { theme, flex, font } from "@/styles";
 
 interface SettingModalProps {
@@ -14,9 +13,9 @@ const SettingModal = ({ onClose }: SettingModalProps) => {
       <ModalContent>
         <SettingBox>
           <SettingText>설정</SettingText>
-          <button onClick={onClose}>
-            <ExitButton src={Back} alt="Back" />
-          </button>
+          <ExitButton>
+            <XIcon onClick={onClose} />
+          </ExitButton>
         </SettingBox>
         <LogoutBox>로그아웃</LogoutBox>
       </ModalContent>
@@ -49,7 +48,7 @@ const SettingText = styled.p`
   ${font.H4};
 `;
 
-const ExitButton = styled(Image)`
+const ExitButton = styled.div`
   margin-left: 17rem;
 `;
 
