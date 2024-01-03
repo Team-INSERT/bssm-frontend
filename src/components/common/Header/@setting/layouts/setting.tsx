@@ -2,19 +2,18 @@ import React from "react";
 import styled from "styled-components";
 import { XIcon } from "@/assets/icons";
 import { theme, flex, font } from "@/styles";
+import { useModal } from "@/@modal/hooks";
 
-interface SettingModalProps {
-  onClose: () => void;
-}
+const SettingModal = () => {
+  const { closeModal } = useModal();
 
-const SettingModal = ({ onClose }: SettingModalProps) => {
   return (
     <Modal>
       <ModalContent>
         <SettingBox>
           <SettingText>설정</SettingText>
           <ExitButton>
-            <XIcon onClick={onClose} />
+            <XIcon onClick={closeModal} />
           </ExitButton>
         </SettingBox>
         <LogoutBox>로그아웃</LogoutBox>
