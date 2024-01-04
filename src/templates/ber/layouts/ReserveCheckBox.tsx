@@ -30,19 +30,20 @@ const NoticeCheckText = styled.span`
   ${font.context};
 `;
 
+const checkedStyle = css`
+  background-color: ${theme.primary_blue};
+  border: none;
+`;
+
+const uncheckedStyle = css`
+  border: 1.5px solid ${theme.black};
+`;
+
 const CheckButton = styled.button<{ isChecked: boolean }>`
   width: 18px;
   height: 18px;
   border-radius: 3px;
-  ${({ isChecked }) =>
-    isChecked
-      ? css`
-          background-color: ${theme.primary_blue};
-          border: none;
-        `
-      : css`
-          border: 1.5px solid ${theme.black};
-        `};
+  ${({ isChecked }) => (isChecked ? checkedStyle : uncheckedStyle)};
 `;
 
 export default ReserveCheckBox;
