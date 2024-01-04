@@ -4,6 +4,7 @@ export { default as defaultProfile } from "./profile_default.png";
 export { default as QR } from "./QR.png";
 export { default as TestBanner } from "./test_banner.png";
 export { default as PageNotFound } from "./page_not_found.png";
+export { default as Back } from "./Back.png";
 
 export { default as Banner1Image } from "./banner/banner1.png";
 export { default as Banner2Image } from "./banner/banner2.png";

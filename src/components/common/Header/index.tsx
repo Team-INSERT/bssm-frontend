@@ -2,14 +2,22 @@ import React from "react";
 import styled from "styled-components";
 import { theme, flex } from "@/styles";
 import { Logo, Setting } from "@/assets/icons";
+import { useModal } from "@/@modal/hooks";
 import Navigation from "./Navigation";
+import SettingModal from "./@setting/layouts/setting";
 
 const Header = () => {
+  const { openModal } = useModal();
+
+  const handleOpenSettingModalClick = () => {
+    openModal({ component: <SettingModal /> });
+  };
+
   return (
     <Layout>
       <Logo width={42} />
       <Navigation />
-      <Setting />
+      <Setting onClick={handleOpenSettingModalClick} />
     </Layout>
   );
 };

@@ -8,7 +8,7 @@ const theme = {
   green: "#3CAD4E",
 
   background: "#F9FAFF",
-
+  btn_background: "#f1f3f5;",
   primary_red: "#E54F5A",
   primary_blue: "#73AEE3",
   primary_yellow: "#FEBC56",
