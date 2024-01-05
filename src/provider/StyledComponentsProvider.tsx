@@ -12,11 +12,10 @@ const StyledComponentsRegistry = ({ children }: React.PropsWithChildren) => {
   useServerInsertedHTML(() => {
     const styles = styledComponentsStyleSheet.getStyleElement();
     styledComponentsStyleSheet.instance.clearTag();
-    // eslint-disable-next-line
+
     return <>{styles}</>;
   });
 
-  // eslint-disable-next-line
   if (typeof window !== "undefined") return <>{children}</>;
 
   return (

@@ -28,7 +28,6 @@ const RecommentWritableBox = ({ ...recomment }: Recomment) => {
 
   React.useEffect(() => {
     setRecommentInput(recomment.detail);
-    // eslint-disable-next-line
   }, []);
 
   return (

@@ -28,7 +28,6 @@ const CommentWritableBox = ({ ...comment }: Comment) => {
 
   React.useEffect(() => {
     setCommentInput(comment.detail);
-    // eslint-disable-next-line
   }, []);
 
   return (

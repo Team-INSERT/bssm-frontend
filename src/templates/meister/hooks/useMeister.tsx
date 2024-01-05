@@ -58,13 +58,11 @@ const useMeister = () => {
       setViewType("분석");
       meisterDetailQuery.refetch().then(() => setButtonSwitch(false));
     }
-    // eslint-disable-next-line
   }, [buttonSwitch]);
 
   React.useEffect(() => {
     handleStudentSearchClick();
     setStudentNum(getStudentId(grade, classNum, studentNumber));
-    // eslint-disable-next-line
   }, []);
 
   React.useEffect(() => {

@@ -53,7 +53,6 @@ const useMeal = () => {
 
     window.addEventListener("keydown", handleMealDateKeyDown);
     return () => window.removeEventListener("keydown", handleMealDateKeyDown);
-    // eslint-disable-next-line
   }, []);
 
   return {
