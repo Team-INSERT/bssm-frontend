@@ -14,23 +14,23 @@ const PostListItemInformationBar = ({
   const { formatPostCreatedDate } = usePost();
   return (
     <Row gap="12px">
-      <InfomationBox>
+      <InformationBox>
         <CommentIcon width={12} height={12} />
-        <InfomationText>{commentCount}</InfomationText>
-      </InfomationBox>
-      <InfomationBox>
+        <InformationText>{commentCount}</InformationText>
+      </InformationBox>
+      <InformationBox>
         <LikeIcon />
-        <InfomationText>{likeCount}</InfomationText>
-      </InfomationBox>
-      <InfomationBox>
+        <InformationText>{likeCount}</InformationText>
+      </InformationBox>
+      <InformationBox>
         <TimeIcon />
-        <InfomationText>{formatPostCreatedDate(createdAt)}</InfomationText>
-      </InfomationBox>
+        <InformationText>{formatPostCreatedDate(createdAt)}</InformationText>
+      </InformationBox>
     </Row>
   );
 };
 
-const InfomationBox = styled.div`
+const InformationBox = styled.div`
   display: flex;
   align-items: center;
   gap: 3px;
@@ -40,7 +40,7 @@ const InfomationBox = styled.div`
   }
 `;
 
-const InfomationText = styled.span`
+const InformationText = styled.span`
   ${font.p3};
   color: ${theme.gray};
 `;

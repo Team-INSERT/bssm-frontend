@@ -79,20 +79,20 @@ const RankText = styled.div`
   ${font.H2};
 `;
 
-const InfomationText = styled.span`
+const InformationText = styled.span`
   ${font.H6};
   color: ${theme.black};
 `;
 
-const Department = styled(InfomationText)``;
+const Department = styled(InformationText)``;
 
-const Grade = styled(InfomationText)``;
+const Grade = styled(InformationText)``;
 
-const ClassNo = styled(InfomationText)``;
+const ClassNo = styled(InformationText)``;
 
-const StudentNo = styled(InfomationText)``;
+const StudentNo = styled(InformationText)``;
 
-const Name = styled(InfomationText)``;
+const Name = styled(InformationText)``;
 
 const RewardPointText = styled.span`
   ${font.p3};

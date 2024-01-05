@@ -52,12 +52,12 @@ const Container = styled.div`
   gap: 18px;
 `;
 
-const InfomationText = styled.span`
+const InformationText = styled.span`
   ${font.H6};
   color: ${theme.black};
 `;
 
-const Name = styled(InfomationText)``;
+const Name = styled(InformationText)``;
 
 const RewardPointText = styled.span`
   ${font.p3};
