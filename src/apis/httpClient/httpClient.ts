@@ -91,6 +91,13 @@ export class HttpClient {
     });
   }
 
+  logout(requestConfig?: AxiosRequestConfig) {
+    return this.api.delete("/logout", {
+      ...HttpClient.clientConfig,
+      ...requestConfig,
+    });
+  }
+
   put(data: unknown, requestConfig?: AxiosRequestConfig) {
     return this.api.put("", data, {
       ...HttpClient.clientConfig,
