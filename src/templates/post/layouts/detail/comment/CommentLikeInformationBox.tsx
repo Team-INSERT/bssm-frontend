@@ -1,11 +1,11 @@
 import { Row } from "@/components/Flex";
 import { theme, flex, font } from "@/styles";
 import { AddCommentIcon } from "@/templates/post/assets/icons";
-import ReactableLikeIcon from "@/templates/post/assets/icons/ReactableLikeIcon";
 import { useLike } from "@/templates/post/hooks";
 import { CommentLikeInformationBoxProps } from "@/templates/post/types/@props";
 import React from "react";
 import styled from "styled-components";
+import ReactiveLikeIcon from "@/templates/post/assets/icons/ReactiveLikeIcon";
 
 const CommentLikeInformationBox = ({
   handleRecommentWriteModeChange,
@@ -16,7 +16,7 @@ const CommentLikeInformationBox = ({
   return (
     <Row gap="6px">
       <StyledBox onClick={() => handleUpdateCommentLikeButtonClick(comment.id)}>
-        <ReactableLikeIcon isLiked={isLike} width={14} height={14} />
+        <ReactiveLikeIcon isLiked={isLike} width={14} height={14} />
         <StyledText>{currentLikeCount}</StyledText>
       </StyledBox>
       <StyledBox onClick={handleRecommentWriteModeChange}>

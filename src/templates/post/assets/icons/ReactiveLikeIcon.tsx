@@ -1,7 +1,7 @@
 import React from "react";
 import { LikeIconProps } from "../../types/@props";
 
-const ReactableLikeIcon = ({ isLiked, ...props }: LikeIconProps) => {
+const ReactiveLikeIcon = ({ isLiked, ...props }: LikeIconProps) => {
   return isLiked ? (
     <svg
       {...props}
@@ -30,4 +30,4 @@ const ReactableLikeIcon = ({ isLiked, ...props }: LikeIconProps) => {
   );
 };
 
-export default ReactableLikeIcon;
+export default ReactiveLikeIcon;
