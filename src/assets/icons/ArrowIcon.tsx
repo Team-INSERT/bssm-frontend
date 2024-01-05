@@ -1,4 +1,5 @@
 import { DIRECTION } from "@/constants";
+import styled from "styled-components";
 
 const path = {
   [DIRECTION.TOP]:
@@ -20,15 +21,19 @@ const ArrowIcon = ({
   ...props
 }: ArrowIconProps) => {
   return (
-    <svg
+    <StyledSVG
       {...props}
       viewBox="0 0 41 41"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
       <path d={path[direction]} fill="#727272" />
-    </svg>
+    </StyledSVG>
   );
 };
+
+const StyledSVG = styled.svg`
+  cursor: pointer;
+`;
 
 export default ArrowIcon;
