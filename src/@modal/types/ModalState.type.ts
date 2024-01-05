@@ -1,6 +1,6 @@
 export default interface ModalState {
   component: React.ReactNode;
   visible?: boolean;
-  menualClose?: boolean;
+  manualClose?: boolean;
   onClose?: () => void;
 }

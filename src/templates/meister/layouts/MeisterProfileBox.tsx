@@ -14,12 +14,12 @@ interface MeisterProfileBoxProps {
 }
 
 const MeisterProfileBox = ({ meister, name }: MeisterProfileBoxProps) => {
-  const { user, isLogined } = useUser();
+  const { user, isLoggedIn } = useUser();
   const router = useRouter();
 
   return (
     <Container>
-      {isLogined && (
+      {isLoggedIn && (
         <>
           <Column>
             <Row alignItems="center" gap="5px">
@@ -52,12 +52,12 @@ const Container = styled.div`
   gap: 18px;
 `;
 
-const InfomationText = styled.span`
+const InformationText = styled.span`
   ${font.H6};
   color: ${theme.black};
 `;
 
-const Name = styled(InfomationText)``;
+const Name = styled(InformationText)``;
 
 const RewardPointText = styled.span`
   ${font.p3};

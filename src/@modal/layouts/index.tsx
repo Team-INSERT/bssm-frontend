@@ -9,7 +9,7 @@ const Modal = () => {
 
   const handleModalClose = () => {
     modal.onClose?.();
-    if (!modal.menualClose) closeModal();
+    if (!modal.manualClose) closeModal();
   };
 
   return <ModalView {...modal} onClose={handleModalClose} />;

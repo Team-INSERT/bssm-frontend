@@ -5,13 +5,13 @@ import { QR } from "@/assets/images";
 import { Row, Column } from "@/components/Flex";
 
 const Info = () => {
-  const { name, service, headline, serviceInfo, policy, inquery, copyRight } = {
+  const { name, service, headline, serviceInfo, policy, inquiry, copyRight } = {
     name: "BSM",
     service: "부산소마고 학생 정보 관리 시스템",
     headline: "이용약관 | 개인정보처리방침",
     serviceInfo: `부산소마고학생정보관리시스템 | 대표 : 이현준 | 부산광역시 강서구 가락대로 1393`,
     policy: "개인정보책임관리자 : 김호현 | 소개 사이트 : insert.com",
-    inquery: "비즈니스 문의 : insert@gmail.com",
+    inquiry: "비즈니스 문의 : insert@gmail.com",
     copyRight: "© 2023. team insert. All rights reserved.",
   };
 
@@ -30,7 +30,7 @@ const Info = () => {
             <PolicyText>{service}</PolicyText>
             <PolicyText>{serviceInfo}</PolicyText>
             <PolicyText>{policy}</PolicyText>
-            <PolicyText>{inquery}</PolicyText>
+            <PolicyText>{inquiry}</PolicyText>
             <Copyright>{copyRight}</Copyright>
           </Column>
           <QRCode src={QR} alt="QRCODE" />

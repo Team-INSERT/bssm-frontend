@@ -9,11 +9,11 @@ import { useRouter } from "next/navigation";
 
 const StudentInfoBox = () => {
   const router = useRouter();
-  const { user, role, isLogined } = useUser();
+  const { user, role, isLoggedIn } = useUser();
 
   return (
     <Container>
-      {isLogined && (
+      {isLoggedIn && (
         <FallbackImage
           src={user.profile_image}
           fallbackSrc={defaultProfile}
@@ -23,7 +23,7 @@ const StudentInfoBox = () => {
           rounded
         />
       )}
-      {isLogined && (
+      {isLoggedIn && (
         <>
           <Column>
             <UserInfoBox>

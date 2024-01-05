@@ -20,9 +20,9 @@ const CheckInBox = () => {
       )}
       <CheckButton
         onClick={handlePopupOpenClick}
-        disabled={aside.room && aside.isCheckin}
+        disabled={aside.room && aside.isCheckedIn}
       >
-        {aside.room && aside.isCheckin ? "입사 완료" : "입사 체크"}
+        {aside.room && aside.isCheckedIn ? "입사 완료" : "입사 체크"}
       </CheckButton>
     </Container>
   );

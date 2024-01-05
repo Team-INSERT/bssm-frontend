@@ -21,10 +21,10 @@ const BambooPostListItem = ({
 
   return (
     <Container>
-      <InfomationBox>
+      <InformationBox>
         <PostNumberText>{allowedId}</PostNumberText>
         <PostDateText>{formatCreatedDate(createdAt)}</PostDateText>
-      </InfomationBox>
+      </InformationBox>
       <PostContentText>{content}</PostContentText>
       {isAdmin && (
         <Row gap="8px">
@@ -56,7 +56,7 @@ const Container = styled.div`
   box-shadow: 4px 4px 15px 0 rgba(0, 0, 0, 0.05);
 `;
 
-const InfomationBox = styled.div`
+const InformationBox = styled.div`
   width: 100%;
   padding: 10px 0;
   border-bottom: 1.5px solid ${theme.on_tertiary};

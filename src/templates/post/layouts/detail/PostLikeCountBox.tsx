@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Row } from "@/components/Flex";
 import { flex, font } from "@/styles";
 import { CommentIcon } from "../../assets/icons";
-import ReactableLikeIcon from "../../assets/icons/ReactableLikeIcon";
+import ReactiveLikeIcon from "../../assets/icons/ReactiveLikeIcon";
 import { useLike } from "../../hooks";
 import { PostCountBoxProps } from "../../types/@props";
 
@@ -22,7 +22,7 @@ const PostLikeCountBox = ({
   return (
     <Row gap="22px">
       <LikeBox onClick={() => handleUpdatePostLikeButtonClick(id)}>
-        <ReactableLikeIcon width={18} isLiked={isLike} />
+        <ReactiveLikeIcon width={18} isLiked={isLike} />
         <InformationText>{currentLikeCount}</InformationText>
       </LikeBox>
       <Row alignItems="center" gap="4px">

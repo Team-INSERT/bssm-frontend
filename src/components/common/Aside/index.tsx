@@ -2,18 +2,18 @@ import styled from "styled-components";
 import { Row } from "@/components/Flex";
 import { flex } from "@/styles";
 import { useUser } from "@/@user/hooks";
-import InfomationBox from "./StudentInfoBox";
+import InformationBox from "./StudentInfoBox";
 import MeisterBox from "./MeisterInfoBox";
 import JoinCheckBox from "./CheckInBox";
 
 const Aside = () => {
-  const { isLogined } = useUser();
+  const { isLoggedIn } = useUser();
 
   return (
     <Row>
-      {isLogined && (
+      {isLoggedIn && (
         <Container>
-          <InfomationBox />
+          <InformationBox />
           <Row gap="6px" height="100%">
             <MeisterBox />
             <JoinCheckBox />

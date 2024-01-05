@@ -41,10 +41,10 @@ const ReserveJoinBox = ({
           onKeyUp={handleStudentInputChange}
           placeholder="ex) 2210 박우빈"
         />
-        <InfomationText>
+        <InformationText>
           본인을 제외한 사용하는 모든 학생을 추가해주세요. 엔터 키를 눌러 추가할
           수 있어요.
-        </InfomationText>
+        </InformationText>
         <ReserveStudentList
           studentList={studentList}
           handleClick={handleStudentDeleteClick}
@@ -69,7 +69,7 @@ const Container = styled.div`
   gap: 8px;
 `;
 
-const InfomationText = styled.span`
+const InformationText = styled.span`
   ${font.p3};
   color: ${theme.gray};
 `;

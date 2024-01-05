@@ -4,7 +4,7 @@ import { Column, Row } from "@/components/Flex";
 import { FallbackImage } from "@/components/atoms";
 import { theme, flex, font } from "@/styles";
 import { useLike } from "@/templates/post/hooks";
-import ReactableLikeIcon from "@/templates/post/assets/icons/ReactableLikeIcon";
+import ReactiveLikeIcon from "@/templates/post/assets/icons/ReactiveLikeIcon";
 import { Recomment } from "@/templates/post/types";
 import RecommentWritableBox from "./RecommentWritableBox";
 
@@ -32,7 +32,7 @@ const RecommentListItem = ({ ...recomment }: Recomment) => {
           <StyledBox
             onClick={() => handleUpdateRecommentLikeButtonClick(recomment.id)}
           >
-            <ReactableLikeIcon isLiked={isLike} width={14} />
+            <ReactiveLikeIcon isLiked={isLike} width={14} />
             <StyledText>{currentLikeCount}</StyledText>
           </StyledBox>
         </Row>

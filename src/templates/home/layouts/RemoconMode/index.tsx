@@ -44,10 +44,10 @@ const RemoconMode = () => {
           rounded
         />
         <Column>
-          <StudentInfomation>
+          <StudentInformation>
             {user.grade}학년 {user.classNum}반 {user.studentNumber}번{" "}
             {user.name}
-          </StudentInfomation>
+          </StudentInformation>
           <Nickname>{user.nickname}</Nickname>
         </Column>
       </RemoconBox>
@@ -97,7 +97,7 @@ const RemoconBox = styled(Link)`
   border-radius: 6px;
 `;
 
-const StudentInfomation = styled.span`
+const StudentInformation = styled.span`
   ${font.p2};
 `;
 
