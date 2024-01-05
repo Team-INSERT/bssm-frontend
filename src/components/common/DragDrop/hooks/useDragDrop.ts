@@ -28,7 +28,6 @@ const useDragDrop = (handler: (file?: File) => void) => {
       handler(currentFile);
       setFile(currentFile);
     },
-    // eslint-disable-next-line
     [],
   );
 
@@ -40,13 +39,11 @@ const useDragDrop = (handler: (file?: File) => void) => {
   const handleDragOut = React.useCallback((e: DragEvent) => {
     handleDragIn(e);
     setIsDragging(false);
-    // eslint-disable-next-line
   }, []);
 
   const handleDragOver = React.useCallback((e: DragEvent) => {
     handleDragIn(e);
     if (e.dataTransfer) setIsDragging(true);
-    // eslint-disable-next-line
   }, []);
 
   const handleDrop = React.useCallback(
@@ -55,7 +52,6 @@ const useDragDrop = (handler: (file?: File) => void) => {
       handleChangeFiles(e as unknown as React.DragEvent<HTMLInputElement>);
       setIsDragging(false);
     },
-    // eslint-disable-next-line
     [handleChangeFiles],
   );
 

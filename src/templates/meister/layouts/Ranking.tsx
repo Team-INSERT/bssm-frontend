@@ -15,7 +15,6 @@ const Ranking = () => {
 
   useDidMountEffect(() => {
     refetch();
-    // eslint-disable-next-line
   }, [currentGrade]);
 
   return (
