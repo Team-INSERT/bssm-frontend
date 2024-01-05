@@ -14,9 +14,11 @@ import { useModal } from "@/@modal/hooks";
 import { User } from "../types";
 import { userContext } from "../context";
 import { ROLE } from "../constants";
+import { useLogoutMutation } from "../services/mutation.service";
 
 const useUser = () => {
   const [user, setUser] = useAtom(userContext);
+  const { mutate } = useLogoutMutation();
   const { openModal } = useModal();
 
   const {
@@ -32,6 +34,8 @@ const useUser = () => {
     },
     { enabled: !!Storage.getItem(TOKEN.ACCESS) },
   );
+
+  const logout = () => mutate();
 
   const isSameUser = (id: number) => {
     return userInfo?.id === id;
@@ -70,6 +74,7 @@ const useUser = () => {
     isAdmin: userInfo?.authority === ROLE.ADMIN,
     role: userInfo?.role === "STUDENT" ? "학생" : "선생님",
     isSameUser,
+    logout,
   };
 };
 
