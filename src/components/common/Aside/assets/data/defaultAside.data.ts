@@ -11,7 +11,7 @@ const defaultAsideData = {
     },
     dormitoryType: "",
   },
-  isCheckin: false,
+  isCheckedIn: false,
 };
 
 export default defaultAsideData;

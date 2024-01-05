@@ -66,7 +66,7 @@ const useAside = () => {
         negativePoint,
         ranking,
         room,
-        isCheckin: checkInRes,
+        isCheckedIn: checkInRes,
       });
     }
   }, [setAside, asideInfo, isSuccess]);
