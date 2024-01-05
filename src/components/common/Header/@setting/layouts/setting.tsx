@@ -3,20 +3,23 @@ import styled from "styled-components";
 import { XIcon } from "@/assets/icons";
 import { theme, flex, font } from "@/styles";
 import { useModal } from "@/@modal/hooks";
+import { useUser } from "@/@user/hooks";
+import { Button } from "@/components/atoms";
 
 const SettingModal = () => {
   const { closeModal } = useModal();
+  const { logout } = useUser();
 
   return (
     <Modal>
       <ModalContent>
         <SettingBox>
           <SettingText>설정</SettingText>
-          <ExitButton>
-            <XIcon onClick={closeModal} />
-          </ExitButton>
+          <XIcon onClick={closeModal} />
         </SettingBox>
-        <LogoutBox>로그아웃</LogoutBox>
+        <Button color={theme.primary_blue} onClick={logout}>
+          로그아웃
+        </Button>
       </ModalContent>
     </Modal>
   );
@@ -34,7 +37,6 @@ const Modal = styled.div`
 
 const ModalContent = styled.div`
   background-color: ${theme.white};
-  padding: 1.5%;
   border-radius: 3%;
 `;
 
@@ -45,25 +47,6 @@ const SettingBox = styled.div`
 const SettingText = styled.p`
   ${flex.CENTER};
   ${font.H4};
-`;
-
-const ExitButton = styled.div`
-  margin-left: 17rem;
-`;
-
-const LogoutBox = styled.div`
-  ${flex.CENTER};
-  margin-top: 7%;
-  padding: 2%;
-  border-radius: 5%;
-  background-color: ${theme.btn_background};
-  color: ${theme.black};
-  ${font.H4};
-  cursor: pointer;
-
-  &:hover {
-    background-color: ${theme.content};
-  }
 `;
 
 export default SettingModal;
