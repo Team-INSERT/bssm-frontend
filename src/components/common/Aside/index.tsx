@@ -7,11 +7,11 @@ import MeisterBox from "./MeisterInfoBox";
 import JoinCheckBox from "./CheckInBox";
 
 const Aside = () => {
-  const { isLogined } = useUser();
+  const { isLoggedIn } = useUser();
 
   return (
     <Row>
-      {isLogined && (
+      {isLoggedIn && (
         <Container>
           <InfomationBox />
           <Row gap="6px" height="100%">

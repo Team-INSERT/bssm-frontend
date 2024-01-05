@@ -66,7 +66,7 @@ const useUser = () => {
 
   return {
     user,
-    isLogined: !!userInfo,
+    isLoggedIn: !!userInfo,
     isAdmin: userInfo?.authority === ROLE.ADMIN,
     role: userInfo?.role === "STUDENT" ? "학생" : "선생님",
     isSameUser,

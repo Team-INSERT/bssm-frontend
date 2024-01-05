@@ -14,12 +14,12 @@ interface MeisterProfileBoxProps {
 }
 
 const MeisterProfileBox = ({ meister, name }: MeisterProfileBoxProps) => {
-  const { user, isLogined } = useUser();
+  const { user, isLoggedIn } = useUser();
   const router = useRouter();
 
   return (
     <Container>
-      {isLogined && (
+      {isLoggedIn && (
         <>
           <Column>
             <Row alignItems="center" gap="5px">

@@ -13,10 +13,10 @@ import { getCurrentMeal } from "../../helpers";
 
 const BasicMode = () => {
   const { isSuccess, data } = useMainQuery();
-  const { isLogined } = useUser();
+  const { isLoggedIn } = useUser();
   const currentMeal = getCurrentMeal();
 
-  return isSuccess && isLogined ? (
+  return isSuccess && isLoggedIn ? (
     <Column gap="8px">
       <Row gap="8px" width="100%">
         <HomeMeal {...data.meal.data[currentMeal]} mealName={currentMeal} />
