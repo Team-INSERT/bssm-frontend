@@ -9,23 +9,27 @@ const ReserveList = ({ reserveList }: BerReserveListProps) => {
   return (
     <Container>
       {reserveList.map((reserve) => (
-        <BerReserveListItem>
-          <BerReserveInformationText>
-            베르 {reserve.berNumber}실 예약
-          </BerReserveInformationText>
-          <BerReserveInformationText>
-            · {reserve.user.name}님
-          </BerReserveInformationText>
-          <BerReserveInformationText>
-            | {reserve.reservationUsersName}
-          </BerReserveInformationText>
-          {isBerReserverSameAsUser(reserve.user.id) && (
-            <ReserveCancelButton
-              onClick={() => handleBerReserveDeleteClick(reserve.id)}
-            >
-              예약 취소
-            </ReserveCancelButton>
-          )}
+        <BerReserveListItem key={reserve.id}>
+          <BerReserveInformationContainer>
+            <BerReserveInformationText>베르 1실 예약</BerReserveInformationText>
+            <BerReserveInformationBox>
+              <BerReserveInformationText>
+                <UserNameText>{reserve.user.name}김영은</UserNameText> 님 |
+              </BerReserveInformationText>
+              <BerReserveInformationText>
+                <UserListText>
+                  {reserve.reservationUsersName} 전영현 김시연 강민지 최성훈
+                </UserListText>
+              </BerReserveInformationText>
+              {isBerReserverSameAsUser(reserve.user.id) && (
+                <ReserveCancelButton
+                  onClick={() => handleBerReserveDeleteClick(reserve.id)}
+                >
+                  예약 취소
+                </ReserveCancelButton>
+              )}
+            </BerReserveInformationBox>
+          </BerReserveInformationContainer>
         </BerReserveListItem>
       ))}
     </Container>
@@ -45,11 +49,31 @@ const BerReserveListItem = styled.div`
   padding: 20px 30px;
   background-color: ${theme.white};
   display: flex;
+  flex-direction: column;
+  gap: 4px;
+`;
+
+const BerReserveInformationContainer = styled.div`
+  ${flex.COLUMN_FLEX};
   gap: 4px;
 `;
 
 const BerReserveInformationText = styled.div`
   ${font.p2};
+`;
+
+const BerReserveInformationBox = styled.div`
+  ${flex.FLEX};
+`;
+
+const UserNameText = styled.span`
+  ${font.H5};
+  font-weight: 600;
+`;
+
+const UserListText = styled.div`
+  width: 100%;
+  margin-left: 1.5%;
 `;
 
 const ReserveCancelButton = styled.button`
