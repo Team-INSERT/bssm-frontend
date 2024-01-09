@@ -105,7 +105,7 @@ export class HttpClient {
     });
   }
 
-  privateMeister(data: unknown, requestConfig?: AxiosRequestConfig) {
+  putPrivateMeister(data: unknown, requestConfig?: AxiosRequestConfig) {
     return this.api.put("", data, {
       ...HttpClient.clientConfig,
       ...requestConfig,
