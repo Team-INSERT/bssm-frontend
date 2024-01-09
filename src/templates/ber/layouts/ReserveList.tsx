@@ -14,12 +14,10 @@ const ReserveList = ({ reserveList }: BerReserveListProps) => {
             <BerReserveInformationText>베르 1실 예약</BerReserveInformationText>
             <BerReserveInformationBox>
               <BerReserveInformationText>
-                <UserNameText>{reserve.user.name}김영은</UserNameText> 님 |
+                <UserNameText>{reserve.user.name}</UserNameText> 님 |
               </BerReserveInformationText>
               <BerReserveInformationText>
-                <UserListText>
-                  {reserve.reservationUsersName} 전영현 김시연 강민지 최성훈
-                </UserListText>
+                <UserListText>{reserve.reservationUsersName} </UserListText>
               </BerReserveInformationText>
               {isBerReserverSameAsUser(reserve.user.id) && (
                 <ReserveCancelButton
