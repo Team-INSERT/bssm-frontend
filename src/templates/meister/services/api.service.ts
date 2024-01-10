@@ -19,3 +19,10 @@ export const getMeisterDetail = async (student: string) => {
   });
   return data;
 };
+
+export const putMeisterRankingPrivate = async (flag: boolean) => {
+  const { data } = await httpClient.private.putPrivateMeister({
+    privateRanking: flag,
+  });
+  return data;
+};

@@ -105,6 +105,13 @@ export class HttpClient {
     });
   }
 
+  putPrivateMeister(data: unknown, requestConfig?: AxiosRequestConfig) {
+    return this.api.put("", data, {
+      ...HttpClient.clientConfig,
+      ...requestConfig,
+    });
+  }
+
   putByTitle(data: unknown, requestConfig?: AxiosRequestConfig) {
     return this.api.put("/:title", data, {
       ...HttpClient.clientConfig,
@@ -182,4 +189,5 @@ export default {
   meister: new HttpClient("/api/meister", axiosConfig),
   ranking: new HttpClient("/api/meister/ranking", axiosConfig),
   main: new HttpClient("/api/main", axiosConfig),
+  private: new HttpClient("/api/meister/privateRanking", axiosConfig),
 };
