@@ -12,10 +12,12 @@ describe("useInfiniteScroll", () => {
     Object.defineProperty(document.documentElement, "offsetHeight", {
       value: 3000,
     });
-
-    window.scrollY = 3000;
-
+    // 스크롤을 끝까지 내리지 않음
     fireEvent.scroll(window);
-    expect(fetchNextPage).toHaveBeenCalled();
+    // 스크롤을 끝까지 내림
+    window.scrollY = 3000;
+    fireEvent.scroll(window);
+
+    expect(fetchNextPage).toHaveBeenCalledTimes(1);
   });
 });
