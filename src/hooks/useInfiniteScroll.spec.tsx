@@ -7,13 +7,9 @@ describe("useInfiniteScroll", () => {
     renderHook(() => useInfiniteScroll(fetchNextPage));
 
     Object.defineProperty(window, "scrollY", {
-      writable: true,
-      configurable: true,
       value: 0,
     });
     Object.defineProperty(document.documentElement, "offsetHeight", {
-      writable: true,
-      configurable: true,
       value: 3000,
     });
 
