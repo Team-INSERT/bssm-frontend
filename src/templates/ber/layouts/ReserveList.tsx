@@ -11,7 +11,9 @@ const ReserveList = ({ reserveList }: BerReserveListProps) => {
       {reserveList.map((reserve) => (
         <BerReserveListItem key={reserve.id}>
           <BerReserveInformationContainer>
-            <BerReserveInformationText>베르 {reserve.berNumber}실 예약</BerReserveInformationText>
+            <BerReserveInformationText>
+              베르 {reserve.berNumber}실 예약
+            </BerReserveInformationText>
             <BerReserveInformationBox>
               <BerReserveInformationText>
                 <UserNameText>{reserve.user.name}</UserNameText> 님 |
