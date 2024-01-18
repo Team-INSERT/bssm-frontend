@@ -34,5 +34,6 @@ const ArrowIcon = ({
 
 const StyledSVG = styled.svg`
   cursor: pointer;
-`
+`;
+
 export default ArrowIcon;

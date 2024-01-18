@@ -6,7 +6,7 @@ import { logout } from "./api.service";
 export const useLogoutMutation = () => {
   const queryClient = useQueryClient();
   return useMutation(logout, {
-    onSuccess: () => {
+    onSettled: () => {
       queryClient.invalidateQueries([KEY.USER]);
       Storage.delItem("TOKEN:ACCESS");
       Storage.delItem("TOKEN:REFRESH");
