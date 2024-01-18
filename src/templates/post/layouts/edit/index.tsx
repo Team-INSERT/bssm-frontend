@@ -15,6 +15,10 @@ import { CATEGORY } from "../../constants";
 import { usePostWritable } from "../../hooks";
 import { PostDetailParamsProps } from "../../types/@props";
 
+type PostCategoryType = {
+  [key in keyof typeof CATEGORY]?: JSX.Element;
+};
+
 const PostEditPage = ({ id }: PostDetailParamsProps) => {
   const { post } = usePostQuery(id);
   const {
@@ -24,6 +28,44 @@ const PostEditPage = ({ id }: PostDetailParamsProps) => {
     handlePostEditButtonClick,
     handleInputPostDataChange,
   } = usePostWritable(post);
+
+  const PostCategory: PostCategoryType = {
+    PROJECT: (
+      <ProjectInputBox
+        handleChange={handleInputPostDataChange}
+        postData={postData}
+      />
+    ),
+    CODE_REVIEW: (
+      <CodeReviewInputBox
+        handleChange={handleInputPostDataChange}
+        postData={postData}
+      />
+    ),
+    LOST: (
+      <LostFoundInputBox
+        handleChange={handleInputPostDataChange}
+        handleFileSelect={handleImageFileSelect}
+        postData={postData}
+        lostImageUrl={lostImageUrl}
+      />
+    ),
+    FOUND: (
+      <>
+        <LostFoundInputBox
+          handleChange={handleInputPostDataChange}
+          handleFileSelect={handleImageFileSelect}
+          postData={postData}
+          lostImageUrl={lostImageUrl}
+        />
+        <FoundInputBox
+          handleChange={handleInputPostDataChange}
+          postData={postData}
+        />
+      </>
+    ),
+  };
+
   return (
     <>
       <Layout>
@@ -34,33 +76,7 @@ const PostEditPage = ({ id }: PostDetailParamsProps) => {
             handleChange={handleInputPostDataChange}
             postData={postData}
           />
-          {postData.category === CATEGORY.PROJECT && (
-            <ProjectInputBox
-              handleChange={handleInputPostDataChange}
-              postData={postData}
-            />
-          )}
-          {postData.category === CATEGORY.CODE_REVIEW && (
-            <CodeReviewInputBox
-              handleChange={handleInputPostDataChange}
-              postData={postData}
-            />
-          )}
-          {(postData.category === CATEGORY.LOST ||
-            postData.category === CATEGORY.FOUND) && (
-            <LostFoundInputBox
-              handleChange={handleInputPostDataChange}
-              handleFileSelect={handleImageFileSelect}
-              postData={postData}
-              lostImageUrl={lostImageUrl}
-            />
-          )}
-          {postData.category === CATEGORY.FOUND && (
-            <FoundInputBox
-              handleChange={handleInputPostDataChange}
-              postData={postData}
-            />
-          )}
+          {PostCategory[postData.category]}
           <ContentInputBox
             handleChange={handleInputPostDataChange}
             postData={postData}
