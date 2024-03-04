@@ -11,7 +11,8 @@ const LoginModal = () => {
 
   const handleLoginButtonClick = () => {
     if (isWindow) {
-      router.push(process.env.NEXT_PUBLIC_OAUTH_URL || ROUTER.HOME);
+      window.open(process.env.NEXT_PUBLIC_OAUTH_URL || ROUTER.HOME);
+      // router.push(process.env.NEXT_PUBLIC_OAUTH_URL || ROUTER.HOME);
     }
   };
 

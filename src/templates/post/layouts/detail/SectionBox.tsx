@@ -74,7 +74,7 @@ const StyledAnchor = styled(Link)`
   text-decoration: underline;
 `;
 
-const StyledImage = styled(Image)`
+const StyledImage = styled.img`
   width: 50%;
   height: auto;
 `;
