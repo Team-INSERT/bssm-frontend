@@ -5,11 +5,11 @@ import { defaultProfile } from "@/assets/images";
 import { FallbackImage } from "@/components/atoms";
 import Link from "next/link";
 import { ROUTER } from "@/constants";
+import FallbackImgImage from "@/components/atoms/FallbackImgImage";
 import { PostListProperty } from "../../types";
 import PostListItemInformationBar from "./PostListItemInformationBar";
 import { EmptyImage } from "../../assets/images";
 import { CATEGORY } from "../../constants";
-import FallbackImgImage from "@/components/atoms/FallbackImgImage";
 
 const PostListItem = ({
   category,

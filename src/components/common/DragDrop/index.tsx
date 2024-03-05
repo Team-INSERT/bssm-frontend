@@ -66,7 +66,7 @@ const DragDropTitle = styled.div`
   font-size: 14px;
 `;
 
-const StyledImage = styled(Image)`
+const StyledImage = styled.img`
   border-radius: 6px;
   width: 28vw;
   height: 30vh;
