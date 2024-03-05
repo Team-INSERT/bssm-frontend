@@ -40,7 +40,7 @@ const FallbackImgImage = ({
   );
 };
 
-const StyledImage = styled(Image)<{
+const StyledImage = styled.img<{
   isshouldhide?: boolean;
   isrounded?: string;
 }>`
