@@ -1,14 +1,14 @@
 import React from "react";
-import Image, { ImageProps, StaticImageData } from "next/image";
+import { ImageProps } from "next/image";
 import styled, { css } from "styled-components";
-import { StaticImport } from "next/dist/shared/lib/get-img-props";
 
 interface FallbackImgImageProps extends ImageProps {
-  fallbackSrc: StaticImageData | string;
+  fallbackSrc: string;
   alt: string;
   sizes?: string;
   rounded?: boolean;
   isShouldHide?: boolean;
+  src: string;
 }
 
 const FallbackImgImage = ({
@@ -20,12 +20,10 @@ const FallbackImgImage = ({
   rounded,
   ...props
 }: FallbackImgImageProps) => {
-  const [imgSrc, setImgSrc] = React.useState<
-    StaticImageData | StaticImport | string
-  >("");
+  const [imgSrc, setImgSrc] = React.useState<string>("");
 
   React.useEffect(() => {
-    setImgSrc(src ?? "/");
+    setImgSrc(src);
   }, [src]);
 
   return (
