@@ -1,9 +1,9 @@
 import React from "react";
-import { ImageProps } from "next/image";
+import Image, { ImageProps, StaticImageData } from "next/image";
 import styled, { css } from "styled-components";
 
 interface FallbackImgImageProps extends ImageProps {
-  fallbackSrc: string;
+  fallbackSrc: string | StaticImageData;
   alt: string;
   sizes?: string;
   rounded?: boolean;
@@ -20,25 +20,47 @@ const FallbackImgImage = ({
   rounded,
   ...props
 }: FallbackImgImageProps) => {
-  const [imgSrc, setImgSrc] = React.useState<string>("");
+  const [isError, setIsError] = React.useState(false);
 
-  React.useEffect(() => {
-    setImgSrc(src);
-  }, [src]);
-
-  return (
+  return isError ? (
     <StyledImage
-      src={imgSrc}
+      src={src}
       {...props}
       alt={alt}
       isshouldhide={isShouldHide}
-      onError={() => setImgSrc(fallbackSrc)}
+      onError={() => setIsError(true)}
+      isrounded={rounded?.toString()}
+    />
+  ) : (
+    <StyledFallbackImage
+      src={fallbackSrc}
+      {...props}
+      alt={alt}
+      isshouldhide={isShouldHide}
+      onError={() => setIsError(true)}
       isrounded={rounded?.toString()}
     />
   );
 };
 
 const StyledImage = styled.img<{
+  isshouldhide?: boolean;
+  isrounded?: string;
+}>`
+  height: auto;
+  ${({ isshouldhide }) =>
+    isshouldhide &&
+    css`
+      display: none;
+    `}
+  ${({ isrounded }) =>
+    isrounded === "true" &&
+    css`
+      border-radius: 50%;
+    `}
+`;
+
+const StyledFallbackImage = styled(Image)<{
   isshouldhide?: boolean;
   isrounded?: string;
 }>`
