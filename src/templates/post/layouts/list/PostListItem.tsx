@@ -9,6 +9,7 @@ import { PostListProperty } from "../../types";
 import PostListItemInformationBar from "./PostListItemInformationBar";
 import { EmptyImage } from "../../assets/images";
 import { CATEGORY } from "../../constants";
+import FallbackImgImage from "@/components/atoms/FallbackImgImage";
 
 const PostListItem = ({
   category,
@@ -26,7 +27,7 @@ const PostListItem = ({
   return (
     <Layout href={`${ROUTER.POST.LIST}/${id}`}>
       {is카테고리가분실물찾기라면 && (
-        <FallbackImage
+        <FallbackImgImage
           src={lostThingImage || "/"}
           alt="분실물 이미지"
           fallbackSrc={EmptyImage}
